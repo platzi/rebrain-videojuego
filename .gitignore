@@ -10,5 +10,10 @@ export_presets.cfg
 .mono/
 data_*/
 
-# Resources/editables
+# Visual Studio specific ignores
+*.vs
+
+# Untrack folders
 resources/
+test/
+editables/
