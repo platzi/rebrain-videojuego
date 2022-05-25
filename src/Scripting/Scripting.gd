@@ -1,16 +1,21 @@
 extends Control
 
+var scriptingNodeScn := preload("res://src/Scripting/ScriptingNode.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var nodeSearcher := $NodeSearcher
+onready var scriptingGraph := $ScriptingGraph
 
+func _ready() -> void:
+	nodeSearcher.connect("node_selected", self, "_create_new_node")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _input(event : InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed() and event.button_mask == BUTTON_RIGHT:
+		nodeSearcher.popup(Rect2(event.position.x, event.position.y, 200, 200))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _create_new_node(node_type : String) -> void:
+	var mousePos := get_local_mouse_position()
+	var inst := scriptingNodeScn.instance()
+	inst.type = node_type
+	inst.offset = mousePos + scriptingGraph.scroll_offset
+	scriptingGraph.add_child(inst)
+	nodeSearcher.hide()
