@@ -1,6 +1,8 @@
 extends Control
 
+
 signal close_credits
+
 
 func _input(event):
 	if event is InputEventKey:
