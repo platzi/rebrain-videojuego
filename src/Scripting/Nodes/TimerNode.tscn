@@ -3,11 +3,11 @@
 [ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/ui/scripting_icon_time.png" type="Texture" id=2]
 
-[node name="MoveForwardNode" type="GraphNode"]
+[node name="TimerNode" type="GraphNode"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -856.0
-margin_bottom = -497.0
+margin_right = -838.0
+margin_bottom = -493.0
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color( 1, 1, 1, 1 )
@@ -24,7 +24,7 @@ slot/1/right_color = Color( 1, 1, 1, 1 )
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 16.0
 margin_top = 24.0
-margin_right = 152.0
+margin_right = 170.0
 margin_bottom = 48.0
 mouse_filter = 2
 custom_constants/margin_right = 8
@@ -35,7 +35,7 @@ custom_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 128.0
+margin_right = 146.0
 margin_bottom = 20.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
@@ -47,8 +47,8 @@ texture = ExtResource( 1 )
 expand = true
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 120.0
+margin_left = 122.0
+margin_right = 138.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 0
@@ -58,7 +58,7 @@ expand = true
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 margin_left = 16.0
 margin_top = 49.0
-margin_right = 152.0
+margin_right = 170.0
 margin_bottom = 81.0
 mouse_filter = 2
 custom_constants/margin_right = 8
@@ -69,7 +69,7 @@ custom_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 128.0
+margin_right = 146.0
 margin_bottom = 28.0
 custom_constants/separation = 8
 
@@ -85,7 +85,7 @@ expand = true
 
 [node name="TimerSB" type="SpinBox" parent="MarginContainer2/HBoxContainer"]
 margin_left = 24.0
-margin_right = 105.0
+margin_right = 123.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -94,8 +94,8 @@ value = 1.0
 align = 2
 
 [node name="Label" type="Label" parent="MarginContainer2/HBoxContainer"]
-margin_left = 113.0
+margin_left = 131.0
 margin_top = 5.0
-margin_right = 120.0
+margin_right = 138.0
 margin_bottom = 19.0
 text = "s"

@@ -10,6 +10,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/bg = SubResource( 1 )
 right_disconnects = true
-use_snap = false
 minimap_enabled = false
 script = ExtResource( 1 )
