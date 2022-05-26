@@ -1,44 +1,298 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ui/main_menu_background.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/ui/logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=4]
+[ext_resource path="res://assets/images/ui/main_menu_player.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/ui/main_menu_enemies.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0823529, 0, 0.14902, 1 )
+
+[sub_resource type="Theme" id=2]
+Panel/styles/panel = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Intro"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("PlayerImage:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -664, -0.25, 0, 0.25, 0, -664, -0.25, 0, 0.25, 0, 60, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("EnemiesImage:rect_position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1970, -0.25, 0, 0.25, 0, 1970, -0.25, 0, 0.25, 0, 1004, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.6 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("MarginContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7, 1 )
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("PlayerImage:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 60, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("PlayerImage:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 428, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("EnemiesImage:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1004, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("EnemiesImage:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 56, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MarginContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("MarginContainer:modulate:r")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("MarginContainer:modulate:g")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("MarginContainer:modulate:b")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("MarginContainer:modulate:a")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+start_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/StartBtn")
+options_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/OptionsBtn")
+credits_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/CreditsBtn")
+exit_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/ExitBtn")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_top = 1.0
+[node name="PlayerImage" type="TextureRect" parent="."]
+margin_left = -664.0
+margin_top = 428.0
+margin_right = -25.0
+margin_bottom = 1085.0
+texture = ExtResource( 5 )
+
+[node name="EnemiesImage" type="TextureRect" parent="."]
+margin_left = 1970.0
+margin_top = 56.0
+margin_right = 2846.0
+margin_bottom = 713.0
+texture = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -140.0
-margin_right = 200.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+modulate = Color( 1, 1, 1, 0.580392 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.0823529, 0, 0.14902, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 142.0
+margin_right = 1920.0
+margin_bottom = 938.0
+size_flags_vertical = 6
+custom_constants/separation = 128
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+margin_left = 415.0
+margin_right = 1504.0
+margin_bottom = 276.0
+size_flags_horizontal = 6
+texture = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 560.0
+margin_top = 404.0
+margin_right = 1360.0
+margin_bottom = 796.0
+rect_min_size = Vector2( 800, 0 )
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 800.0
+margin_bottom = 392.0
+theme = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 800.0
+margin_bottom = 392.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+margin_left = 279.0
+margin_top = 32.0
+margin_right = 521.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 6
 custom_constants/separation = 20
 
-[node name="StartBtn" type="Button" parent="VBoxContainer"]
-margin_right = 200.0
-margin_bottom = 20.0
+[node name="StartBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 67.0
+theme = ExtResource( 4 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Comenzar"
+flat = true
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="OptionsBtn" type="Button" parent="VBoxContainer"]
-margin_top = 40.0
-margin_right = 200.0
-margin_bottom = 60.0
+[node name="OptionsBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 242.0
+margin_bottom = 154.0
+theme = ExtResource( 4 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Opciones"
+flat = true
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="CreditsBtn" type="Button" parent="VBoxContainer"]
-margin_top = 80.0
-margin_right = 200.0
-margin_bottom = 100.0
+[node name="CreditsBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 174.0
+margin_right = 242.0
+margin_bottom = 241.0
+theme = ExtResource( 4 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Créditos"
+flat = true
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="ExitBtn" type="Button" parent="VBoxContainer"]
-margin_top = 120.0
-margin_right = 200.0
-margin_bottom = 140.0
+[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 261.0
+margin_right = 242.0
+margin_bottom = 328.0
+theme = ExtResource( 4 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Salir"
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+playback_speed = 0.5
+anims/Intro = SubResource( 3 )
+anims/RESET = SubResource( 4 )
