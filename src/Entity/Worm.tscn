@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Entity/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/enemy_worm.png" type="Texture" id=2]
@@ -183,41 +183,50 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=41]
-animation = "MoveLeft"
-
-[sub_resource type="AnimationNodeAnimation" id=42]
-animation = "MoveRight"
-
-[sub_resource type="AnimationNodeAnimation" id=43]
+[sub_resource type="AnimationNodeAnimation" id=47]
 animation = "MoveDown"
 
-[sub_resource type="AnimationNodeAnimation" id=44]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "MoveUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=24]
-blend_point_0/node = SubResource( 41 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 42 )
-blend_point_1/pos = Vector2( 1, -0.01 )
-blend_point_2/node = SubResource( 43 )
-blend_point_2/pos = Vector2( 0, 1.1 )
-blend_point_3/node = SubResource( 44 )
-blend_point_3/pos = Vector2( 0, -1 )
-min_space = Vector2( -1, -1.1 )
-max_space = Vector2( 1, 1.1 )
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "MoveRight"
+
+[sub_resource type="AnimationNodeAnimation" id=50]
+animation = "MoveLeft"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=51]
+blend_point_0/node = SubResource( 47 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 48 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 49 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 50 )
+blend_point_3/pos = Vector2( -1, 0 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeTimeScale" id=52]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeBlendTree" id=53]
+graph_offset = Vector2( -3.05176e-05, 80.55 )
+nodes/BlendSpace2D/node = SubResource( 51 )
+nodes/BlendSpace2D/position = Vector2( 240, 140 )
+nodes/TimeScale/node = SubResource( 52 )
+nodes/TimeScale/position = Vector2( 500, 160 )
+nodes/output/position = Vector2( 700, 180 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
 [sub_resource type="AnimationNodeStateMachine" id=45]
 states/Idle/node = SubResource( 15 )
-states/Idle/position = Vector2( 457, 78 )
-states/Move/node = SubResource( 24 )
-states/Move/position = Vector2( 646, 78 )
-transitions = [ "Idle", "Move", SubResource( 25 ), "Move", "Idle", SubResource( 26 ) ]
+states/Idle/position = Vector2( 458, 79 )
+states/Move/node = SubResource( 53 )
+states/Move/position = Vector2( 686, 79 )
+transitions = [ "Idle", "Move", SubResource( 54 ), "Move", "Idle", SubResource( 55 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=46]
@@ -251,6 +260,8 @@ anims/RESET = SubResource( 36 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 45 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 46 )
 parameters/Idle/blend_position = Vector2( -1, 0 )
-parameters/Move/blend_position = Vector2( -1, 0 )
+parameters/Move/BlendSpace2D/blend_position = Vector2( -1, 0 )
+parameters/Move/TimeScale/scale = 0.5
