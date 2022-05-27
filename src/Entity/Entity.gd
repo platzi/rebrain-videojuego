@@ -12,7 +12,7 @@ onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position
 
 var moving = false
 var speed = 100
-var cool_down = 1
+var cool_down = 0.2
 var _timer = null
 var is_shooting = false
 
