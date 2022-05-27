@@ -4,9 +4,28 @@ extends KinematicBody2D
 const MAX_SPEED = 200
 var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
+var life = 3
+var inmunity = false
 
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
+onready var inmunity_timer := $InmunityTimer
+
+
+func _ready() -> void:
+	inmunity_timer.connect("timeout", self, "remove_inmunity")
+
+
+func remove_inmunity() -> void:
+	inmunity = false
+
+
+func hurt(move_vector : Vector2) -> void:
+	if not inmunity:
+		inmunity = true
+		life -= 1
+		position += move_vector * 15
+		inmunity_timer.start(1)
 
 
 func _physics_process(_delta : float) -> void:
@@ -24,6 +43,9 @@ func _physics_process(_delta : float) -> void:
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
+				hurt(-input_vector)
+			if collision.collider.is_in_group("Entity"):
+				hurt(-input_vector)
 	else:
 		animation_state.travel("Idle")
 

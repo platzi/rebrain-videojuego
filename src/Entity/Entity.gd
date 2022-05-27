@@ -5,12 +5,21 @@ extends KinematicBody2D
 
 
 onready var animation_tree = $AnimationTree
+onready var message_board = $MessageBoard
 onready var move_vector = animation_tree.get("parameters/Idle/blend_position")
 onready var animation_state = animation_tree.get("parameters/playback")
-onready var message_board = $MessageBoard
+onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
+
 var moving = false
 var speed = 100
-onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
+var cool_down = 1
+var _timer = null
+var _timer_inmunity = null
+var is_shooting = false
+var life = 3
+var inmunity = false
+var inmunity_time = 1
+
 
 func turns_towards(towards : String) -> void:
 	if towards.to_lower() == "left":
@@ -64,6 +73,43 @@ func shoot() -> void:
 	bullet.shoot(move_vector)
 
 
+func start_shooting() -> void:
+	shoot()
+	_timer = Timer.new()
+	add_child(_timer)
+	_timer.connect("timeout", self, "shoot")
+	_timer.set_wait_time(cool_down)
+	_timer.set_one_shot(false)
+	_timer.start()
+	is_shooting = true
+
+
+func stop_shooting() -> void:
+	_timer.queue_free()
+	_timer = null
+	is_shooting = false
+
+
+func remove_inmunity() -> void:
+	inmunity = false
+
+
+func hurt(_move_vector : Vector2) -> void:
+	if not inmunity:
+		life -= 1
+		inmunity = true
+		position += _move_vector * -15
+		_timer_inmunity.start()
+
+
+func _ready() -> void:
+	_timer_inmunity = Timer.new()
+	add_child(_timer_inmunity)
+	_timer_inmunity.connect("timeout", self, "remove_inmunity")
+	_timer_inmunity.set_wait_time(inmunity_time)
+	_timer_inmunity.set_one_shot(true)
+
+
 func _input(event) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if event.scancode == KEY_ENTER:
@@ -72,8 +118,10 @@ func _input(event) -> void:
 			hide_message()
 		elif event.scancode == KEY_0:
 			set_text("ASDFGHJKAKKSAJDJAD")
-		elif event.scancode == KEY_1:
-			shoot()
+		elif event.scancode == KEY_1 and not is_shooting:
+			start_shooting()
+		elif event.scancode == KEY_2 and is_shooting:
+			stop_shooting()
 
 func _physics_process(delta : float) -> void:
 	if moving:
@@ -85,5 +133,8 @@ func _physics_process(delta : float) -> void:
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
+				hurt(move_vector)
+			elif collision.collider.is_in_group("Player"):
+				collision.collider.hurt(move_vector)
 	else:
 		animation_state.travel("Idle")
