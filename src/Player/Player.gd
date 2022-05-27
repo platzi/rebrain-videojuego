@@ -6,6 +6,8 @@ var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
 var life = 3
 var inmunity = false
+var player_name = ""
+
 
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
@@ -46,6 +48,11 @@ func change_shoes(color : Color) -> void:
 	$Sprite.material.set_shader_param("SHOES_COLOR", color)
 
 
+func change_player_name(_name : String) -> void:
+	player_name = _name
+
+
+
 func _ready() -> void:
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	customization.connect("change_hair", self, "change_hair")
@@ -53,6 +60,7 @@ func _ready() -> void:
 	customization.connect("change_shirt", self, "change_shirt")
 	customization.connect("change_pants", self, "change_pants")
 	customization.connect("change_shoes", self, "change_shoes")
+	customization.connect("change_player_name", self, "change_player_name")
 	change_skin_color(customization.skin_colors[customization.current_skin_color])
 	change_shirt(customization.clothes_colors[customization.current_shirt])
 	change_pants(customization.clothes_colors[customization.current_pants])

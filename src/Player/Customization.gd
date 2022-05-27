@@ -1,11 +1,17 @@
 extends Node2D
 
+signal change_player_name
 signal change_hair
 signal change_skin_color
 signal change_shirt
 signal change_pants
 signal change_shoes
 
+
+var config = ConfigFile.new()
+
+onready var name_line_edit : = $VBoxContainer/HBoxContainer0/NameLineEdit
+onready var save_btn : = $VBoxContainer/HBoxContainer6/SaveBtn
 
 onready var change_hair_prev_btn : = $VBoxContainer/HBoxContainer/ChangeHairPrevBtn
 onready var change_hair_next_btn : = $VBoxContainer/HBoxContainer/ChangeHairNextBtn
@@ -74,6 +80,7 @@ var current_skin_color : int = 0
 var current_shirt : int = 0
 var current_pants : int = 0
 var current_shoes : int = 0
+var player_name = ""
 
 
 func _on_ChangeHairPrevBtn_pressed():
@@ -136,7 +143,34 @@ func _on_ChangeShoesNextBtn_pressed():
 	emit_signal("change_shoes", clothes_colors[current_shoes])
 
 
+func _on_SaveBtn_pressed() -> void:
+	config.set_value("Player", "player_name", name_line_edit.get_text())
+	config.set_value("Player", "current_hair", current_hair)
+	config.set_value("Player", "current_skin_color", current_skin_color)
+	config.set_value("Player", "current_shirt", current_shirt)
+	config.set_value("Player", "current_pants", current_pants)
+	config.set_value("Player", "current_shoes", current_shoes)
+	config.save("user://re_brain_data.cfg")
+	emit_signal("change_player_name", name_line_edit.get_text())
+
+
+func load_data() -> void:
+	var err = config.load("user://re_brain_data.cfg")
+	if err != OK:
+		return
+
+	for player in config.get_sections():
+		player_name = config.get_value(player, "player_name")
+		current_hair = config.get_value(player, "current_hair")
+		current_skin_color = config.get_value(player, "current_skin_color")
+		current_shirt = config.get_value(player, "current_shirt")
+		current_pants = config.get_value(player, "current_pants")
+		current_shoes = config.get_value(player, "current_shoes")
+		
+
 func _ready():
+	load_data()
+	name_line_edit.set_text(player_name)
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
 	skin_color_rect.color = skin_colors[current_skin_color].to_rgba32()
 	shirt_color_rect.color = clothes_colors[current_shirt].to_rgba32()
@@ -152,4 +186,4 @@ func _ready():
 	change_pants_next_btn.connect("pressed", self, "_on_ChangePantsNextBtn_pressed")
 	change_shoes_prev_btn.connect("pressed", self, "_on_ChangeShoesPrevBtn_pressed")
 	change_shoes_next_btn.connect("pressed", self, "_on_ChangeShoesNextBtn_pressed")
-
+	save_btn.connect("pressed", self, "_on_SaveBtn_pressed")
