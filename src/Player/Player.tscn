@@ -414,7 +414,7 @@ tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 17 )
-parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Idle/blend_position = Vector2( 0.00173008, 1.08303 )
 parameters/Move/blend_position = Vector2( 0, -1 )
 
 [node name="InmunityTimer" type="Timer" parent="."]
