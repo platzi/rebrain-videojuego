@@ -30,6 +30,9 @@ region = Rect2( 32, 32, 32, 32 )
 
 [node name="Customization" type="Node2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_top = 0.5
@@ -61,7 +64,7 @@ text = "Nombre:"
 margin_left = 57.0
 margin_right = 294.0
 margin_bottom = 25.0
-focus_mode = 0
+focus_mode = 1
 size_flags_horizontal = 3
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]

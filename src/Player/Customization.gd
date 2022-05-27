@@ -88,7 +88,7 @@ var current_pants : int = 0
 var current_shoes : int = 0
 
 
-func _ready():
+func _ready() -> void:
 	load_data()
 	name_line_edit.set_text(player_name)
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
@@ -126,73 +126,73 @@ func load_data() -> void:
 	current_shoes = config.get_value("Player", "current_shoes", 0)
 
 
-func _on_ChangeHairPrevBtn_pressed():
+func _on_ChangeHairPrevBtn_pressed() -> void:
 	current_hair = (all_hairs.size() + current_hair - 1) % all_hairs.size()
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
 	emit_signal("change_hair", all_hairs[current_hair])
 
 
-func _on_ChangeHairNextBtn_pressed():
+func _on_ChangeHairNextBtn_pressed() -> void:
 	current_hair = (current_hair + 1) % all_hairs.size()
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
 	emit_signal("change_hair", all_hairs[current_hair])
 
 
-func _on_ChangeHairColorPrevBtn_pressed():
+func _on_ChangeHairColorPrevBtn_pressed() -> void:
 	current_hair_color = (hair_colors.size() + current_hair_color - 1) % hair_colors.size()
 	hair_color_rect.color = hair_colors[current_hair_color].to_rgba32()
 	emit_signal("change_hair_color", hair_colors[current_hair_color])
 
 
-func _on_ChangeHairColorNextBtn_pressed():
+func _on_ChangeHairColorNextBtn_pressed() -> void:
 	current_hair_color = (current_hair_color + 1) % hair_colors.size()
 	hair_color_rect.color = hair_colors[current_hair_color].to_rgba32()
 	emit_signal("change_hair_color", hair_colors[current_hair_color])
 
 
-func _on_ChangeSkinColorPrevBtn_pressed():
+func _on_ChangeSkinColorPrevBtn_pressed() -> void:
 	current_skin_color = (skin_colors.size() + current_skin_color - 1) % skin_colors.size()
 	skin_color_rect.color = skin_colors[current_skin_color].to_rgba32()
 	emit_signal("change_skin_color", skin_colors[current_skin_color])
 
 
-func _on_ChangeSkinColorNextBtn_pressed():
+func _on_ChangeSkinColorNextBtn_pressed() -> void:
 	current_skin_color = (current_skin_color + 1) % skin_colors.size()
 	skin_color_rect.color = skin_colors[current_skin_color].to_rgba32()
 	emit_signal("change_skin_color", skin_colors[current_skin_color])
 
 
-func _on_ChangeShirtPrevBtn_pressed():
+func _on_ChangeShirtPrevBtn_pressed() -> void:
 	current_shirt = (clothes_colors.size() + current_shirt - 1) % clothes_colors.size()
 	shirt_color_rect.color = clothes_colors[current_shirt].to_rgba32()
 	emit_signal("change_shirt", clothes_colors[current_shirt])
 
 
-func _on_ChangeShirtNextBtn_pressed():
+func _on_ChangeShirtNextBtn_pressed() -> void:
 	current_shirt = (current_shirt + 1) % clothes_colors.size()
 	shirt_color_rect.color = clothes_colors[current_shirt].to_rgba32()
 	emit_signal("change_shirt", clothes_colors[current_shirt])
 
 
-func _on_ChangePantsPrevBtn_pressed():
+func _on_ChangePantsPrevBtn_pressed() -> void:
 	current_pants = (clothes_colors.size() + current_pants - 1) % clothes_colors.size()
 	pants_color_rect.color = clothes_colors[current_pants].to_rgba32()
 	emit_signal("change_pants", clothes_colors[current_pants])
 
 
-func _on_ChangePantsNextBtn_pressed():
+func _on_ChangePantsNextBtn_pressed() -> void:
 	current_pants = (current_pants + 1) % clothes_colors.size()
 	pants_color_rect.color = clothes_colors[current_pants].to_rgba32()
 	emit_signal("change_pants", clothes_colors[current_pants])
 
 
-func _on_ChangeShoesPrevBtn_pressed():
+func _on_ChangeShoesPrevBtn_pressed() -> void:
 	current_shoes = (clothes_colors.size() + current_shoes - 1) % clothes_colors.size()
 	shoes_color_rect.color = clothes_colors[current_shoes].to_rgba32()
 	emit_signal("change_shoes", clothes_colors[current_shoes])
 
 
-func _on_ChangeShoesNextBtn_pressed():
+func _on_ChangeShoesNextBtn_pressed() -> void:
 	current_shoes = (current_shoes + 1) % clothes_colors.size()
 	shoes_color_rect.color = clothes_colors[current_shoes].to_rgba32()
 	emit_signal("change_shoes", clothes_colors[current_shoes])

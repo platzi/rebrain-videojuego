@@ -22,6 +22,51 @@ var inmunity = false
 var inmunity_time = 1
 
 
+func _ready() -> void:
+	_timer_inmunity = Timer.new()
+	add_child(_timer_inmunity)
+	_timer_inmunity.connect("timeout", self, "remove_inmunity")
+	_timer_inmunity.set_wait_time(inmunity_time)
+	_timer_inmunity.set_one_shot(true)
+	
+	brain.connect("move_forward", self, "move_forward")
+	brain.connect("stop_moving", self, "stop_moving")
+	brain.connect("turns_towards", self, "turns_towards")
+	brain.connect("shoot", self, "shoot")
+	brain.connect("show_message", self, "show_message")
+	brain.connect("hide_message", self, "hide_message")
+	add_child(brain)
+
+
+#func _input(event) -> void:
+#	if event is InputEventKey and event.is_pressed():
+#		if event.scancode == KEY_ENTER:
+#			show_message("DDDDDDWWW")
+#		elif event.scancode == KEY_CONTROL:
+#			hide_message()
+#		elif event.scancode == KEY_1 and not is_shooting:
+#			start_shooting()
+#		elif event.scancode == KEY_2 and is_shooting:
+#			stop_shooting()
+
+
+func _physics_process(delta : float) -> void:
+	if moving:
+		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+		animation_state.travel("Move")
+		velocity_vector = move_vector * speed
+		velocity_vector = move_and_slide(velocity_vector) 
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if collision.collider.is_in_group("Projectile"):
+				collision.collider.hit()
+				hurt(move_vector)
+			elif collision.collider.is_in_group("Player"):
+				collision.collider.hurt(move_vector)
+	else:
+		animation_state.travel("Idle")
+
+
 func turns_towards(towards : String) -> void:
 	if towards.to_lower() == "left":
 		#(1, 0) -> (0, -1) -> (-1, 0) -> (0, 1)
@@ -98,49 +143,3 @@ func hurt(_move_vector : Vector2) -> void:
 		inmunity = true
 		position += _move_vector * -15
 		_timer_inmunity.start()
-
-
-func _ready() -> void:
-	_timer_inmunity = Timer.new()
-	add_child(_timer_inmunity)
-	_timer_inmunity.connect("timeout", self, "remove_inmunity")
-	_timer_inmunity.set_wait_time(inmunity_time)
-	_timer_inmunity.set_one_shot(true)
-	
-	brain.connect("move_forward", self, "move_forward")
-	brain.connect("stop_moving", self, "stop_moving")
-	brain.connect("turns_towards", self, "turns_towards")
-	brain.connect("shoot", self, "shoot")
-	brain.connect("show_message", self, "show_message")
-	brain.connect("hide_message", self, "hide_message")
-	add_child(brain)
-
-
-#func _input(event) -> void:
-#	if event is InputEventKey and event.is_pressed():
-#		if event.scancode == KEY_ENTER:
-#			show_message()
-#		elif event.scancode == KEY_CONTROL:
-#			hide_message()
-#		elif event.scancode == KEY_0:
-#			set_text("ASDFGHJKAKKSAJDJAD")
-#		elif event.scancode == KEY_1 and not is_shooting:
-#			start_shooting()
-#		elif event.scancode == KEY_2 and is_shooting:
-#			stop_shooting()
-
-func _physics_process(delta : float) -> void:
-	if moving:
-		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
-		animation_state.travel("Move")
-		velocity_vector = move_vector * speed
-		velocity_vector = move_and_slide(velocity_vector) 
-		for i in get_slide_count():
-			var collision = get_slide_collision(i)
-			if collision.collider.is_in_group("Projectile"):
-				collision.collider.hit()
-				hurt(move_vector)
-			elif collision.collider.is_in_group("Player"):
-				collision.collider.hurt(move_vector)
-	else:
-		animation_state.travel("Idle")
