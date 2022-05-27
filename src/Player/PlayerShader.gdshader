@@ -23,6 +23,12 @@ void fragment() {
 	referenceColor[12] = SHOES_COLOR;
 	
 	vec4 textureColor = texture(TEXTURE, UV);
-	COLOR.rgb = referenceColor[int(floor(textureColor.r * 19.0))].rgb;
+	int idx = int(floor(textureColor.r * 19.0));
+	for (int i=0; i<13; i++) {
+		if (idx == i) {
+			COLOR.rgb = referenceColor[i].rgb;
+			break;
+		}
+	}
 	COLOR.a = textureColor.a;
 }

@@ -32,6 +32,10 @@ func change_hair(hair : Texture) -> void:
 	hair_sprite.texture = hair
 
 
+func change_hair_color(color : Color) -> void:
+	$HairSprite.material.set_shader_param("HAIR_COLOR", color)
+
+
 func change_skin_color(color : Color) -> void:
 	$Sprite.material.set_shader_param("SKIN_COLOR", color)
 
@@ -56,12 +60,14 @@ func change_player_name(_name : String) -> void:
 func _ready() -> void:
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	customization.connect("change_hair", self, "change_hair")
+	customization.connect("change_hair_color", self, "change_hair_color")
 	customization.connect("change_skin_color", self, "change_skin_color")
 	customization.connect("change_shirt", self, "change_shirt")
 	customization.connect("change_pants", self, "change_pants")
 	customization.connect("change_shoes", self, "change_shoes")
 	customization.connect("change_player_name", self, "change_player_name")
 	change_skin_color(customization.skin_colors[customization.current_skin_color])
+	change_hair_color(customization.clothes_colors[customization.current_hair_color])
 	change_shirt(customization.clothes_colors[customization.current_shirt])
 	change_pants(customization.clothes_colors[customization.current_pants])
 	change_shoes(customization.clothes_colors[customization.current_shoes])

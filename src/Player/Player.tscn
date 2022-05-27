@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=2]
@@ -13,6 +13,33 @@ shader_param/SKIN_COLOR = Color( 0.74902, 0.611765, 0.611765, 1 )
 shader_param/SHIRT_COLOR = Color( 0, 0, 0, 1 )
 shader_param/PANTS_COLOR = Color( 0.027451, 0, 0, 1 )
 shader_param/SHOES_COLOR = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Shader" id=46]
+code = "shader_type canvas_item;
+
+uniform vec4 HAIR_COLOR : hint_color;
+
+void fragment() {
+	vec4 referenceColor[3];
+	referenceColor[0] = HAIR_COLOR * 0.4;
+	referenceColor[1] = HAIR_COLOR * 0.8;
+	referenceColor[2] = HAIR_COLOR;
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	int idx = int(floor(textureColor.r * 4.0));
+	for (int i=0; i<3; i++) {
+		if (idx == i) {
+			COLOR.rgb = referenceColor[i].rgb;
+			break;
+		}
+	}
+	COLOR.a = textureColor.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=47]
+shader = SubResource( 46 )
+shader_param/HAIR_COLOR = Color( 0.654902, 0.439216, 0.027451, 1 )
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.50003
@@ -359,6 +386,7 @@ vframes = 4
 frame = 1
 
 [node name="HairSprite" type="Sprite" parent="."]
+material = SubResource( 47 )
 position = Vector2( 0, -20 )
 texture = ExtResource( 3 )
 hframes = 4

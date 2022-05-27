@@ -49,10 +49,33 @@ margin_right = 68.0
 margin_bottom = 20.0
 text = ">"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 52.0
 margin_right = 68.0
 margin_bottom = 72.0
+
+[node name="ChangeHairColorPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer7"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="HairColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer7"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 6
+
+[node name="ChangeHairColorNextBtn" type="Button" parent="VBoxContainer/HBoxContainer7"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 76.0
+margin_right = 68.0
+margin_bottom = 96.0
 
 [node name="ChangeSkinColorPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer2"]
 margin_right = 20.0
@@ -73,9 +96,9 @@ margin_bottom = 20.0
 text = ">"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 76.0
+margin_top = 100.0
 margin_right = 68.0
-margin_bottom = 96.0
+margin_bottom = 120.0
 
 [node name="ChangeShirtPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer3"]
 margin_right = 20.0
@@ -96,9 +119,9 @@ margin_bottom = 20.0
 text = ">"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 100.0
+margin_top = 124.0
 margin_right = 68.0
-margin_bottom = 120.0
+margin_bottom = 144.0
 
 [node name="ChangePantsPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer4"]
 margin_right = 20.0
@@ -119,9 +142,9 @@ margin_bottom = 20.0
 text = ">"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 124.0
+margin_top = 148.0
 margin_right = 68.0
-margin_bottom = 144.0
+margin_bottom = 168.0
 
 [node name="ChangeShoesPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer5"]
 margin_right = 20.0
@@ -142,9 +165,9 @@ margin_bottom = 20.0
 text = ">"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 148.0
+margin_top = 172.0
 margin_right = 68.0
-margin_bottom = 168.0
+margin_bottom = 192.0
 
 [node name="SaveBtn" type="Button" parent="VBoxContainer/HBoxContainer6"]
 margin_left = 3.0

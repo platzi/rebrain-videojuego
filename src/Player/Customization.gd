@@ -2,6 +2,7 @@ extends Node2D
 
 signal change_player_name
 signal change_hair
+signal change_hair_color
 signal change_skin_color
 signal change_shirt
 signal change_pants
@@ -16,6 +17,10 @@ onready var save_btn : = $VBoxContainer/HBoxContainer6/SaveBtn
 onready var change_hair_prev_btn : = $VBoxContainer/HBoxContainer/ChangeHairPrevBtn
 onready var change_hair_next_btn : = $VBoxContainer/HBoxContainer/ChangeHairNextBtn
 onready var hair_label : = $VBoxContainer/HBoxContainer/HairLabel
+
+onready var change_hair_color_prev_btn : = $VBoxContainer/HBoxContainer7/ChangeHairColorPrevBtn
+onready var change_hair_color_next_btn : = $VBoxContainer/HBoxContainer7/ChangeHairColorNextBtn
+onready var hair_color_rect : = $VBoxContainer/HBoxContainer7/HairColorRect
 
 onready var change_skin_color_prev_btn : = $VBoxContainer/HBoxContainer2/ChangeSkinColorPrevBtn
 onready var change_skin_color_next_btn : = $VBoxContainer/HBoxContainer2/ChangeSkinColorNextBtn
@@ -75,12 +80,13 @@ var clothes_colors = [
 	Color.yellow,
 	Color.yellowgreen
 ]
-var current_hair : int = 0 
+var current_hair : int = 0
+var current_hair_color : int = 0
 var current_skin_color : int = 0
 var current_shirt : int = 0
 var current_pants : int = 0
 var current_shoes : int = 0
-var player_name = ""
+var player_name := ""
 
 
 func _on_ChangeHairPrevBtn_pressed():
@@ -93,6 +99,18 @@ func _on_ChangeHairNextBtn_pressed():
 	current_hair = (current_hair + 1) % all_hairs.size()
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
 	emit_signal("change_hair", all_hairs[current_hair])
+
+
+func _on_ChangeHairColorPrevBtn_pressed():
+	current_hair_color = (clothes_colors.size() + current_hair_color - 1) % clothes_colors.size()
+	hair_color_rect.color = clothes_colors[current_hair_color].to_rgba32()
+	emit_signal("change_hair_color", clothes_colors[current_hair_color])
+
+
+func _on_ChangeHairColorNextBtn_pressed():
+	current_hair_color = (current_hair_color + 1) % clothes_colors.size()
+	hair_color_rect.color = clothes_colors[current_hair_color].to_rgba32()
+	emit_signal("change_hair_color", clothes_colors[current_hair_color])
 
 
 func _on_ChangeSkinColorPrevBtn_pressed():
@@ -178,6 +196,8 @@ func _ready():
 	shoes_color_rect.color = clothes_colors[current_shoes].to_rgba32()
 	change_hair_prev_btn.connect("pressed", self, "_on_ChangeHairPrevBtn_pressed")
 	change_hair_next_btn.connect("pressed", self, "_on_ChangeHairNextBtn_pressed")
+	change_hair_color_prev_btn.connect("pressed", self, "_on_ChangeHairColorPrevBtn_pressed")
+	change_hair_color_next_btn.connect("pressed", self, "_on_ChangeHairColorNextBtn_pressed")
 	change_skin_color_prev_btn.connect("pressed", self, "_on_ChangeSkinColorPrevBtn_pressed")
 	change_skin_color_next_btn.connect("pressed", self, "_on_ChangeSkinColorNextBtn_pressed")
 	change_shirt_prev_btn.connect("pressed", self, "_on_ChangeShirtPrevBtn_pressed")
