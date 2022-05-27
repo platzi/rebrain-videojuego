@@ -16,47 +16,6 @@ onready var hair_sprite := $HairSprite
 onready var customization := $Customization
 
 
-func remove_inmunity() -> void:
-	inmunity = false
-
-
-func hurt(move_vector : Vector2) -> void:
-	if not inmunity:
-		inmunity = true
-		life -= 1
-		position += move_vector * 15
-		inmunity_timer.start(1)
-
-
-func change_hair(hair : Texture) -> void:
-	hair_sprite.texture = hair
-
-
-func change_hair_color(color : Color) -> void:
-	$HairSprite.material.set_shader_param("HAIR_COLOR", color)
-
-
-func change_skin_color(color : Color) -> void:
-	$Sprite.material.set_shader_param("SKIN_COLOR", color)
-
-
-func change_shirt(color : Color) -> void:
-	$Sprite.material.set_shader_param("SHIRT_COLOR", color)
-
-
-func change_pants(color : Color) -> void:
-	$Sprite.material.set_shader_param("PANTS_COLOR", color)
-
-
-func change_shoes(color : Color) -> void:
-	$Sprite.material.set_shader_param("SHOES_COLOR", color)
-
-
-func change_player_name(_name : String) -> void:
-	player_name = _name
-
-
-
 func _ready() -> void:
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	customization.connect("change_hair", self, "change_hair")
@@ -95,3 +54,42 @@ func _physics_process(_delta : float) -> void:
 	else:
 		animation_state.travel("Idle")
 
+
+func remove_inmunity() -> void:
+	inmunity = false
+
+
+func hurt(move_vector : Vector2) -> void:
+	if not inmunity:
+		inmunity = true
+		life -= 1
+		position += move_vector * 15
+		inmunity_timer.start(1)
+
+
+func change_hair(hair : Texture) -> void:
+	hair_sprite.texture = hair
+
+
+func change_hair_color(color : Color) -> void:
+	$HairSprite.material.set_shader_param("HAIR_COLOR", color)
+
+
+func change_skin_color(color : Color) -> void:
+	$Sprite.material.set_shader_param("SKIN_COLOR", color)
+
+
+func change_shirt(color : Color) -> void:
+	$Sprite.material.set_shader_param("SHIRT_COLOR", color)
+
+
+func change_pants(color : Color) -> void:
+	$Sprite.material.set_shader_param("PANTS_COLOR", color)
+
+
+func change_shoes(color : Color) -> void:
+	$Sprite.material.set_shader_param("SHOES_COLOR", color)
+
+
+func change_player_name(_name : String) -> void:
+	player_name = _name
