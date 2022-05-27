@@ -110,18 +110,18 @@ func _ready() -> void:
 	_timer_inmunity.set_one_shot(true)
 
 
-func _input(event) -> void:
-	if event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_ENTER:
-			show_message()
-		elif event.scancode == KEY_CONTROL:
-			hide_message()
-		elif event.scancode == KEY_0:
-			set_text("ASDFGHJKAKKSAJDJAD")
-		elif event.scancode == KEY_1 and not is_shooting:
-			start_shooting()
-		elif event.scancode == KEY_2 and is_shooting:
-			stop_shooting()
+#func _input(event) -> void:
+#	if event is InputEventKey and event.is_pressed():
+#		if event.scancode == KEY_ENTER:
+#			show_message()
+#		elif event.scancode == KEY_CONTROL:
+#			hide_message()
+#		elif event.scancode == KEY_0:
+#			set_text("ASDFGHJKAKKSAJDJAD")
+#		elif event.scancode == KEY_1 and not is_shooting:
+#			start_shooting()
+#		elif event.scancode == KEY_2 and is_shooting:
+#			stop_shooting()
 
 func _physics_process(delta : float) -> void:
 	if moving:
