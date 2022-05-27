@@ -1,0 +1,154 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Player/Customization.gd" type="Script" id=2]
+
+[node name="Customization" type="Node2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -34.0
+margin_right = 24.0
+margin_bottom = 34.0
+
+[node name="HBoxContainer0" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 68.0
+margin_bottom = 24.0
+
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer0"]
+margin_left = 5.0
+margin_right = 63.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 68.0
+margin_bottom = 48.0
+
+[node name="ChangeHairPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="HairLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 34.0
+margin_bottom = 17.0
+size_flags_horizontal = 6
+
+[node name="ChangeHairNextBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 68.0
+margin_bottom = 72.0
+
+[node name="ChangeSkinColorPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="SkinColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 6
+
+[node name="ChangeSkinColorNextBtn" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 76.0
+margin_right = 68.0
+margin_bottom = 96.0
+
+[node name="ChangeShirtPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="ShirtColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 6
+
+[node name="ChangeShirtNextBtn" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 100.0
+margin_right = 68.0
+margin_bottom = 120.0
+
+[node name="ChangePantsPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer4"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="PantsColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 6
+
+[node name="ChangePantsNextBtn" type="Button" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 68.0
+margin_bottom = 144.0
+
+[node name="ChangeShoesPrevBtn" type="Button" parent="VBoxContainer/HBoxContainer5"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "<"
+
+[node name="ShoesColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer5"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 6
+
+[node name="ChangeShoesNextBtn" type="Button" parent="VBoxContainer/HBoxContainer5"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+text = ">"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 148.0
+margin_right = 68.0
+margin_bottom = 168.0
+
+[node name="SaveBtn" type="Button" parent="VBoxContainer/HBoxContainer6"]
+margin_left = 3.0
+margin_right = 65.0
+margin_bottom = 20.0
+size_flags_horizontal = 6
+text = "Guardar"
