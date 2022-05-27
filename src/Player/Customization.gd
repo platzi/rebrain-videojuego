@@ -79,13 +79,51 @@ var clothes_colors = [
 	Color("#7312cb"),
 	Color("#cb12a1"),
 ]
+var player_name := ""
 var current_hair : int = 0
 var current_hair_color : int = 0
 var current_skin_color : int = 0
 var current_shirt : int = 0
 var current_pants : int = 0
 var current_shoes : int = 0
-var player_name := ""
+
+
+func _ready():
+	load_data()
+	name_line_edit.set_text(player_name)
+	hair_label.set_text("Peinado %d" % (current_hair + 1))
+	hair_color_rect.color = hair_colors[current_hair_color].to_rgba32()
+	skin_color_rect.color = skin_colors[current_skin_color].to_rgba32()
+	shirt_color_rect.color = clothes_colors[current_shirt].to_rgba32()
+	pants_color_rect.color = clothes_colors[current_pants].to_rgba32()
+	shoes_color_rect.color = clothes_colors[current_shoes].to_rgba32()
+	change_hair_prev_btn.connect("pressed", self, "_on_ChangeHairPrevBtn_pressed")
+	change_hair_next_btn.connect("pressed", self, "_on_ChangeHairNextBtn_pressed")
+	change_hair_color_prev_btn.connect("pressed", self, "_on_ChangeHairColorPrevBtn_pressed")
+	change_hair_color_next_btn.connect("pressed", self, "_on_ChangeHairColorNextBtn_pressed")
+	change_skin_color_prev_btn.connect("pressed", self, "_on_ChangeSkinColorPrevBtn_pressed")
+	change_skin_color_next_btn.connect("pressed", self, "_on_ChangeSkinColorNextBtn_pressed")
+	change_shirt_prev_btn.connect("pressed", self, "_on_ChangeShirtPrevBtn_pressed")
+	change_shirt_next_btn.connect("pressed", self, "_on_ChangeShirtNextBtn_pressed")
+	change_pants_prev_btn.connect("pressed", self, "_on_ChangePantsPrevBtn_pressed")
+	change_pants_next_btn.connect("pressed", self, "_on_ChangePantsNextBtn_pressed")
+	change_shoes_prev_btn.connect("pressed", self, "_on_ChangeShoesPrevBtn_pressed")
+	change_shoes_next_btn.connect("pressed", self, "_on_ChangeShoesNextBtn_pressed")
+	save_btn.connect("pressed", self, "_on_SaveBtn_pressed")
+
+
+func load_data() -> void:
+	var err = config.load("user://re_brain_data.cfg")
+	if err != OK:
+		return
+
+	player_name = config.get_value("Player", "player_name", "")
+	current_hair = config.get_value("Player", "current_hair", 0)
+	current_hair_color = config.get_value("Player", "current_hair_color", 0)
+	current_skin_color = config.get_value("Player", "current_skin_color", 0)
+	current_shirt = config.get_value("Player", "current_shirt", 0)
+	current_pants = config.get_value("Player", "current_pants", 0)
+	current_shoes = config.get_value("Player", "current_shoes", 0)
 
 
 func _on_ChangeHairPrevBtn_pressed():
@@ -170,41 +208,3 @@ func _on_SaveBtn_pressed() -> void:
 	config.set_value("Player", "current_shoes", current_shoes)
 	config.save("user://re_brain_data.cfg")
 	emit_signal("change_player_name", name_line_edit.get_text())
-
-
-func load_data() -> void:
-	var err = config.load("user://re_brain_data.cfg")
-	if err != OK:
-		return
-
-	player_name = config.get_value("Player", "player_name", "")
-	current_hair = config.get_value("Player", "current_hair", 0)
-	current_hair_color = config.get_value("Player", "current_hair_color", 0)
-	current_skin_color = config.get_value("Player", "current_skin_color", 0)
-	current_shirt = config.get_value("Player", "current_shirt", 0)
-	current_pants = config.get_value("Player", "current_pants", 0)
-	current_shoes = config.get_value("Player", "current_shoes", 0)
-		
-
-func _ready():
-	load_data()
-	name_line_edit.set_text(player_name)
-	hair_label.set_text("Peinado %d" % (current_hair + 1))
-	hair_color_rect.color = hair_colors[current_hair_color].to_rgba32()
-	skin_color_rect.color = skin_colors[current_skin_color].to_rgba32()
-	shirt_color_rect.color = clothes_colors[current_shirt].to_rgba32()
-	pants_color_rect.color = clothes_colors[current_pants].to_rgba32()
-	shoes_color_rect.color = clothes_colors[current_shoes].to_rgba32()
-	change_hair_prev_btn.connect("pressed", self, "_on_ChangeHairPrevBtn_pressed")
-	change_hair_next_btn.connect("pressed", self, "_on_ChangeHairNextBtn_pressed")
-	change_hair_color_prev_btn.connect("pressed", self, "_on_ChangeHairColorPrevBtn_pressed")
-	change_hair_color_next_btn.connect("pressed", self, "_on_ChangeHairColorNextBtn_pressed")
-	change_skin_color_prev_btn.connect("pressed", self, "_on_ChangeSkinColorPrevBtn_pressed")
-	change_skin_color_next_btn.connect("pressed", self, "_on_ChangeSkinColorNextBtn_pressed")
-	change_shirt_prev_btn.connect("pressed", self, "_on_ChangeShirtPrevBtn_pressed")
-	change_shirt_next_btn.connect("pressed", self, "_on_ChangeShirtNextBtn_pressed")
-	change_pants_prev_btn.connect("pressed", self, "_on_ChangePantsPrevBtn_pressed")
-	change_pants_next_btn.connect("pressed", self, "_on_ChangePantsNextBtn_pressed")
-	change_shoes_prev_btn.connect("pressed", self, "_on_ChangeShoesPrevBtn_pressed")
-	change_shoes_next_btn.connect("pressed", self, "_on_ChangeShoesNextBtn_pressed")
-	save_btn.connect("pressed", self, "_on_SaveBtn_pressed")
