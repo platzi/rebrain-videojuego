@@ -83,7 +83,7 @@ func _physics_process(delta : float) -> void:
 		velocity_vector = move_and_slide(velocity_vector) 
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
-			if collision.collider.get_class() == "Projectile":
+			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
 	else:
 		animation_state.travel("Idle")
