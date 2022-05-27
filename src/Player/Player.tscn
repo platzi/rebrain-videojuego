@@ -9,8 +9,8 @@
 [sub_resource type="ShaderMaterial" id=45]
 shader = ExtResource( 5 )
 shader_param/BLACK = Color( 0, 0, 0, 1 )
-shader_param/SKIN_COLOR = Color( 0.74902, 0.611765, 0.611765, 1 )
-shader_param/SHIRT_COLOR = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.839216, 0.756863, 0.576471, 1 )
+shader_param/SHIRT_COLOR = Color( 0.796078, 0.0705882, 0.631373, 1 )
 shader_param/PANTS_COLOR = Color( 0.027451, 0, 0, 1 )
 shader_param/SHOES_COLOR = Color( 0, 0, 0, 1 )
 
@@ -375,7 +375,7 @@ __meta__ = {
 }
 
 [node name="Customization" parent="." instance=ExtResource( 4 )]
-position = Vector2( 91, -38 )
+position = Vector2( 51, -16 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 45 )
