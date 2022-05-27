@@ -1,9 +1,15 @@
+class_name Projectile
+
+
 extends KinematicBody2D
 
 
 var velocity_vector = Vector2.ZERO
 var speed = 200
 var collision = null
+
+func get_class():
+	return "Projectile"
 
 
 func shoot(velocity : Vector2) -> void:
