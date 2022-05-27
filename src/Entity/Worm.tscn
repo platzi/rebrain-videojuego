@@ -232,7 +232,7 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=46]
 
-[node name="Worm" type="KinematicBody2D"]
+[node name="Worm" type="KinematicBody2D" groups=["Entity"]]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

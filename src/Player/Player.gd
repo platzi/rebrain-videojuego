@@ -12,19 +12,19 @@ onready var animation_state = animation_tree.get("parameters/playback")
 onready var inmunity_timer := $InmunityTimer
 
 
-func _ready():
+func _ready() -> void:
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 
 
-func remove_inmunity():
+func remove_inmunity() -> void:
 	inmunity = false
 
 
 func hurt(move_vector : Vector2) -> void:
-	if !inmunity:
+	if not inmunity:
 		inmunity = true
 		life -= 1
-		position = position + move_vector * 15
+		position += move_vector * 15
 		inmunity_timer.start(1)
 
 
@@ -43,8 +43,9 @@ func _physics_process(_delta : float) -> void:
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
-
-				hurt(collision.collider.velocity_vector)
+				hurt(-input_vector)
+			if collision.collider.is_in_group("Entity"):
+				hurt(-input_vector)
 	else:
 		animation_state.travel("Idle")
 

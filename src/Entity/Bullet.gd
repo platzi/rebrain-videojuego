@@ -24,7 +24,8 @@ func _physics_process(delta : float) -> void:
 			var collider = collision.get_collider()
 			if collider.is_in_group("Player"):
 				collider.hurt(velocity_vector)
-				#print(collider.life)
+			elif collider.is_in_group("Entity"):
+				collider.hurt(velocity_vector)
 	var _x = get_position().x
 	var _y = get_position().y
 	if _x < 0 or _x > max_x or _y < 0 or _y > max_y:

@@ -12,9 +12,13 @@ onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position
 
 var moving = false
 var speed = 100
-var cool_down = 0.2
+var cool_down = 1
 var _timer = null
+var _timer_inmunity = null
 var is_shooting = false
+var life = 3
+var inmunity = false
+var inmunity_time = 1
 
 
 func turns_towards(towards : String) -> void:
@@ -86,6 +90,26 @@ func stop_shooting() -> void:
 	is_shooting = false
 
 
+func remove_inmunity() -> void:
+	inmunity = false
+
+
+func hurt(_move_vector : Vector2) -> void:
+	if not inmunity:
+		life -= 1
+		inmunity = true
+		position += _move_vector * -15
+		_timer_inmunity.start()
+
+
+func _ready() -> void:
+	_timer_inmunity = Timer.new()
+	add_child(_timer_inmunity)
+	_timer_inmunity.connect("timeout", self, "remove_inmunity")
+	_timer_inmunity.set_wait_time(inmunity_time)
+	_timer_inmunity.set_one_shot(true)
+
+
 func _input(event) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if event.scancode == KEY_ENTER:
@@ -109,5 +133,8 @@ func _physics_process(delta : float) -> void:
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
+				hurt(move_vector)
+			elif collision.collider.is_in_group("Player"):
+				collision.collider.hurt(move_vector)
 	else:
 		animation_state.travel("Idle")
