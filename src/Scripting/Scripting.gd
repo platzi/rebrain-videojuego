@@ -5,13 +5,14 @@ var node_scene_list := {
 	MOVE_FORWARD = preload("res://src/Scripting/Nodes/MoveForwardNode.tscn"),
 	ROTATE = preload("res://src/Scripting/Nodes/RotateNode.tscn"),
 	TIMER = preload("res://src/Scripting/Nodes/TimerNode.tscn"),
+	SHOOT = preload("res://src/Scripting/Nodes/ShootNode.tscn"),
+	MESSAGE = preload("res://src/Scripting/Nodes/MessageNode.tscn"),
 }
 
 onready var node_searcher := $NodeSearcher
 onready var scripting_graph := $ScriptingGraph
 
-var brain := {"RotateNode":{"type":"ROTATE","position":[220,40],"connections":[{"from_port":0,"to":"MoveForwardNode","to_port":0}],"params":[1]},"UpdateNode":{"type":"UPDATE","position":[20,60],"connections":[{"from_port":0,"to":"RotateNode","to_port":0}],"params":[]},"MoveForwardNode":{"type":"MOVE_FORWARD","position":[420,40],"connections":[{"from_port":0,"to":"TimerNode","to_port":0}],"params":[5]},"TimerNode":{"type":"TIMER","position":[620,40],"connections":[],"params":[55]}}
-
+var brain := {"RotateNode":{"type":"ROTATE","position":[220,40],"connections":[{"from_port":0,"to":"MoveForwardNode","to_port":0}],"params":[1]},"UpdateNode":{"type":"UPDATE","position":[20,60],"connections":[{"from_port":0,"to":"RotateNode","to_port":0}],"params":[]},"MoveForwardNode":{"type":"MOVE_FORWARD","position":[420,40],"connections":[{"from_port":0,"to":"TimerNode","to_port":0}],"params":[2]},"TimerNode":{"type":"TIMER","position":[620,40],"connections":[{"from_port":0,"to":"ShootNode","to_port":0}],"params":[5]},"ShootNode":{"type":"SHOOT","position":[820,60],"connections":[{"from_port":0,"to":"MessageNode","to_port":0}],"params":[]},"MessageNode":{"type":"MESSAGE","position":[1020,20],"connections":[],"params":["Toma idiota",3]}}
 
 func _ready() -> void:
 	node_searcher.connect("node_selected", self, "_create_new_node")

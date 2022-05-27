@@ -11,6 +11,8 @@ var node_list := [
 	["ROTATE", "Girar", "res://assets/images/ui/scripting_icon_rotate.png"],
 	["MOVE_FORWARD", "Avanzar", "res://assets/images/ui/scripting_icon_move_forward.png"],
 	["TIMER", "Temporizador", "res://assets/images/ui/scripting_icon_timer.png"],
+	["SHOOT", "Disparar", "res://assets/images/ui/scripting_icon_shoot.png"],
+	["MESSAGE", "Mensaje", "res://assets/images/ui/scripting_icon_message.png"],
 ]
 
 var blacklist := [
