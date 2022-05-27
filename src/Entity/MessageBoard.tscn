@@ -49,26 +49,19 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="MarginContainer2"]
-margin_right = 240.0
-margin_bottom = 128.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
-margin_right = 240.0
-margin_bottom = 128.0
+margin_right = 40.0
+margin_bottom = 40.0
 custom_constants/margin_right = 6
 custom_constants/margin_top = 6
 custom_constants/margin_left = 6
 custom_constants/margin_bottom = 6
 
-[node name="Label" type="Label" parent="MarginContainer2/MarginContainer"]
+[node name="MessageLabel" type="Label" parent="MarginContainer2/MarginContainer"]
 margin_left = 6.0
-margin_top = 6.0
-margin_right = 234.0
-margin_bottom = 122.0
-text = "addaaaaaaaaaaaaaaaa
-daaaaaaaaaaaaaaaaaaaallll
-lllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-lllllllllllll}
-
-adddddddddddddddddds
-ssssssssss"
+margin_top = 13.0
+margin_right = 34.0
+margin_bottom = 27.0
