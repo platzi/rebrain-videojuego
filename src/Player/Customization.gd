@@ -207,4 +207,5 @@ func _on_SaveBtn_pressed() -> void:
 	config.set_value("Player", "current_pants", current_pants)
 	config.set_value("Player", "current_shoes", current_shoes)
 	config.save("user://re_brain_data.cfg")
+	hide()
 	emit_signal("change_player_name", name_line_edit.get_text())
