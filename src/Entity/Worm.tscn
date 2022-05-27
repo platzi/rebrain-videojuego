@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/Entity/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/enemy_worm.png" type="Texture" id=2]
+[ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=27]
 radius = 9.00001
@@ -265,3 +266,9 @@ parameters/playback = SubResource( 46 )
 parameters/Idle/blend_position = Vector2( -1, 0 )
 parameters/Move/BlendSpace2D/blend_position = Vector2( -1, 0 )
 parameters/Move/TimeScale/scale = 0.5
+
+[node name="MessageBoard" parent="." instance=ExtResource( 3 )]
+margin_left = -20.0
+margin_top = -174.0
+margin_right = 20.0
+margin_bottom = -134.0

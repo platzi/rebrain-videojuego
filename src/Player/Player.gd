@@ -20,6 +20,10 @@ func _physics_process(_delta : float) -> void:
 		animation_tree.set("parameters/Move/blend_position", input_vector)
 		animation_state.travel("Move")
 		velocity = move_and_slide(velocity)
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if collision.collider.name.to_lower() == "bullet":
+				collision.collider.hit()
 	else:
 		animation_state.travel("Idle")
 
