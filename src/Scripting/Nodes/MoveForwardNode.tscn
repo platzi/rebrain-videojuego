@@ -1,44 +1,49 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/ui/scripting_icon_time.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/ui/scripting_icon_move_forward.png" type="Texture" id=3]
+[ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Scripting/Nodes/MoveForwardNode.gd" type="Script" id=5]
 
-[node name="MoveForwardNode" type="GraphNode"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -856.0
-margin_bottom = -497.0
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color( 1, 1, 1, 1 )
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color( 1, 1, 1, 1 )
-slot/1/left_enabled = false
+[node name="MoveForwardNode" instance=ExtResource( 4 )]
+slot/1/left_enabled = true
 slot/1/left_type = 0
-slot/1/left_color = Color( 1, 1, 1, 1 )
-slot/1/right_enabled = false
+slot/1/left_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
+slot/1/right_enabled = true
 slot/1/right_type = 0
-slot/1/right_color = Color( 1, 1, 1, 1 )
+slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 5 )
+tag = "Avanzar"
+icon = ExtResource( 3 )
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 152.0
-margin_bottom = 48.0
+[node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
+texture = ExtResource( 3 )
+
+[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+margin_right = 80.0
+text = "Avanzar"
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
+margin_left = 1.0
+margin_top = 37.0
+margin_right = 159.0
+margin_bottom = 61.0
 mouse_filter = 2
-custom_constants/margin_right = 8
-custom_constants/margin_top = 4
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 8.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
+margin_left = 12.0
 margin_top = 4.0
-margin_right = 128.0
+margin_right = 146.0
 margin_bottom = 20.0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" index="0"]
 margin_right = 16.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
@@ -46,34 +51,30 @@ size_flags_horizontal = 2
 texture = ExtResource( 1 )
 expand = true
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 120.0
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer" index="1"]
+margin_left = 118.0
+margin_right = 134.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-margin_left = 16.0
-margin_top = 49.0
-margin_right = 152.0
-margin_bottom = 81.0
+[node name="MarginContainer2" type="MarginContainer" parent="." index="2"]
+margin_left = 1.0
+margin_top = 65.0
+margin_right = 159.0
+margin_bottom = 98.0
 mouse_filter = 2
-custom_constants/margin_right = 8
-custom_constants/margin_top = 4
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
-margin_left = 8.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" index="0"]
+margin_left = 12.0
 margin_top = 4.0
-margin_right = 128.0
-margin_bottom = 28.0
+margin_right = 146.0
+margin_bottom = 29.0
 custom_constants/separation = 8
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" index="0"]
 margin_top = 4.0
 margin_right = 16.0
 margin_bottom = 20.0
@@ -83,19 +84,19 @@ size_flags_vertical = 4
 texture = ExtResource( 2 )
 expand = true
 
-[node name="TimerSB" type="SpinBox" parent="MarginContainer2/HBoxContainer"]
+[node name="TimerSB" type="SpinBox" parent="MarginContainer2/HBoxContainer" index="1"]
 margin_left = 24.0
-margin_right = 105.0
-margin_bottom = 24.0
+margin_right = 120.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 60.0
 value = 1.0
 align = 2
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer"]
-margin_left = 113.0
-margin_top = 5.0
-margin_right = 120.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer" index="2"]
+margin_left = 128.0
+margin_top = 4.0
+margin_right = 134.0
+margin_bottom = 21.0
 text = "s"
