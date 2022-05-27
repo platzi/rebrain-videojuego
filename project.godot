@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://src/Entity/Entity.gd"
+}, {
+"base": "GraphNode",
+"class": "ScriptingNode",
+"language": "GDScript",
+"path": "res://src/Scripting/ScriptingNode.gd"
 } ]
 _global_script_class_icons={
-"Entity": ""
+"Entity": "",
+"ScriptingNode": ""
 }
 
 [application]
