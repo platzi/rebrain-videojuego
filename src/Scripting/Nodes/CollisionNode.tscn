@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=2]
+[ext_resource path="res://src/Scripting/Nodes/CollisionNode.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/ui/scripting_icon_entity.png" type="Texture" id=4]
+
+[node name="CollisionNode" instance=ExtResource( 1 )]
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = true
+slot/2/right_type = 1
+slot/2/right_color = Color( 0.686275, 0.00392157, 0.00392157, 1 )
+script = ExtResource( 3 )
+tag = "Colisión"
+subtag = "Evento"
+
+[node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+margin_right = 80.0
+
+[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
+margin_right = 48.0
+text = "Colisión"
+
+[node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
+margin_right = 48.0
+text = "Evento"
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
+margin_left = 1.0
+margin_top = 44.0
+margin_right = 159.0
+margin_bottom = 68.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
+margin_left = 12.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 20.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" index="0"]
+margin_left = 118.0
+margin_right = 134.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 10
+texture = ExtResource( 2 )
+expand = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="." index="2"]
+margin_left = 1.0
+margin_top = 72.0
+margin_right = 159.0
+margin_bottom = 97.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" index="0"]
+margin_left = 12.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 21.0
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer" index="0"]
+margin_right = 114.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Entidad"
+align = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" index="1"]
+margin_left = 118.0
+margin_right = 134.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 4 )
+expand = true

@@ -13,6 +13,8 @@ var node_list := [
 	["TIMER", "Temporizador", "res://assets/images/ui/scripting_icon_timer.png"],
 	["SHOOT", "Disparar", "res://assets/images/ui/scripting_icon_shoot.png"],
 	["MESSAGE", "Mensaje", "res://assets/images/ui/scripting_icon_message.png"],
+	["COLLISION", "Colisión", "res://assets/images/ui/scripting_icon_message.png"],
+	["COMPARE_ENTITY", "Comprar Entidad", "res://assets/images/ui/scripting_icon_message.png"],
 ]
 
 var blacklist := [

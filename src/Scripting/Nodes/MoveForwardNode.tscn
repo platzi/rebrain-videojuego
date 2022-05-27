@@ -23,12 +23,34 @@ script = ExtResource( 5 )
 tag = "Avanzar"
 icon = ExtResource( 3 )
 
+[node name="TitleMC" parent="." index="0"]
+margin_bottom = 33.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_bottom = 32.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_bottom = 32.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_bottom = 28.0
+
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
+margin_bottom = 24.0
 texture = ExtResource( 3 )
 
-[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+[node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+margin_top = 3.0
 margin_right = 80.0
+margin_bottom = 20.0
+
+[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
+margin_right = 48.0
 text = "Avanzar"
+
+[node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
+visible = false
+margin_right = 35.0
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="1"]
 margin_left = 1.0

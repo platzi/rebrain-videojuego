@@ -14,38 +14,41 @@ slot/1/right_type = 0
 slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
 script = ExtResource( 3 )
 tag = "Actualizar"
+subtag = "Evento"
 icon = ExtResource( 4 )
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 4 )
 
-[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+[node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
 margin_right = 92.0
+
+[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
+margin_right = 60.0
 text = "Actualizar"
+
+[node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
+margin_right = 60.0
+text = "Evento"
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="1"]
 margin_left = 1.0
-margin_top = 37.0
+margin_top = 44.0
 margin_right = 159.0
-margin_bottom = 62.0
+margin_bottom = 68.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
 margin_left = 12.0
 margin_top = 4.0
 margin_right = 146.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" index="0"]
-margin_right = 114.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-text = "Ejecutar"
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" index="1"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" index="0"]
 margin_left = 118.0
 margin_right = 134.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 10
 texture = ExtResource( 1 )
 expand = true

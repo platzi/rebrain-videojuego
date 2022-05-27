@@ -7,6 +7,8 @@ var node_scene_list := {
 	TIMER = preload("res://src/Scripting/Nodes/TimerNode.tscn"),
 	SHOOT = preload("res://src/Scripting/Nodes/ShootNode.tscn"),
 	MESSAGE = preload("res://src/Scripting/Nodes/MessageNode.tscn"),
+	COLLISION = preload("res://src/Scripting/Nodes/CollisionNode.tscn"),
+	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
 }
 
 onready var node_searcher := $NodeSearcher
