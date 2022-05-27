@@ -55,16 +55,13 @@ func stop_moving() -> void:
 	moving = false
 
 
-func show_message() -> void:
+func show_message(text : String) -> void:
+	message_board.set_text(text)
 	message_board.show_message()
 
 
 func hide_message() -> void:
 	message_board.hide_message()
-
-
-func set_text(message : String) -> void:
-	message_board.set_text(message)
 
 
 func shoot() -> void:
@@ -113,8 +110,10 @@ func _ready() -> void:
 	brain.connect("move_forward", self, "move_forward")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")
+	brain.connect("shoot", self, "shoot")
+	brain.connect("show_message", self, "show_message")
+	brain.connect("hide_message", self, "hide_message")
 	add_child(brain)
-	print(brain)
 
 
 #func _input(event) -> void:
