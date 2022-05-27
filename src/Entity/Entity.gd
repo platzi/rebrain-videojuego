@@ -3,12 +3,13 @@ class_name Entity
 
 extends KinematicBody2D
 
-
 onready var animation_tree = $AnimationTree
 onready var message_board = $MessageBoard
 onready var move_vector = animation_tree.get("parameters/Idle/blend_position")
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
+
+var brain := Brain.new()
 
 var moving = false
 var speed = 100
@@ -108,6 +109,12 @@ func _ready() -> void:
 	_timer_inmunity.connect("timeout", self, "remove_inmunity")
 	_timer_inmunity.set_wait_time(inmunity_time)
 	_timer_inmunity.set_one_shot(true)
+	
+	brain.connect("move_forward", self, "move_forward")
+	brain.connect("stop_moving", self, "stop_moving")
+	brain.connect("turns_towards", self, "turns_towards")
+	add_child(brain)
+	print(brain)
 
 
 #func _input(event) -> void:
