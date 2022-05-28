@@ -68,8 +68,8 @@ func _physics_process(delta : float) -> void:
 		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
 		animation_state.travel("Move")
 		velocity_vector = move_vector * speed
-		#velocity_vector = move_and_slide(velocity_vector) 
-		position += velocity_vector * delta
+		velocity_vector = move_and_slide(velocity_vector) 
+#		position += velocity_vector * delta
 #		for i in get_slide_count():
 #			var collision = get_slide_collision(i)
 #			if collision.collider.is_in_group("Projectile"):
