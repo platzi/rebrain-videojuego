@@ -1,12 +1,9 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/Entity/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/enemy_worm.png" type="Texture" id=2]
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=3]
-
-[sub_resource type="CapsuleShape2D" id=27]
-radius = 9.00001
-height = 13.9998
+[ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=28]
 resource_name = "IdleDown"
@@ -159,60 +156,60 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=37]
-animation = "IdleLeft"
-
-[sub_resource type="AnimationNodeAnimation" id=38]
-animation = "IdleRight"
-
-[sub_resource type="AnimationNodeAnimation" id=39]
-animation = "IdleDown"
-
-[sub_resource type="AnimationNodeAnimation" id=40]
+[sub_resource type="AnimationNodeAnimation" id=56]
 animation = "IdleUp"
 
+[sub_resource type="AnimationNodeAnimation" id=57]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=58]
+animation = "IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "IdleLeft"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 37 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 38 )
+blend_point_0/node = SubResource( 56 )
+blend_point_0/pos = Vector2( 0, -1.1 )
+blend_point_1/node = SubResource( 57 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 39 )
+blend_point_2/node = SubResource( 58 )
 blend_point_2/pos = Vector2( 0, 1.1 )
-blend_point_3/node = SubResource( 40 )
-blend_point_3/pos = Vector2( 0, -1.1 )
+blend_point_3/node = SubResource( 59 )
+blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=47]
+[sub_resource type="AnimationNodeAnimation" id=60]
 animation = "MoveDown"
 
-[sub_resource type="AnimationNodeAnimation" id=48]
+[sub_resource type="AnimationNodeAnimation" id=61]
 animation = "MoveUp"
 
-[sub_resource type="AnimationNodeAnimation" id=49]
+[sub_resource type="AnimationNodeAnimation" id=62]
 animation = "MoveRight"
 
-[sub_resource type="AnimationNodeAnimation" id=50]
+[sub_resource type="AnimationNodeAnimation" id=63]
 animation = "MoveLeft"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=51]
-blend_point_0/node = SubResource( 47 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=88]
+blend_point_0/node = SubResource( 60 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 48 )
+blend_point_1/node = SubResource( 61 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 49 )
+blend_point_2/node = SubResource( 62 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 50 )
+blend_point_3/node = SubResource( 63 )
 blend_point_3/pos = Vector2( -1, 0 )
-blend_mode = 1
 
 [sub_resource type="AnimationNodeTimeScale" id=52]
 
 [sub_resource type="AnimationNodeBlendTree" id=53]
-graph_offset = Vector2( -3.05176e-05, 80.55 )
-nodes/BlendSpace2D/node = SubResource( 51 )
-nodes/BlendSpace2D/position = Vector2( 240, 140 )
+resource_local_to_scene = true
+graph_offset = Vector2( 0, 67.85 )
+nodes/BlendSpace2D/node = SubResource( 88 )
+nodes/BlendSpace2D/position = Vector2( 260, 140 )
 nodes/TimeScale/node = SubResource( 52 )
 nodes/TimeScale/position = Vector2( 500, 160 )
 nodes/output/position = Vector2( 700, 180 )
@@ -226,13 +223,17 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 458, 79 )
 states/Move/node = SubResource( 53 )
-states/Move/position = Vector2( 686, 79 )
+states/Move/position = Vector2( 701, 79 )
 transitions = [ "Idle", "Move", SubResource( 54 ), "Move", "Idle", SubResource( 55 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=46]
 
-[node name="Worm" type="KinematicBody2D" groups=["Entity"]]
+[sub_resource type="CapsuleShape2D" id=27]
+radius = 9.00001
+height = 13.9998
+
+[node name="Worm" type="KinematicBody2D" groups=["Enemy", "Entity"]]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -241,10 +242,6 @@ texture = ExtResource( 2 )
 hframes = 4
 vframes = 4
 frame = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.5708
-shape = SubResource( 27 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
@@ -264,7 +261,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 46 )
 parameters/Idle/blend_position = Vector2( -1, 0 )
-parameters/Move/BlendSpace2D/blend_position = Vector2( -1, 0 )
+parameters/Move/BlendSpace2D/blend_position = Vector2( 0, 0 )
 parameters/Move/TimeScale/scale = 0.5
 
 [node name="MessageBoard" parent="." instance=ExtResource( 3 )]
@@ -272,3 +269,10 @@ margin_left = -20.0
 margin_top = -174.0
 margin_right = 20.0
 margin_bottom = -134.0
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource( 27 )
