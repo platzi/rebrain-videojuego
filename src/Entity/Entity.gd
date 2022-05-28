@@ -3,8 +3,16 @@ class_name Entity
 
 extends KinematicBody2D
 
+
+signal button_body_entered
+
+
+var brain_dict := {}
+
+
 onready var animation_tree = $AnimationTree
 onready var message_board = $MessageBoard
+onready var area_2D = $Area2D
 onready var move_vector = animation_tree.get("parameters/Idle/blend_position")
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
@@ -29,12 +37,15 @@ func _ready() -> void:
 	_timer_inmunity.set_wait_time(inmunity_time)
 	_timer_inmunity.set_one_shot(true)
 	
+	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
+	
 	brain.connect("move_forward", self, "move_forward")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")
 	brain.connect("shoot", self, "shoot")
 	brain.connect("show_message", self, "show_message")
 	brain.connect("hide_message", self, "hide_message")
+	brain.brain = brain_dict
 	add_child(brain)
 
 
@@ -51,18 +62,21 @@ func _ready() -> void:
 
 
 func _physics_process(delta : float) -> void:
+	if area_2D.get_overlapping_bodies() != []:
+		_on_Area2D_body_entered(area_2D.get_overlapping_bodies()[0])
 	if moving:
 		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
 		animation_state.travel("Move")
 		velocity_vector = move_vector * speed
-		velocity_vector = move_and_slide(velocity_vector) 
-		for i in get_slide_count():
-			var collision = get_slide_collision(i)
-			if collision.collider.is_in_group("Projectile"):
-				collision.collider.hit()
-				hurt(move_vector)
-			elif collision.collider.is_in_group("Player"):
-				collision.collider.hurt(move_vector)
+		#velocity_vector = move_and_slide(velocity_vector) 
+		position += velocity_vector * delta
+#		for i in get_slide_count():
+#			var collision = get_slide_collision(i)
+#			if collision.collider.is_in_group("Projectile"):
+#				collision.collider.hit()
+#				hurt(move_vector)
+#			elif collision.collider.is_in_group("Player"):
+#				collision.collider.hurt(move_vector)
 	else:
 		animation_state.travel("Idle")
 
@@ -143,3 +157,12 @@ func hurt(_move_vector : Vector2) -> void:
 		inmunity = true
 		position += _move_vector * -15
 		_timer_inmunity.start()
+
+
+func _on_Area2D_body_entered(body):
+	if self.is_in_group("Enemy"):
+		body.hurt(move_vector - body.input_vector)
+		print(self.name)
+	else:
+		print("BUTTONNN")
+		emit_signal("button_body_entered")
