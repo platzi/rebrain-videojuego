@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var node_scene_list := {
 	UPDATE = preload("res://src/Scripting/Nodes/UpdateNode.tscn"),
@@ -11,14 +11,66 @@ var node_scene_list := {
 	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
 }
 
-onready var node_searcher := $NodeSearcher
-onready var scripting_graph := $ScriptingGraph
+var is_open := true
+
+onready var scripting_container : Control = $ScriptingContainer
+onready var node_searcher := $ScriptingContainer/NodeSearcher
+onready var scripting_graph := $ScriptingContainer/ScriptingGraph
+onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 var brain := {"RotateNode":{"type":"ROTATE","position":[220,40],"connections":[{"from_port":0,"to":"MoveForwardNode","to_port":0}],"params":[1]},"UpdateNode":{"type":"UPDATE","position":[20,60],"connections":[{"from_port":0,"to":"RotateNode","to_port":0}],"params":[]},"MoveForwardNode":{"type":"MOVE_FORWARD","position":[420,40],"connections":[{"from_port":0,"to":"TimerNode","to_port":0}],"params":[2]},"TimerNode":{"type":"TIMER","position":[620,40],"connections":[{"from_port":0,"to":"ShootNode","to_port":0}],"params":[5]},"ShootNode":{"type":"SHOOT","position":[820,60],"connections":[{"from_port":0,"to":"MessageNode","to_port":0}],"params":[]},"MessageNode":{"type":"MESSAGE","position":[1020,20],"connections":[],"params":["Toma idiota",3]}}
 
 func _ready() -> void:
 	node_searcher.connect("node_selected", self, "_create_new_node")
 	load_nodes(brain)
+
+
+func _input(event : InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed():
+		if event.button_mask == BUTTON_RIGHT:
+			node_searcher.popup(Rect2(event.position.x, event.position.y, 200, 200))
+		elif event.button_mask == BUTTON_LEFT:
+			toggle(scripting_container.get_global_mouse_position())
+	elif event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_A:
+			print(scripting_graph.get_connection_list())
+		elif event.scancode == KEY_O:
+			toggle(Vector2(100.0, 100.0))
+
+
+func toggle(target_position : Vector2) -> void:
+	if is_open:
+		close(target_position)
+	else:
+		open(target_position)
+
+
+func open(target_position : Vector2) -> void:
+	is_open = true
+	animation_player.play("Open")
+	var open_anim := animation_player.get_animation("Open")
+	var position_x_track := open_anim.find_track("ScriptingContainer:rect_position:x")
+	var position_y_track := open_anim.find_track("ScriptingContainer:rect_position:y")
+	var position_x_values = open_anim.track_get_key_value(position_x_track, 0)
+	var position_y_values = open_anim.track_get_key_value(position_y_track, 0)
+	position_x_values[0] = target_position.x
+	position_y_values[0] = target_position.y
+	open_anim.track_set_key_value(position_x_track, 0, position_x_values)
+	open_anim.track_set_key_value(position_y_track, 0, position_y_values)
+
+
+func close(target_position : Vector2) -> void:
+	is_open = false
+	animation_player.play("Close")
+	var close_anim := animation_player.get_animation("Close")
+	var position_x_track := close_anim.find_track("ScriptingContainer:rect_position:x")
+	var position_y_track := close_anim.find_track("ScriptingContainer:rect_position:y")
+	var position_x_values = close_anim.track_get_key_value(position_x_track, 1)
+	var position_y_values = close_anim.track_get_key_value(position_y_track, 1)
+	position_x_values[0] = target_position.x
+	position_y_values[0] = target_position.y
+	close_anim.track_set_key_value(position_x_track, 1, position_x_values)
+	close_anim.track_set_key_value(position_y_track, 1, position_y_values)
 
 
 func load_nodes(nodes) -> void:
@@ -42,15 +94,8 @@ func load_nodes(nodes) -> void:
 			scripting_graph.connect_node(from.name, connection.from_port, to.name, connection.to_port)
 
 
-func _input(event : InputEvent) -> void:
-	if event is InputEventMouse and event.is_pressed() and event.button_mask == BUTTON_RIGHT:
-		node_searcher.popup(Rect2(event.position.x, event.position.y, 200, 200))
-	elif event is InputEventKey and event.is_pressed() and event.scancode == KEY_A:
-		print(scripting_graph.get_connection_list())
-
-
 func _create_new_node(node_type : String) -> void:
-	var mousePos := get_local_mouse_position()
+	var mousePos := scripting_container.get_local_mouse_position()
 	var inst : ScriptingNode = node_scene_list[node_type].instance()
 	inst.offset = mousePos + scripting_graph.scroll_offset
 	scripting_graph.add_child(inst)
