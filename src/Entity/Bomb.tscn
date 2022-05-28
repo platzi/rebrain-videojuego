@@ -1,0 +1,170 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://test/bomb.png" type="Texture" id=1]
+[ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Entity/Bomb.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=76]
+resource_name = "Explode"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=99]
+resource_name = "IdleLeft"
+
+[sub_resource type="Animation" id=64]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=89]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=90]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=91]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=15]
+resource_local_to_scene = true
+blend_point_0/node = SubResource( 89 )
+blend_point_0/pos = Vector2( 0, -1.1 )
+blend_point_1/node = SubResource( 90 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 91 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 92 )
+blend_point_3/pos = Vector2( -1, 0 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=93]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=94]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=95]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=96]
+animation = "Explode"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=88]
+blend_point_0/node = SubResource( 93 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 94 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 95 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 96 )
+blend_point_3/pos = Vector2( -1, 0 )
+
+[sub_resource type="AnimationNodeTimeScale" id=52]
+
+[sub_resource type="AnimationNodeBlendTree" id=53]
+resource_local_to_scene = true
+graph_offset = Vector2( -69.0308, 93.9018 )
+nodes/BlendSpace2D/node = SubResource( 88 )
+nodes/BlendSpace2D/position = Vector2( 260, 140 )
+nodes/TimeScale/node = SubResource( 52 )
+nodes/TimeScale/position = Vector2( 500, 160 )
+nodes/output/position = Vector2( 700, 180 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachine" id=97]
+states/Idle/node = SubResource( 15 )
+states/Idle/position = Vector2( 458, 79 )
+states/Move/node = SubResource( 53 )
+states/Move/position = Vector2( 701, 79 )
+transitions = [ "Idle", "Move", SubResource( 54 ), "Move", "Idle", SubResource( 55 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=98]
+
+[sub_resource type="CircleShape2D" id=75]
+radius = 39.1152
+
+[node name="Bomb" type="KinematicBody2D" groups=["Enemy", "Entity"]]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.5
+anims/Explode = SubResource( 76 )
+anims/Idle = SubResource( 79 )
+anims/IdleLeft = SubResource( 99 )
+anims/RESET = SubResource( 64 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 97 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 98 )
+parameters/Idle/blend_position = Vector2( -1, 0 )
+parameters/Move/BlendSpace2D/blend_position = Vector2( 0, 0 )
+parameters/Move/TimeScale/scale = 0.5
+
+[node name="MessageBoard" parent="." instance=ExtResource( 2 )]
+margin_left = -20.0
+margin_top = -174.0
+margin_right = 20.0
+margin_bottom = -134.0
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1, 0 )
+rotation = -1.5708
+shape = SubResource( 75 )
