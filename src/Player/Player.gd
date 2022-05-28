@@ -6,6 +6,7 @@ var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
 var life = 3
 var inmunity = false
+var inmunity_time = 1
 var player_name = ""
 
 
@@ -17,6 +18,7 @@ onready var customization := $Customization
 
 
 func _ready() -> void:
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	customization.connect("change_hair", self, "change_hair")
 	customization.connect("change_hair_color", self, "change_hair_color")
@@ -49,10 +51,16 @@ func _physics_process(_delta : float) -> void:
 			if collision.collider.is_in_group("Projectile"):
 				collision.collider.hit()
 				hurt(-input_vector)
-			if collision.collider.is_in_group("Entity"):
+			if collision.collider.is_in_group("Entity") and not collision.collider.is_in_group("Enemy"):
 				hurt(-input_vector)
 	else:
 		animation_state.travel("Idle")
+
+
+func _unhandled_input(event):
+	if event is InputEventKey and event.scancode == KEY_CONTROL and event.is_pressed():
+		get_tree().paused = !get_tree().paused
+		get_tree().set_input_as_handled()
 
 
 func remove_inmunity() -> void:
@@ -64,7 +72,7 @@ func hurt(move_vector : Vector2) -> void:
 		inmunity = true
 		life -= 1
 		position += move_vector * 15
-		inmunity_timer.start(1)
+		inmunity_timer.start(inmunity_time)
 
 
 func change_hair(hair : Texture) -> void:
