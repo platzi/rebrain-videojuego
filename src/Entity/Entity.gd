@@ -8,6 +8,7 @@ signal button_body_entered
 
 
 var brain_dict := {}
+export (String) var brain_og
 
 
 onready var animation_tree = $AnimationTree
@@ -48,15 +49,7 @@ func _ready() -> void:
 	
 	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
 	area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
-	
-	brain.connect("move_forward", self, "move_forward")
-	brain.connect("stop_moving", self, "stop_moving")
-	brain.connect("turns_towards", self, "turns_towards")
-	brain.connect("shoot", self, "shoot")
-	brain.connect("show_message", self, "show_message")
-	brain.connect("hide_message", self, "hide_message")
-	brain.brain = brain_dict
-	add_child(brain)
+	instance_brain()
 
 
 func _input(event) -> void:
@@ -84,6 +77,17 @@ func _physics_process(delta : float) -> void:
 		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * max_speed * 100)
 		animation_state.travel("Idle")
 	velocity_vector = move_and_slide(velocity_vector)
+
+
+func instance_brain():
+	brain.connect("move_forward", self, "move_forward")
+	brain.connect("stop_moving", self, "stop_moving")
+	brain.connect("turns_towards", self, "turns_towards")
+	brain.connect("shoot", self, "shoot")
+	brain.connect("show_message", self, "show_message")
+	brain.connect("hide_message", self, "hide_message")
+	brain.brain = brain_dict
+	add_child(brain)
 
 
 func turns_towards(towards : String) -> void:
@@ -218,6 +222,12 @@ func set_change_scene(target_scene : PackedScene) -> void:
 func reset_position() -> void:
 	position = initial_postion
 	move_vector = initial_direction
+	moving = false
+	hide_message()
+	remove_inmunity()
+	life = 3
 	animation_tree.set("parameters/Idle/blend_position", move_vector)
 	animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
-	
+	brain.queue_free()
+	brain = Brain.new()
+	instance_brain()
