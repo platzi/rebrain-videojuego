@@ -160,7 +160,6 @@ script = ExtResource( 1 )
 start_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/StartBtn")
 options_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/OptionsBtn")
 credits_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/CreditsBtn")
-exit_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/ExitBtn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -194,9 +193,9 @@ margin_bottom = 540.0
 color = Color( 0.0823529, 0, 0.14902, 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_top = 39.0
+margin_top = 66.0
 margin_right = 960.0
-margin_bottom = 501.0
+margin_bottom = 474.0
 size_flags_vertical = 6
 custom_constants/separation = 64
 
@@ -211,18 +210,18 @@ texture = ExtResource( 3 )
 margin_left = 280.0
 margin_top = 202.0
 margin_right = 680.0
-margin_bottom = 462.0
+margin_bottom = 408.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 4
 
 [node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
-margin_bottom = 260.0
+margin_bottom = 206.0
 theme = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
-margin_bottom = 260.0
+margin_bottom = 206.0
 custom_constants/margin_right = 32
 custom_constants/margin_top = 32
 custom_constants/margin_left = 32
@@ -232,7 +231,7 @@ custom_constants/margin_bottom = 32
 margin_left = 100.0
 margin_top = 32.0
 margin_right = 300.0
-margin_bottom = 228.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 6
 custom_constants/separation = 20
@@ -277,17 +276,6 @@ flat = true
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-margin_top = 162.0
-margin_right = 200.0
-margin_bottom = 196.0
-theme = ExtResource( 4 )
-custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-text = "Salir"
-flat = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
