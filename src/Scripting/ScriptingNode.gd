@@ -12,14 +12,18 @@ export(Texture) var icon setget _set_icon
 var _params = []
 
 onready var _is_ready = true
+
 onready var title_icon := $TitleMC/TitleMC/TitleHBC/TitleIcon
 onready var title_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/TitleLabel
 onready var subtitle_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/SubtitleLabel
 
 var type = "NONE"
 
-
 func _ready() -> void:
+	print(get_children())
+	_set_icon(icon)
+	_set_tag(tag)
+	_set_subtag(subtag)
 	yield(get_tree().root, "ready")
 	if _params.size() > 0:
 		_set_params(_params)
@@ -54,8 +58,7 @@ func _set_subtag(new_value : String) -> void:
 	subtag = new_value
 	if _is_ready:
 		subtitle_label.text = subtag
-		if subtag == "":
-			subtitle_label.visible = false
+		subtitle_label.visible = subtag != ""
 
 
 func _set_icon(new_value : Texture) -> void:
