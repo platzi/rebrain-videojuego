@@ -36,6 +36,10 @@ config/name="Platzi Game Jam"
 run/main_scene="res://src/Menu/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://src/Autoload/Globals.gd"
+
 [display]
 
 window/size/width=960
