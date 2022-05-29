@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://src/Levels/LevelHub.gd" type="Script" id=8]
 [ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Levels/LevelTutorial.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Levels/DeathScene.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 250 )
@@ -238,6 +239,8 @@ layer = 2
 
 [node name="DeathScene" parent="UI" instance=ExtResource( 11 )]
 visible = false
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 12 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.6

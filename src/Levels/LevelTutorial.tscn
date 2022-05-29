@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://assets/images/player/hair_04.png" type="Texture" id=11]
 [ext_resource path="res://src/Entity/Worm.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/Levels/DeathScene.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 500, 300 )
@@ -1452,6 +1453,8 @@ layer = 2
 
 [node name="DeathScene" parent="UI" instance=ExtResource( 14 )]
 visible = false
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 15 )]
 
 [editable path="Game/YSort/NPC"]
 [editable path="Game/YSort/NPC2"]
