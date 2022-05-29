@@ -26,9 +26,7 @@ var node_groups := {
 	]
 }
 
-var blacklist := [
-	"UPDATE"
-]
+var blacklist := []
 
 func _ready():
 	for group in node_groups:
