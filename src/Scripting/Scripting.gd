@@ -36,6 +36,7 @@ var _open_position : Vector2
 
 func _ready() -> void:
 	Globals.connect("open_scripting", self, "open")
+	Globals.connect("scripting_abort", self, "abort")
 	node_searcher.connect("node_selected", self, "_create_new_node")
 	scripting_graph.connect("popup_request", self, "open_node_searcher")
 	save_btn.connect("pressed", self, "on_SaveBtn_pressed")
@@ -64,6 +65,11 @@ func _input(event : InputEvent) -> void:
 
 func open_node_searcher(open_position : Vector2) -> void:
 	node_searcher.popup(Rect2(open_position.x, open_position.y, 200, 200))
+
+
+func abort() -> void:
+	yield(get_tree(), "idle_frame")
+	animation_player.play("RESET")
 
 
 func open(entity : Entity) -> void:
