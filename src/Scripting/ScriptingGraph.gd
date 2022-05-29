@@ -14,7 +14,7 @@ func _input(event : InputEvent) -> void:
 		if event.scancode == KEY_DELETE:
 			_delete_selected()
 		elif event.scancode == KEY_G:
-			save()
+			print(save())
 
 
 func save() -> Dictionary:
@@ -25,13 +25,18 @@ func save() -> Dictionary:
 				type = child.type,
 				position = [child.offset.x, child.offset.y],
 				connections = [],
-				params = child.get_params()
+				params = child.get_params(),
+				inputs = {}
 			}
 	for connection in get_connection_list():
+		var node_instance : GraphNode = get_node(connection.from)
 		nodes[connection.from].connections.append({
+			type = node_instance.get_connection_output_type(connection.from_port),
 			from_port = connection.from_port,
 			to = connection.to,
-			to_port = connection.to_port
+			to_port = connection.to_port,
+			output = 1,
+			enabled = true
 		})
 	return nodes
 
