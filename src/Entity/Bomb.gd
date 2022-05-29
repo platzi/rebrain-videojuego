@@ -9,10 +9,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	if $ExplosionArea.get_overlapping_bodies() != [] and is_exploding:
-		for i in len($ExplosionArea.get_overlapping_bodies()):
-			_on_Area2D_body_entered($ExplosionArea.get_overlapping_bodies()[i])
-		#print($ExplosionArea.get_overlapping_bodies()[1])
+	if is_exploding:
+		for body in $ExplosionArea.get_overlapping_bodies():
+			_on_Area2D_body_entered(body)
 		queue_free()
 
 func activate_explosion():
