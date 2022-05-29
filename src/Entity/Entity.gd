@@ -23,19 +23,20 @@ var moving = false
 var speed = 100
 var cool_down = 1
 var _timer = null
-var _timer_inmunity = null
+var inmunity_timer = null
 var is_shooting = false
 var life = 3
 var inmunity = false
 var inmunity_time = 1
+const MAX_SPEED = 100
 
 
 func _ready() -> void:
-	_timer_inmunity = Timer.new()
-	add_child(_timer_inmunity)
-	_timer_inmunity.connect("timeout", self, "remove_inmunity")
-	_timer_inmunity.set_wait_time(inmunity_time)
-	_timer_inmunity.set_one_shot(true)
+	inmunity_timer = Timer.new()
+	add_child(inmunity_timer)
+	inmunity_timer.connect("timeout", self, "remove_inmunity")
+	inmunity_timer.set_wait_time(inmunity_time)
+	inmunity_timer.set_one_shot(true)
 	
 	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
 	
@@ -48,17 +49,9 @@ func _ready() -> void:
 	brain.brain = brain_dict
 	add_child(brain)
 
-
-#func _input(event) -> void:
-#	if event is InputEventKey and event.is_pressed():
-#		if event.scancode == KEY_ENTER:
-#			show_message("DDDDDDWWW")
-#		elif event.scancode == KEY_CONTROL:
-#			hide_message()
-#		elif event.scancode == KEY_1 and not is_shooting:
-#			start_shooting()
-#		elif event.scancode == KEY_2 and is_shooting:
-#			stop_shooting()
+func _input(event):
+	if event is InputEventKey and event.scancode == KEY_0 and not self.is_in_group("Projectile"):
+		shoot()
 
 
 func _physics_process(delta : float) -> void:
@@ -67,8 +60,9 @@ func _physics_process(delta : float) -> void:
 	if moving:
 		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
 		animation_state.travel("Move")
-		velocity_vector = move_vector * speed
-		velocity_vector = move_and_slide(velocity_vector) 
+		velocity_vector += move_vector * speed
+		if velocity_vector.distance_to(Vector2.ZERO) > MAX_SPEED:
+			velocity_vector = velocity_vector.move_toward(move_vector * MAX_SPEED, delta * MAX_SPEED * 100)
 #		position += velocity_vector * delta
 #		for i in get_slide_count():
 #			var collision = get_slide_collision(i)
@@ -78,7 +72,9 @@ func _physics_process(delta : float) -> void:
 #			elif collision.collider.is_in_group("Player"):
 #				collision.collider.hurt(move_vector)
 	else:
+		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
 		animation_state.travel("Idle")
+	velocity_vector = move_and_slide(velocity_vector)
 
 
 func turns_towards(towards : String) -> void:
@@ -124,21 +120,24 @@ func hide_message() -> void:
 
 
 func shoot() -> void:
-	var bullet = load("res://src/Entity/Bullet.tscn").instance()
-	bullet.position = self.position + (move_vector * 40)
-	get_tree().current_scene.add_child(bullet)
-	bullet.shoot(move_vector)
+	if not is_shooting:
+		is_shooting = true
+		var bullet = load("res://src/Entity/Bullet.tscn").instance()
+		bullet.projectile_owner = self.get_instance_id()
+		bullet.position = self.position + (move_vector * 40)
+		get_tree().current_scene.add_child(bullet)
+		bullet.shoot_projectile(move_vector)
+		start_shooting()
 
 
 func start_shooting() -> void:
-	shoot()
+	#shoot()
 	_timer = Timer.new()
 	add_child(_timer)
-	_timer.connect("timeout", self, "shoot")
+	_timer.connect("timeout", self, "stop_shooting")
 	_timer.set_wait_time(cool_down)
-	_timer.set_one_shot(false)
+	_timer.set_one_shot(true)
 	_timer.start()
-	is_shooting = true
 
 
 func stop_shooting() -> void:
@@ -151,18 +150,27 @@ func remove_inmunity() -> void:
 	inmunity = false
 
 
-func hurt(_move_vector : Vector2) -> void:
+func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 	if not inmunity:
-		life -= 1
 		inmunity = true
-		position += _move_vector * -15
-		_timer_inmunity.start()
+		life -= 1
+		velocity_vector = knockback_direction * MAX_SPEED * 10
+		inmunity_timer.start(inmunity_time)
+		$HitAnimationPlayer.play("Hit")
 
 
 func _on_Area2D_body_entered(body):
-	if self.is_in_group("Enemy"):
-		body.hurt(move_vector - body.input_vector)
-		print(self.name)
-	else:
-		print("BUTTONNN")
+	if self.is_in_group("Projectile"):
+		self.hurt()
+	if not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
+		body.hurt(position.direction_to(body.position))
+		#print(self.name)
+	elif body.is_in_group("Projectile") and body.projectile_owner != self.get_instance_id():
+			body.hit()
+	elif self.is_in_group("EntityButton"):
+		#print("BUTTONNN")
 		emit_signal("button_body_entered")
+	elif body.projectile_owner == self.get_instance_id():
+		pass
+	elif not self.is_in_group("EntityStatic") and not self.is_in_group("Projectile"):
+		hurt(body.position.direction_to(position))

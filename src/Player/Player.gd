@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 
 const MAX_SPEED = 200
+var speed = 100
 var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
 var life = 3
@@ -35,27 +36,29 @@ func _ready() -> void:
 	change_shoes(customization.clothes_colors[customization.current_shoes])
 
 
-func _physics_process(_delta : float) -> void:
+func _physics_process(delta : float) -> void:
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		velocity = input_vector * MAX_SPEED
+		velocity += input_vector * speed
+		if velocity.distance_to(Vector2.ZERO) > MAX_SPEED:
+			velocity = velocity.move_toward(input_vector * MAX_SPEED, delta * MAX_SPEED * 100)
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Move/blend_position", input_vector)
 		animation_state.travel("Move")
-		velocity = move_and_slide(velocity)
-		for i in get_slide_count():
-			var collision = get_slide_collision(i)
-			if collision.collider.is_in_group("Projectile"):
-				collision.collider.hit()
-				hurt(-input_vector)
-			if collision.collider.is_in_group("Entity") and not collision.collider.is_in_group("Enemy"):
-				hurt(-input_vector)
+#		for i in get_slide_count():
+#			var collision = get_slide_collision(i)
+#			if collision.collider.is_in_group("Projectile"):
+#				collision.collider.hit()
+#				hurt(-input_vector)
+#			if collision.collider.is_in_group("Entity") and not collision.collider.is_in_group("Enemy"):
+#				hurt(-input_vector)
 	else:
+		velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
 		animation_state.travel("Idle")
-
+	velocity = move_and_slide(velocity)
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.scancode == KEY_CONTROL and event.is_pressed():
@@ -65,14 +68,16 @@ func _unhandled_input(event):
 
 func remove_inmunity() -> void:
 	inmunity = false
+	$HitAnimationPlayer.play("RESET")
 
 
-func hurt(move_vector : Vector2) -> void:
+func hurt(knockback_direction : Vector2) -> void:
 	if not inmunity:
 		inmunity = true
 		life -= 1
-		position += move_vector * 15
+		velocity = knockback_direction * MAX_SPEED * 10
 		inmunity_timer.start(inmunity_time)
+		$HitAnimationPlayer.play("Hit")
 
 
 func change_hair(hair : Texture) -> void:

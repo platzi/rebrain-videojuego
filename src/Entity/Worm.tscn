@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Entity/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/enemy_worm.png" type="Texture" id=2]
@@ -156,51 +156,82 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=56]
+[sub_resource type="Animation" id=90]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=91]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=100]
 animation = "IdleUp"
 
-[sub_resource type="AnimationNodeAnimation" id=57]
+[sub_resource type="AnimationNodeAnimation" id=101]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=58]
+[sub_resource type="AnimationNodeAnimation" id=102]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=59]
+[sub_resource type="AnimationNodeAnimation" id=103]
 animation = "IdleLeft"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 56 )
+blend_point_0/node = SubResource( 100 )
 blend_point_0/pos = Vector2( 0, -1.1 )
-blend_point_1/node = SubResource( 57 )
+blend_point_1/node = SubResource( 101 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 58 )
+blend_point_2/node = SubResource( 102 )
 blend_point_2/pos = Vector2( 0, 1.1 )
-blend_point_3/node = SubResource( 59 )
+blend_point_3/node = SubResource( 103 )
 blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=60]
+[sub_resource type="AnimationNodeAnimation" id=104]
 animation = "MoveDown"
 
-[sub_resource type="AnimationNodeAnimation" id=61]
+[sub_resource type="AnimationNodeAnimation" id=105]
 animation = "MoveUp"
 
-[sub_resource type="AnimationNodeAnimation" id=62]
+[sub_resource type="AnimationNodeAnimation" id=106]
 animation = "MoveRight"
 
-[sub_resource type="AnimationNodeAnimation" id=63]
+[sub_resource type="AnimationNodeAnimation" id=107]
 animation = "MoveLeft"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=88]
-blend_point_0/node = SubResource( 60 )
+blend_point_0/node = SubResource( 104 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 61 )
+blend_point_1/node = SubResource( 105 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 62 )
+blend_point_2/node = SubResource( 106 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 63 )
+blend_point_3/node = SubResource( 107 )
 blend_point_3/pos = Vector2( -1, 0 )
 
 [sub_resource type="AnimationNodeTimeScale" id=52]
@@ -219,7 +250,7 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachine" id=45]
+[sub_resource type="AnimationNodeStateMachine" id=89]
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 458, 79 )
 states/Move/node = SubResource( 53 )
@@ -257,8 +288,13 @@ anims/MoveRight = SubResource( 34 )
 anims/MoveUp = SubResource( 35 )
 anims/RESET = SubResource( 36 )
 
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
+anims/Hit = SubResource( 90 )
+anims/RESET = SubResource( 91 )
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 45 )
+tree_root = SubResource( 89 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 46 )
