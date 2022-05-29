@@ -9,8 +9,6 @@ signal show_message
 signal hide_message
 
 var brain := {}
-var _start_node
-var _next_node
 var _timer
 
 
@@ -21,80 +19,127 @@ func _ready() -> void:
 	run()
 
 
-func run() -> void:
+func run(type = "UPDATE", param1 = null) -> void:
 	for node_name in brain:
 		var node = brain[node_name]
-		if node.type == "UPDATE":
-			_start_node = node
-			_next_node = node
-			_run_next()
+		if node.type == type:
+			if type == "UPDATE":
+				_execute(node, node)
+			elif type == "COLLISION":
+				for connection in node.connections:
+					if connection.from_port == 1:
+						connection.output = param1
+				_execute(node, node)
 
 
-func _run_next() -> void:
-	yield(get_tree(), "idle_frame")
-	
-	# Find next node or return to the start
-	var current_node = _next_node
-	if current_node.connections.size() > 0:
-		_next_node = brain[current_node.connections[0].to]
-	else:
-		_next_node = _start_node
-		
-	# Run commands
+func _execute(start_node, current_node) -> void:
 	match current_node.type:
 		"UPDATE":
-			_run_next()
+			_run_next(start_node, current_node)
+		"COLLISION":
+			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
-			_move_forward(current_node)
+			_move_forward(start_node, current_node)
 		"ROTATE":
-			_rotate(current_node)
+			_rotate(start_node, current_node)
 		"TIMER":
-			_timer(current_node)
+			_timer(start_node, current_node)
 		"SHOOT":
-			_shoot(current_node)
+			_shoot(start_node, current_node)
 		"MESSAGE":
-			_message(current_node)
+			_message(start_node, current_node)
+		"EXPLODE":
+			_explode(start_node, current_node)
+		"COMPARE_ENTITY":
+			_compare_entity(start_node, current_node)
 
 
-func _move_forward(node : Dictionary) -> void:
+func _run_next(start_node, current_node) -> void:
+	yield(get_tree(), "idle_frame")
+	
+	var execute_list := []
+	
+	# Pass parameters
+	var next_node = current_node
+	if current_node.connections.size() > 0:
+		for connection in current_node.connections:
+			if connection.type == 0 and connection.enabled:
+				execute_list.append(brain[connection.to])
+			else:
+				brain[connection.to].inputs[connection.to_port] = connection.output
+	
+	# Execute
+	if execute_list.size() > 0:
+		for exec_node in execute_list:
+			_execute(start_node, exec_node)
+	elif start_node.type == "UPDATE":
+		_execute(start_node, start_node)
+
+
+func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
+	print("compare_entity")
+	var entity_tags = {
+		0: "Player",
+		1: "Enemy",
+	}
+	var connections = [{}, {}]
+	for connection in node.connections:
+		if connection.from_port == 0:
+			connections[0] = connection
+		elif connection.from_port == 1:
+			connections[1] = connection
+	connections[0].enabled = false
+	connections[1].enabled = true
+	if node.inputs[1].is_in_group(entity_tags[node.params[0]]):
+		connections[0].enabled = true
+		connections[1].enabled = false
+	_run_next(start_node, node)
+
+func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	print("move_forward")
 	emit_signal("move_forward")
-	_timer.connect("timeout", self, "_on_move_forward_end", [], CONNECT_ONESHOT)
+	_timer.connect("timeout", self, "_on_move_forward_end", [start_node, node], CONNECT_ONESHOT)
 	_timer.start(node.params[0])
 
 
-func _on_move_forward_end() -> void:
+func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
 	print("stop_moving")
 	emit_signal("stop_moving")
-	_run_next()
+	_run_next(start_node, node)
 
 
-func _rotate(node : Dictionary) -> void:
+func _rotate(start_node : Dictionary, node : Dictionary) -> void:
 	print("turns_towards")
 	emit_signal("turns_towards", "left" if node.params[0] == 0 else "right")
-	_run_next()
+	_run_next(start_node, node)
 
 
-func _timer(node : Dictionary) -> void:
+func _timer(start_node : Dictionary, node : Dictionary) -> void:
 	print("timer_start")
-	_timer.connect("timeout", self, "_run_next", [], CONNECT_ONESHOT)
+	_timer.connect("timeout", self, "_run_next", [start_node, node], CONNECT_ONESHOT)
 	_timer.start(node.params[0])
 
 
-func _shoot(node : Dictionary):
+func _shoot(start_node : Dictionary, node : Dictionary):
 	print("shoot")
 	emit_signal("shoot")
-	_run_next()
+	_run_next(start_node, node)
 
 
-func _message(node : Dictionary):
+func _message(start_node : Dictionary, node : Dictionary):
 	print("show_message")
 	emit_signal("show_message", node.params[0])
-	_timer.connect("timeout", self, "_hide_message", [], CONNECT_ONESHOT)
+	_timer.connect("timeout", self, "_hide_message", [start_node, node], CONNECT_ONESHOT)
 	_timer.start(node.params[1])
 
 
-func _hide_message():
+func _hide_message(start_node : Dictionary, node):
 	print("hide_message")
 	emit_signal("hide_message")
-	_run_next()
+	_run_next(start_node, node)
+
+
+func _explode(start_node : Dictionary, node : Dictionary):
+	print("explode")
+	emit_signal("explode")
+	_run_next(start_node, node)
