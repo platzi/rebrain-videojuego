@@ -1,9 +1,11 @@
 extends Control
 
+export(NodePath) var new_game_path
 export(NodePath) var start_btn_path 
 export(NodePath) var options_btn_path 
 export(NodePath) var credits_btn_path 
 
+onready var new_game_btn : Button = get_node(new_game_path)
 onready var start_btn : Button = get_node(start_btn_path)
 onready var options_btn : Button = get_node(options_btn_path)
 onready var credits_btn : Button = get_node(credits_btn_path)
@@ -13,8 +15,14 @@ func _on_SubMenu_closed() -> void:
 	start_btn.grab_focus()
 
 
+func _on_NewGameBtn_pressed() -> void:
+	var config = ConfigFile.new()
+	config.save("user://re_brain_data.cfg")
+	get_tree().change_scene("res://test/LevelBaseTest.tscn")
+
+
 func _on_StartBtn_pressed() -> void:
-	get_tree().change_scene("")
+	get_tree().change_scene("res://test/LevelBaseTest.tscn")
 
 
 func _on_OptionsBtn_pressed() -> void:
@@ -34,7 +42,7 @@ func _ready() -> void:
 	start_btn.grab_focus()
 	start_btn.focus_neighbour_top = credits_btn.get_path()
 	credits_btn.focus_neighbour_bottom = start_btn.get_path()
-	
+	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
 	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
