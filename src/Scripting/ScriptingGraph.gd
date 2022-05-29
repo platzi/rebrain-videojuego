@@ -62,4 +62,4 @@ func _on_disconnection_request(from : String, from_slot : int, to : String, to_s
 
 
 func _on_delete_nodes_request() -> void:
-	print("deleted")
+	pass
