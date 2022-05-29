@@ -8,6 +8,7 @@ onready var player : KinematicBody2D = $Game/YSort/Player
 func _ready():
 	Globals.disable_scripting = true
 	Globals.disable_inputs = true
+	Globals.connect("scripting_toggled", self, "_dialogue_2", [], CONNECT_ONESHOT)
 	player.input_vector = Vector2.UP
 	player.animation_tree.set("parameters/Idle/blend_position", player.input_vector)
 	_dialogue_1()
@@ -30,3 +31,15 @@ func _dialogue_1() -> void:
 
 func _dialogue_1_finished() -> void:
 	Globals.disable_scripting = false
+
+
+func _dialogue_2() -> void:
+	var dialogue_inst = dialogue_scene.instance()
+#	dialogue_inst.connect("finished", self, "_dialogue_1_finished")
+	dialogue_inst.dialogues = [
+		"Excelente, ahora estamos en el [b]Modo Scripting[/b], sientete como todo un hackerman",
+		"Sabras que te encuentras en este modo por el efecto visual en tu GUI",
+		"En este modo podrás entrar en el cerebro de las entidades haciendo click sobre ellas",
+		"Vamos prueba hacer click sobre el [b]Gusano[/b]"
+	]
+	ui_canvas_layer.add_child(dialogue_inst)
