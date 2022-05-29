@@ -12,6 +12,7 @@ var node_scene_list := {
 	MESSAGE = preload("res://src/Scripting/Nodes/MessageNode.tscn"),
 	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
 	COMPARE_STRING = preload("res://src/Scripting/Nodes/CompareStringNode.tscn"),
+	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
 }
 
 var is_open := true
