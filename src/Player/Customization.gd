@@ -40,7 +40,10 @@ onready var shoes_color_rect : = $PanelContainer/VBoxContainer/HBoxContainer5/Sh
 
 var all_hairs = [
 	preload("res://assets/images/player/hair_01.png"),
-	preload("res://assets/images/player/hair_02.png")
+	preload("res://assets/images/player/hair_02.png"),
+	preload("res://assets/images/player/hair_03.png"),
+	preload("res://assets/images/player/hair_04.png"),
+	null
 ]
 var skin_colors = [
 	Color("#ffdbac"),
@@ -116,7 +119,8 @@ func load_data() -> void:
 	var err = config.load("user://re_brain_data.cfg")
 	if err != OK:
 		return
-
+	if config.get_value("Player", "has_saved", false):
+		hide()
 	player_name = config.get_value("Player", "player_name", "")
 	current_hair = config.get_value("Player", "current_hair", 0)
 	current_hair_color = config.get_value("Player", "current_hair_color", 0)
@@ -206,6 +210,7 @@ func _on_SaveBtn_pressed() -> void:
 	config.set_value("Player", "current_shirt", current_shirt)
 	config.set_value("Player", "current_pants", current_pants)
 	config.set_value("Player", "current_shoes", current_shoes)
+	config.set_value("Player", "has_saved", true)
 	config.save("user://re_brain_data.cfg")
 	hide()
 	emit_signal("change_player_name", name_line_edit.get_text())
