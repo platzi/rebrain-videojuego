@@ -5,6 +5,9 @@
 [ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=3]
 [ext_resource path="res://src/Entity/Bomb.gd" type="Script" id=4]
 
+[sub_resource type="CircleShape2D" id=75]
+radius = 39.1152
+
 [sub_resource type="Animation" id=76]
 resource_name = "Explode"
 length = 0.4
@@ -160,15 +163,19 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=98]
 
-[sub_resource type="CircleShape2D" id=75]
-radius = 39.1152
-
 [node name="Bomb" type="KinematicBody2D" groups=["Enemy", "Entity"]]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0 )
+rotation = -1.5708
+shape = SubResource( 75 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
