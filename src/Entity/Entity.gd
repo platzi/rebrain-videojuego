@@ -7,8 +7,8 @@ extends KinematicBody2D
 signal button_body_entered
 
 
-var brain_dict := {}
 export (String) var brain_og
+var brain_dict := {}
 
 
 onready var animation_tree = $AnimationTree
@@ -37,6 +37,9 @@ var initial_postion : Vector2 = Vector2.ZERO
 var initial_direction : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	var result = JSON.parse(brain_og)
+	if result.error == OK:
+		brain_dict = result.result
 	initial_postion = position
 	initial_direction = move_vector
 	animation_tree.set("parameters/Idle/blend_position", move_vector)
