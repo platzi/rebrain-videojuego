@@ -265,6 +265,8 @@ start_node = "Idle"
 radius = 5.09902
 
 [node name="Teleporter" type="KinematicBody2D" groups=["Entity", "EntityStatic", "Teleporter"]]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -304,7 +306,6 @@ margin_bottom = -134.0
 shape = SubResource( 76 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 3
 collision_mask = 0
 script = ExtResource( 2 )
 
