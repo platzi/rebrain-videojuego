@@ -9,11 +9,13 @@ onready var start_btn : Button = get_node(start_btn_path)
 
 
 func _on_StartBtn_pressed() -> void:
-	get_tree().reload_current_scene()
+	SceneChanger.change_scene_reload()
+	#get_tree().reload_current_scene()
 
 
 func _on_MenuBtn_pressed() -> void:
-	get_tree().change_scene("res://src/Menu/Menu.tscn")
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
+	#get_tree().change_scene("res://src/Menu/Menu.tscn")
 
 
 func _ready() -> void:
