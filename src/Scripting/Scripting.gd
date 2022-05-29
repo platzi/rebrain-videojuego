@@ -23,6 +23,7 @@ onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/Scripti
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 onready var sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Sprite
+onready var hair_sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/HairSprite
 onready var save_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/SaveBtn
 onready var restore_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/RestoreBtn
 onready var cancel_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/CancelBtn
@@ -70,6 +71,18 @@ func open(entity : Entity) -> void:
 	sprite.hframes = target_sprite.hframes
 	sprite.vframes = target_sprite.vframes
 	sprite.frame = target_sprite.frame
+	if _target_entity.is_in_group("NPC"):
+		sprite.material = target_sprite.material
+		var target_hair_sprite = _target_entity.get_node("HairSprite")
+		hair_sprite.texture = target_hair_sprite.texture
+		hair_sprite.hframes = target_hair_sprite.hframes
+		hair_sprite.vframes = target_hair_sprite.vframes
+		hair_sprite.frame = target_hair_sprite.frame
+		hair_sprite.material = target_hair_sprite.material
+	else:
+		sprite.material = null
+		hair_sprite.material = null
+		hair_sprite.visible = false
 	brain = entity.brain.brain
 	load_nodes(brain)
 	is_open = true
@@ -85,8 +98,6 @@ func open(entity : Entity) -> void:
 	position_y_values[0] = target_position.y
 	open_anim.track_set_key_value(position_x_track, 0, position_x_values)
 	open_anim.track_set_key_value(position_y_track, 0, position_y_values)
-#	scripting_graph.scroll_offset = Vector2.ZERO
-	print(scripting_graph.scroll_offset)
 	scripting_graph.scroll_offset = -(scripting_graph.rect_size / 2.0)
 
 
@@ -117,8 +128,8 @@ func load_nodes(nodes) -> void:
 		print(node.params)
 		inst.set_params(node.params)
 		scripting_graph.add_child(inst)
-		node_searcher.hide()
 		nodes[key].instance = inst
+	node_searcher.hide()
 	# Make connections
 	for key in nodes:
 		var node = nodes[key]
@@ -137,7 +148,8 @@ func _create_new_node(node_type : String) -> void:
 
 
 func on_SaveBtn_pressed() -> void:
-	_target_entity.brain.brain = scripting_graph.save()
+	_target_entity.brain_dict = scripting_graph.save()
+	_target_entity.reset_position()
 	close()
 
 

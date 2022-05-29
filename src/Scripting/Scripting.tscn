@@ -334,7 +334,13 @@ expand = true
 stretch_mode = 2
 
 [node name="Sprite" type="Sprite" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
-position = Vector2( 59, 83 )
+position = Vector2( 60, 80 )
+texture = ExtResource( 8 )
+hframes = 4
+vframes = 4
+
+[node name="HairSprite" type="Sprite" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+position = Vector2( 60, 80 )
 texture = ExtResource( 8 )
 hframes = 4
 vframes = 4
