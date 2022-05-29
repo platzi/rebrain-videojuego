@@ -172,51 +172,51 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=65]
+[sub_resource type="AnimationNodeAnimation" id=66]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=66]
+[sub_resource type="AnimationNodeAnimation" id=67]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=67]
+[sub_resource type="AnimationNodeAnimation" id=68]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=68]
+[sub_resource type="AnimationNodeAnimation" id=69]
 animation = "IdleUp"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 65 )
+blend_point_0/node = SubResource( 66 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 66 )
+blend_point_1/node = SubResource( 67 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 67 )
+blend_point_2/node = SubResource( 68 )
 blend_point_2/pos = Vector2( 0, 1.1 )
-blend_point_3/node = SubResource( 68 )
+blend_point_3/node = SubResource( 69 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=69]
+[sub_resource type="AnimationNodeAnimation" id=70]
 animation = "MoveDown"
 
-[sub_resource type="AnimationNodeAnimation" id=70]
+[sub_resource type="AnimationNodeAnimation" id=71]
 animation = "MoveUp"
 
-[sub_resource type="AnimationNodeAnimation" id=71]
+[sub_resource type="AnimationNodeAnimation" id=72]
 animation = "MoveRight"
 
-[sub_resource type="AnimationNodeAnimation" id=72]
+[sub_resource type="AnimationNodeAnimation" id=73]
 animation = "MoveLeft"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=51]
-blend_point_0/node = SubResource( 69 )
+blend_point_0/node = SubResource( 70 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 70 )
+blend_point_1/node = SubResource( 71 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 71 )
+blend_point_2/node = SubResource( 72 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 72 )
+blend_point_3/node = SubResource( 73 )
 blend_point_3/pos = Vector2( -1, 0 )
 blend_mode = 1
 
@@ -291,6 +291,8 @@ position = Vector2( 0, 14 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 0
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
