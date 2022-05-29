@@ -24,7 +24,10 @@ onready var save_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VB
 onready var restore_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/RestoreBtn
 onready var cancel_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/CancelBtn
 
-var brain := {"RotateNode":{"type":"ROTATE","position":[220,40],"connections":[{"from_port":0,"to":"MoveForwardNode","to_port":0}],"params":[1]},"UpdateNode":{"type":"UPDATE","position":[20,60],"connections":[{"from_port":0,"to":"RotateNode","to_port":0}],"params":[]},"MoveForwardNode":{"type":"MOVE_FORWARD","position":[420,40],"connections":[{"from_port":0,"to":"TimerNode","to_port":0}],"params":[2]},"TimerNode":{"type":"TIMER","position":[620,40],"connections":[{"from_port":0,"to":"ShootNode","to_port":0}],"params":[5]},"ShootNode":{"type":"SHOOT","position":[820,60],"connections":[{"from_port":0,"to":"MessageNode","to_port":0}],"params":[]},"MessageNode":{"type":"MESSAGE","position":[1020,20],"connections":[],"params":["Toma idiota",3]}}
+var brain := {}
+
+var _target_entity : Entity
+var _open_position : Vector2
 
 func _ready() -> void:
 	Globals.connect("open_scripting", self, "open")
@@ -37,31 +40,31 @@ func _ready() -> void:
 
 
 func _input(event : InputEvent) -> void:
-	if event is InputEventMouse and event.is_pressed():
-		if event.button_mask == BUTTON_LEFT:
-			pass
-#			toggle(get_global_mouse_position())
-	elif event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_A:
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_TAB:
+			if !Globals.scripting_mode:
+				Globals.scripting_mode = true
+				get_tree().paused = true
+			else:
+				Globals.scripting_mode = false
+				get_tree().paused = false
+		elif event.scancode == KEY_A:
 			print(scripting_graph.get_connection_list())
-		elif event.scancode == KEY_O:
-			toggle(Vector2(100.0, 100.0))
 
 
 func open_node_searcher(open_position : Vector2) -> void:
 	node_searcher.popup(Rect2(open_position.x, open_position.y, 200, 200))
 
 
-func toggle(target_position : Vector2) -> void:
-	if is_open:
-		close(target_position)
-	else:
-		open(target_position)
-
-
-func open(target_position : Vector2) -> void:
+func open(entity : Entity) -> void:
+	_target_entity = entity
+	print(_target_entity.position)
+	brain = entity.brain.brain
+	load_nodes(brain)
 	is_open = true
 	animation_player.play("Open")
+	var target_position = get_global_mouse_position()
+	_open_position = target_position
 	var open_anim := animation_player.get_animation("Open")
 	var position_x_track := open_anim.find_track("MarginContainer:rect_position:x")
 	var position_y_track := open_anim.find_track("MarginContainer:rect_position:y")
@@ -71,9 +74,10 @@ func open(target_position : Vector2) -> void:
 	position_y_values[0] = target_position.y
 	open_anim.track_set_key_value(position_x_track, 0, position_x_values)
 	open_anim.track_set_key_value(position_y_track, 0, position_y_values)
+	scripting_graph.scroll_offset = scripting_graph.rect_size / 2.0
 
 
-func close(target_position : Vector2) -> void:
+func close() -> void:
 	is_open = false
 	animation_player.play("Close")
 	var close_anim := animation_player.get_animation("Close")
@@ -81,13 +85,16 @@ func close(target_position : Vector2) -> void:
 	var position_y_track := close_anim.find_track("MarginContainer:rect_position:y")
 	var position_x_values = close_anim.track_get_key_value(position_x_track, 1)
 	var position_y_values = close_anim.track_get_key_value(position_y_track, 1)
-	position_x_values[0] = target_position.x
-	position_y_values[0] = target_position.y
+	position_x_values[0] = _open_position.x
+	position_y_values[0] = _open_position.y
 	close_anim.track_set_key_value(position_x_track, 1, position_x_values)
 	close_anim.track_set_key_value(position_y_track, 1, position_y_values)
 
 
 func load_nodes(nodes) -> void:
+	for child in scripting_graph.get_children():
+		if child is ScriptingNode:
+			child.queue_free()
 	# Instance nodes
 	for key in nodes:
 		var node = nodes[key]
@@ -125,4 +132,4 @@ func on_RestoreBtn_pressed() -> void:
 
 
 func on_CancelBtn_pressed() -> void:
-	pass
+	close()
