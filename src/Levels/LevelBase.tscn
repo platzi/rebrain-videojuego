@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/Worm.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Entity/ButtonEntity.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 250 )
@@ -43,6 +44,10 @@ texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Game/StaticBody2D"]
 polygon = PoolVector2Array( -96, 192, -96, 216, -144, 216, -144, 192, -288, 192, -288, 240, -336, 240, -336, 72, 336, 72, 336, 240, 288, 240, 288, 192, 144, 192, 144, 216, 96, 216, 96, 192 )
+
+[node name="Teleporter" parent="Game" instance=ExtResource( 9 )]
+position = Vector2( 528, -264 )
+is_active = true
 
 [node name="YSort" type="YSort" parent="Game"]
 __meta__ = {
