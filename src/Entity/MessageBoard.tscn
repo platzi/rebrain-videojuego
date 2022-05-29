@@ -98,6 +98,7 @@ size_flags_horizontal = 6
 align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 10.0
 anims/PopDown = SubResource( 7 )
 anims/PopUp = SubResource( 5 )
 anims/RESET = SubResource( 6 )

@@ -9,14 +9,17 @@
 
 [sub_resource type="ShaderMaterial" id=48]
 shader = ExtResource( 3 )
+shader_param/blink = null
 shader_param/BLACK = Color( 0, 0, 0, 1 )
-shader_param/SKIN_COLOR = Color( 0.839216, 0.756863, 0.576471, 1 )
-shader_param/SHIRT_COLOR = Color( 0.796078, 0.0705882, 0.631373, 1 )
-shader_param/PANTS_COLOR = Color( 0.027451, 0, 0, 1 )
-shader_param/SHOES_COLOR = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.839216, 0.772549, 0.631373, 1 )
+shader_param/SHIRT_COLOR = Color( 0.0705882, 0.796078, 0.117647, 1 )
+shader_param/PANTS_COLOR = Color( 0.337255, 0.282353, 0.0784314, 1 )
+shader_param/SHOES_COLOR = Color( 0.12549, 0.12549, 0.12549, 1 )
 
-[sub_resource type="Shader" id=46]
+[sub_resource type="Shader" id=47]
 code = "shader_type canvas_item;
+
+uniform bool blink;
 
 uniform vec4 HAIR_COLOR : hint_color;
 
@@ -34,13 +37,17 @@ void fragment() {
 			break;
 		}
 	}
+	if (blink) {
+		COLOR.rgb += vec3(1.0, 1.0, 1.0) * ((1.0 + sin(TIME * 15.0)) / 2.0);
+	}
 	COLOR.a = textureColor.a;
 }
 "
 
 [sub_resource type="ShaderMaterial" id=49]
-shader = SubResource( 46 )
-shader_param/HAIR_COLOR = Color( 0.654902, 0.439216, 0.027451, 1 )
+shader = SubResource( 47 )
+shader_param/blink = null
+shader_param/HAIR_COLOR = Color( 1, 0.866667, 0, 1 )
 
 [sub_resource type="Animation" id=110]
 resource_name = "IdleDown"
@@ -405,7 +412,7 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=109]
 
-[sub_resource type="CapsuleShape2D" id=47]
+[sub_resource type="CapsuleShape2D" id=121]
 radius = 15.0
 height = 0.0
 
@@ -465,13 +472,13 @@ margin_bottom = -56.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
-shape = SubResource( 47 )
+shape = SubResource( 121 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -6 )
-shape = SubResource( 47 )
+shape = SubResource( 121 )
 
 [node name="ScriptingArea" type="Area2D" parent="."]
 pause_mode = 2
