@@ -13,8 +13,10 @@ func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_DELETE:
 			_delete_selected()
-		elif event.scancode == KEY_G:
-			print(save())
+		elif Engine.editor_hint and event.scancode == KEY_F2:
+			var save_string = JSON.print(save())
+			OS.clipboard = save_string
+			print(save_string)
 
 
 func save() -> Dictionary:
