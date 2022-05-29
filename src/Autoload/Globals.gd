@@ -1,6 +1,7 @@
 extends Node
 
 signal open_scripting
+signal trigger_global
 
 var scripting_mode := false
 
@@ -10,3 +11,7 @@ func _ready() -> void:
 
 func open_scripting(entity : Entity) -> void:
 	emit_signal("open_scripting", entity)
+
+
+func emit_signal_trigger(tag : String) -> void:
+	emit_signal("trigger_global", tag)
