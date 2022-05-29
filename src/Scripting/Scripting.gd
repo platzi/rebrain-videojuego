@@ -15,7 +15,7 @@ var node_scene_list := {
 	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
 }
 
-var is_open := true
+var is_open := false
 
 onready var scripting_effect : Control = $ScriptingEffect
 
@@ -57,8 +57,8 @@ func _input(event : InputEvent) -> void:
 				scripting_effect.visible = false
 				if is_open:
 					close()
-		elif event.scancode == KEY_A:
-			print(scripting_graph.get_connection_list())
+#		elif event.scancode == KEY_A:
+#			print(scripting_graph.get_connection_list())
 
 
 func open_node_searcher(open_position : Vector2) -> void:
