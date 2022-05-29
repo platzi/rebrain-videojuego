@@ -19,7 +19,6 @@ onready var customization := $Customization
 
 
 func _ready() -> void:
-	pause_mode = Node.PAUSE_MODE_PROCESS
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	customization.connect("change_hair", self, "change_hair")
 	customization.connect("change_hair_color", self, "change_hair_color")
@@ -48,22 +47,10 @@ func _physics_process(delta : float) -> void:
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Move/blend_position", input_vector)
 		animation_state.travel("Move")
-#		for i in get_slide_count():
-#			var collision = get_slide_collision(i)
-#			if collision.collider.is_in_group("Projectile"):
-#				collision.collider.hit()
-#				hurt(-input_vector)
-#			if collision.collider.is_in_group("Entity") and not collision.collider.is_in_group("Enemy"):
-#				hurt(-input_vector)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
 		animation_state.travel("Idle")
 	velocity = move_and_slide(velocity)
-
-func _unhandled_input(event):
-	if event is InputEventKey and event.scancode == KEY_CONTROL and event.is_pressed():
-		get_tree().paused = !get_tree().paused
-		get_tree().set_input_as_handled()
 
 
 func remove_inmunity() -> void:

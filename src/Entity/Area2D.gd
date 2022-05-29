@@ -19,7 +19,6 @@ func _input_event(viewport, event, shape_idx):
 
 
 func _process(delta):
-	print(on_mouse)
 	if Globals.scripting_mode and on_mouse:
 		_on_mouse_entered()
 	elif global_scripting_mode and on_mouse:
