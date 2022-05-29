@@ -288,23 +288,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="ScriptingEffect"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -77.0
-margin_top = -14.0
-margin_right = 77.0
-text = "Modo Scripting Activado"
-align = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_right = 960.0
 margin_bottom = 540.0
+rect_min_size = Vector2( 960, 520 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -386,7 +376,7 @@ margin_right = 944.0
 margin_bottom = 524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-scroll_offset = Vector2( -808, -524 )
+scroll_offset = Vector2( -328, -524 )
 
 [node name="NodeSearcher" parent="." instance=ExtResource( 2 )]
 margin_left = 84.0
