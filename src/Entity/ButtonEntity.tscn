@@ -1,9 +1,25 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/entities/button_entity.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/ButtonEntity.gd" type="Script" id=2]
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=75]
+resource_name = "ButtonPressed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [sub_resource type="Animation" id=56]
 resource_name = "IdleDown"
@@ -153,7 +169,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ 0 ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=65]
@@ -219,7 +235,7 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachine" id=73]
+[sub_resource type="AnimationNodeStateMachine" id=76]
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 458, 79 )
 states/Move/node = SubResource( 53 )
@@ -230,7 +246,7 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=74]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 33.0151
+radius = 14.0
 
 [node name="ButtonEntity" type="KinematicBody2D" groups=["Entity", "EntityButton", "EntityStatic"]]
 collision_layer = 0
@@ -238,11 +254,14 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 8 )
 texture = ExtResource( 1 )
+hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
 playback_speed = 0.5
+anims/ButtonPressed = SubResource( 75 )
 anims/IdleDown = SubResource( 56 )
 anims/IdleLeft = SubResource( 57 )
 anims/IdleRight = SubResource( 58 )
@@ -254,7 +273,7 @@ anims/MoveUp = SubResource( 63 )
 anims/RESET = SubResource( 64 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 73 )
+tree_root = SubResource( 76 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 74 )
 parameters/Idle/blend_position = Vector2( -1, 0 )
@@ -268,10 +287,12 @@ margin_right = 20.0
 margin_bottom = -134.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 14 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 14 )
 shape = SubResource( 1 )
