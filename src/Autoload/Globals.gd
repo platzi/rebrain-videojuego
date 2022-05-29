@@ -4,6 +4,7 @@ signal open_scripting
 signal trigger_global
 
 var scripting_mode := false
+var disable_inputs := false
 
 func _ready() -> void:
 	pass
