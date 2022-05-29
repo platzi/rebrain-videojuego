@@ -75,7 +75,7 @@ func hurt(knockback_direction : Vector2) -> void:
 	if not inmunity:
 		inmunity = true
 		life -= 1
-		velocity = knockback_direction * MAX_SPEED * 10
+		velocity = knockback_direction * MAX_SPEED * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
 
