@@ -177,7 +177,7 @@ func _on_Area2D_body_entered(body) -> void:
 		self.hurt()
 	
 	if self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
-		get_tree().change_scene_to(change_scene)
+		SceneChanger.change_scene_to(change_scene)
 	elif not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
 		body.hurt(position.direction_to(body.position))
 	elif (
@@ -199,7 +199,6 @@ func _on_Area2D_body_entered(body) -> void:
 		body.hurt(position.direction_to(body.position))
 	elif self.is_in_group("Bomb") and (body.is_in_group("Player") or body.is_in_group("Entity")):
 		body.hurt(position.direction_to(body.position))
-		print(body.name)
 
 
 func _on_Area2D_body_entered_once(body) -> void:
