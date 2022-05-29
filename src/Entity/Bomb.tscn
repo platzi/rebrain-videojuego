@@ -6,7 +6,7 @@
 [ext_resource path="res://src/Entity/Bomb.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=75]
-radius = 39.1152
+radius = 12.0
 
 [sub_resource type="Animation" id=89]
 resource_name = "IdleDown"

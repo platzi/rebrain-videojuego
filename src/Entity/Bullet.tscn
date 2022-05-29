@@ -6,7 +6,7 @@
 [ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 7.0
+radius = 5.09902
 
 [sub_resource type="Animation" id=89]
 resource_name = "IdleDown"
