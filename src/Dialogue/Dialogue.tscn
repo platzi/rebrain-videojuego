@@ -186,16 +186,16 @@ size_flags_horizontal = 3
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 944.0
-margin_bottom = 92.0
+margin_bottom = 84.0
 bbcode_enabled = true
 visible_characters = 0
 scroll_active = false
 
 [node name="Label" type="Label" parent="PanelContainer"]
 margin_left = 16.0
-margin_top = 78.0
+margin_top = 70.0
 margin_right = 944.0
-margin_bottom = 92.0
+margin_bottom = 84.0
 size_flags_vertical = 8
 text = "[Presiona espacio para continuar]"
 align = 1
