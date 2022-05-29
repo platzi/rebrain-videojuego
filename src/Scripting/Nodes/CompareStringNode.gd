@@ -4,8 +4,6 @@ extends ScriptingNode
 
 onready var string_le := $MarginContainer4/HBoxContainer/StringLE
 
-var text := ""
-
 func _ready() -> void:
 	type = "COMPARE_STRING"
 	_set_params(_params)

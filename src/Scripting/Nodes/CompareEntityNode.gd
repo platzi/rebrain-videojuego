@@ -4,8 +4,6 @@ extends ScriptingNode
 
 onready var entites_ob : OptionButton = $MarginContainer3/HBoxContainer/EntitiesOB
 
-var entity := ""
-
 func _ready() -> void:
 	type = "COMPARE_ENTITY"
 	_set_params(_params)
