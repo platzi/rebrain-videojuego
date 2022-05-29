@@ -69,6 +69,7 @@ func hurt(knockback_direction : Vector2) -> void:
 		$HitAnimationPlayer.play("Hit")
 	if life < 1:
 		queue_free()
+		Globals.emit_show_game_over()
 
 
 func change_hair(hair : Texture) -> void:
