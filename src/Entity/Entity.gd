@@ -178,6 +178,7 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 
 
 func _on_Area2D_body_entered(body) -> void:
+	#brain.run("COLLISION", body)
 	if body.get_instance_id() == self.get_instance_id():
 		return
 	if self.is_in_group("Projectile"):
