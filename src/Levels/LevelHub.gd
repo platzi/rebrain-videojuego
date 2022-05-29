@@ -8,6 +8,7 @@ onready var trigger_zone_2 : Area2D = $Game/TriggerZones/TriggerZone2
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	Globals.disable_scripting = true
 	trigger_zone_1.connect("body_entered", self, "_on_TriggerZone1_body_entered")
 	trigger_zone_2.connect("body_entered", self, "_on_TriggerZone2_body_entered")
 	animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
