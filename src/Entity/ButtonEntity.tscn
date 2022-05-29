@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/images/entities/button_entity.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/ButtonEntity.gd" type="Script" id=2]
@@ -177,6 +177,37 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=79]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=80]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=66]
 animation = "IdleLeft"
 
@@ -281,6 +312,11 @@ anims/MoveLeft = SubResource( 61 )
 anims/MoveRight = SubResource( 62 )
 anims/MoveUp = SubResource( 63 )
 anims/RESET = SubResource( 64 )
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
+anims/Hit = SubResource( 79 )
+anims/RESET = SubResource( 80 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 76 )
