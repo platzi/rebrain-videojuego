@@ -1,5 +1,7 @@
 extends Control
 
+signal finished
+
 export(Array, String, MULTILINE) var dialogues : Array
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer 
@@ -37,6 +39,7 @@ func skip() -> void:
 		else:
 			animation_player.play("Close")
 			_disabled = true
+			emit_signal("finished")
 	else:
 		rich_text_label.visible_characters = rich_text_label.text.length()
 

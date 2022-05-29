@@ -5,6 +5,7 @@ signal trigger_global
 signal show_game_over
 
 var scripting_mode := false
+var disable_inputs := false
 
 func _ready() -> void:
 	pass
