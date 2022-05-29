@@ -424,6 +424,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+collision_mask = 7
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -238.0 ]
