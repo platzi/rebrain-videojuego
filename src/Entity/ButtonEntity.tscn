@@ -232,7 +232,7 @@ start_node = "Idle"
 [sub_resource type="CircleShape2D" id=1]
 radius = 33.0151
 
-[node name="ButtonEntity" type="KinematicBody2D" groups=["Entity"]]
+[node name="ButtonEntity" type="KinematicBody2D" groups=["Entity", "EntityButton", "EntityStatic"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 2 )
