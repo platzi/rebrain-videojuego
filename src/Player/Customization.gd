@@ -7,6 +7,7 @@ signal change_skin_color
 signal change_shirt
 signal change_pants
 signal change_shoes
+signal ended_customizing
 
 
 var config = ConfigFile.new()
@@ -119,8 +120,7 @@ func load_data() -> void:
 	var err = config.load("user://re_brain_data.cfg")
 	if err != OK:
 		return
-	if config.get_value("Player", "has_saved", false):
-		hide()
+	
 	player_name = config.get_value("Player", "player_name", "")
 	current_hair = config.get_value("Player", "current_hair", 0)
 	current_hair_color = config.get_value("Player", "current_hair_color", 0)
@@ -128,6 +128,10 @@ func load_data() -> void:
 	current_shirt = config.get_value("Player", "current_shirt", 0)
 	current_pants = config.get_value("Player", "current_pants", 0)
 	current_shoes = config.get_value("Player", "current_shoes", 0)
+	yield(get_tree(), "idle_frame")
+	if config.get_value("Player", "has_saved", false):
+		emit_signal("ended_customizing")
+		hide()
 
 
 func _on_ChangeHairPrevBtn_pressed() -> void:
@@ -214,3 +218,4 @@ func _on_SaveBtn_pressed() -> void:
 	config.save("user://re_brain_data.cfg")
 	hide()
 	emit_signal("change_player_name", name_line_edit.get_text())
+	emit_signal("ended_customizing")
