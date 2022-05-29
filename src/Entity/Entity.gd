@@ -48,6 +48,7 @@ func _ready() -> void:
 	inmunity_timer.set_one_shot(true)
 	
 	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
+	area_2D.connect("body_entered", self, "_on_Area2D_body_entered_once")
 	area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
 	instance_brain()
 
@@ -62,8 +63,8 @@ func _input(event) -> void:
 
 
 func _physics_process(delta : float) -> void:
-	if area_2D.get_overlapping_bodies() != []:
-		_on_Area2D_body_entered(area_2D.get_overlapping_bodies()[0])
+	for body in area_2D.get_overlapping_bodies():
+		_on_Area2D_body_entered(body)
 	if moving:
 		if self.is_in_group("Projectile"):
 			velocity_vector = move_vector * speed
@@ -178,7 +179,6 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 
 
 func _on_Area2D_body_entered(body) -> void:
-	#brain.run("COLLISION", body)
 	if body.get_instance_id() == self.get_instance_id():
 		return
 	if self.is_in_group("Projectile"):
@@ -208,6 +208,12 @@ func _on_Area2D_body_entered(body) -> void:
 	elif self.is_in_group("Bomb") and (body.is_in_group("Player") or body.is_in_group("Entity")):
 		body.hurt(position.direction_to(body.position))
 		print(body.name)
+
+
+func _on_Area2D_body_entered_once(body) -> void:
+	if body.get_instance_id() == self.get_instance_id():
+		return	
+	brain.run("COLLISION", body)
 
 
 func _on_Area2D_body_exited(body) -> void:
