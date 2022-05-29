@@ -1,5 +1,7 @@
 extends Node
 
+const DEBUG := true
+
 signal open_scripting
 signal trigger_global
 signal show_game_over
