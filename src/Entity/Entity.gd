@@ -222,6 +222,7 @@ func set_change_scene(target_scene : PackedScene) -> void:
 func reset_position() -> void:
 	position = initial_postion
 	move_vector = initial_direction
+	velocity_vector = initial_direction
 	moving = false
 	hide_message()
 	remove_inmunity()
@@ -231,3 +232,7 @@ func reset_position() -> void:
 	brain.queue_free()
 	brain = Brain.new()
 	instance_brain()
+
+
+func activate_explosion():
+	pass
