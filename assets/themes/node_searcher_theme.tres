@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://assets/themes/font_24_bold.tres" type="DynamicFont" id=1]
 
@@ -30,11 +30,39 @@ content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.2363, 0.153, 0.3, 1 )
 
-[sub_resource type="StyleBoxLine" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.4726, 0.306, 0.6, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.393833, 0.255, 0.5, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.315067, 0.204, 0.4, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.160784, 0, 0.290196, 1 )
+
+[sub_resource type="StyleBoxLine" id=9]
 color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
 thickness = 2
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.313726, 0.203922, 0.4, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -58,7 +86,15 @@ Button/styles/disabled = SubResource( 6 )
 Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 5 )
-HSeparator/styles/separator = SubResource( 3 )
+HScrollBar/styles/grabber = SubResource( 1 )
+HScrollBar/styles/grabber_highlight = SubResource( 7 )
+HScrollBar/styles/grabber_pressed = SubResource( 3 )
+HScrollBar/styles/scroll = SubResource( 8 )
+HSeparator/styles/separator = SubResource( 9 )
 Label/fonts/font = ExtResource( 1 )
-PopupPanel/styles/panel = SubResource( 1 )
+PopupPanel/styles/panel = SubResource( 10 )
 VBoxContainer/constants/separation = 0
+VScrollBar/styles/grabber = SubResource( 1 )
+VScrollBar/styles/grabber_highlight = SubResource( 7 )
+VScrollBar/styles/grabber_pressed = SubResource( 3 )
+VScrollBar/styles/scroll = SubResource( 8 )
