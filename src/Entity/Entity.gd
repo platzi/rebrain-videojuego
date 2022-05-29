@@ -86,6 +86,7 @@ func instance_brain():
 	brain.connect("shoot", self, "shoot")
 	brain.connect("show_message", self, "show_message")
 	brain.connect("hide_message", self, "hide_message")
+	brain.connect("explode", self, "activate_explosion")
 	brain.brain = brain_dict
 	add_child(brain)
 
@@ -203,6 +204,9 @@ func _on_Area2D_body_entered(body) -> void:
 		and not body.is_in_group("EntityStatic")
 	):
 		body.hurt(position.direction_to(body.position))
+	elif self.is_in_group("Bomb") and (body.is_in_group("Player") or body.is_in_group("Entity")):
+		body.hurt(position.direction_to(body.position))
+		print(body.name)
 
 
 func _on_Area2D_body_exited(body) -> void:
