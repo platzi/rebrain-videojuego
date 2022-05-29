@@ -3,8 +3,12 @@ extends Node
 signal open_scripting
 signal trigger_global
 signal show_game_over
+<<<<<<< Updated upstream
 signal update_life
 
+=======
+signal scripting_toggled
+>>>>>>> Stashed changes
 
 var scripting_mode := false
 var disable_inputs := false
