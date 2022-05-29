@@ -3,6 +3,8 @@ extends Node
 signal open_scripting
 signal trigger_global
 signal show_game_over
+signal update_life
+
 
 var scripting_mode := false
 var disable_inputs := false
@@ -27,3 +29,7 @@ func emit_show_game_over() -> void:
 
 func set_player_name(player_name : String) -> void:
 	self.player_name = player_name
+
+
+func emit_update_life(life : int) -> void:
+	emit_signal("update_life", life)

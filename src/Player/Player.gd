@@ -70,6 +70,7 @@ func hurt(knockback_direction : Vector2) -> void:
 		velocity = knockback_direction * MAX_SPEED * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
+		Globals.emit_update_life(life)
 	if life < 1:
 		queue_free()
 		Globals.emit_show_game_over()
