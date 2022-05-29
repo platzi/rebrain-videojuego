@@ -389,7 +389,7 @@ margin_left = 84.0
 margin_right = 264.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 3.0
+playback_speed = 6.0
 anims/Close = SubResource( 3 )
 anims/Open = SubResource( 6 )
 anims/RESET = SubResource( 2 )
