@@ -40,6 +40,7 @@ func _ready() -> void:
 	inmunity_timer.set_one_shot(true)
 	
 	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
+	area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
 	
 	brain.connect("move_forward", self, "move_forward")
 	brain.connect("stop_moving", self, "stop_moving")
@@ -167,7 +168,13 @@ func _on_Area2D_body_entered(body) -> void:
 		body.hurt()
 	elif self.is_in_group("EntityButton"):
 		emit_signal("button_body_entered")
+		$AnimationPlayer.play("ButtonPressed")
 	elif body.projectile_owner == self.get_instance_id() or body.get_instance_id() and self.get_instance_id():
 		pass
 	elif not self.is_in_group("EntityStatic") and not self.is_in_group("Projectile"):
 		hurt(body.position.direction_to(position))
+
+
+func _on_Area2D_body_exited(body) -> void:
+	pass
+	
