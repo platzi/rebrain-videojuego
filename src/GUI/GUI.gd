@@ -12,7 +12,7 @@ onready var hearts_tr = [
 ]
 
 func _ready():
-	if Engine.editor_hint:
+	if not Engine.editor_hint:
 		Globals.connect("update_life", self, "_set_lives")
 
 
