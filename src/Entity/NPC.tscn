@@ -461,9 +461,9 @@ parameters/Move/TimeScale/scale = 0.5
 
 [node name="MessageBoard" parent="." instance=ExtResource( 1 )]
 margin_left = -20.0
-margin_top = -86.0
+margin_top = -109.0
 margin_right = 20.0
-margin_bottom = -46.0
+margin_bottom = -69.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )

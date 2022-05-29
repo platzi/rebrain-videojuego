@@ -313,8 +313,10 @@ parameters/Move/BlendSpace2D/blend_position = Vector2( 0, 0 )
 parameters/Move/TimeScale/scale = 0.5
 
 [node name="MessageBoard" parent="." instance=ExtResource( 3 )]
-margin_top = -80.0
-margin_bottom = -40.0
+margin_left = -20.0
+margin_top = -73.0
+margin_right = 20.0
+margin_bottom = -33.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )

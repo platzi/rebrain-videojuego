@@ -183,7 +183,6 @@ func _on_Area2D_body_entered(body) -> void:
 		self.hurt()
 	
 	if self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
-		print("Teleporter")
 		get_tree().change_scene_to(change_scene)
 	elif not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
 		body.hurt(position.direction_to(body.position))

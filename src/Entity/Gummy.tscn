@@ -259,7 +259,7 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 458, 79 )
 states/Move/node = SubResource( 53 )
-states/Move/position = Vector2( 701, 79 )
+states/Move/position = Vector2( 694, 79 )
 transitions = [ "Idle", "Move", SubResource( 54 ), "Move", "Idle", SubResource( 55 ) ]
 start_node = "Idle"
 

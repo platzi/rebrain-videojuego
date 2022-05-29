@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/images/entities/bomb.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=2]
@@ -272,6 +272,9 @@ start_node = "Idle"
 radius = 35.0
 height = 0.0
 
+[sub_resource type="CircleShape2D" id=113]
+radius = 95.4254
+
 [node name="Bomb" type="KinematicBody2D" groups=["Enemy", "Entity"]]
 collision_layer = 0
 collision_mask = 6
@@ -290,10 +293,8 @@ rotation = -1.5708
 shape = SubResource( 75 )
 
 [node name="MessageBoard" parent="." instance=ExtResource( 2 )]
-margin_left = -20.0
-margin_top = -81.0
-margin_right = 20.0
-margin_bottom = -41.0
+margin_top = -76.0
+margin_bottom = -36.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
@@ -334,3 +335,11 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScriptingArea"]
 shape = SubResource( 112 )
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+position = Vector2( -1, 0 )
+rotation = -1.5708
+shape = SubResource( 113 )
+disabled = true
