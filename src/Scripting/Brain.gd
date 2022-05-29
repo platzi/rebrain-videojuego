@@ -7,6 +7,7 @@ signal turns_towards
 signal shoot
 signal show_message
 signal hide_message
+signal explode
 
 var brain := {}
 var _timer
