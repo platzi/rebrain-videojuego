@@ -13,7 +13,7 @@ var brain_dict := {}
 onready var animation_tree = $AnimationTree
 onready var message_board = $MessageBoard
 onready var area_2D = $Area2D
-onready var move_vector = animation_tree.get("parameters/Idle/blend_position")
+export var move_vector = Vector2.DOWN
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
 
@@ -32,9 +32,14 @@ var max_speed = 100
 var projectile_owner = null
 var is_open = false
 var change_scene : PackedScene = PackedScene.new()
-
+var initial_postion : Vector2 = Vector2.ZERO
+var initial_direction : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	initial_postion = position
+	initial_direction = move_vector
+	animation_tree.set("parameters/Idle/blend_position", move_vector)
+	animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
 	inmunity_timer = Timer.new()
 	add_child(inmunity_timer)
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
@@ -59,6 +64,8 @@ func _input(event) -> void:
 		shoot()
 	elif event is InputEventKey and event.scancode == KEY_SPACE and self.is_in_group("Teleporter"):
 		activate()
+	elif event is InputEventKey and event.scancode == KEY_CONTROL:
+		reset_position()
 
 
 func _physics_process(delta : float) -> void:
@@ -204,3 +211,11 @@ func activate() -> void:
 
 func set_change_scene(target_scene : PackedScene) -> void:
 	change_scene = target_scene
+
+
+func reset_position() -> void:
+	position = initial_postion
+	move_vector = initial_direction
+	animation_tree.set("parameters/Idle/blend_position", move_vector)
+	animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+	
