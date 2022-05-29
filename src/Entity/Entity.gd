@@ -51,6 +51,7 @@ func _ready() -> void:
 	area_2D.connect("body_entered", self, "_on_Area2D_body_entered_once")
 	area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
 	instance_brain()
+	Globals.connect("trigger_global", self, "_on_trigger_received")
 
 
 func _input(event) -> void:
@@ -246,3 +247,7 @@ func reset_position() -> void:
 
 func activate_explosion():
 	pass
+
+
+func _on_trigger_received(tag : String) -> void:
+	brain.run("TRIGGER", tag)
