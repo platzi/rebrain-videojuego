@@ -9,9 +9,9 @@
 slot/1/left_enabled = true
 slot/1/left_type = 0
 slot/1/left_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
-slot/1/right_enabled = true
+slot/1/right_enabled = false
 slot/1/right_type = 0
-slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
+slot/1/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 4 )
 tag = "Explotar"
 subtag = ""
@@ -66,14 +66,5 @@ margin_right = 16.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 2
-texture = ExtResource( 3 )
-expand = true
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer" index="1"]
-margin_left = 118.0
-margin_right = 134.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-size_flags_horizontal = 0
 texture = ExtResource( 3 )
 expand = true
