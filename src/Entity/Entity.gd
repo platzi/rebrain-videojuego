@@ -168,6 +168,8 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 		velocity_vector = knockback_direction * max_speed * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
+	if life < 1:
+		queue_free()
 
 
 func _on_Area2D_body_entered(body) -> void:

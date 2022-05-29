@@ -65,6 +65,8 @@ func hurt(knockback_direction : Vector2) -> void:
 		velocity = knockback_direction * MAX_SPEED * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
+	if life < 1:
+		queue_free()
 
 
 func change_hair(hair : Texture) -> void:
