@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,12 +7,160 @@
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/LevelHub.gd" type="Script" id=8]
 [ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 250 )
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 100, 50 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 300, 50 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Game/YSort/NPC:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 528, 144 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Game/YSort/NPC:move_vector")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Game/YSort/NPC:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "intro_1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Game/YSort/NPC:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 528, 400 ), Vector2( 528, 700 ) ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Game/YSort/NPC/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "MoveDown", "IdleDown" ),
+"times": PoolRealArray( 0, 0.9 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "intro_2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Game/YSort/NPC:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 528, 700 ), Vector2( 528, 288 ), Vector2( 456, -264 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Game/YSort/NPC:move_vector")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1 ) ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("Game/YSort/NPC/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "MoveUp", "IdleDown" ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "intro_3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Game/YSort/NPC:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 456, -264 ), Vector2( 528, -264 ), Vector2( 528, -264 ), Vector2( 528, -500 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Game/YSort/NPC:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("Game/YSort/NPC/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "MoveRight", "IdleUp" ),
+"times": PoolRealArray( 0, 0.4 )
+}
+
 [node name="LevelHub" type="Node"]
+script = ExtResource( 8 )
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -23,14 +171,14 @@ cell_size = Vector2( 48, 48 )
 collision_layer = 3
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( -393221, 0, 8, -393220, 0, 10, -393219, 0, 10, -393218, 0, 10, -393217, 0, 10, -458752, 0, 10, -458751, 0, 10, -458750, 0, 10, -458749, 0, 10, -458748, 0, 10, -458747, 0, 10, -458746, 0, 10, -458745, 0, 10, -458744, 0, 10, -458743, 0, 10, -458742, 0, 10, -458741, 0, 10, -458740, 0, 10, -458739, 0, 10, -458738, 0, 10, -458737, 0, 10, -458736, 0, 10, -458735, 0, 10, -458734, 0, 10, -458733, 0, 10, -458732, 0, 10, -458731, 0, 10, -458730, 0, 10, -458729, 0, 10, -458728, 0, 10, -458727, 0, 10, -458726, 0, 11, -327685, 0, 196616, -327684, 0, 196617, -327683, 0, 196617, -327682, 0, 196617, -327681, 0, 196617, -393216, 0, 196617, -393215, 0, 196617, -393214, 0, 196617, -393213, 0, 196617, -393212, 0, 196617, -393211, 0, 196617, -393210, 0, 131077, -393209, 0, 131081, -393208, 0, 131081, -393207, 0, 131081, -393206, 0, 131081, -393205, 0, 131081, -393204, 0, 131081, -393203, 0, 131081, -393202, 0, 131081, -393201, 0, 131078, -393200, 0, 196617, -393199, 0, 196617, -393198, 0, 196617, -393197, 0, 196617, -393196, 0, 196617, -393195, 0, 196617, -393194, 0, 196617, -393193, 0, 196617, -393192, 0, 196617, -393191, 0, 196617, -393190, 0, 196619, -327674, 0, 65544, -327673, 0, 131081, -327672, 0, 131081, -327671, 0, 131081, -327670, 0, 131081, -327669, 0, 131081, -327668, 0, 131081, -327667, 0, 131081, -327666, 0, 131081, -327665, 0, 131083, -262138, 0, 65544, -262137, 0, 131081, -262136, 0, 131081, -262135, 0, 131081, -262134, 0, 131081, -262133, 0, 131081, -262132, 0, 131081, -262131, 0, 131081, -262130, 0, 131081, -262129, 0, 131083, -262127, 0, 8, -262126, 0, 11, -196606, 0, 8, -196605, 0, 11, -196602, 0, 65544, -196601, 0, 131081, -196600, 0, 131081, -196599, 0, 131081, -196598, 0, 131081, -196597, 0, 131081, -196596, 0, 131081, -196595, 0, 131081, -196594, 0, 131081, -196593, 0, 131083, -196591, 0, 196616, -196590, 0, 196619, -131070, 0, 196616, -131069, 0, 196619, -131066, 0, 196616, -131065, 0, 131077, -131064, 0, 131081, -131063, 0, 131081, -131062, 0, 131081, -131061, 0, 131081, -131060, 0, 131081, -131059, 0, 131081, -131058, 0, 131078, -131057, 0, 196619, -65529, 0, 196616, -65528, 0, 196617, -65527, 0, 131077, -65526, 0, 131081, -65525, 0, 131081, -65524, 0, 131078, -65523, 0, 196617, -65522, 0, 196619, 9, 0, 65544, 10, 0, 131081, 11, 0, 131081, 12, 0, 131083, 65545, 0, 65544, 65546, 0, 131081, 65547, 0, 131081, 65548, 0, 131083, 131081, 0, 65544, 131082, 0, 131081, 131083, 0, 131081, 131084, 0, 131083, 196617, 0, 65544, 196618, 0, 131081, 196619, 0, 131081, 196620, 0, 131083, 262153, 0, 65544, 262154, 0, 131081, 262155, 0, 131081, 262156, 0, 131083, 327689, 0, 65544, 327690, 0, 131081, 327691, 0, 131081, 327692, 0, 131083, 393225, 0, 65544, 393226, 0, 131081, 393227, 0, 131081, 393228, 0, 131083, 458761, 0, 65544, 458762, 0, 131081, 458763, 0, 131081, 458764, 0, 131083, 524297, 0, 65544, 524298, 0, 131081, 524299, 0, 131081, 524300, 0, 131083, 589832, 0, 8, 589833, 0, 65541, 589834, 0, 131081, 589835, 0, 131081, 589836, 0, 65542, 589837, 0, 11, 655367, 0, 8, 655368, 0, 65541, 655369, 0, 131081, 655370, 0, 131081, 655371, 0, 131081, 655372, 0, 131081, 655373, 0, 65542, 655374, 0, 11, 655377, 0, 8, 655378, 0, 11, 720903, 0, 65544, 720904, 0, 131081, 720905, 0, 131081, 720906, 0, 131081, 720907, 0, 131081, 720908, 0, 131081, 720909, 0, 131081, 720910, 0, 131083, 720913, 0, 196616, 720914, 0, 196619, 786439, 0, 65544, 786440, 0, 131081, 786441, 0, 131081, 786442, 0, 131081, 786443, 0, 131081, 786444, 0, 131081, 786445, 0, 131081, 786446, 0, 131083, 851975, 0, 65544, 851976, 0, 131081, 851977, 0, 131081, 851978, 0, 131081, 851979, 0, 131081, 851980, 0, 131081, 851981, 0, 131081, 851982, 0, 131083, 917508, 0, 8, 917509, 0, 11, 917511, 0, 65544, 917512, 0, 131081, 917513, 0, 131081, 917514, 0, 131081, 917515, 0, 131081, 917516, 0, 131081, 917517, 0, 131081, 917518, 0, 131083, 983044, 0, 196616, 983045, 0, 196619, 983047, 0, 196616, 983048, 0, 131077, 983049, 0, 131081, 983050, 0, 131081, 983051, 0, 131081, 983052, 0, 131081, 983053, 0, 131078, 983054, 0, 196619, 1048584, 0, 196616, 1048585, 0, 196617, 1048586, 0, 196617, 1048587, 0, 196617, 1048588, 0, 196617, 1048589, 0, 196619 )
+tile_data = PoolIntArray( -393221, 0, 8, -393220, 0, 10, -393219, 0, 10, -393218, 0, 10, -393217, 0, 10, -458752, 0, 10, -458751, 0, 10, -458750, 0, 10, -458749, 0, 10, -458748, 0, 10, -458747, 0, 10, -458746, 0, 10, -458745, 0, 10, -458744, 0, 10, -458743, 0, 10, -458742, 0, 10, -458741, 0, 10, -458740, 0, 10, -458739, 0, 10, -458738, 0, 10, -458737, 0, 10, -458736, 0, 10, -458735, 0, 10, -458734, 0, 10, -458733, 0, 10, -458732, 0, 10, -458731, 0, 10, -458730, 0, 10, -458729, 0, 10, -458728, 0, 10, -458727, 0, 10, -458726, 0, 11, -327685, 0, 196616, -327684, 0, 196617, -327683, 0, 196617, -327682, 0, 196617, -327681, 0, 196617, -393216, 0, 196617, -393215, 0, 196617, -393214, 0, 196617, -393213, 0, 196617, -393212, 0, 196617, -393211, 0, 196617, -393210, 0, 131077, -393209, 0, 131081, -393208, 0, 131081, -393207, 0, 131081, -393206, 0, 131081, -393205, 0, 131081, -393204, 0, 131081, -393203, 0, 131081, -393202, 0, 131081, -393201, 0, 131078, -393200, 0, 196617, -393199, 0, 196617, -393198, 0, 196617, -393197, 0, 196617, -393196, 0, 196617, -393195, 0, 196617, -393194, 0, 196617, -393193, 0, 196617, -393192, 0, 196617, -393191, 0, 196617, -393190, 0, 196619, -327674, 0, 65544, -327673, 0, 131081, -327672, 0, 131081, -327671, 0, 131081, -327670, 0, 131081, -327669, 0, 131081, -327668, 0, 131081, -327667, 0, 131081, -327666, 0, 131081, -327665, 0, 131083, -262138, 0, 65544, -262137, 0, 131081, -262136, 0, 131081, -262135, 0, 131081, -262134, 0, 131081, -262133, 0, 131081, -262132, 0, 131081, -262131, 0, 131081, -262130, 0, 131081, -262129, 0, 131083, -262127, 0, 8, -262126, 0, 11, -196606, 0, 8, -196605, 0, 11, -196602, 0, 65544, -196601, 0, 131081, -196600, 0, 131081, -196599, 0, 131081, -196598, 0, 131081, -196597, 0, 131081, -196596, 0, 131081, -196595, 0, 131081, -196594, 0, 131081, -196593, 0, 131083, -196591, 0, 196616, -196590, 0, 196619, -131070, 0, 196616, -131069, 0, 196619, -131066, 0, 196616, -131065, 0, 131077, -131064, 0, 131081, -131063, 0, 131081, -131062, 0, 131081, -131061, 0, 131081, -131060, 0, 131081, -131059, 0, 131081, -131058, 0, 131078, -131057, 0, 196619, -65529, 0, 196616, -65528, 0, 196617, -65527, 0, 131077, -65526, 0, 131081, -65525, 0, 131081, -65524, 0, 131078, -65523, 0, 196617, -65522, 0, 196619, 9, 0, 65544, 10, 0, 131081, 11, 0, 131081, 12, 0, 131083, 65545, 0, 65544, 65546, 0, 131081, 65547, 0, 131081, 65548, 0, 131083, 131081, 0, 65544, 131082, 0, 131081, 131083, 0, 131081, 131084, 0, 131083, 131090, 0, 8, 131091, 0, 11, 196612, 0, 8, 196613, 0, 11, 196617, 0, 65544, 196618, 0, 131081, 196619, 0, 131081, 196620, 0, 131083, 196626, 0, 196616, 196627, 0, 196619, 262148, 0, 196616, 262149, 0, 196619, 262153, 0, 65544, 262154, 0, 131081, 262155, 0, 131081, 262156, 0, 131083, 327689, 0, 65544, 327690, 0, 131081, 327691, 0, 131081, 327692, 0, 131083, 393225, 0, 65544, 393226, 0, 131081, 393227, 0, 131081, 393228, 0, 131083, 393231, 0, 8, 393232, 0, 11, 458761, 0, 65544, 458762, 0, 131081, 458763, 0, 131081, 458764, 0, 131083, 458767, 0, 196616, 458768, 0, 196619, 524297, 0, 65544, 524298, 0, 131081, 524299, 0, 131081, 524300, 0, 131083, 589833, 0, 65544, 589834, 0, 131081, 589835, 0, 131081, 589836, 0, 131083, 655369, 0, 65544, 655370, 0, 131081, 655371, 0, 131081, 655372, 0, 131083, 720902, 0, 8, 720903, 0, 11, 720905, 0, 65544, 720906, 0, 131081, 720907, 0, 131081, 720908, 0, 131083, 786438, 0, 196616, 786439, 0, 196619, 786441, 0, 65544, 786442, 0, 131081, 786443, 0, 131081, 786444, 0, 131083, 851977, 0, 65544, 851978, 0, 131081, 851979, 0, 131081, 851980, 0, 131083, 917513, 0, 65544, 917514, 0, 131081, 917515, 0, 131081, 917516, 0, 131083, 983049, 0, 65544, 983050, 0, 131081, 983051, 0, 131081, 983052, 0, 131083, 1048585, 0, 65544, 1048586, 0, 131081, 1048587, 0, 131081, 1048588, 0, 131083, 1114120, 0, 8, 1114121, 0, 65541, 1114122, 0, 131081, 1114123, 0, 131081, 1114124, 0, 65542, 1114125, 0, 11, 1179655, 0, 8, 1179656, 0, 65541, 1179657, 0, 131081, 1179658, 0, 131081, 1179659, 0, 131081, 1179660, 0, 131081, 1179661, 0, 65542, 1179662, 0, 11, 1179665, 0, 8, 1179666, 0, 11, 1245191, 0, 65544, 1245192, 0, 131081, 1245193, 0, 131081, 1245194, 0, 131081, 1245195, 0, 131081, 1245196, 0, 131081, 1245197, 0, 131081, 1245198, 0, 131083, 1245201, 0, 196616, 1245202, 0, 196619, 1310727, 0, 65544, 1310728, 0, 131081, 1310729, 0, 131081, 1310730, 0, 131081, 1310731, 0, 131081, 1310732, 0, 131081, 1310733, 0, 131081, 1310734, 0, 131083, 1376263, 0, 65544, 1376264, 0, 131081, 1376265, 0, 131081, 1376266, 0, 131081, 1376267, 0, 131081, 1376268, 0, 131081, 1376269, 0, 131081, 1376270, 0, 131083, 1441796, 0, 8, 1441797, 0, 11, 1441799, 0, 65544, 1441800, 0, 131081, 1441801, 0, 131081, 1441802, 0, 131081, 1441803, 0, 131081, 1441804, 0, 131081, 1441805, 0, 131081, 1441806, 0, 131083, 1507332, 0, 196616, 1507333, 0, 196619, 1507335, 0, 196616, 1507336, 0, 131077, 1507337, 0, 131081, 1507338, 0, 131081, 1507339, 0, 131081, 1507340, 0, 131081, 1507341, 0, 131078, 1507342, 0, 196619, 1572872, 0, 196616, 1572873, 0, 196617, 1572874, 0, 196617, 1572875, 0, 196617, 1572876, 0, 196617, 1572877, 0, 196619 )
 
 [node name="CameraAttractor" parent="Game" instance=ExtResource( 5 )]
 position = Vector2( 528, -336 )
 collision_shape = SubResource( 1 )
 
 [node name="Camera" parent="Game" instance=ExtResource( 4 )]
-position = Vector2( 528, 624 )
+position = Vector2( 528, 1008 )
 target_path = NodePath("../YSort/Player")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Game"]
@@ -55,12 +203,41 @@ __meta__ = {
 }
 
 [node name="NPC" parent="Game/YSort" instance=ExtResource( 7 )]
-position = Vector2( 480, 432 )
+position = Vector2( 528, 144 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC" index="4"]
+active = false
+parameters/playback = SubResource( 6 )
 
 [node name="Player" parent="Game/YSort" instance=ExtResource( 2 )]
-position = Vector2( 528, 624 )
+position = Vector2( 528, 1008 )
+
+[node name="TriggerZones" type="Node2D" parent="Game"]
+
+[node name="TriggerZone1" type="Area2D" parent="Game/TriggerZones"]
+position = Vector2( 528, 744 )
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/TriggerZones/TriggerZone1"]
+shape = SubResource( 2 )
+
+[node name="TriggerZone2" type="Area2D" parent="Game/TriggerZones"]
+position = Vector2( 528, -168 )
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/TriggerZones/TriggerZone2"]
+shape = SubResource( 7 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="Scripting" parent="UI" instance=ExtResource( 6 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.6
+anims/RESET = SubResource( 3 )
+anims/intro_1 = SubResource( 4 )
+anims/intro_2 = SubResource( 5 )
+anims/intro_3 = SubResource( 8 )
+
+[editable path="Game/YSort/NPC"]
