@@ -28,7 +28,8 @@ var is_shooting = false
 var life = 3
 var inmunity = false
 var inmunity_time = 1
-const MAX_SPEED = 100
+var max_speed = 100
+var projectile_owner = null
 
 
 func _ready() -> void:
@@ -49,7 +50,8 @@ func _ready() -> void:
 	brain.brain = brain_dict
 	add_child(brain)
 
-func _input(event):
+
+func _input(event) -> void:
 	if event is InputEventKey and event.scancode == KEY_0 and not self.is_in_group("Projectile"):
 		shoot()
 
@@ -58,21 +60,16 @@ func _physics_process(delta : float) -> void:
 	if area_2D.get_overlapping_bodies() != []:
 		_on_Area2D_body_entered(area_2D.get_overlapping_bodies()[0])
 	if moving:
-		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
-		animation_state.travel("Move")
-		velocity_vector += move_vector * speed
-		if velocity_vector.distance_to(Vector2.ZERO) > MAX_SPEED:
-			velocity_vector = velocity_vector.move_toward(move_vector * MAX_SPEED, delta * MAX_SPEED * 100)
-#		position += velocity_vector * delta
-#		for i in get_slide_count():
-#			var collision = get_slide_collision(i)
-#			if collision.collider.is_in_group("Projectile"):
-#				collision.collider.hit()
-#				hurt(move_vector)
-#			elif collision.collider.is_in_group("Player"):
-#				collision.collider.hurt(move_vector)
+		if self.is_in_group("Projectile"):
+			velocity_vector = move_vector * speed
+		else:
+			animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+			animation_state.travel("Move")
+			velocity_vector += move_vector * speed
+			if velocity_vector.distance_to(Vector2.ZERO) > max_speed:
+				velocity_vector = velocity_vector.move_toward(move_vector * max_speed, delta * max_speed * 100)
 	else:
-		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
+		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * max_speed * 100)
 		animation_state.travel("Idle")
 	velocity_vector = move_and_slide(velocity_vector)
 
@@ -101,7 +98,8 @@ func turns_towards(towards : String) -> void:
 		elif move_vector.y < 0:
 			move_vector += Vector2(1, 1)
 	animation_tree.set("parameters/Idle/blend_position", move_vector)
-	
+
+
 func move_forward() -> void:
 	moving = true
 
@@ -148,29 +146,28 @@ func stop_shooting() -> void:
 
 func remove_inmunity() -> void:
 	inmunity = false
+	$HitAnimationPlayer.play("RESET")
 
 
 func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 	if not inmunity:
 		inmunity = true
 		life -= 1
-		velocity_vector = knockback_direction * MAX_SPEED * 10
+		velocity_vector = knockback_direction * max_speed * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
 
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(body) -> void:
 	if self.is_in_group("Projectile"):
 		self.hurt()
 	if not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
 		body.hurt(position.direction_to(body.position))
-		#print(self.name)
 	elif body.is_in_group("Projectile") and body.projectile_owner != self.get_instance_id():
-			body.hit()
+		body.hurt()
 	elif self.is_in_group("EntityButton"):
-		#print("BUTTONNN")
 		emit_signal("button_body_entered")
-	elif body.projectile_owner == self.get_instance_id():
+	elif body.projectile_owner == self.get_instance_id() or body.get_instance_id() and self.get_instance_id():
 		pass
 	elif not self.is_in_group("EntityStatic") and not self.is_in_group("Projectile"):
 		hurt(body.position.direction_to(position))
