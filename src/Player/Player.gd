@@ -60,11 +60,6 @@ func _physics_process(delta : float) -> void:
 		animation_state.travel("Idle")
 	velocity = move_and_slide(velocity)
 
-func _unhandled_input(event):
-	if event is InputEventKey and event.scancode == KEY_CONTROL and event.is_pressed():
-		get_tree().paused = !get_tree().paused
-		get_tree().set_input_as_handled()
-
 
 func remove_inmunity() -> void:
 	inmunity = false
