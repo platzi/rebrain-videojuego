@@ -1,0 +1,1456 @@
+[gd_scene load_steps=74 format=2]
+
+[ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=3]
+[ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/LevelTutorial.gd" type="Script" id=8]
+[ext_resource path="res://assets/images/player/hair_03.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/player/hair_02.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/player/hair_04.png" type="Texture" id=11]
+[ext_resource path="res://src/Entity/Worm.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=13]
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 500, 300 )
+
+[sub_resource type="ShaderMaterial" id=46]
+shader = ExtResource( 3 )
+shader_param/blink = null
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.486275, 0.415686, 0.270588, 1 )
+shader_param/SHIRT_COLOR = Color( 0.796078, 0.0705882, 0.0705882, 1 )
+shader_param/PANTS_COLOR = Color( 0, 0.101961, 0.415686, 1 )
+shader_param/SHOES_COLOR = Color( 0, 0.0352941, 0.541176, 1 )
+
+[sub_resource type="Shader" id=47]
+code = "shader_type canvas_item;
+
+uniform bool blink;
+
+uniform vec4 HAIR_COLOR : hint_color;
+
+void fragment() {
+	vec4 referenceColor[3];
+	referenceColor[0] = HAIR_COLOR * 0.4;
+	referenceColor[1] = HAIR_COLOR * 0.8;
+	referenceColor[2] = HAIR_COLOR;
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	int idx = int(floor(textureColor.r * 4.0));
+	for (int i=0; i<3; i++) {
+		if (idx == i) {
+			COLOR.rgb = referenceColor[i].rgb;
+			break;
+		}
+	}
+	if (blink) {
+		COLOR.rgb += vec3(1.0, 1.0, 1.0) * ((1.0 + sin(TIME * 15.0)) / 2.0);
+	}
+	COLOR.a = textureColor.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=48]
+shader = SubResource( 47 )
+shader_param/blink = null
+shader_param/HAIR_COLOR = Color( 1, 0.866667, 0, 1 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="ShaderMaterial" id=49]
+shader = ExtResource( 3 )
+shader_param/blink = null
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.839216, 0.772549, 0.631373, 1 )
+shader_param/SHIRT_COLOR = Color( 0.0705882, 0.796078, 0.117647, 1 )
+shader_param/PANTS_COLOR = Color( 0.337255, 0.282353, 0.0784314, 1 )
+shader_param/SHOES_COLOR = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="ShaderMaterial" id=50]
+shader = SubResource( 47 )
+shader_param/blink = null
+shader_param/HAIR_COLOR = Color( 0.321569, 0.278431, 0, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "IdleDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "IdleLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "IdleRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "IdleUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "MoveDown"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "MoveLeft"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "MoveRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "MoveUp"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="ShaderMaterial" id=51]
+shader = ExtResource( 3 )
+shader_param/blink = null
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.839216, 0.772549, 0.631373, 1 )
+shader_param/SHIRT_COLOR = Color( 0.0705882, 0.796078, 0.117647, 1 )
+shader_param/PANTS_COLOR = Color( 0.337255, 0.282353, 0.0784314, 1 )
+shader_param/SHOES_COLOR = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "IdleDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "IdleLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "IdleRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "IdleUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "MoveDown"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "MoveLeft"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "MoveRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "MoveUp"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=31]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
+
+[sub_resource type="ShaderMaterial" id=52]
+shader = ExtResource( 3 )
+shader_param/blink = null
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.282353, 0.25098, 0.188235, 1 )
+shader_param/SHIRT_COLOR = Color( 0.054902, 0.737255, 0.894118, 1 )
+shader_param/PANTS_COLOR = Color( 0.0313726, 0.129412, 0.301961, 1 )
+shader_param/SHOES_COLOR = Color( 0.917647, 0.917647, 0.917647, 1 )
+
+[sub_resource type="ShaderMaterial" id=53]
+shader = SubResource( 47 )
+shader_param/blink = null
+shader_param/HAIR_COLOR = Color( 0.129412, 0.129412, 0.129412, 1 )
+
+[sub_resource type="Animation" id=33]
+resource_name = "IdleDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "IdleLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "IdleRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "IdleUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "MoveDown"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "MoveLeft"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "MoveRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "MoveUp"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=43]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
+
+[sub_resource type="ShaderMaterial" id=66]
+shader = ExtResource( 3 )
+shader_param/blink = null
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/SKIN_COLOR = Color( 0.835294, 0.713726, 0.466667, 1 )
+shader_param/SHIRT_COLOR = Color( 0.192157, 0.854902, 0.0352941, 1 )
+shader_param/PANTS_COLOR = Color( 0.301961, 0.223529, 0.0313726, 1 )
+shader_param/SHOES_COLOR = Color( 0.917647, 0.917647, 0.917647, 1 )
+
+[sub_resource type="ShaderMaterial" id=67]
+shader = SubResource( 47 )
+shader_param/blink = null
+shader_param/HAIR_COLOR = Color( 0, 0.345098, 1, 1 )
+
+[sub_resource type="Animation" id=54]
+resource_name = "IdleDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "IdleLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=56]
+resource_name = "IdleRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "IdleUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "MoveDown"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "MoveLeft"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+
+[sub_resource type="Animation" id=60]
+resource_name = "MoveRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+
+[sub_resource type="Animation" id=61]
+resource_name = "MoveUp"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+
+[sub_resource type="Animation" id=62]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HairSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "Hit"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=64]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=65]
+
+[node name="LevelTutorial" type="Node"]
+script = ExtResource( 8 )
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Game"]
+modulate = Color( 0, 0.988235, 1, 1 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 1048580, 0, 8, 1048581, 0, 10, 1048582, 0, 10, 1048583, 0, 10, 1048584, 0, 10, 1048585, 0, 10, 1048586, 0, 10, 1048587, 0, 10, 1048588, 0, 10, 1048589, 0, 10, 1048590, 0, 10, 1048591, 0, 10, 1048592, 0, 10, 1048593, 0, 11, 1114115, 0, 8, 1114116, 0, 65541, 1114117, 0, 131081, 1114118, 0, 131081, 1114119, 0, 131081, 1114120, 0, 131081, 1114121, 0, 131081, 1114122, 0, 131081, 1114123, 0, 131081, 1114124, 0, 131081, 1114125, 0, 131081, 1114126, 0, 131081, 1114127, 0, 131081, 1114128, 0, 131081, 1114129, 0, 65542, 1114130, 0, 11, 1179650, 0, 8, 1179651, 0, 65541, 1179652, 0, 131081, 1179653, 0, 131081, 1179654, 0, 131081, 1179655, 0, 131081, 1179656, 0, 131081, 1179657, 0, 131081, 1179658, 0, 131081, 1179659, 0, 131081, 1179660, 0, 131081, 1179661, 0, 131081, 1179662, 0, 131081, 1179663, 0, 131081, 1179664, 0, 131081, 1179665, 0, 131081, 1179666, 0, 65542, 1179667, 0, 11, 1245186, 0, 65544, 1245187, 0, 131081, 1245188, 0, 131081, 1245189, 0, 131081, 1245190, 0, 131081, 1245191, 0, 131081, 1245192, 0, 131081, 1245193, 0, 131081, 1245194, 0, 131081, 1245195, 0, 131081, 1245196, 0, 131081, 1245197, 0, 131081, 1245198, 0, 131081, 1245199, 0, 131081, 1245200, 0, 131081, 1245201, 0, 131081, 1245202, 0, 131081, 1245203, 0, 131083, 1310722, 0, 65544, 1310723, 0, 131081, 1310724, 0, 131081, 1310725, 0, 131081, 1310726, 0, 131081, 1310727, 0, 131081, 1310728, 0, 131081, 1310729, 0, 131081, 1310730, 0, 131081, 1310731, 0, 131081, 1310732, 0, 131081, 1310733, 0, 131081, 1310734, 0, 131081, 1310735, 0, 131081, 1310736, 0, 131081, 1310737, 0, 131081, 1310738, 0, 131081, 1310739, 0, 131083, 1376258, 0, 65544, 1376259, 0, 131081, 1376260, 0, 131081, 1376261, 0, 131081, 1376262, 0, 131081, 1376263, 0, 131081, 1376264, 0, 131081, 1376265, 0, 131081, 1376266, 0, 131081, 1376267, 0, 131081, 1376268, 0, 131081, 1376269, 0, 131081, 1376270, 0, 131081, 1376271, 0, 131081, 1376272, 0, 131081, 1376273, 0, 131081, 1376274, 0, 131081, 1376275, 0, 131083, 1441794, 0, 65544, 1441795, 0, 131081, 1441796, 0, 131081, 1441797, 0, 131081, 1441798, 0, 131081, 1441799, 0, 131081, 1441800, 0, 131081, 1441801, 0, 131081, 1441802, 0, 131081, 1441803, 0, 131081, 1441804, 0, 131081, 1441805, 0, 131081, 1441806, 0, 131081, 1441807, 0, 131081, 1441808, 0, 131081, 1441809, 0, 131081, 1441810, 0, 131081, 1441811, 0, 131083, 1507330, 0, 196616, 1507331, 0, 131077, 1507332, 0, 131081, 1507333, 0, 131081, 1507334, 0, 131081, 1507335, 0, 131081, 1507336, 0, 131081, 1507337, 0, 131081, 1507338, 0, 131081, 1507339, 0, 131081, 1507340, 0, 131081, 1507341, 0, 131081, 1507342, 0, 131081, 1507343, 0, 131081, 1507344, 0, 131081, 1507345, 0, 131081, 1507346, 0, 131078, 1507347, 0, 196619, 1572867, 0, 196616, 1572868, 0, 131077, 1572869, 0, 131081, 1572870, 0, 131081, 1572871, 0, 131081, 1572872, 0, 131081, 1572873, 0, 131081, 1572874, 0, 131081, 1572875, 0, 131081, 1572876, 0, 131081, 1572877, 0, 131081, 1572878, 0, 131081, 1572879, 0, 131081, 1572880, 0, 131081, 1572881, 0, 131078, 1572882, 0, 196619, 1638404, 0, 196616, 1638405, 0, 196617, 1638406, 0, 196617, 1638407, 0, 196617, 1638408, 0, 196617, 1638409, 0, 196617, 1638410, 0, 196617, 1638411, 0, 196617, 1638412, 0, 196617, 1638413, 0, 196617, 1638414, 0, 196617, 1638415, 0, 196617, 1638416, 0, 196617, 1638417, 0, 196619 )
+
+[node name="CameraAttractor" parent="Game" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 528, 1008 )
+collision_shape = SubResource( 45 )
+
+[node name="Camera" parent="Game" instance=ExtResource( 4 )]
+position = Vector2( 528, 1008 )
+target_path = NodePath("../YSort/Player")
+
+[node name="YSort" type="YSort" parent="Game"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="Game/YSort" instance=ExtResource( 2 )]
+position = Vector2( 528, 1104 )
+
+[node name="NPC" parent="Game/YSort" instance=ExtResource( 7 )]
+position = Vector2( 264, 1080 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Sprite" parent="Game/YSort/NPC" index="0"]
+material = SubResource( 46 )
+
+[node name="HairSprite" parent="Game/YSort/NPC" index="1"]
+material = SubResource( 48 )
+texture = ExtResource( 9 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC" index="4"]
+parameters/playback = SubResource( 6 )
+
+[node name="NPC2" parent="Game/YSort" instance=ExtResource( 7 )]
+position = Vector2( 384, 1128 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Sprite" parent="Game/YSort/NPC2" index="0"]
+material = SubResource( 49 )
+
+[node name="HairSprite" parent="Game/YSort/NPC2" index="1"]
+material = SubResource( 50 )
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" parent="Game/YSort/NPC2" index="2"]
+anims/IdleDown = SubResource( 9 )
+anims/IdleLeft = SubResource( 10 )
+anims/IdleRight = SubResource( 11 )
+anims/IdleUp = SubResource( 12 )
+anims/MoveDown = SubResource( 13 )
+anims/MoveLeft = SubResource( 14 )
+anims/MoveRight = SubResource( 15 )
+anims/MoveUp = SubResource( 16 )
+anims/RESET = SubResource( 17 )
+
+[node name="HitAnimationPlayer" parent="Game/YSort/NPC2" index="3"]
+anims/Hit = SubResource( 18 )
+anims/RESET = SubResource( 19 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC2" index="4"]
+parameters/playback = SubResource( 20 )
+
+[node name="NPC3" parent="Game/YSort" instance=ExtResource( 7 )]
+position = Vector2( 624, 1104 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Sprite" parent="Game/YSort/NPC3" index="0"]
+material = SubResource( 51 )
+
+[node name="AnimationPlayer" parent="Game/YSort/NPC3" index="2"]
+anims/IdleDown = SubResource( 21 )
+anims/IdleLeft = SubResource( 22 )
+anims/IdleRight = SubResource( 23 )
+anims/IdleUp = SubResource( 24 )
+anims/MoveDown = SubResource( 25 )
+anims/MoveLeft = SubResource( 26 )
+anims/MoveRight = SubResource( 27 )
+anims/MoveUp = SubResource( 28 )
+anims/RESET = SubResource( 29 )
+
+[node name="HitAnimationPlayer" parent="Game/YSort/NPC3" index="3"]
+anims/Hit = SubResource( 30 )
+anims/RESET = SubResource( 31 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC3" index="4"]
+parameters/playback = SubResource( 32 )
+
+[node name="NPC4" parent="Game/YSort" instance=ExtResource( 7 )]
+position = Vector2( 768, 1080 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Sprite" parent="Game/YSort/NPC4" index="0"]
+material = SubResource( 52 )
+
+[node name="HairSprite" parent="Game/YSort/NPC4" index="1"]
+material = SubResource( 53 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayer" parent="Game/YSort/NPC4" index="2"]
+anims/IdleDown = SubResource( 33 )
+anims/IdleLeft = SubResource( 34 )
+anims/IdleRight = SubResource( 35 )
+anims/IdleUp = SubResource( 36 )
+anims/MoveDown = SubResource( 37 )
+anims/MoveLeft = SubResource( 38 )
+anims/MoveRight = SubResource( 39 )
+anims/MoveUp = SubResource( 40 )
+anims/RESET = SubResource( 41 )
+
+[node name="HitAnimationPlayer" parent="Game/YSort/NPC4" index="3"]
+anims/Hit = SubResource( 42 )
+anims/RESET = SubResource( 43 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC4" index="4"]
+parameters/playback = SubResource( 44 )
+
+[node name="NPC5" parent="Game/YSort" instance=ExtResource( 7 )]
+position = Vector2( 576, 923 )
+
+[node name="Sprite" parent="Game/YSort/NPC5" index="0"]
+material = SubResource( 66 )
+
+[node name="HairSprite" parent="Game/YSort/NPC5" index="1"]
+material = SubResource( 67 )
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" parent="Game/YSort/NPC5" index="2"]
+anims/IdleDown = SubResource( 54 )
+anims/IdleLeft = SubResource( 55 )
+anims/IdleRight = SubResource( 56 )
+anims/IdleUp = SubResource( 57 )
+anims/MoveDown = SubResource( 58 )
+anims/MoveLeft = SubResource( 59 )
+anims/MoveRight = SubResource( 60 )
+anims/MoveUp = SubResource( 61 )
+anims/RESET = SubResource( 62 )
+
+[node name="HitAnimationPlayer" parent="Game/YSort/NPC5" index="3"]
+anims/Hit = SubResource( 63 )
+anims/RESET = SubResource( 64 )
+
+[node name="AnimationTree" parent="Game/YSort/NPC5" index="4"]
+parameters/playback = SubResource( 65 )
+
+[node name="Worm" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 480, 912 )
+move_vector = Vector2( -1, 0 )
+
+[node name="TriggerZones" type="Node2D" parent="Game"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GUI" parent="UI" instance=ExtResource( 13 )]
+
+[node name="Scripting" parent="UI" instance=ExtResource( 6 )]
+
+[editable path="Game/YSort/NPC"]
+[editable path="Game/YSort/NPC2"]
+[editable path="Game/YSort/NPC3"]
+[editable path="Game/YSort/NPC4"]
+[editable path="Game/YSort/NPC5"]
