@@ -22,7 +22,14 @@ func _on_NewGameBtn_pressed() -> void:
 
 
 func _on_StartBtn_pressed() -> void:
-	get_tree().change_scene("res://test/LevelBaseTest.tscn")
+	var config = ConfigFile.new()
+	var err = config.load("user://re_brain_data.cfg")
+	var last_level = ""
+	if err == OK:
+		last_level = config.get_value("Player", "last_level", "res://test/LevelBaseTest.tscn")
+	else:
+		last_level = "res://test/LevelBaseTest.tscn"
+	get_tree().change_scene(last_level)
 
 
 func _on_OptionsBtn_pressed() -> void:
