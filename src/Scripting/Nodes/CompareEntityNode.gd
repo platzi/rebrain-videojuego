@@ -8,10 +8,12 @@ var entity := ""
 
 func _ready() -> void:
 	type = "COMPARE_ENTITY"
+	_set_params(_params)
 
 
 func _set_params(params : Array) -> void:
-	entites_ob.selected = params[0]
+	if _params.size() > 0:
+		entites_ob.selected = params[0]
 
 
 func _get_params() -> Array:

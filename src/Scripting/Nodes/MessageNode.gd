@@ -8,11 +8,13 @@ onready var timer_sb := $MarginContainer3/HBoxContainer/TimerSB
 
 func _ready():
 	type = "MESSAGE"
+	_set_params(_params)
 
 
 func _set_params(params : Array) -> void:
-	message_le.text = params[0]
-	timer_sb.value = params[1]
+	if _params.size() > 0:
+		message_le.text = params[0]
+		timer_sb.value = params[1]
 
 
 func _get_params() -> Array:
