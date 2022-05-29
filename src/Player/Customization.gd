@@ -128,6 +128,7 @@ func load_data() -> void:
 	current_shirt = config.get_value("Player", "current_shirt", 0)
 	current_pants = config.get_value("Player", "current_pants", 0)
 	current_shoes = config.get_value("Player", "current_shoes", 0)
+	Globals.set_player_name(player_name)
 	yield(get_tree(), "idle_frame")
 	if config.get_value("Player", "has_saved", false):
 		emit_signal("ended_customizing")
