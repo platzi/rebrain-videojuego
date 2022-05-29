@@ -9,6 +9,7 @@ var life = 3
 var inmunity = false
 var inmunity_time = 1
 var player_name = ""
+var is_customizing = true
 
 
 onready var animation_tree = $AnimationTree
@@ -27,6 +28,7 @@ func _ready() -> void:
 	customization.connect("change_pants", self, "change_pants")
 	customization.connect("change_shoes", self, "change_shoes")
 	customization.connect("change_player_name", self, "change_player_name")
+	customization.connect("ended_customizing", self, "ended_customizing")
 	change_hair(customization.all_hairs[customization.current_hair])
 	change_hair_color(customization.hair_colors[customization.current_hair_color])
 	change_skin_color(customization.skin_colors[customization.current_skin_color])
@@ -39,18 +41,18 @@ func _physics_process(delta : float) -> void:
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
-	
-	if input_vector != Vector2.ZERO:
-		velocity += input_vector * speed
-		if velocity.distance_to(Vector2.ZERO) > MAX_SPEED:
-			velocity = velocity.move_toward(input_vector * MAX_SPEED, delta * MAX_SPEED * 100)
-		animation_tree.set("parameters/Idle/blend_position", input_vector)
-		animation_tree.set("parameters/Move/blend_position", input_vector)
-		animation_state.travel("Move")
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
-		animation_state.travel("Idle")
-	velocity = move_and_slide(velocity)
+	if not is_customizing:
+		if input_vector != Vector2.ZERO:
+			velocity += input_vector * speed
+			if velocity.distance_to(Vector2.ZERO) > MAX_SPEED:
+				velocity = velocity.move_toward(input_vector * MAX_SPEED, delta * MAX_SPEED * 100)
+			animation_tree.set("parameters/Idle/blend_position", input_vector)
+			animation_tree.set("parameters/Move/blend_position", input_vector)
+			animation_state.travel("Move")
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
+			animation_state.travel("Idle")
+		velocity = move_and_slide(velocity)
 
 
 func remove_inmunity() -> void:
@@ -95,3 +97,7 @@ func change_shoes(color : Color) -> void:
 
 func change_player_name(_name : String) -> void:
 	player_name = _name
+
+
+func ended_customizing() -> void:
+	is_customizing = false
