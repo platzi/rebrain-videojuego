@@ -17,6 +17,7 @@ var node_groups := {
 		["MOVE_FORWARD", "Avanzar", "res://assets/images/ui/scripting_icon_move_forward.png"],
 		["TIMER", "Temporizador", "res://assets/images/ui/scripting_icon_timer.png"],
 		["MESSAGE", "Mensaje", "res://assets/images/ui/scripting_icon_message.png"],
+		["SHOOT_TRIGGER", "Accionar disparador", "res://assets/images/ui/scripting_icon_shoot_trigger.png"],
 		["SHOOT", "Disparar", "res://assets/images/ui/scripting_icon_shoot.png"],
 		["EXPLODE", "Explotar", "res://assets/images/ui/scripting_icon_explode.png"],
 	],
