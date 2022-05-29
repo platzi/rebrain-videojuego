@@ -17,7 +17,7 @@ func _input(event : InputEvent) -> void:
 			save()
 
 
-func save() -> void:
+func save() -> Dictionary:
 	var nodes = {}
 	for child in get_children():
 		if child is GraphNode:
@@ -33,7 +33,7 @@ func save() -> void:
 			to = connection.to,
 			to_port = connection.to_port
 		})
-	print(JSON.print(nodes))
+	return nodes
 
 
 func _delete_selected() -> void:

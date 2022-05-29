@@ -16,10 +16,13 @@ var node_scene_list := {
 
 var is_open := true
 
+onready var scripting_effect : Control = $ScriptingEffect
+
 onready var node_searcher := $NodeSearcher
 onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/ScriptingGraph
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+onready var sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Sprite
 onready var save_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/SaveBtn
 onready var restore_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/RestoreBtn
 onready var cancel_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/CancelBtn
@@ -45,9 +48,11 @@ func _input(event : InputEvent) -> void:
 			if !Globals.scripting_mode:
 				Globals.scripting_mode = true
 				get_tree().paused = true
+				scripting_effect.visible = true
 			else:
 				Globals.scripting_mode = false
 				get_tree().paused = false
+				scripting_effect.visible = false
 		elif event.scancode == KEY_A:
 			print(scripting_graph.get_connection_list())
 
@@ -58,7 +63,11 @@ func open_node_searcher(open_position : Vector2) -> void:
 
 func open(entity : Entity) -> void:
 	_target_entity = entity
-	print(_target_entity.position)
+	var target_sprite = _target_entity.get_node("Sprite")
+	sprite.texture = target_sprite.texture
+	sprite.hframes = target_sprite.hframes
+	sprite.vframes = target_sprite.vframes
+	sprite.frame = target_sprite.frame
 	brain = entity.brain.brain
 	load_nodes(brain)
 	is_open = true
@@ -124,7 +133,8 @@ func _create_new_node(node_type : String) -> void:
 
 
 func on_SaveBtn_pressed() -> void:
-	pass
+	_target_entity.brain.brain = scripting_graph.save()
+	close()
 
 
 func on_RestoreBtn_pressed() -> void:
