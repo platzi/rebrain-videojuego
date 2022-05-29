@@ -26,7 +26,7 @@ func run(type = "UPDATE", param1 = null) -> void:
 		if node.type == type:
 			if type == "UPDATE":
 				_execute(node, node)
-			elif type == "COLLISION":
+			elif type == "COLLISION" or type == "TRIGGER":
 				for connection in node.connections:
 					if connection.from_port == 1:
 						connection.output = param1
@@ -38,6 +38,8 @@ func _execute(start_node, current_node) -> void:
 		"UPDATE":
 			_run_next(start_node, current_node)
 		"COLLISION":
+			_run_next(start_node, current_node)
+		"TRIGGER":
 			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
 			_move_forward(start_node, current_node)
@@ -53,6 +55,10 @@ func _execute(start_node, current_node) -> void:
 			_explode(start_node, current_node)
 		"COMPARE_ENTITY":
 			_compare_entity(start_node, current_node)
+		"COMPARE_STRING":
+			_compare_string(start_node, current_node)
+		"SHOOT_TRIGGER":
+			_shoot_trigger(start_node, current_node)
 
 
 func _run_next(start_node, current_node) -> void:
@@ -92,6 +98,22 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 	connections[0].enabled = false
 	connections[1].enabled = true
 	if node.inputs[1].is_in_group(entity_tags[node.params[0]]):
+		connections[0].enabled = true
+		connections[1].enabled = false
+	_run_next(start_node, node)
+
+
+func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
+	print("compare_string")
+	var connections = [{}, {}]
+	for connection in node.connections:
+		if connection.from_port == 0:
+			connections[0] = connection
+		elif connection.from_port == 1:
+			connections[1] = connection
+	connections[0].enabled = false
+	connections[1].enabled = true
+	if node.inputs[1] == node.params[0]:
 		connections[0].enabled = true
 		connections[1].enabled = false
 	_run_next(start_node, node)
@@ -143,4 +165,10 @@ func _hide_message(start_node : Dictionary, node):
 func _explode(start_node : Dictionary, node : Dictionary):
 	print("explode")
 	emit_signal("explode")
+	_run_next(start_node, node)
+
+
+func _shoot_trigger(start_node : Dictionary, node : Dictionary):
+	print("shoot_trigger")
+	Globals.emit_signal_trigger(node.params[0])
 	_run_next(start_node, node)
