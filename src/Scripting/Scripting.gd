@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_TAB:
+		if !Globals.disable_scripting and event.scancode == KEY_TAB:
 			if !Globals.scripting_mode:
 				Globals.scripting_mode = true
 				get_tree().paused = true

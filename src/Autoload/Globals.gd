@@ -6,6 +6,7 @@ signal show_game_over
 
 var scripting_mode := false
 var disable_inputs := false
+var disable_scripting := false
 var player_name := ""
 
 func _ready() -> void:
