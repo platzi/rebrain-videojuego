@@ -8,6 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id=45]
 shader = ExtResource( 5 )
+shader_param/blink = null
 shader_param/BLACK = Color( 0, 0, 0, 1 )
 shader_param/SKIN_COLOR = Color( 0.839216, 0.756863, 0.576471, 1 )
 shader_param/SHIRT_COLOR = Color( 0.796078, 0.0705882, 0.631373, 1 )

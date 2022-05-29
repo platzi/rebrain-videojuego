@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform bool blink;
+
 uniform vec4 BLACK : hint_color;
 uniform vec4 SKIN_COLOR : hint_color;
 uniform vec4 SHIRT_COLOR : hint_color;
@@ -29,6 +31,9 @@ void fragment() {
 			COLOR.rgb = referenceColor[i].rgb;
 			break;
 		}
+	}
+	if (blink) {
+		COLOR.rgb += vec3(1.0, 1.0, 1.0) * ((1.0 + sin(TIME * 15.0)) / 2.0);
 	}
 	COLOR.a = textureColor.a;
 }
