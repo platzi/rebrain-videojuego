@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Levels/LevelHub.gd" type="Script" id=8]
 [ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/LevelTutorial.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 250 )
@@ -196,6 +197,7 @@ polygon = PoolVector2Array( -96, 192, -96, 216, -144, 216, -144, 192, -288, 192,
 [node name="Teleporter" parent="Game" instance=ExtResource( 9 )]
 position = Vector2( 528, -264 )
 is_active = true
+target_scene = ExtResource( 10 )
 
 [node name="YSort" type="YSort" parent="Game"]
 __meta__ = {
