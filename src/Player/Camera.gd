@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _process(delta : float) -> void:
-	if target:
+	if is_instance_valid(target):
 		position = target.position
 	if attractor:
 		camera_2d.global_position = attractor.position
