@@ -29,9 +29,13 @@ func _process(delta):
 func _on_mouse_entered() -> void:
 	on_mouse = true
 	if Globals.scripting_mode:
-		get_parent().get_node("Sprite").material.set_shader_param("blink", true)
 		global_scripting_mode = true
+		get_parent().get_node("Sprite").material.set_shader_param("blink", true)
+		if get_parent().has_node("HairSprite"):
+			get_parent().get_node("HairSprite").material.set_shader_param("blink", true)
 
 func _on_mouse_exited() -> void:
 	on_mouse = false
 	get_parent().get_node("Sprite").material.set_shader_param("blink", false)
+	if get_parent().has_node("HairSprite"):
+		get_parent().get_node("HairSprite").material.set_shader_param("blink", false)
