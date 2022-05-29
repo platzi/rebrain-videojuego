@@ -6,6 +6,7 @@ signal show_game_over
 
 var scripting_mode := false
 var disable_inputs := false
+var player_name := ""
 
 func _ready() -> void:
 	pass
@@ -21,3 +22,7 @@ func emit_signal_trigger(tag : String) -> void:
 
 func emit_show_game_over() -> void:
 	emit_signal("show_game_over")
+
+
+func set_player_name(player_name : String) -> void:
+	self.player_name = player_name

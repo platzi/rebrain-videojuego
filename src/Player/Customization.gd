@@ -218,4 +218,5 @@ func _on_SaveBtn_pressed() -> void:
 	config.save("user://re_brain_data.cfg")
 	hide()
 	emit_signal("change_player_name", name_line_edit.get_text())
+	Globals.set_player_name(name_line_edit.get_text())
 	emit_signal("ended_customizing")
