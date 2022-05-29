@@ -9,7 +9,7 @@ export(String) var tag setget _set_tag
 export(String) var subtag setget _set_subtag
 export(Texture) var icon setget _set_icon
 
-var _params = []
+var _params := []
 
 onready var _is_ready = true
 
@@ -20,20 +20,16 @@ onready var subtitle_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/SubtitleLa
 var type = "NONE"
 
 func _ready() -> void:
-	print(get_children())
 	_set_icon(icon)
 	_set_tag(tag)
 	_set_subtag(subtag)
-	yield(get_tree().root, "ready")
-	if _params.size() > 0:
-		_set_params(_params)
 
 
 func set_params(params : Array) -> void:
 	_params = params
 	if !_is_ready:
 		return
-	_set_params(params)
+	_set_params(_params)
 
 
 func get_params() -> Array:
