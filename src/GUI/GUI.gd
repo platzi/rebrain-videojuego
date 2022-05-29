@@ -12,7 +12,8 @@ onready var hearts_tr = [
 ]
 
 func _ready():
-	Globals.connect("update_life", self, "_set_lives")
+	if Engine.editor_hint:
+		Globals.connect("update_life", self, "_set_lives")
 
 
 func _set_lives(new_value : int) -> void:
