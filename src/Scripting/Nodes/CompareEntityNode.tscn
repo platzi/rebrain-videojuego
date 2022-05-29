@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/images/ui/scripting_icon_entity.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Scripting/Nodes/CompareEntityNode.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/ui/scripting_icon_compare.png" type="Texture" id=5]
 
 [node name="CompareEntityNode" instance=ExtResource( 2 )]
 slot/1/left_enabled = true
@@ -27,6 +28,10 @@ slot/3/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 3 )
 tag = "Comparar"
 subtag = "Entidad"
+icon = ExtResource( 5 )
+
+[node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
+texture = ExtResource( 5 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
 margin_right = 91.0
