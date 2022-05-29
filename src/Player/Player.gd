@@ -38,9 +38,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta : float) -> void:
-	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	input_vector = input_vector.normalized()
+	if !Globals.disable_inputs:
+		input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+		input_vector = input_vector.normalized()
+	else:
+		input_vector = Vector2.ZERO
 	if not is_customizing:
 		if input_vector != Vector2.ZERO:
 			velocity += input_vector * speed
