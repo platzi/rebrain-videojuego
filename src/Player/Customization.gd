@@ -94,6 +94,7 @@ var current_shoes : int = 0
 
 func _ready() -> void:
 	load_data()
+
 	name_line_edit.set_text(player_name)
 	hair_label.set_text("Peinado %d" % (current_hair + 1))
 	hair_color_rect.color = hair_colors[current_hair_color].to_rgba32()
@@ -120,7 +121,7 @@ func load_data() -> void:
 	var err = config.load("user://re_brain_data.cfg")
 	if err != OK:
 		return
-	
+
 	player_name = config.get_value("Player", "player_name", "")
 	current_hair = config.get_value("Player", "current_hair", 0)
 	current_hair_color = config.get_value("Player", "current_hair_color", 0)
@@ -128,9 +129,13 @@ func load_data() -> void:
 	current_shirt = config.get_value("Player", "current_shirt", 0)
 	current_pants = config.get_value("Player", "current_pants", 0)
 	current_shoes = config.get_value("Player", "current_shoes", 0)
+	var last_level = config.get_value("Player", "last_level", "res://src/Levels/LevelHub.tscn")
+	var _has_saved = config.get_value("Player", "has_saved", false)
 	Globals.set_player_name(player_name)
+	Globals.set_last_level(last_level)
+
 	yield(get_tree(), "idle_frame")
-	if config.get_value("Player", "has_saved", false):
+	if _has_saved:
 		emit_signal("ended_customizing")
 		hide()
 

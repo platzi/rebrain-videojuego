@@ -18,7 +18,7 @@ func _on_SubMenu_closed() -> void:
 func _on_NewGameBtn_pressed() -> void:
 	var config = ConfigFile.new()
 	config.save("user://re_brain_data.cfg")
-	SceneChanger.change_scene("res://test/LevelBaseTest.tscn")
+	SceneChanger.change_scene("res://src/Levels/LevelHub.tscn")
 	#get_tree().change_scene("res://test/LevelBaseTest.tscn")
 
 
@@ -27,9 +27,9 @@ func _on_StartBtn_pressed() -> void:
 	var err = config.load("user://re_brain_data.cfg")
 	var last_level = ""
 	if err == OK:
-		last_level = config.get_value("Player", "last_level", "res://test/LevelBaseTest.tscn")
+		last_level = config.get_value("Player", "last_level", "res://src/Levels/LevelHub.tscn")
 	else:
-		last_level = "res://test/LevelBaseTest.tscn"
+		last_level = "res://src/Levels/LevelHub.tscn"
 	SceneChanger.change_scene(last_level)
 	#get_tree().change_scene(last_level)
 

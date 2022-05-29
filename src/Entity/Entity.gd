@@ -181,7 +181,7 @@ func _on_Area2D_body_entered(body) -> void:
 		self.hurt()
 	
 	if self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
-		SceneChanger.change_scene_to(change_scene)
+		return
 	elif not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
 		body.hurt(position.direction_to(body.position))
 	elif (
@@ -207,7 +207,9 @@ func _on_Area2D_body_entered(body) -> void:
 
 func _on_Area2D_body_entered_once(body) -> void:
 	if body.get_instance_id() == self.get_instance_id():
-		return	
+		return
+	elif self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
+		SceneChanger.change_scene_to(change_scene)
 	brain.run("COLLISION", body)
 
 
