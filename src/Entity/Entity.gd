@@ -31,6 +31,7 @@ var inmunity_time = 1
 var max_speed = 100
 var projectile_owner = null
 var is_open = false
+var change_scene : PackedScene = PackedScene.new()
 
 
 func _ready() -> void:
@@ -56,6 +57,8 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event is InputEventKey and event.scancode == KEY_0 and not self.is_in_group("Projectile"):
 		shoot()
+	elif event is InputEventKey and event.scancode == KEY_SPACE and self.is_in_group("Teleporter"):
+		activate()
 
 
 func _physics_process(delta : float) -> void:
@@ -166,7 +169,10 @@ func _on_Area2D_body_entered(body) -> void:
 	if self.is_in_group("Projectile"):
 		self.hurt()
 	
-	if not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
+	if self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
+		print("Teleporter")
+		get_tree().change_scene_to(change_scene)
+	elif not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
 		body.hurt(position.direction_to(body.position))
 	elif (
 		body.is_in_group("Projectile") 
@@ -177,9 +183,13 @@ func _on_Area2D_body_entered(body) -> void:
 	elif self.is_in_group("EntityButton"):
 		emit_signal("button_body_entered")
 		$AnimationPlayer.play("ButtonPressed")
-	elif body.projectile_owner == self.get_instance_id():
+	elif body.is_in_group("Entity") and body.projectile_owner == self.get_instance_id():
 		return
-	elif self.is_in_group("Projectile") and body.is_in_group("Entity") and not body.is_in_group("EntityStatic"):
+	elif (
+		self.is_in_group("Projectile") 
+		and body.is_in_group("Entity") 
+		and not body.is_in_group("EntityStatic")
+	):
 		body.hurt(position.direction_to(body.position))
 
 
@@ -190,3 +200,7 @@ func _on_Area2D_body_exited(body) -> void:
 func activate() -> void:
 	$AnimationPlayer.play("Open")
 	is_open = true
+
+
+func set_change_scene(target_scene : PackedScene) -> void:
+	change_scene = target_scene
