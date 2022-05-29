@@ -54,15 +54,6 @@ func _ready() -> void:
 	Globals.connect("trigger_global", self, "_on_trigger_received")
 
 
-func _input(event) -> void:
-	if event is InputEventKey and event.scancode == KEY_0 and not self.is_in_group("Projectile"):
-		shoot()
-	elif event is InputEventKey and event.scancode == KEY_SPACE and self.is_in_group("Teleporter"):
-		activate()
-	elif event is InputEventKey and event.scancode == KEY_CONTROL:
-		reset_position()
-
-
 func _physics_process(delta : float) -> void:
 	for body in area_2D.get_overlapping_bodies():
 		_on_Area2D_body_entered(body)
