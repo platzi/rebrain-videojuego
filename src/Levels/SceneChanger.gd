@@ -9,7 +9,6 @@ onready var black = $Control/ColorRect
 
 func change_scene(path : String, delay : float = 0.0) -> void:
 	$Control.visible = true
-	print(path)
 	animation_player.play("Fade")
 	yield(animation_player, "animation_finished")
 	assert(get_tree().change_scene(path) == OK)
@@ -23,6 +22,16 @@ func change_scene_reload(delay : float = 0.0) -> void:
 	animation_player.play("Fade")
 	yield(animation_player, "animation_finished")
 	assert(get_tree().reload_current_scene() == OK)
+	animation_player.play_backwards("Fade")
+	yield(animation_player, "animation_finished")
+	$Control.visible = false
+
+
+func change_scene_to(change_scene : PackedScene) -> void:
+	$Control.visible = true
+	animation_player.play("Fade")
+	yield(animation_player, "animation_finished")
+	assert(get_tree().change_scene_to(change_scene) == OK)
 	animation_player.play_backwards("Fade")
 	yield(animation_player, "animation_finished")
 	$Control.visible = false
