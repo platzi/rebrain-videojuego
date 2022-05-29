@@ -226,7 +226,7 @@ func reset_position() -> void:
 	move_vector = initial_direction
 	velocity_vector = initial_direction
 	moving = false
-	hide_message()
+	message_board.reset()
 	remove_inmunity()
 	life = 3
 	animation_tree.set("parameters/Idle/blend_position", move_vector)
