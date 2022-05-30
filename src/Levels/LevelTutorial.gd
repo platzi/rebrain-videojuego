@@ -176,3 +176,4 @@ func _on_Area2D_body_entered(body : Node) -> void:
 
 func _dialogue_warning() -> void:
 	Globals.disable_inputs = false
+	player.move_towards(Vector2(528.0, 1056.0))
