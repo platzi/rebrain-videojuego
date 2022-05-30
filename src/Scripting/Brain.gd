@@ -8,6 +8,7 @@ signal shoot
 signal show_message
 signal hide_message
 signal explode
+signal activate
 
 var brain := {}
 var _timer
@@ -59,6 +60,8 @@ func _execute(start_node, current_node) -> void:
 			_compare_string(start_node, current_node)
 		"SHOOT_TRIGGER":
 			_shoot_trigger(start_node, current_node)
+		"ACTIVATE":
+			_activate(start_node, current_node)
 
 
 func _run_next(start_node, current_node) -> void:
@@ -73,7 +76,7 @@ func _run_next(start_node, current_node) -> void:
 			if connection.type == 0 and connection.enabled:
 				execute_list.append(brain[connection.to])
 			else:
-				brain[connection.to].inputs[connection.to_port] = connection.output
+				brain[connection.to].inputs[int(connection.to_port)] = connection.output
 	
 	# Execute
 	if execute_list.size() > 0:
@@ -171,4 +174,10 @@ func _explode(start_node : Dictionary, node : Dictionary):
 func _shoot_trigger(start_node : Dictionary, node : Dictionary):
 	print("shoot_trigger")
 	Globals.emit_signal_trigger(node.params[0])
+	_run_next(start_node, node)
+
+
+func _activate(start_node : Dictionary, node : Dictionary):
+	print("activate")
+	emit_signal("activate")
 	_run_next(start_node, node)
