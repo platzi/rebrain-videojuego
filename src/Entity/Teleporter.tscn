@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/images/entities/teleporter.png" type="Texture" id=4]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=5]
 [ext_resource path="res://assets/images/particles/line.png" type="Texture" id=6]
+[ext_resource path="res://assets/music/Teleport.wav" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=79]
 shader = ExtResource( 5 )
@@ -349,9 +350,7 @@ parameters/Move/BlendSpace2D/blend_position = Vector2( -1, 0 )
 parameters/Move/TimeScale/scale = 0.5
 
 [node name="MessageBoard" parent="." instance=ExtResource( 1 )]
-margin_left = -20.0
 margin_top = -78.0
-margin_right = 20.0
 margin_bottom = -38.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -382,3 +381,6 @@ spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 140.0
 color_ramp = SubResource( 80 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )

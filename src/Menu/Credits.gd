@@ -15,6 +15,7 @@ func _ready() -> void:
 
 
 func _on_ReturnBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.play("Hide")
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()

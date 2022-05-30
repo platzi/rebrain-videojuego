@@ -14,13 +14,15 @@ func activate() -> void:
 	is_open = true
 	$AnimationPlayer.play("Open")
 	$CPUParticles2D.emitting = true
+	$AudioStreamPlayer2D.play()
 
 
 func deactivate() -> void:
 	is_open = false
 	$AnimationPlayer.play("ButtonPressed")
 	$CPUParticles2D.emitting = false
-
+	$AudioStreamPlayer2D.play()
+	
 
 func _set_is_active(new_value : bool) -> void:
 	is_active = new_value

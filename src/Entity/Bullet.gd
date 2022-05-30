@@ -2,6 +2,7 @@ extends Entity
 
 
 func _ready():
+	audio_stream_player = $AudioStreamPlayer2D
 	speed = 200
 	moving = true
 	$Timer.connect("timeout", self, "hurt")

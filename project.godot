@@ -42,6 +42,7 @@ config/icon="res://icon.png"
 
 Globals="*res://src/Autoload/Globals.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
+MusicScene="*res://src/Levels/MusicScene.tscn"
 
 [display]
 

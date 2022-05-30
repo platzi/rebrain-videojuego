@@ -7,3 +7,4 @@ func _ready():
 	timer.connect("timeout", self, "queue_free")
 	timer.start(5)
 	add_child(timer)
+	$AudioStreamPlayer2D.play()
