@@ -9,21 +9,24 @@ onready var start_btn : Button = get_node(start_btn_path)
 
 
 func _ready() -> void:
-	start_btn.grab_focus()
-	start_btn.focus_neighbour_top = menu_btn.get_path()
-	menu_btn.focus_neighbour_bottom = start_btn.get_path()
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	menu_btn.connect("pressed", self, "_on_MenuBtn_pressed")
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 
 
 func _input(event):
-	if event is InputEventKey and event.scancode == KEY_ESCAPE and event.is_pressed():
-		visible = not visible
+	if not Globals.is_game_over:
+		if event is InputEventKey and event.scancode == KEY_ESCAPE and event.is_pressed():
+			visible = not visible
+			Globals.set_pause_game(not Globals.is_game_paused)
+			get_tree().paused = not get_tree().paused
 
 
 func _on_StartBtn_pressed() -> void:
+	get_tree().paused = false
 	SceneChanger.change_scene_reload()
 
 
 func _on_MenuBtn_pressed() -> void:
-	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
+	get_tree().paused = false
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn", true)

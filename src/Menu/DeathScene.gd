@@ -10,9 +10,6 @@ onready var start_btn : Button = get_node(start_btn_path)
 
 func _ready() -> void:
 #	OS.window_maximized = true
-	start_btn.grab_focus()
-	start_btn.focus_neighbour_top = menu_btn.get_path()
-	menu_btn.focus_neighbour_bottom = start_btn.get_path()
 	menu_btn.connect("pressed", self, "_on_MenuBtn_pressed")
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 	Globals.connect("show_game_over", self, "show")
@@ -20,9 +17,11 @@ func _ready() -> void:
 
 func _on_StartBtn_pressed() -> void:
 	SceneChanger.change_scene_reload()
+	Globals.reset_is_game_over()
 	#get_tree().reload_current_scene()
 
 
 func _on_MenuBtn_pressed() -> void:
-	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn", true)
+	Globals.reset_is_game_over()
 	#get_tree().change_scene("res://src/Menu/Menu.tscn")

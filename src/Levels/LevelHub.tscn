@@ -237,16 +237,19 @@ layer = 2
 
 [node name="Scripting" parent="UI" instance=ExtResource( 6 )]
 
-[node name="DeathScene" parent="UI" instance=ExtResource( 11 )]
-visible = false
-
-[node name="PauseMenu" parent="UI" instance=ExtResource( 12 )]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.6
 anims/RESET = SubResource( 3 )
 anims/intro_1 = SubResource( 4 )
 anims/intro_2 = SubResource( 5 )
 anims/intro_3 = SubResource( 8 )
+
+[node name="MenusLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="DeathScene" parent="MenusLayer" instance=ExtResource( 11 )]
+visible = false
+
+[node name="PauseMenu" parent="MenusLayer" instance=ExtResource( 12 )]
 
 [editable path="Game/YSort/NPC"]

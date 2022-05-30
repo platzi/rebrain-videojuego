@@ -1451,10 +1451,13 @@ layer = 2
 
 [node name="Scripting" parent="UI" instance=ExtResource( 6 )]
 
-[node name="DeathScene" parent="UI" instance=ExtResource( 14 )]
+[node name="MenusLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="DeathScene" parent="MenusLayer" instance=ExtResource( 14 )]
 visible = false
 
-[node name="PauseMenu" parent="UI" instance=ExtResource( 15 )]
+[node name="PauseMenu" parent="MenusLayer" instance=ExtResource( 15 )]
 
 [editable path="Game/YSort/NPC"]
 [editable path="Game/YSort/NPC2"]
