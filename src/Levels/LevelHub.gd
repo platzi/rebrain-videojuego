@@ -6,12 +6,28 @@ onready var ui_canvas_layer : CanvasLayer = $UI
 onready var trigger_zone_1 : Area2D = $Game/TriggerZones/TriggerZone1
 onready var trigger_zone_2 : Area2D = $Game/TriggerZones/TriggerZone2
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+onready var player : KinematicBody2D = $Game/YSort/Player
 
 func _ready():
 	Globals.disable_scripting = true
 	trigger_zone_1.connect("body_entered", self, "_on_TriggerZone1_body_entered")
 	trigger_zone_2.connect("body_entered", self, "_on_TriggerZone2_body_entered")
 	animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
+	player.customization.connect("ended_customizing", self, "_on_Player_ended_customizing")
+
+
+func _on_Player_ended_customizing() -> void:
+	Globals.disable_inputs = true
+	var dialogue_inst = dialogue_scene.instance()
+	dialogue_inst.connect("finished", self, "_controls_dialogue_ended")
+	dialogue_inst.dialogues = [
+		"Buen día usuarios, les recordamos que pueden moverse por las instalaciones con las teclas [b][WASD][/b]"
+	]
+	ui_canvas_layer.add_child(dialogue_inst)
+
+
+func _controls_dialogue_ended() -> void:
+	Globals.disable_inputs = false
 
 
 func _on_TriggerZone1_body_entered(body : Node) -> void:
