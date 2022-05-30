@@ -13,6 +13,7 @@ var node_scene_list := {
 	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
 	COMPARE_STRING = preload("res://src/Scripting/Nodes/CompareStringNode.tscn"),
 	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
+	ACTIVATE = preload("res://src/Scripting/Nodes/ActivateNode.tscn"),
 }
 
 var is_open := false
