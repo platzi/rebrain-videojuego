@@ -84,6 +84,7 @@ func instance_brain():
 	brain.connect("show_message", self, "show_message")
 	brain.connect("hide_message", self, "hide_message")
 	brain.connect("explode", self, "activate_explosion")
+	brain.connect("activate", self, "activate")
 	brain.brain = brain_dict
 	add_child(brain)
 
