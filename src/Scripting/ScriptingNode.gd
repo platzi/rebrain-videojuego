@@ -71,6 +71,7 @@ func _set_icon(new_value : Texture) -> void:
 
 
 func _set_disabled(new_value : bool) -> void:
-	disabled = true
-	theme = disabled_theme
+	disabled = new_value
+	if disabled:
+		theme = disabled_theme
 	

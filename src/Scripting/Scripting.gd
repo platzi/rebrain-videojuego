@@ -92,6 +92,7 @@ func open(entity : Entity) -> void:
 		sprite.material = null
 		hair_sprite.material = null
 		hair_sprite.visible = false
+	node_searcher.blacklist = entity.blacklist
 	brain = entity.brain.brain
 	load_nodes(brain)
 	is_open = true
@@ -157,6 +158,7 @@ func _create_new_node(node_type : String) -> void:
 
 func on_SaveBtn_pressed() -> void:
 	_target_entity.brain_dict = scripting_graph.save()
+	print(_target_entity.brain_dict)
 	_target_entity.reset_position()
 	close()
 

@@ -88,10 +88,10 @@ func _run_next(start_node, current_node) -> void:
 
 func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 	print("compare_entity")
-	var entity_tags = {
-		0: "Player",
-		1: "Enemy",
-	}
+	var entity_tags = [
+		"Player",
+		"Enemy"
+	]
 	var connections = [{}, {}]
 	for connection in node.connections:
 		if connection.from_port == 0:
@@ -100,7 +100,8 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 			connections[1] = connection
 	connections[0].enabled = false
 	connections[1].enabled = true
-	if node.inputs[1].is_in_group(entity_tags[node.params[0]]):
+	print(entity_tags[node.params[0]])
+	if node.inputs.has("1") and node.inputs["1"].is_in_group(entity_tags[node.params[0]]):
 		connections[0].enabled = true
 		connections[1].enabled = false
 	_run_next(start_node, node)
@@ -116,7 +117,7 @@ func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
 			connections[1] = connection
 	connections[0].enabled = false
 	connections[1].enabled = true
-	if node.inputs[1] == node.params[0]:
+	if node.inputs["1"] == node.params[0]:
 		connections[0].enabled = true
 		connections[1].enabled = false
 	_run_next(start_node, node)

@@ -66,7 +66,7 @@ func _dialogue_3(entity : Entity) -> void:
 			_enemy_clicked = true
 			var dialogue_inst = dialogue_scene.instance()
 			dialogue_inst.dialogues = [
-				"¡Bienvenido a Re-Brain Scripting! aquí podrás podrás programar el cerebro de cualquier entidad",
+				"¡Bienvenido a [b]Re-Brain Scripting[/b]! aquí podrás podrás programar el cerebro de cualquier entidad",
 				"Veras en la parte izquierda la entidad cuyo cerebro estas editando, además de unos botones",
 				"[b]Guardar[/b]: Guardara los cambios en el cerebro y reiniciara a la entidad a su estado inicial",
 				"[b]Restaurar[/b]: Regresara el cerebro a su forma inicial y descartara todos los cambios",
@@ -74,7 +74,7 @@ func _dialogue_3(entity : Entity) -> void:
 				"En la parte derecha se encuentra el cerebro, el cual puedes programar utilizando nodos",
 				"Puedes desplazarte por la gráfica presionando [b][BOTÓN MEDIO DEL RATÓN][/b] o tambien presionando [b][ESPACIO][/b] y [b][BOTÓN IZQUIERDO DEL RATÓN][/b]",
 				"Notaras que ya he añadido unos cuantos nodos, estos estan bloqueados, puedes reconectarlos pero no eliminarlos ni moverlos",
-				"Haremos que la entidad rote, para ello primero presion [b]BOTÓN DERECHO DEL RATÓN[/b] sobre la gráfica y selecciona el nodo Rotar"
+				"Haremos que la entidad gire, para ello primero presion [b][BOTÓN DERECHO DEL RATÓN][/b] sobre la gráfica y selecciona el nodo [b]Girar[/b]"
 			]
 			ui_canvas_layer.add_child(dialogue_inst)
 		else:
