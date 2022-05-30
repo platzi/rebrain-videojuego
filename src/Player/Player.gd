@@ -46,7 +46,7 @@ func _physics_process(delta : float) -> void:
 	else:
 		input_vector = Vector2.ZERO
 	if not is_customizing:
-		if position.distance_to(move_towards_vector) <= 1.0:
+		if position.distance_to(move_towards_vector) <= 5.0:
 			is_moving_towards = false
 		if is_moving_towards:
 			input_vector = position.direction_to(move_towards_vector)
