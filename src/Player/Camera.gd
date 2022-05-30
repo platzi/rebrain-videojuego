@@ -36,7 +36,7 @@ func _process(delta : float) -> void:
 
 func screenshake(time : float, ammount : float) -> void:
 	_screenshake_ammount = ammount
-	screenshake_timer.play(time)
+	screenshake_timer.start(time)
 	_screenshake_is_active = true
 
 
@@ -59,3 +59,4 @@ func _on_Area2D_area_exited(area : Area2D) -> void:
 func _on_ScreenshakeTimer_timeout() -> void:
 	_screenshake_is_active = false
 	camera_2d.offset = Vector2.ZERO
+	Globals.emit_signal("screenshake_finished")
