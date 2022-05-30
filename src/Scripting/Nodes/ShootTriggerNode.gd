@@ -8,6 +8,7 @@ onready var message_le : LineEdit = $MarginContainer2/MessageLE
 func _ready():
 	type = "SHOOT_TRIGGER"
 	_set_params(_params)
+	_check_disabled()
 
 
 func _check_disabled() -> void:
