@@ -124,16 +124,14 @@ func close() -> void:
 
 
 func load_nodes(nodes) -> void:
-	for child in scripting_graph.get_children():
-		if child is ScriptingNode:
-			child.queue_free()
+	scripting_graph.delete_all_nodes()
 	# Instance nodes
 	for key in nodes:
 		var node = nodes[key]
 		var inst : ScriptingNode = node_scene_list[node.type].instance()
 		inst.offset.x = node.position[0]
 		inst.offset.y = node.position[1]
-		print(node.params)
+		inst.disabled = node.disabled
 		inst.set_params(node.params)
 		scripting_graph.add_child(inst)
 		nodes[key].instance = inst
@@ -153,6 +151,7 @@ func _create_new_node(node_type : String) -> void:
 	inst.offset = mousePos + scripting_graph.scroll_offset
 	scripting_graph.add_child(inst)
 	node_searcher.hide()
+	Globals.emit_signal("scripting_node_added", inst)
 
 
 func on_SaveBtn_pressed() -> void:
@@ -162,7 +161,7 @@ func on_SaveBtn_pressed() -> void:
 
 
 func on_RestoreBtn_pressed() -> void:
-	pass
+	load_nodes(_target_entity.brain.brain)
 
 
 func on_CancelBtn_pressed() -> void:

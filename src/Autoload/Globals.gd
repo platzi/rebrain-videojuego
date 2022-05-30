@@ -8,6 +8,9 @@ signal show_game_over
 signal update_life
 signal scripting_toggled
 signal scripting_abort
+signal scripting_node_added
+signal scripting_node_connection
+signal screenshake
 
 var scripting_mode := false
 var disable_inputs := false
@@ -57,3 +60,7 @@ func set_pause_game(pause : bool) -> void:
 
 func reset_is_game_over() -> void:
 	is_game_over = false
+
+
+func screenshake(time : float, ammount : float) -> void:
+	emit_signal("screenshake", time, ammount)

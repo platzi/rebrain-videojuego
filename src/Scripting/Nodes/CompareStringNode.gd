@@ -2,11 +2,18 @@ tool
 
 extends ScriptingNode
 
-onready var string_le := $MarginContainer4/HBoxContainer/StringLE
+onready var string_le : LineEdit = $MarginContainer4/HBoxContainer/StringLE
 
 func _ready() -> void:
 	type = "COMPARE_STRING"
 	_set_params(_params)
+
+
+func _check_disabled() -> void:
+	if disabled:
+		string_le.editable = false
+	else:
+		string_le.editable = true
 
 
 func _set_params(params : Array) -> void:
