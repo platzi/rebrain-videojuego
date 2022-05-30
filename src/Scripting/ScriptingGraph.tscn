@@ -11,4 +11,6 @@ right_disconnects = true
 zoom_min = 1.0
 zoom_max = 1.0
 minimap_enabled = false
+minimap_size = Vector2( 50, 50 )
+minimap_opacity = 0.0
 script = ExtResource( 1 )
