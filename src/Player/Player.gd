@@ -10,7 +10,8 @@ var inmunity = false
 var inmunity_time = 1
 var player_name = ""
 var is_customizing = true
-
+var move_towards_vector := Vector2.ZERO
+var is_moving_towards = false
 
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
@@ -45,6 +46,11 @@ func _physics_process(delta : float) -> void:
 	else:
 		input_vector = Vector2.ZERO
 	if not is_customizing:
+		if position.distance_to(move_towards_vector) <= 1.0:
+			is_moving_towards = false
+		if is_moving_towards:
+			input_vector = position.direction_to(move_towards_vector)
+			input_vector = input_vector.normalized()
 		if input_vector != Vector2.ZERO:
 			velocity += input_vector * speed
 			if velocity.distance_to(Vector2.ZERO) > MAX_SPEED:
@@ -106,3 +112,8 @@ func change_player_name(_name : String) -> void:
 
 func ended_customizing() -> void:
 	is_customizing = false
+
+
+func move_towards(position : Vector2) -> void:
+	move_towards_vector = position
+	is_moving_towards = true
