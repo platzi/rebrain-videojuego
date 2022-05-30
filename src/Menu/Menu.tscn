@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/main_menu_background.png" type="Texture" id=2]
@@ -153,6 +153,53 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 )
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "Hide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -170,20 +217,22 @@ expand = true
 stretch_mode = 6
 
 [node name="PlayerImage" type="TextureRect" parent="."]
-margin_left = 60.0
+margin_left = -343.0
 margin_top = 221.0
-margin_right = 380.0
+margin_right = -23.0
 margin_bottom = 550.0
 texture = ExtResource( 5 )
 
 [node name="EnemiesImage" type="TextureRect" parent="."]
-margin_left = 483.0
+margin_left = 978.0
 margin_top = 58.0
-margin_right = 921.0
+margin_right = 1416.0
 margin_bottom = 316.0
 texture = ExtResource( 6 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -194,9 +243,9 @@ margin_bottom = 540.0
 color = Color( 0.0823529, 0, 0.14902, 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_top = 39.0
+margin_top = 66.0
 margin_right = 960.0
-margin_bottom = 501.0
+margin_bottom = 474.0
 size_flags_vertical = 6
 custom_constants/separation = 64
 
@@ -211,18 +260,18 @@ texture = ExtResource( 3 )
 margin_left = 280.0
 margin_top = 202.0
 margin_right = 680.0
-margin_bottom = 462.0
+margin_bottom = 408.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 4
 
 [node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
-margin_bottom = 260.0
+margin_bottom = 206.0
 theme = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 400.0
-margin_bottom = 260.0
+margin_bottom = 206.0
 custom_constants/margin_right = 32
 custom_constants/margin_top = 32
 custom_constants/margin_left = 32
@@ -232,7 +281,7 @@ custom_constants/margin_bottom = 32
 margin_left = 100.0
 margin_top = 32.0
 margin_right = 300.0
-margin_bottom = 228.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 6
 custom_constants/separation = 20
@@ -240,6 +289,7 @@ custom_constants/separation = 20
 [node name="NewGameBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 margin_right = 200.0
 margin_bottom = 34.0
+focus_mode = 0
 theme = ExtResource( 4 )
 custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
@@ -254,20 +304,23 @@ __meta__ = {
 margin_top = 54.0
 margin_right = 200.0
 margin_bottom = 88.0
+focus_mode = 0
 theme = ExtResource( 4 )
 custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-text = "Comenzar"
+text = "Continuar"
 flat = true
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="OptionsBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 142.0
+focus_mode = 0
 theme = ExtResource( 4 )
 custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
@@ -279,9 +332,10 @@ __meta__ = {
 }
 
 [node name="CreditsBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-margin_top = 162.0
+margin_top = 108.0
 margin_right = 200.0
-margin_bottom = 196.0
+margin_bottom = 142.0
+focus_mode = 0
 theme = ExtResource( 4 )
 custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
@@ -297,3 +351,9 @@ reset_on_save = false
 playback_speed = 0.5
 anims/Intro = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MarginContainer/VBoxContainer/MarginContainer")
+anims/Hide = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+anims/Show = SubResource( 7 )
