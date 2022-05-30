@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,9 +12,10 @@
 [ext_resource path="res://assets/images/player/hair_02.png" type="Texture" id=10]
 [ext_resource path="res://assets/images/player/hair_04.png" type="Texture" id=11]
 [ext_resource path="res://src/Entity/Worm.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 500, 300 )
@@ -1282,6 +1283,421 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=65]
 
+[sub_resource type="Animation" id=70]
+resource_name = "Flash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Control/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Game/YSort/NPC:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1080 ), Vector2( 2000, 1080 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Game/YSort/NPC2:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 384, 1128 ), Vector2( 2000, 1128 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Game/YSort/NPC3:position")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 624, 1104 ), Vector2( 2000, 1104 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Game/YSort/NPC4:position")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 768, 1080 ), Vector2( 2000, 1080 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Game/YSort/Worm2:position")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1440 ), Vector2( 840, 888 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Game/YSort/Worm3:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1560 ), Vector2( 888, 1008 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Game/YSort/Worm4:position")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1680 ), Vector2( 840, 1128 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Game/YSort/Worm5:position")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1680 ), Vector2( 240, 1128 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Game/YSort/Worm6:position")
+tracks/10/interp = 0
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1560 ), Vector2( 192, 1008 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Game/YSort/Worm7:position")
+tracks/11/interp = 0
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1416 ), Vector2( 264, 912 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Game/YSort/Worm8:position")
+tracks/12/interp = 0
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 384, 1776 ), Vector2( 384, 1176 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Game/YSort/Worm9:position")
+tracks/13/interp = 0
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 552, 1776 ), Vector2( 528, 1200 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Game/YSort/Worm10:position")
+tracks/14/interp = 0
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 696, 1776 ), Vector2( 720, 1176 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Game/YSort/Worm:position")
+tracks/15/interp = 0
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 480, 912 ), Vector2( -192, 1128 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Game/Teleporter:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Control/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Game/YSort/NPC:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1080 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Game/YSort/NPC2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 384, 1128 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Game/YSort/NPC3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 624, 1104 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Game/YSort/NPC4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 768, 1080 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Game/YSort/Worm2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1440 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Game/YSort/Worm3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1560 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Game/YSort/Worm4:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 864, 1680 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Game/YSort/Worm5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1680 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Game/YSort/Worm6:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1560 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Game/YSort/Worm7:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 264, 1416 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Game/YSort/Worm8:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 384, 1776 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Game/YSort/Worm9:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 552, 1776 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Game/YSort/Worm10:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 696, 1776 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Game/YSort/Worm:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 480, 912 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Game/Teleporter:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="LevelTutorial" type="Node"]
 script = ExtResource( 8 )
 
@@ -1295,6 +1711,12 @@ collision_layer = 3
 collision_mask = 3
 format = 1
 tile_data = PoolIntArray( 1048580, 0, 8, 1048581, 0, 10, 1048582, 0, 10, 1048583, 0, 10, 1048584, 0, 10, 1048585, 0, 10, 1048586, 0, 10, 1048587, 0, 10, 1048588, 0, 10, 1048589, 0, 10, 1048590, 0, 10, 1048591, 0, 10, 1048592, 0, 10, 1048593, 0, 11, 1114115, 0, 8, 1114116, 0, 65541, 1114117, 0, 131081, 1114118, 0, 131081, 1114119, 0, 131081, 1114120, 0, 131081, 1114121, 0, 131081, 1114122, 0, 131081, 1114123, 0, 131081, 1114124, 0, 131081, 1114125, 0, 131081, 1114126, 0, 131081, 1114127, 0, 131081, 1114128, 0, 131081, 1114129, 0, 65542, 1114130, 0, 11, 1179650, 0, 8, 1179651, 0, 65541, 1179652, 0, 131081, 1179653, 0, 131081, 1179654, 0, 131081, 1179655, 0, 131081, 1179656, 0, 131081, 1179657, 0, 131081, 1179658, 0, 131081, 1179659, 0, 131081, 1179660, 0, 131081, 1179661, 0, 131081, 1179662, 0, 131081, 1179663, 0, 131081, 1179664, 0, 131081, 1179665, 0, 131081, 1179666, 0, 65542, 1179667, 0, 11, 1245186, 0, 65544, 1245187, 0, 131081, 1245188, 0, 131081, 1245189, 0, 131081, 1245190, 0, 131081, 1245191, 0, 131081, 1245192, 0, 131081, 1245193, 0, 131081, 1245194, 0, 131081, 1245195, 0, 131081, 1245196, 0, 131081, 1245197, 0, 131081, 1245198, 0, 131081, 1245199, 0, 131081, 1245200, 0, 131081, 1245201, 0, 131081, 1245202, 0, 131081, 1245203, 0, 131083, 1310722, 0, 65544, 1310723, 0, 131081, 1310724, 0, 131081, 1310725, 0, 131081, 1310726, 0, 131081, 1310727, 0, 131081, 1310728, 0, 131081, 1310729, 0, 131081, 1310730, 0, 131081, 1310731, 0, 131081, 1310732, 0, 131081, 1310733, 0, 131081, 1310734, 0, 131081, 1310735, 0, 131081, 1310736, 0, 131081, 1310737, 0, 131081, 1310738, 0, 131081, 1310739, 0, 131083, 1376258, 0, 65544, 1376259, 0, 131081, 1376260, 0, 131081, 1376261, 0, 131081, 1376262, 0, 131081, 1376263, 0, 131081, 1376264, 0, 131081, 1376265, 0, 131081, 1376266, 0, 131081, 1376267, 0, 131081, 1376268, 0, 131081, 1376269, 0, 131081, 1376270, 0, 131081, 1376271, 0, 131081, 1376272, 0, 131081, 1376273, 0, 131081, 1376274, 0, 131081, 1376275, 0, 131083, 1441794, 0, 65544, 1441795, 0, 131081, 1441796, 0, 131081, 1441797, 0, 131081, 1441798, 0, 131081, 1441799, 0, 131081, 1441800, 0, 131081, 1441801, 0, 131081, 1441802, 0, 131081, 1441803, 0, 131081, 1441804, 0, 131081, 1441805, 0, 131081, 1441806, 0, 131081, 1441807, 0, 131081, 1441808, 0, 131081, 1441809, 0, 131081, 1441810, 0, 131081, 1441811, 0, 131083, 1507330, 0, 196616, 1507331, 0, 131077, 1507332, 0, 131081, 1507333, 0, 131081, 1507334, 0, 131081, 1507335, 0, 131081, 1507336, 0, 131081, 1507337, 0, 131081, 1507338, 0, 131081, 1507339, 0, 131081, 1507340, 0, 131081, 1507341, 0, 131081, 1507342, 0, 131081, 1507343, 0, 131081, 1507344, 0, 131081, 1507345, 0, 131081, 1507346, 0, 131078, 1507347, 0, 196619, 1572867, 0, 196616, 1572868, 0, 131077, 1572869, 0, 131081, 1572870, 0, 131081, 1572871, 0, 131081, 1572872, 0, 131081, 1572873, 0, 131081, 1572874, 0, 131081, 1572875, 0, 131081, 1572876, 0, 131081, 1572877, 0, 131081, 1572878, 0, 131081, 1572879, 0, 131081, 1572880, 0, 131081, 1572881, 0, 131078, 1572882, 0, 196619, 1638404, 0, 196616, 1638405, 0, 196617, 1638406, 0, 196617, 1638407, 0, 196617, 1638408, 0, 196617, 1638409, 0, 196617, 1638410, 0, 196617, 1638411, 0, 196617, 1638412, 0, 196617, 1638413, 0, 196617, 1638414, 0, 196617, 1638415, 0, 196617, 1638416, 0, 196617, 1638417, 0, 196619 )
+
+[node name="Teleporter" parent="Game" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 528, 816 )
+is_active = true
+target_scene = ExtResource( 17 )
 
 [node name="CameraAttractor" parent="Game" instance=ExtResource( 5 )]
 visible = false
@@ -1311,7 +1733,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="Game/YSort" instance=ExtResource( 2 )]
-position = Vector2( 528, 1104 )
+position = Vector2( 528, 1056 )
 
 [node name="NPC" parent="Game/YSort" instance=ExtResource( 7 )]
 position = Vector2( 264, 1080 )
@@ -1440,14 +1862,68 @@ parameters/playback = SubResource( 65 )
 
 [node name="Worm" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 480, 912 )
+brain_og = "{\"UpdateNode\":{\"type\":\"UPDATE\",\"disabled\":true,\"position\":[-240,-40],\"connections\":[{\"type\":0,\"from_port\":0,\"to\":\"TimerNode\",\"to_port\":0,\"output\":1,\"enabled\":true}],\"params\":[],\"inputs\":{}},\"TimerNode\":{\"type\":\"TIMER\",\"disabled\":true,\"position\":[0,-60],\"connections\":[],\"params\":[1],\"inputs\":{}}}"
 move_vector = Vector2( -1, 0 )
 
+[node name="Worm2" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 864, 1440 )
+move_vector = Vector2( -1, 0 )
+
+[node name="Worm3" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 864, 1560 )
+move_vector = Vector2( -1, 0 )
+
+[node name="Worm4" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 864, 1680 )
+move_vector = Vector2( -1, 0 )
+
+[node name="Worm5" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 264, 1680 )
+move_vector = Vector2( 1, 0 )
+
+[node name="Worm6" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 264, 1560 )
+move_vector = Vector2( 1, 0 )
+
+[node name="Worm7" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 264, 1416 )
+move_vector = Vector2( 1, 0 )
+
+[node name="Worm8" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 384, 1776 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Worm9" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 552, 1776 )
+move_vector = Vector2( 0, -1 )
+
+[node name="Worm10" parent="Game/YSort" instance=ExtResource( 12 )]
+position = Vector2( 696, 1776 )
+move_vector = Vector2( 0, -1 )
+
 [node name="TriggerZones" type="Node2D" parent="Game"]
+
+[node name="TriggersZones" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="TriggersZones"]
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriggersZones/Area2D"]
+polygon = PoolVector2Array( 336, 960, 336, 816, 48, 816, 48, 1296, 1008, 1296, 1008, 816, 744, 816, 744, 1104, 336, 1104 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GUI" parent="UI" instance=ExtResource( 13 )]
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
 
 [node name="Scripting" parent="UI" instance=ExtResource( 6 )]
 
@@ -1458,6 +1934,10 @@ layer = 3
 visible = false
 
 [node name="PauseMenu" parent="MenusLayer" instance=ExtResource( 15 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 70 )
+anims/RESET = SubResource( 69 )
 
 [editable path="Game/YSort/NPC"]
 [editable path="Game/YSort/NPC2"]
