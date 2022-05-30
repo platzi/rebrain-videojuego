@@ -11,6 +11,7 @@ export (String) var brain_og
 var brain_dict := {}
 
 
+onready var audio_stream_player = $AudioStreamPlayer2D
 onready var animation_tree = $AnimationTree
 onready var message_board = $MessageBoard
 onready var area_2D = $Area2D
@@ -139,6 +140,7 @@ func shoot() -> void:
 		bullet.projectile_owner = self.get_instance_id()
 		bullet.position = self.position + (move_vector * 40)
 		get_tree().current_scene.add_child(bullet)
+		bullet.play_sound()
 		bullet.shoot_projectile(move_vector)
 		start_shooting()
 
@@ -171,6 +173,7 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 		velocity_vector = knockback_direction * max_speed * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
+		play_sound()
 	if life < 1:
 		queue_free()
 
@@ -211,6 +214,8 @@ func _on_Area2D_body_entered_once(body) -> void:
 		return
 	elif self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
 		SceneChanger.change_scene_to(change_scene)
+	elif self.is_in_group("EntityButton"):
+		self.play_sound()
 	brain.run("COLLISION", body)
 
 
@@ -221,6 +226,7 @@ func _on_Area2D_body_exited(body) -> void:
 func activate() -> void:
 	$AnimationPlayer.play("Open")
 	is_open = true
+	#play_sound()
 
 
 func set_change_scene(target_scene : PackedScene) -> void:
@@ -248,3 +254,7 @@ func activate_explosion():
 
 func _on_trigger_received(tag : String) -> void:
 	brain.run("TRIGGER", tag)
+
+
+func play_sound() -> void:
+	audio_stream_player.play()

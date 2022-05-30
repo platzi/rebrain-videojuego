@@ -13,6 +13,7 @@ var is_customizing = true
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
 
+onready var audio_stream_player = $AudioStreamPlayer2D
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var inmunity_timer := $InmunityTimer
@@ -76,6 +77,7 @@ func hurt(knockback_direction : Vector2) -> void:
 		velocity = knockback_direction * MAX_SPEED * 8
 		inmunity_timer.start(inmunity_time)
 		$HitAnimationPlayer.play("Hit")
+		play_sound()
 		Globals.emit_update_life(life)
 	if life < 1:
 		queue_free()
@@ -117,3 +119,7 @@ func ended_customizing() -> void:
 func move_towards(position : Vector2) -> void:
 	move_towards_vector = position
 	is_moving_towards = true
+
+
+func play_sound() -> void:
+	audio_stream_player.play()

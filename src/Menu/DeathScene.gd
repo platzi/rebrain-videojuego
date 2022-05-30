@@ -16,12 +16,14 @@ func _ready() -> void:
 
 
 func _on_StartBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	SceneChanger.change_scene_reload()
 	Globals.reset_is_game_over()
 	#get_tree().reload_current_scene()
 
 
 func _on_MenuBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn", true)
 	Globals.reset_is_game_over()
 	#get_tree().change_scene("res://src/Menu/Menu.tscn")

@@ -38,6 +38,7 @@ func _on_SubMenu_closed() -> void:
 
 
 func _on_NewGameBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	var config = ConfigFile.new()
 	config.save("user://re_brain_data.cfg")
 	SceneChanger.change_scene("res://src/Levels/LevelHub.tscn")
@@ -45,6 +46,7 @@ func _on_NewGameBtn_pressed() -> void:
 
 
 func _on_StartBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	var config = ConfigFile.new()
 	var err = config.load("user://re_brain_data.cfg")
 	var last_level = ""
@@ -57,12 +59,14 @@ func _on_StartBtn_pressed() -> void:
 
 
 func _on_OptionsBtn_pressed() -> void:
+	#$AudioStreamPlayer2D.play()
 	var options_inst = load("res://src/Menu/Options.tscn").instance()
 	get_tree().current_scene.add_child(options_inst)
 	options_inst.connect("close_options", self, "_on_SubMenu_closed")
 
 
 func _on_CreditsBtn_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	var credits_inst = load("res://src/Menu/Credits.tscn").instance()
 	get_tree().current_scene.add_child(credits_inst)
 	credits_inst.connect("close_credits", self, "_on_SubMenu_closed")
