@@ -1,11 +1,21 @@
 extends Control
 
+export(NodePath) var return_btn_path 
+
 
 signal close_credits
 
 
-func _input(event : InputEvent) -> void:
-	if event is InputEventKey:
-		emit_signal("close_credits")
-		queue_free()
+onready var return_btn : Button = get_node(return_btn_path)
 
+
+func _ready() -> void:
+	return_btn.connect("pressed", self, "_on_ReturnBtn_pressed")
+	$AnimationPlayer.play("Show")
+
+
+func _on_ReturnBtn_pressed() -> void:
+	$AnimationPlayer.play("Hide")
+	yield($AnimationPlayer, "animation_finished")
+	queue_free()
+	emit_signal("close_credits")

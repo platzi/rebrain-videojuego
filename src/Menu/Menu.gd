@@ -11,8 +11,30 @@ onready var options_btn : Button = get_node(options_btn_path)
 onready var credits_btn : Button = get_node(credits_btn_path)
 
 
+func _ready() -> void:
+#	OS.window_maximized = true
+	#start_btn.grab_focus()
+	#start_btn.focus_neighbour_top = credits_btn.get_path()
+	#credits_btn.focus_neighbour_bottom = start_btn.get_path()
+	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
+	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
+	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
+	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
+	
+	$AnimationPlayer.play("Intro")
+	var config = ConfigFile.new()
+	var err = config.load("user://re_brain_data.cfg")
+	var last_level = ""
+	if err == OK and config.get_value("Player", "has_saved", false):
+		start_btn.visible = true
+	else:
+		start_btn.visible = false
+
+
 func _on_SubMenu_closed() -> void:
-	start_btn.grab_focus()
+	#start_btn.grab_focus()
+	#$MarginContainer/VBoxContainer/MarginContainer.modulate.a = 1.0
+	$AnimationPlayer2.play("Show")
 
 
 func _on_NewGameBtn_pressed() -> void:
@@ -44,16 +66,5 @@ func _on_CreditsBtn_pressed() -> void:
 	var credits_inst = load("res://src/Menu/Credits.tscn").instance()
 	get_tree().current_scene.add_child(credits_inst)
 	credits_inst.connect("close_credits", self, "_on_SubMenu_closed")
-
-
-func _ready() -> void:
-#	OS.window_maximized = true
-	start_btn.grab_focus()
-	start_btn.focus_neighbour_top = credits_btn.get_path()
-	credits_btn.focus_neighbour_bottom = start_btn.get_path()
-	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
-	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
-	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
-	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
-	
-	$AnimationPlayer.play("Intro")
+	#$MarginContainer/VBoxContainer/MarginContainer.modulate.a = 0.0
+	$AnimationPlayer2.play("Hide")
