@@ -6,7 +6,7 @@ extends KinematicBody2D
 
 signal button_body_entered
 
-
+export (Array, String) var blacklist
 export (String) var brain_og
 var brain_dict := {}
 
