@@ -17,7 +17,6 @@ cell_size = Vector2( 48, 48 )
 collision_layer = 3
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( 327694, 0, 196608 )
 
 [node name="Camera" parent="Game" instance=ExtResource( 4 )]
 position = Vector2( 480, 264 )
