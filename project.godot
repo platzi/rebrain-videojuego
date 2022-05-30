@@ -34,6 +34,8 @@ _global_script_class_icons={
 
 config/name="Platzi Game Jam"
 run/main_scene="res://src/Menu/Menu.tscn"
+boot_splash/image="res://assets/images/backgrounds/splashscreen.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
