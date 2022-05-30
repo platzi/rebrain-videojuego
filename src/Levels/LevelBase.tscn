@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node"]
 
@@ -32,6 +33,8 @@ position = Vector2( 480, 264 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="GUI" parent="UI" instance=ExtResource( 7 )]
 
 [node name="Scripting" parent="UI" instance=ExtResource( 6 )]
 
