@@ -13,7 +13,6 @@ slot/1/right_enabled = true
 slot/1/right_type = 0
 slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
 script = ExtResource( 2 )
-disabled_theme = null
 tag = "Activar"
 subtag = ""
 icon = ExtResource( 3 )
