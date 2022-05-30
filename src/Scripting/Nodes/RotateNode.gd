@@ -2,12 +2,19 @@ tool
 
 extends ScriptingNode
 
-onready var direction_ob := $MarginContainer2/HBoxContainer/DirectionOB
+onready var direction_ob : OptionButton = $MarginContainer2/HBoxContainer/DirectionOB
 
 
 func _ready():
 	type = "ROTATE"
 	_set_params(_params)
+
+
+func _check_disabled() -> void:
+	if disabled:
+		direction_ob.disabled = true
+	else:
+		direction_ob.disabled = false
 
 
 func _set_params(params : Array) -> void:
