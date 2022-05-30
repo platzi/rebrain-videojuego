@@ -76,7 +76,8 @@ func _run_next(start_node, current_node) -> void:
 			if connection.type == 0 and connection.enabled:
 				execute_list.append(brain[connection.to])
 			else:
-				brain[connection.to].inputs[int(connection.to_port)] = connection.output
+				print(connection.to_port)
+				brain[connection.to].inputs[str(connection.to_port)] = connection.output
 	
 	# Execute
 	if execute_list.size() > 0:
@@ -100,7 +101,6 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 			connections[1] = connection
 	connections[0].enabled = false
 	connections[1].enabled = true
-	print(entity_tags[node.params[0]])
 	if node.inputs.has("1") and node.inputs["1"].is_in_group(entity_tags[node.params[0]]):
 		connections[0].enabled = true
 		connections[1].enabled = false
