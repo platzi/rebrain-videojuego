@@ -53,12 +53,12 @@ func _input(event : InputEvent) -> void:
 				Globals.scripting_mode = true
 				get_tree().paused = true
 				scripting_effect.visible = true
+			elif is_open:
+					on_SaveBtn_pressed()
 			else:
 				Globals.scripting_mode = false
 				get_tree().paused = false
 				scripting_effect.visible = false
-				if is_open:
-					close()
 #		elif event.scancode == KEY_A:
 #			print(scripting_graph.get_connection_list())
 
