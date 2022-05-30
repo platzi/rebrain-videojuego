@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/particles/circle.png" type="Texture" id=1]
+[ext_resource path="res://src/Particles/ParticleBase.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=114]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 19.9138, 0, 0, Vector2( 0.12381, 1.5431 ), -0.12931, -0.12931, 0, 0, Vector2( 1, 0 ), -2.36737, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=115]
+offsets = PoolRealArray( 0, 0.154696, 0.331492, 0.585635, 0.801105, 1 )
+colors = PoolColorArray( 1, 0.967255, 0.855469, 1, 1, 0.75293, 0.0117188, 1, 1, 0.492188, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0 )
+
+[node name="Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.95
+texture = ExtResource( 1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 400.0
+initial_velocity_random = 0.5
+damping = 300.0
+scale_amount = 1.5
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 114 )
+color_ramp = SubResource( 115 )
+script = ExtResource( 2 )
