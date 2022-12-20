@@ -22,6 +22,8 @@ func _ready() -> void:
 
 
 func run(type = "UPDATE", param1 = null) -> void:
+	if Globals.scripting_mode:
+		yield(Globals, "scripting_toggled")
 	for node_name in brain:
 		var node = brain[node_name]
 		if node.type == type:
