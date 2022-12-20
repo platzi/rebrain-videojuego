@@ -6,7 +6,7 @@ export(Array, String, MULTILINE) var dialogues : Array
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer 
 onready var characters_timer : Timer = $CharactersTimer
-onready var rich_text_label : RichTextLabel = $PanelContainer/RichTextLabel
+onready var rich_text_label : RichTextLabel = $MarginContainer/PanelContainer/RichTextLabel
 
 var current_dialogue_index = 0
 
