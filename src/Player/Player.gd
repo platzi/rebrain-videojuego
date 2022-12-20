@@ -13,6 +13,7 @@ var is_customizing = true
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
 
+onready var camera_attractor : = $CameraAttractor
 onready var audio_stream_player = $AudioStreamPlayer2D
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
@@ -63,6 +64,8 @@ func _physics_process(delta : float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
 			animation_state.travel("Idle")
 		velocity = move_and_slide(velocity)
+	else:
+		camera_attractor.position = customization.position
 
 
 func remove_inmunity() -> void:
@@ -114,6 +117,8 @@ func change_player_name(_name : String) -> void:
 
 func ended_customizing() -> void:
 	is_customizing = false
+	camera_attractor.monitorable = false
+	camera_attractor.monitoring = false
 
 
 func move_towards(position : Vector2) -> void:

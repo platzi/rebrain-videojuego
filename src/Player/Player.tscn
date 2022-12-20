@@ -1,10 +1,14 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=3]
 [ext_resource path="res://src/Player/Customization.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=5]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 200, 200 )
 
 [sub_resource type="ShaderMaterial" id=45]
 shader = ExtResource( 5 )
@@ -435,8 +439,13 @@ __meta__ = {
 "_edit_vertical_guides_": [ -238.0 ]
 }
 
+[node name="CameraAttractor" parent="." instance=ExtResource( 6 )]
+collision_shape = SubResource( 51 )
+zoom_level = 0.8
+
 [node name="Customization" parent="." instance=ExtResource( 4 )]
-position = Vector2( 51, -16 )
+position = Vector2( 150, -16 )
+scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 45 )
