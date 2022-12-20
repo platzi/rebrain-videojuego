@@ -1,5 +1,6 @@
 extends Node2D
 
+const ZOOM_SPEED := 5
 
 export(NodePath) var target_path setget _set_target_path
 var target : Node2D
@@ -10,6 +11,8 @@ onready var camera_2d : Camera2D = $Camera2D
 onready var area_2d : Area2D = $Area2D
 onready var screenshake_timer : Timer = $ScreenshakeTimer
 
+var _zoom_smooth := 1.0
+var _zoom_target := 1.0
 var _screenshake_ammount := 0.0
 var _screenshake_is_active := false
 var _is_ready := false
@@ -23,13 +26,29 @@ func _ready() -> void:
 	Globals.connect("screenshake", self, "screenshake")
 	
 	_set_target_path(target_path)
+	camera_2d.smoothing_enabled = false
+	yield(get_tree(), "idle_frame")
+	if target:
+		position = target.position
+	if attractor:
+		_zoom_smooth = attractor.zoom_level
+		_zoom_target = attractor.zoom_level
+		camera_2d.zoom = Vector2(_zoom_smooth, _zoom_smooth)
+		camera_2d.global_position = attractor.global_position
+	yield(get_tree(), "idle_frame")
+	camera_2d.smoothing_enabled = true
 
 
 func _process(delta : float) -> void:
+	_zoom_smooth = lerp(_zoom_smooth, _zoom_target, ZOOM_SPEED * delta)
+	camera_2d.zoom = Vector2(_zoom_smooth, _zoom_smooth)
 	if is_instance_valid(target):
 		position = target.position
 	if attractor:
-		camera_2d.global_position = attractor.position
+		camera_2d.global_position = attractor.global_position
+		_zoom_target = attractor.zoom_level
+	else:
+		_zoom_target = 1.0
 	if _screenshake_is_active:
 		camera_2d.offset = Vector2(rand_range(-1.0, 1.0) * _screenshake_ammount, rand_range(-1.0, 1.0) * _screenshake_ammount)
 
