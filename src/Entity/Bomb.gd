@@ -17,10 +17,11 @@ func _physics_process(delta):
 
 
 func activate_explosion():
+	brain.stop()
 	$ExplosionArea/CollisionShape2D.set_deferred("disabled", false)
 	is_exploding = true
 	var timer := Timer.new()
-	timer.connect("timeout", self, "queue_free")
+	timer.connect("timeout", self, "destroy")
 	add_child(timer)
 	timer.start(0.1)
 	var particle_inst = particle_scene.instance()

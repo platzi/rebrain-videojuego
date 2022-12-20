@@ -175,6 +175,7 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 		$HitAnimationPlayer.play("Hit")
 		play_sound()
 	if life < 1:
+		brain.stop()
 		queue_free()
 
 
@@ -258,3 +259,9 @@ func _on_trigger_received(tag : String) -> void:
 
 func play_sound() -> void:
 	audio_stream_player.play()
+
+
+func destroy() -> void:
+	brain.stop()
+	yield(get_tree(), "idle_frame")
+	queue_free()

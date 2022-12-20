@@ -11,8 +11,8 @@ signal explode
 signal activate
 
 var brain := {}
+var isRunning := true
 var _timer
-
 
 func _ready() -> void:
 	_timer = Timer.new()
@@ -22,8 +22,6 @@ func _ready() -> void:
 
 
 func run(type = "UPDATE", param1 = null) -> void:
-	if Globals.scripting_mode:
-		yield(Globals, "scripting_toggled")
 	for node_name in brain:
 		var node = brain[node_name]
 		if node.type == type:
@@ -34,6 +32,11 @@ func run(type = "UPDATE", param1 = null) -> void:
 					if connection.from_port == 1:
 						connection.output = param1
 				_execute(node, node)
+
+
+func stop() -> void:
+	print("stop")
+	isRunning = false
 
 
 func _execute(start_node, current_node) -> void:
@@ -67,8 +70,11 @@ func _execute(start_node, current_node) -> void:
 
 
 func _run_next(start_node, current_node) -> void:
+	if !isRunning:
+		return
+	if Globals.scripting_mode:
+		yield(Globals, "scripting_toggled")
 	yield(get_tree(), "idle_frame")
-	
 	var execute_list := []
 	
 	# Pass parameters
