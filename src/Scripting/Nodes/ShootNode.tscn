@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/images/ui/scripting_icon_shoot.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/scripting/scripting_icon_shoot.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=3]
 [ext_resource path="res://src/Scripting/Nodes/ShootNode.gd" type="Script" id=4]
 
 [node name="ShootNode" instance=ExtResource( 1 )]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/images/ui/scripting_icon_run.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=2]
 [ext_resource path="res://src/Scripting/Nodes/CollisionNode.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/ui/scripting_icon_entity.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/ui/scripting_icon_collision.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/scripting/scripting_icon_entity.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/scripting/scripting_icon_collision.png" type="Texture" id=5]
 
 [node name="CollisionNode" instance=ExtResource( 1 )]
 slot/1/left_enabled = false

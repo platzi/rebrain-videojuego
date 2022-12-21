@@ -8,23 +8,23 @@ onready var node_list_vbc := $VBoxContainer/NodeListSC/NodeListVBC
 
 var node_groups := {
 	"Eventos": [
-		["UPDATE", "Actualizar", "res://assets/images/ui/scripting_icon_update.png"],
-		["COLLISION", "Colisión", "res://assets/images/ui/scripting_icon_collision.png"],
-		["TRIGGER", "Disparador", "res://assets/images/ui/scripting_icon_trigger.png"],
+		["UPDATE", "Actualizar", "res://assets/images/scripting/scripting_icon_update.png"],
+		["COLLISION", "Colisión", "res://assets/images/scripting/scripting_icon_collision.png"],
+		["TRIGGER", "Disparador", "res://assets/images/scripting/scripting_icon_trigger.png"],
 	],
 	"Acciones": [
-		["ROTATE", "Girar", "res://assets/images/ui/scripting_icon_rotate.png"],
-		["MOVE_FORWARD", "Avanzar", "res://assets/images/ui/scripting_icon_move_forward.png"],
-		["TIMER", "Temporizador", "res://assets/images/ui/scripting_icon_timer.png"],
-		["MESSAGE", "Mensaje", "res://assets/images/ui/scripting_icon_message.png"],
-		["SHOOT_TRIGGER", "Accionar disparador", "res://assets/images/ui/scripting_icon_shoot_trigger.png"],
-		["ACTIVATE", "Activar", "res://assets/images/ui/scripting_icon_activate.png"],
-		["SHOOT", "Disparar", "res://assets/images/ui/scripting_icon_shoot.png"],
-		["EXPLODE", "Explotar", "res://assets/images/ui/scripting_icon_explode.png"],
+		["ROTATE", "Girar", "res://assets/images/scripting/scripting_icon_rotate.png"],
+		["MOVE_FORWARD", "Avanzar", "res://assets/images/scripting/scripting_icon_move_forward.png"],
+		["TIMER", "Temporizador", "res://assets/images/scripting/scripting_icon_timer.png"],
+		["MESSAGE", "Mensaje", "res://assets/images/scripting/scripting_icon_message.png"],
+		["SHOOT_TRIGGER", "Accionar disparador", "res://assets/images/scripting/scripting_icon_shoot_trigger.png"],
+		["ACTIVATE", "Activar", "res://assets/images/scripting/scripting_icon_activate.png"],
+		["SHOOT", "Disparar", "res://assets/images/scripting/scripting_icon_shoot.png"],
+		["EXPLODE", "Explotar", "res://assets/images/scripting/scripting_icon_explode.png"],
 	],
 	"Lógica": [
-		["COMPARE_ENTITY", "Comparar entidad", "res://assets/images/ui/scripting_icon_compare.png"],
-		["COMPARE_STRING", "Comparar texto", "res://assets/images/ui/scripting_icon_compare.png"],
+		["COMPARE_ENTITY", "Comparar entidad", "res://assets/images/scripting/scripting_icon_compare.png"],
+		["COMPARE_STRING", "Comparar texto", "res://assets/images/scripting/scripting_icon_compare.png"],
 	]
 }
 
