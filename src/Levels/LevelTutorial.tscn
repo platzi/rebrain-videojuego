@@ -1737,7 +1737,6 @@ position = Vector2( 528, 1056 )
 
 [node name="NPC" parent="Game/YSort" instance=ExtResource( 7 )]
 position = Vector2( 264, 1080 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Sprite" parent="Game/YSort/NPC" index="0"]
 material = SubResource( 46 )
@@ -1751,7 +1750,6 @@ parameters/playback = SubResource( 6 )
 
 [node name="NPC2" parent="Game/YSort" instance=ExtResource( 7 )]
 position = Vector2( 384, 1128 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Sprite" parent="Game/YSort/NPC2" index="0"]
 material = SubResource( 49 )
@@ -1780,7 +1778,6 @@ parameters/playback = SubResource( 20 )
 
 [node name="NPC3" parent="Game/YSort" instance=ExtResource( 7 )]
 position = Vector2( 624, 1104 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Sprite" parent="Game/YSort/NPC3" index="0"]
 material = SubResource( 51 )
@@ -1805,7 +1802,6 @@ parameters/playback = SubResource( 32 )
 
 [node name="NPC4" parent="Game/YSort" instance=ExtResource( 7 )]
 position = Vector2( 768, 1080 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Sprite" parent="Game/YSort/NPC4" index="0"]
 material = SubResource( 52 )
@@ -1864,43 +1860,33 @@ parameters/playback = SubResource( 65 )
 position = Vector2( 480, 912 )
 blacklist = [ "UPDATE", "TRIGGER", "COLLISION", "", "MOVE_FORWARD", "TIMER", "MESSAGE", "SHOOT_TRIGGER", "ACTIVATE", "SHOOT", "COMPARE_ENTITY", "COMPARE_STRING" ]
 brain_og = "{\"UpdateNode\":{\"type\":\"UPDATE\",\"disabled\":true,\"position\":[-240,-40],\"connections\":[{\"type\":0,\"from_port\":0,\"to\":\"TimerNode\",\"to_port\":0,\"output\":1,\"enabled\":true}],\"params\":[],\"inputs\":{}},\"TimerNode\":{\"type\":\"TIMER\",\"disabled\":true,\"position\":[0,-60],\"connections\":[],\"params\":[1],\"inputs\":{}}}"
-move_vector = Vector2( -1, 0 )
 
 [node name="Worm2" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 864, 1440 )
-move_vector = Vector2( -1, 0 )
 
 [node name="Worm3" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 864, 1560 )
-move_vector = Vector2( -1, 0 )
 
 [node name="Worm4" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 864, 1680 )
-move_vector = Vector2( -1, 0 )
 
 [node name="Worm5" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 264, 1680 )
-move_vector = Vector2( 1, 0 )
 
 [node name="Worm6" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 264, 1560 )
-move_vector = Vector2( 1, 0 )
 
 [node name="Worm7" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 264, 1416 )
-move_vector = Vector2( 1, 0 )
 
 [node name="Worm8" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 384, 1776 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Worm9" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 552, 1776 )
-move_vector = Vector2( 0, -1 )
 
 [node name="Worm10" parent="Game/YSort" instance=ExtResource( 12 )]
 position = Vector2( 696, 1776 )
-move_vector = Vector2( 0, -1 )
 
 [node name="TriggerZones" type="Node2D" parent="Game"]
 
