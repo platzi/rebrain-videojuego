@@ -1,0 +1,131 @@
+[gd_resource type="Theme" load_steps=15 format=2]
+
+[ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/themes/font_12_regular.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.253333, 0.076, 0.38, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.533333, 0.16, 0.8, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.286275, 0.0862745, 0.431373, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.286275, 0.0862745, 0.431373, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.253333, 0.076, 0.38, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.0745098, 0.380392, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxLine" id=11]
+color = Color( 0.24, 0.08, 0.4, 1 )
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.266667, 0.08, 0.4, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.4, 0.12, 0.6, 1 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.266667, 0.08, 0.4, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.233333, 0.07, 0.35, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.333333, 0.1, 0.5, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 8
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 8
+shadow_size = 8
+shadow_offset = Vector2( 4, 4 )
+
+[sub_resource type="StyleBoxEmpty" id=25]
+content_margin_left = 0.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.5, 0.15, 0.75, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.533333, 0.16, 0.8, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.466667, 0.14, 0.7, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.211765, 0.117647, 0.298039, 1 )
+border_width_left = 4
+border_width_right = 4
+border_color = Color( 0.211765, 0.117647, 0.298039, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+Button/fonts/font = ExtResource( 1 )
+Button/styles/disabled = SubResource( 19 )
+Button/styles/hover = SubResource( 28 )
+Button/styles/normal = SubResource( 18 )
+Button/styles/pressed = SubResource( 19 )
+HSeparator/styles/separator = SubResource( 11 )
+Label/fonts/font = ExtResource( 2 )
+LineEdit/fonts/font = ExtResource( 2 )
+LineEdit/styles/focus = SubResource( 27 )
+LineEdit/styles/normal = SubResource( 26 )
+Panel/styles/panel = SubResource( 1 )
+ScrollContainer/styles/bg = SubResource( 25 )
+VScrollBar/styles/grabber = SubResource( 21 )
+VScrollBar/styles/grabber_highlight = SubResource( 23 )
+VScrollBar/styles/grabber_pressed = SubResource( 24 )
+VScrollBar/styles/scroll = SubResource( 22 )

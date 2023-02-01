@@ -1,18 +1,14 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=1]
-[ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=2]
-[ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/themes/font_24_bold.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/Menu/Customization.gd" type="Script" id=5]
-[ext_resource path="res://assets/images/ui/vaperwave_pattern.png" type="Texture" id=6]
-[ext_resource path="res://assets/themes/font_24_regular.tres" type="DynamicFont" id=7]
-[ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=8]
-[ext_resource path="res://src/Player/PlayerHair.gdshader" type="Shader" id=9]
-[ext_resource path="res://assets/images/player/hair_02.png" type="Texture" id=10]
-[ext_resource path="res://assets/images/player/hair_03.png" type="Texture" id=11]
-[ext_resource path="res://assets/images/player/hair_04.png" type="Texture" id=12]
-[ext_resource path="res://assets/fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://assets/themes/customization_menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=5]
+[ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=7]
+[ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/ui/vaperwave_pattern.png" type="Texture" id=9]
+[ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=10]
+[ext_resource path="res://src/Player/PlayerHair.gdshader" type="Shader" id=11]
+[ext_resource path="res://assets/fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://src/Menu/CustomizationMenu.gd" type="Script" id=13]
 
 [sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
@@ -27,136 +23,9 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=13]
 shader = SubResource( 12 )
 
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.253333, 0.076, 0.38, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.533333, 0.16, 0.8, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.286275, 0.0862745, 0.431373, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.286275, 0.0862745, 0.431373, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id=18]
-bg_color = Color( 0.253333, 0.076, 0.38, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.0745098, 0.380392, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxLine" id=11]
-color = Color( 0.24, 0.08, 0.4, 1 )
-thickness = 2
-
-[sub_resource type="StyleBoxFlat" id=27]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.266667, 0.08, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.4, 0.12, 0.6, 1 )
-
-[sub_resource type="StyleBoxFlat" id=26]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.266667, 0.08, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.233333, 0.07, 0.35, 1 )
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.333333, 0.1, 0.5, 1 )
-corner_radius_top_left = 32
-corner_radius_top_right = 8
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 8
-shadow_size = 8
-shadow_offset = Vector2( 4, 4 )
-
-[sub_resource type="StyleBoxEmpty" id=25]
-content_margin_left = 0.0
-content_margin_right = 20.0
-
-[sub_resource type="StyleBoxFlat" id=21]
-bg_color = Color( 0.5, 0.15, 0.75, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=23]
-bg_color = Color( 0.533333, 0.16, 0.8, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=24]
-bg_color = Color( 0.466667, 0.14, 0.7, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=22]
-bg_color = Color( 0.211765, 0.117647, 0.298039, 1 )
-border_width_left = 4
-border_width_right = 4
-border_color = Color( 0.211765, 0.117647, 0.298039, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="Theme" id=2]
-Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
-Button/fonts/font = ExtResource( 4 )
-Button/styles/disabled = SubResource( 19 )
-Button/styles/hover = SubResource( 28 )
-Button/styles/normal = SubResource( 18 )
-Button/styles/pressed = SubResource( 19 )
-HSeparator/styles/separator = SubResource( 11 )
-Label/fonts/font = ExtResource( 7 )
-LineEdit/fonts/font = ExtResource( 7 )
-LineEdit/styles/focus = SubResource( 27 )
-LineEdit/styles/normal = SubResource( 26 )
-Panel/styles/panel = SubResource( 1 )
-ScrollContainer/styles/bg = SubResource( 25 )
-VScrollBar/styles/grabber = SubResource( 21 )
-VScrollBar/styles/grabber_highlight = SubResource( 23 )
-VScrollBar/styles/grabber_pressed = SubResource( 24 )
-VScrollBar/styles/scroll = SubResource( 22 )
-
 [sub_resource type="DynamicFont" id=29]
 size = 24
-font_data = ExtResource( 13 )
+font_data = ExtResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.21155, 0.117, 0.3, 1 )
@@ -166,7 +35,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 3 )
+shader = ExtResource( 10 )
 shader_param/blink = false
 shader_param/BLACK = null
 shader_param/SKIN_COLOR = Color( 0.858824, 0.741176, 0.662745, 1 )
@@ -175,16 +44,16 @@ shader_param/PANTS_COLOR = Color( 0.298039, 0.305882, 0.678431, 1 )
 shader_param/SHOES_COLOR = Color( 1, 1, 1, 1 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 96, 96 )
 margin = Rect2( 0, -16, 0, -32 )
 
 [sub_resource type="ShaderMaterial" id=15]
-shader = ExtResource( 9 )
+shader = ExtResource( 11 )
 shader_param/HAIR_COLOR = Color( 0.796078, 0.560784, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 96, 96 )
 margin = Rect2( 0, -16, 0, -32 )
 
@@ -244,14 +113,12 @@ tracks/1/keys = {
 "values": [ Rect2( 0, 0, 96, 96 ), Rect2( 0, 96, 96, 96 ), Rect2( 0, 192, 96, 96 ), Rect2( 0, 288, 96, 96 ), Rect2( 0, 0, 96, 96 ) ]
 }
 
-[node name="Customization" type="Control"]
+[node name="CustomizationMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
-hair_textures = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
-hair_colors = [ Color( 0.156863, 0.156863, 0.156863, 1 ), Color( 0.352941, 0.196078, 0.0784314, 1 ), Color( 1, 1, 0.352941, 1 ), Color( 1, 0.313726, 0.313726, 1 ), Color( 1, 1, 1, 1 ), Color( 0.996078, 0.360784, 0.666667, 1 ), Color( 0.862745, 0.584314, 0.862745, 1 ), Color( 0.313726, 0.705882, 1, 1 ), Color( 0.0666667, 0.392157, 0.184314, 1 ) ]
-skin_colors = [ Color( 1, 0.858824, 0.67451, 1 ), Color( 0.945098, 0.760784, 0.490196, 1 ), Color( 0.878431, 0.67451, 0.411765, 1 ), Color( 0.776471, 0.52549, 0.258824, 1 ), Color( 0.552941, 0.333333, 0.141176, 1 ), Color( 0.329412, 0.239216, 0.0901961, 1 ), Color( 0.658824, 0.145098, 0.145098, 1 ), Color( 0.854902, 0.784314, 0.0313726, 1 ), Color( 0.0941176, 0.752941, 0.0901961, 1 ), Color( 0.0901961, 0.627451, 0.752941, 1 ), Color( 0.482353, 0.0901961, 0.752941, 1 ), Color( 0.752941, 0.0901961, 0.619608, 1 ) ]
-clothes_colors = [ Color( 1, 1, 1, 1 ), Color( 0.172549, 0.172549, 0.172549, 1 ), Color( 0.815686, 0, 0, 1 ), Color( 0.745098, 0.454902, 0, 1 ), Color( 0.878431, 0.866667, 0.0196078, 1 ), Color( 0.360784, 0.803922, 0.0862745, 1 ), Color( 0.0862745, 0.803922, 0.788235, 1 ), Color( 0.164706, 0.301961, 0.768627, 1 ), Color( 0.45098, 0.0705882, 0.796078, 1 ), Color( 0.796078, 0.0705882, 0.631373, 1 ) ]
+script = ExtResource( 13 )
+player_tr_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/PlayerTR")
+hair_tr_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/HairTR")
 hair_gc_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer/HairGC")
 hair_color_gc_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer/HairColorGC")
 skin_color_gc_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer/SkinColorGC")
@@ -261,12 +128,12 @@ shoes_color_gc_path = NodePath("MarginContainer/MarginContainer/MarginContainer/
 back_btn_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BackBtn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color( 0.1875, 0.0625, 0.25, 1 )
+modulate = Color( 0.188235, 0.0627451, 0.25098, 1 )
 material = SubResource( 13 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 2
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 2
 
@@ -282,7 +149,7 @@ margin_bottom = 490.0
 focus_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme = SubResource( 2 )
+theme = ExtResource( 1 )
 
 [node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
 margin_right = 526.0
@@ -386,7 +253,7 @@ margin_right = 150.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 150, 0 )
 focus_mode = 0
-theme = ExtResource( 1 )
+theme = ExtResource( 7 )
 text = "Volver"
 
 [node name="SaveBtn" type="Button" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -395,7 +262,7 @@ margin_right = 316.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 150, 0 )
 focus_mode = 0
-theme = ExtResource( 1 )
+theme = ExtResource( 7 )
 text = "Guardar"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
