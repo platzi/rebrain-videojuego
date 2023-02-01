@@ -3,19 +3,20 @@ extends Control
 export(NodePath) var logo_tr_path
 export(NodePath) var select_level_btn_path
 export(NodePath) var customization_btn_path
-export(NodePath) var options_btn_path 
+export(NodePath) var settings_btn_path 
 export(NodePath) var credits_btn_path 
 
 onready var logo_tr := get_node(logo_tr_path) as TextureRect
 onready var select_level_btn := get_node(select_level_btn_path) as Button
 onready var customization_btn := get_node(customization_btn_path) as Button
-onready var options_btn := get_node(options_btn_path) as Button
+onready var settings_btn := get_node(settings_btn_path) as Button
 onready var credits_btn := get_node(credits_btn_path) as Button
 
 
 func _ready() -> void:
 	select_level_btn.connect("pressed", self, "_on_SelectLevelBtn_pressed")
 	customization_btn.connect("pressed", self, "_on_CustomizationBtn_pressed")
+	settings_btn.connect("pressed", self, "_on_SettingsBtn_pressed")
 	
 	_create_start_transition()
 	
@@ -32,7 +33,7 @@ func _ready() -> void:
 
 func _create_start_transition() -> void:
 	var delay = 0
-	for obj in [logo_tr, select_level_btn, customization_btn, credits_btn, options_btn]:
+	for obj in [logo_tr, select_level_btn, customization_btn, credits_btn, settings_btn]:
 		if obj.visible:
 			_create_tween(obj, delay)
 			delay += 0.2
@@ -40,8 +41,8 @@ func _create_start_transition() -> void:
 
 func _create_tween(obj : Control, delay : float) -> Tween:
 	var tween := Tween.new()
-	tween.interpolate_property(obj, "rect_position:x", -400, -400, delay, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
-	tween.interpolate_property(obj, "rect_position:x", -400, obj.rect_position.x, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT, delay)
+	tween.interpolate_property(obj, "rect_position:x", -450, -450, delay, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+	tween.interpolate_property(obj, "rect_position:x", -450, obj.rect_position.x, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT, delay)
 	add_child(tween)
 	tween.start()
 	return tween
@@ -82,11 +83,9 @@ func _on_StartBtn_pressed() -> void:
 	#get_tree().change_scene(last_level)
 
 
-func _on_OptionsBtn_pressed() -> void:
+func _on_SettingsBtn_pressed() -> void:
 	#$AudioStreamPlayer2D.play()
-	var options_inst = load("res://src/Menu/Options.tscn").instance()
-	get_tree().current_scene.add_child(options_inst)
-	options_inst.connect("close_options", self, "_on_SubMenu_closed")
+	SceneChanger.change_scene("res://src/Menu/SettingsMenu.tscn")
 
 
 func _on_CreditsBtn_pressed() -> void:
