@@ -1,12 +1,14 @@
 extends Control
 
-export(NodePath) var new_game_path
-export(NodePath) var start_btn_path 
+export(NodePath) var logo_tr_path
+export(NodePath) var select_level_btn_path
+export(NodePath) var customization_btn_path
 export(NodePath) var options_btn_path 
 export(NodePath) var credits_btn_path 
 
-onready var new_game_btn : Button = get_node(new_game_path)
-onready var start_btn : Button = get_node(start_btn_path)
+onready var logo_tr : TextureRect = get_node(logo_tr_path)
+onready var select_level_btn : Button = get_node(select_level_btn_path)
+onready var customization_btn : Button = get_node(customization_btn_path)
 onready var options_btn : Button = get_node(options_btn_path)
 onready var credits_btn : Button = get_node(credits_btn_path)
 
@@ -16,19 +18,38 @@ func _ready() -> void:
 	#start_btn.grab_focus()
 	#start_btn.focus_neighbour_top = credits_btn.get_path()
 	#credits_btn.focus_neighbour_bottom = start_btn.get_path()
-	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
-	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
-	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
+#	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
+#	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
+#	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
 	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
 	
-	$AnimationPlayer.play("Intro")
+	_create_start_transition()
+	
+	$PlayerAP.play("Start")
+	$LogoAP.play("Start")
 	var config = ConfigFile.new()
 	var err = config.load("user://re_brain_data.cfg")
 	var last_level = ""
-	if err == OK and config.get_value("Player", "has_saved", false):
-		start_btn.visible = true
-	else:
-		start_btn.visible = false
+#	if err == OK and config.get_value("Player", "has_saved", false):
+#		start_btn.visible = true
+#	else:
+#		start_btn.visible = false
+
+
+func _create_start_transition() -> void:
+	var delay = 0
+	for obj in [logo_tr, select_level_btn, customization_btn, credits_btn, options_btn]:
+		if obj.visible:
+			_create_tween(obj, delay)
+			delay += 0.2
+
+func _create_tween(obj : Control, delay : float) -> Tween:
+	var tween := Tween.new()
+	tween.interpolate_property(obj, "rect_position:x", -400, -400, delay, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+	tween.interpolate_property(obj, "rect_position:x", -400, obj.rect_position.x, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT, delay)
+	add_child(tween)
+	tween.start()
+	return tween
 
 
 func _on_SubMenu_closed() -> void:

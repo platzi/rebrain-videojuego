@@ -1,0 +1,520 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=1]
+[ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=2]
+[ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/images/ui/ui_arrow.png" type="Texture" id=4]
+[ext_resource path="res://src/Menu/Customization.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/ui/vaperwave_pattern.png" type="Texture" id=6]
+[ext_resource path="res://assets/themes/font_24_regular.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=8]
+[ext_resource path="res://src/Player/PlayerHair.gdshader" type="Shader" id=9]
+[ext_resource path="res://assets/images/player/hair_02.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/player/hair_03.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/player/hair_04.png" type="Texture" id=12]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec2 uv = UV;
+	float speed = 0.33;
+	uv += vec2(TIME * speed, TIME * speed);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+
+[sub_resource type="StyleBoxLine" id=11]
+color = Color( 0.24, 0.08, 0.4, 1 )
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.333333, 0.1, 0.5, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 8
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id=2]
+HSeparator/styles/separator = SubResource( 11 )
+Label/fonts/font = ExtResource( 7 )
+Panel/styles/panel = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 3 )
+shader_param/blink = false
+shader_param/BLACK = null
+shader_param/SKIN_COLOR = Color( 0.858824, 0.741176, 0.662745, 1 )
+shader_param/SHIRT_COLOR = Color( 1, 1, 1, 1 )
+shader_param/PANTS_COLOR = Color( 0.298039, 0.305882, 0.678431, 1 )
+shader_param/SHOES_COLOR = Color( 1, 1, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 96, 96 )
+margin = Rect2( 0, -16, 0, -32 )
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 9 )
+shader_param/HAIR_COLOR = Color( 0.796078, 0.560784, 0, 1 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 96, 96 )
+margin = Rect2( 0, -16, 0, -32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/PlayerTR:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 96, 96 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/HairTR:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 96, 96 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Rotate"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/PlayerTR:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 96, 96 ), Rect2( 0, 96, 96, 96 ), Rect2( 0, 192, 96, 96 ), Rect2( 0, 288, 96, 96 ), Rect2( 0, 0, 96, 96 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/HairTR:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 96, 96 ), Rect2( 0, 96, 96, 96 ), Rect2( 0, 192, 96, 96 ), Rect2( 0, 288, 96, 96 ), Rect2( 0, 0, 96, 96 ) ]
+}
+
+[node name="Customization" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+hair_textures = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
+hair_hbc_path = NodePath("MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HairHBC")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.1875, 0.0625, 0.25, 1 )
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+margin_left = 302.0
+margin_top = 40.0
+margin_right = 658.0
+margin_bottom = 500.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = SubResource( 2 )
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+margin_right = 356.0
+margin_bottom = 460.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer"]
+margin_right = 356.0
+margin_bottom = 460.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 336.0
+margin_bottom = 440.0
+custom_constants/separation = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 316.0
+margin_bottom = 64.0
+
+[node name="PlayerTR" type="TextureRect" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource( 4 )
+margin_right = 316.0
+margin_bottom = 64.0
+texture = SubResource( 3 )
+stretch_mode = 4
+
+[node name="HairTR" type="TextureRect" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource( 15 )
+margin_right = 316.0
+margin_bottom = 64.0
+texture = SubResource( 16 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 316.0
+margin_bottom = 346.0
+custom_constants/separation = 10
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 316.0
+margin_bottom = 4.0
+
+[node name="HairHBC" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 14.0
+margin_right = 316.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HairHBC"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HairHBC"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Peinado 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HairHBC"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 316.0
+margin_bottom = 45.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 55.0
+margin_right = 316.0
+margin_bottom = 72.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Color peinado 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 316.0
+margin_bottom = 86.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 316.0
+margin_bottom = 113.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Color piel 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 316.0
+margin_bottom = 127.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 137.0
+margin_right = 316.0
+margin_bottom = 154.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Playera 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 316.0
+margin_bottom = 168.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 178.0
+margin_right = 316.0
+margin_bottom = 195.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Pantalon 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 205.0
+margin_right = 316.0
+margin_bottom = 209.0
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 219.0
+margin_right = 316.0
+margin_bottom = 236.0
+rect_pivot_offset = Vector2( -608, -207 )
+custom_constants/separation = 8
+
+[node name="PropertyPrevBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_right = 16.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
+
+[node name="PropertyLabel" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 6
+text = "Zapatos 1"
+align = 1
+
+[node name="PropertyNextBtn" type="TextureButton" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+modulate = Color( 0.415686, 0, 0.501961, 1 )
+margin_left = 300.0
+margin_right = 316.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 246.0
+margin_right = 316.0
+margin_bottom = 250.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_top = 378.0
+margin_right = 316.0
+margin_bottom = 420.0
+custom_constants/separation = 16
+
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 150, 0 )
+theme = ExtResource( 1 )
+text = "Volver"
+
+[node name="Button2" type="Button" parent="MarginContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 166.0
+margin_right = 316.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 150, 0 )
+theme = ExtResource( 1 )
+text = "Guardar"
+
+[node name="PlayerAP" type="AnimationPlayer" parent="."]
+playback_speed = 0.2
+anims/RESET = SubResource( 17 )
+anims/Rotate = SubResource( 14 )
