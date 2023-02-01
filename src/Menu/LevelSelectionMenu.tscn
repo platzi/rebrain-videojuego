@@ -103,7 +103,7 @@ margin_bottom = 422.0
 margin_right = 856.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "Selector de niveles"
+text = "Seleccionar Nivel"
 align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
