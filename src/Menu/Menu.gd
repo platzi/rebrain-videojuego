@@ -54,7 +54,7 @@ func _create_tween(obj : Control, delay : float) -> Tween:
 
 
 func _on_CustomizationBtn_pressed() -> void:
-	SceneChanger.change_scene("res://src/Menu/Customization.tscn")
+	SceneChanger.change_scene("res://src/Menu/CustomizationMenu.tscn")
 
 
 func _on_SubMenu_closed() -> void:
