@@ -8,17 +8,15 @@ signal button_body_entered
 
 export (Array, String) var blacklist
 export (String) var brain_og
+
+
+var audio_stream_player
+var animation_tree
+var message_board
+var area_2D
+var animation_state
+
 var brain_dict := {}
-
-
-onready var audio_stream_player = $AudioStreamPlayer2D
-onready var animation_tree = $AnimationTree
-onready var message_board = $MessageBoard
-onready var area_2D = $Area2D
-export var move_vector = Vector2.DOWN
-onready var animation_state = animation_tree.get("parameters/playback")
-onready var velocity_vector = animation_tree.get("parameters/Idle/blend_position")
-
 var brain := Brain.new()
 
 var moving = false
@@ -36,48 +34,73 @@ var is_open = false
 var change_scene : PackedScene = PackedScene.new()
 var initial_postion : Vector2 = Vector2.ZERO
 var initial_direction : Vector2 = Vector2.ZERO
+var move_vector : Vector2 = Vector2.DOWN
+var velocity_vector : Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
+	# Set nodes
+	set_nodes()
+	# Load default brain
 	if brain_og != "":
 		var result = JSON.parse(brain_og)
 		if result.error == OK:
 			brain_dict = result.result
+	# Set initial position and direction
 	initial_postion = position
 	initial_direction = move_vector
-	animation_tree.set("parameters/Idle/blend_position", move_vector)
-	animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+	# Set the facing position to default
+	if animation_tree:
+		animation_tree.set("parameters/Idle/blend_position", move_vector)
+		animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+	# Add inmunity timer
 	inmunity_timer = Timer.new()
-	add_child(inmunity_timer)
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	inmunity_timer.set_wait_time(inmunity_time)
 	inmunity_timer.set_one_shot(true)
-	
-	area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
-	area_2D.connect("body_entered", self, "_on_Area2D_body_entered_once")
-	area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
-	instance_brain()
+	add_child(inmunity_timer)
+	# Connection for the ccollisions events
+	if area_2D:
+		area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
+		area_2D.connect("body_entered", self, "_on_Area2D_body_entered_once")
+		area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
+	# Connection for the global trigger
 	Globals.connect("trigger_global", self, "_on_trigger_received")
+	# Instance the brain and make all connections
+	instance_brain()
 
 
 func _physics_process(delta : float) -> void:
-	for body in area_2D.get_overlapping_bodies():
-		_on_Area2D_body_entered(body)
+	if area_2D:
+		for body in area_2D.get_overlapping_bodies():
+			_on_Area2D_body_entered(body)
 	if moving:
 		if self.is_in_group("Projectile"):
 			velocity_vector = move_vector * speed
 		else:
-			animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
-			animation_state.travel("Move")
+			if animation_state:
+				animation_tree.set("parameters/Move/BlendSpace2D/blend_position", move_vector)
+				animation_state.travel("Move")
 			velocity_vector += move_vector * speed
 			if velocity_vector.distance_to(Vector2.ZERO) > max_speed:
 				velocity_vector = velocity_vector.move_toward(move_vector * max_speed, delta * max_speed * 100)
 	else:
 		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * max_speed * 100)
-		animation_state.travel("Idle")
+		if animation_state:
+			animation_state.travel("Idle")
 	velocity_vector = move_and_slide(velocity_vector)
 
 
-func instance_brain():
+func set_nodes() -> void:
+	audio_stream_player = get_node_or_null ("AnimationPlayer")
+	animation_tree = get_node_or_null ("AnimationTree")
+	message_board = get_node_or_null ("MessageBoard")
+	area_2D = get_node_or_null ("Area2D")
+	if animation_tree:
+		animation_state = animation_tree.get("parameters/playback")
+		velocity_vector = animation_tree.get("parameters/Idle/blend_position")
+
+
+func instance_brain() -> void:
 	brain.connect("move_forward", self, "move_forward")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")

@@ -138,6 +138,8 @@ func load_data() -> void:
 	if _has_saved:
 		emit_signal("ended_customizing")
 		hide()
+	else:
+		show()
 
 
 func _on_ChangeHairPrevBtn_pressed() -> void:
