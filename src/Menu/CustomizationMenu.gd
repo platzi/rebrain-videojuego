@@ -43,8 +43,6 @@ var selected_shoes_color := 0
 
 func _ready():
 	$PlayerAP.play("Rotate")
-	
-#	hair_hbc.get_node("PropertyNextBtn").connect("pressed", self, "_on_property_prev_btn_pressed", [hair_hbc, PROPERTY_TYPE.HAIR])
 	back_btn.connect("pressed", self, "_on_BackBtn_pressed")
 	_create_property_buttons(Customization.HAIR_STYLES, hair_gc, selected_hair, PROPERTY_TYPE.HAIR)
 	_create_property_buttons_color(Customization.HAIR_COLORS, hair_color_gc, selected_hair_color, PROPERTY_TYPE.HAIR_COLOR)
@@ -52,6 +50,7 @@ func _ready():
 	_create_property_buttons_color(Customization.CLOTHES_COLOR, shirt_color_gc, selected_shirt_color, PROPERTY_TYPE.SHIRT_COLOR)
 	_create_property_buttons_color(Customization.CLOTHES_COLOR, pants_color_gc, selected_pants_color, PROPERTY_TYPE.PANTS_COLOR)
 	_create_property_buttons_color(Customization.CLOTHES_COLOR, shoes_color_gc, selected_shoes_color, PROPERTY_TYPE.SHOES_COLOR)
+	_update_avatar()
 
 
 func _update_avatar() -> void:
