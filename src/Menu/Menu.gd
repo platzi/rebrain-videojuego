@@ -21,7 +21,8 @@ func _ready() -> void:
 #	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
 #	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 #	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
-	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
+#	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
+	customization_btn.connect("pressed", self, "_on_CustomizationBtn_pressed")
 	
 	_create_start_transition()
 	
@@ -50,6 +51,10 @@ func _create_tween(obj : Control, delay : float) -> Tween:
 	add_child(tween)
 	tween.start()
 	return tween
+
+
+func _on_CustomizationBtn_pressed() -> void:
+	SceneChanger.change_scene("res://src/Menu/Customization.tscn")
 
 
 func _on_SubMenu_closed() -> void:
