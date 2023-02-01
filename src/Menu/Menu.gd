@@ -6,22 +6,15 @@ export(NodePath) var customization_btn_path
 export(NodePath) var options_btn_path 
 export(NodePath) var credits_btn_path 
 
-onready var logo_tr : TextureRect = get_node(logo_tr_path)
-onready var select_level_btn : Button = get_node(select_level_btn_path)
-onready var customization_btn : Button = get_node(customization_btn_path)
-onready var options_btn : Button = get_node(options_btn_path)
-onready var credits_btn : Button = get_node(credits_btn_path)
+onready var logo_tr := get_node(logo_tr_path) as TextureRect
+onready var select_level_btn := get_node(select_level_btn_path) as Button
+onready var customization_btn := get_node(customization_btn_path) as Button
+onready var options_btn := get_node(options_btn_path) as Button
+onready var credits_btn := get_node(credits_btn_path) as Button
 
 
 func _ready() -> void:
-#	OS.window_maximized = true
-	#start_btn.grab_focus()
-	#start_btn.focus_neighbour_top = credits_btn.get_path()
-	#credits_btn.focus_neighbour_bottom = start_btn.get_path()
-#	new_game_btn.connect("pressed", self, "_on_NewGameBtn_pressed")
-#	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
-#	options_btn.connect("pressed", self, "_on_OptionsBtn_pressed")
-#	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
+	select_level_btn.connect("pressed", self, "_on_SelectLevelBtn_pressed")
 	customization_btn.connect("pressed", self, "_on_CustomizationBtn_pressed")
 	
 	_create_start_transition()
@@ -44,6 +37,7 @@ func _create_start_transition() -> void:
 			_create_tween(obj, delay)
 			delay += 0.2
 
+
 func _create_tween(obj : Control, delay : float) -> Tween:
 	var tween := Tween.new()
 	tween.interpolate_property(obj, "rect_position:x", -400, -400, delay, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
@@ -51,6 +45,10 @@ func _create_tween(obj : Control, delay : float) -> Tween:
 	add_child(tween)
 	tween.start()
 	return tween
+
+
+func _on_SelectLevelBtn_pressed() -> void:
+	SceneChanger.change_scene("res://src/Menu/LevelSelectionMenu.tscn")
 
 
 func _on_CustomizationBtn_pressed() -> void:
