@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=14 format=2]
 
-[ext_resource path="res://assets/themes/font_24_regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/themes/font_12_regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/images/ui/spinbox.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/scripting/node_port.png" type="Texture" id=3]
 
