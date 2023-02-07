@@ -1,7 +1,7 @@
 [gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=2]
+[ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=2]
 [ext_resource path="res://src/Entity/Teleporter.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/entities/teleporter.png" type="Texture" id=4]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=5]
@@ -283,7 +283,7 @@ nodes/BlendSpace2D/position = Vector2( 240, 140 )
 nodes/TimeScale/node = SubResource( 52 )
 nodes/TimeScale/position = Vector2( 500, 160 )
 nodes/output/position = Vector2( 700, 180 )
-node_connections = [ "TimeScale", 0, "BlendSpace2D", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
@@ -300,7 +300,7 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=75]
 
 [sub_resource type="CircleShape2D" id=76]
-radius = 5.09902
+radius = 5.0
 
 [sub_resource type="CapsuleShape2D" id=78]
 radius = 18.0
@@ -317,6 +317,8 @@ script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 79 )
+z_index = -2
+z_as_relative = false
 texture = ExtResource( 4 )
 hframes = 2
 frame = 1

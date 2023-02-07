@@ -12,12 +12,8 @@ signal activate
 
 var brain := {}
 var isRunning := true
-var _timer
 
 func _ready() -> void:
-	_timer = Timer.new()
-	_timer.one_shot = true
-	add_child(_timer)
 	run()
 
 
@@ -133,8 +129,9 @@ func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	print("move_forward")
 	emit_signal("move_forward")
-	_timer.connect("timeout", self, "_on_move_forward_end", [start_node, node], CONNECT_ONESHOT)
-	_timer.start(node.params[0])
+	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
+#	_timer.connect("timeout", self, "_on_move_forward_end", [start_node, node], CONNECT_ONESHOT)
+#	_timer.start(node.params[0])
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
@@ -151,8 +148,7 @@ func _rotate(start_node : Dictionary, node : Dictionary) -> void:
 
 func _timer(start_node : Dictionary, node : Dictionary) -> void:
 	print("timer_start")
-	_timer.connect("timeout", self, "_run_next", [start_node, node], CONNECT_ONESHOT)
-	_timer.start(node.params[0])
+	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_run_next", [start_node, node])
 
 
 func _shoot(start_node : Dictionary, node : Dictionary):
@@ -164,8 +160,7 @@ func _shoot(start_node : Dictionary, node : Dictionary):
 func _message(start_node : Dictionary, node : Dictionary):
 	print("show_message")
 	emit_signal("show_message", node.params[0])
-	_timer.connect("timeout", self, "_hide_message", [start_node, node], CONNECT_ONESHOT)
-	_timer.start(node.params[1])
+	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_hide_message", [start_node, node], CONNECT_ONESHOT)
 
 
 func _hide_message(start_node : Dictionary, node):

@@ -11,7 +11,7 @@ var _is_ready
 
 
 func _ready() -> void:
-	_is_ready = true	
+	_is_ready = true
 	_set_collision_shape(collision_shape)
 
 

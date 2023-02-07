@@ -34,6 +34,7 @@ func _on_mouse_entered() -> void:
 		if get_parent().has_node("HairSprite"):
 			get_parent().get_node("HairSprite").material.set_shader_param("blink", true)
 
+
 func _on_mouse_exited() -> void:
 	on_mouse = false
 	get_parent().get_node("Sprite").material.set_shader_param("blink", false)

@@ -1,6 +1,6 @@
 extends Node
 
-const DEBUG := false
+const DEBUG := true
 
 signal open_scripting
 signal trigger_global

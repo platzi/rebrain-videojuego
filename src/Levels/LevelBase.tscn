@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=4]
@@ -11,13 +10,6 @@
 [node name="Level" type="Node"]
 
 [node name="Game" type="Node2D" parent="."]
-
-[node name="TileMap" type="TileMap" parent="Game"]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 48, 48 )
-collision_layer = 3
-collision_mask = 3
-format = 1
 
 [node name="Camera" parent="Game" instance=ExtResource( 4 )]
 position = Vector2( 480, 264 )

@@ -45,6 +45,10 @@ SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 MusicScene="*res://src/Levels/MusicScene.tscn"
 Customization="*res://src/Autoload/Customization.gd"
 
+[debug]
+
+shapes/collision/shape_color=Color( 1, 1, 1, 0.419608 )
+
 [display]
 
 window/size/width=960

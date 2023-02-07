@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/images/entities/bomb.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=3]
 [ext_resource path="res://src/Entity/Bomb.gd" type="Script" id=4]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=5]
 
@@ -252,7 +252,7 @@ nodes/BlendSpace2D/position = Vector2( 260, 140 )
 nodes/TimeScale/node = SubResource( 52 )
 nodes/TimeScale/position = Vector2( 500, 160 )
 nodes/output/position = Vector2( 700, 180 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
+node_connections = [ "TimeScale", 0, "BlendSpace2D", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
 

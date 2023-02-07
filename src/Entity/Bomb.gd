@@ -7,7 +7,6 @@ var is_exploding = false
 
 func _ready():
 	speed = 40
-	audio_stream_player = $AudioStreamPlayer2D
 
 
 func _physics_process(delta):

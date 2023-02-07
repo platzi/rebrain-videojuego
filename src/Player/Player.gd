@@ -12,11 +12,13 @@ var player_name = ""
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
 
+onready var area_2d := $Area2D
 onready var audio_stream_player := $AudioStreamPlayer2D
+onready var teleport_animation_player := $TeleportAnimationPlayer
 onready var animation_tree := $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var inmunity_timer := $InmunityTimer
-onready var hair_sprite := $HairSprite
+onready var hair_sprite := $Sprite/HairSprite
 
 
 var hair_style := 0
@@ -35,6 +37,7 @@ func _ready() -> void:
 	change_shirt(Customization.CLOTHES_COLOR[shirt_color])
 	change_pants(Customization.CLOTHES_COLOR[pants_color])
 	change_shoes(Customization.CLOTHES_COLOR[shoes_color])
+	area_2d.connect("body_entered", self, "_on_body_entered")
 
 
 func _physics_process(delta : float) -> void:
@@ -86,7 +89,7 @@ func change_hair(hair : Texture) -> void:
 
 
 func change_hair_color(color : Color) -> void:
-	$HairSprite.material.set_shader_param("HAIR_COLOR", color)
+	hair_sprite.material.set_shader_param("HAIR_COLOR", color)
 
 
 func change_skin_color(color : Color) -> void:
@@ -116,3 +119,9 @@ func move_towards(position : Vector2) -> void:
 
 func play_sound() -> void:
 	audio_stream_player.play()
+
+
+func teleport() -> void:
+	Globals.disable_inputs = true
+	Globals.disable_scripting = true
+	teleport_animation_player.play("Teleport")

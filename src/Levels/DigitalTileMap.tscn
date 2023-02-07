@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
+
+[node name="DigitalTileMap" type="TileMap"]
+z_index = -10
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 3
+collision_mask = 3
+format = 1

@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform float glow;
 uniform vec4 HAIR_COLOR : hint_color;
 
 void fragment() {
@@ -16,5 +17,6 @@ void fragment() {
 			break;
 		}
 	}
+	COLOR.rgb += vec3(1.0) * glow;
 	COLOR.a = textureColor.a;
 }

@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Entity/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/enemy_worm.png" type="Texture" id=2]
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Entity/Area2D.gd" type="Script" id=4]
+[ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=4]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=5]
 [ext_resource path="res://assets/music/Hit_Hurt2.wav" type="AudioStream" id=6]
 

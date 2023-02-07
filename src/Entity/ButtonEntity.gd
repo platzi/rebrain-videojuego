@@ -1,8 +1,13 @@
 extends Entity
 
-func _ready():
-	speed = 60
-	
-	
+
+onready var animation_player := $AnimationPlayer
+
+
 func _on_Area2D_body_exited(body) -> void:
-	$AnimationPlayer.play("RESET")
+	animation_player.play("RESET")
+
+
+func _on_Area2D_body_entered(body : Node) -> void:
+	if body.is_in_group("Player") or body.is_in_group("Enemy") or body.is_in_group("Friend"):
+		animation_player.play("Pressed")
