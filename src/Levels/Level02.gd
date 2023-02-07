@@ -8,6 +8,7 @@ onready var player := $Game/YSort/Player as KinematicBody2D
 onready var key := $Game/YSort/Key as Entity
 onready var cage := $Game/YSort/Cage as Entity
 onready var teleporter := $Game/YSort/Teleporter as Entity
+onready var log_door := $Game/YSort/LogDoor as Entity
 
 
 func _ready() -> void:
@@ -24,49 +25,34 @@ func _dialogue_1() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	dialogue_inst.connect("finished", self, "_dialogue_2")
 	dialogue_inst.dialogues = [
-		"Tranquilo no te asustes, seguimos en el Platziverso, este solo es un mundo tematico",
-		"Tampoco tienes mucho que temer, recuerda que todo lo que aquí sucede no te afecta en el mundo real... o por lo menos eso creemos",
-		"Bien, vamos a aprovechar esta tranquilidad para enseñarte lo básico",
+		"Ahora que sabes como salvar a los alumnos continuemos la aventura"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
 
 func _dialogue_2() -> void:
 	var dialogue_inst = dialogue_scene.instance()
-	camera.target = key
+	camera.target = log_door
 	dialogue_inst.connect("finished", self, "_dialogue_3")
 	dialogue_inst.dialogues = [
-		"Este pequeño objeto reluciente es una llave, ¿sabes para que funcionan las llaves cierto?",
-		"¿No? ¿Enserio?...",
-		"Vaya, si que eres nuevo en esto, bueno esta llave sirve para..."
+		"Oh... parece que el camino esta bloqueado"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
 
 func _dialogue_3() -> void:
 	var dialogue_inst = dialogue_scene.instance()
-	camera.target = cage
-	dialogue_inst.connect("finished", self, "_dialogue_4")
-	dialogue_inst.dialogues = [
-		"Abrir esta celda y rescatar al estudiante que se encuentra prisionero",
-		"Solo basta con tocar la llave y la celda se abrira como por arte de mágia, aunque realmente no es mágia si no multiples líneas de código...",
-		"Super sencillo, ¿verdad?"
-	]
-	ui_canvas_layer.add_child(dialogue_inst)
-
-
-func _dialogue_4() -> void:
-	var dialogue_inst = dialogue_scene.instance()
 	camera.target = player
-	dialogue_inst.connect("finished", self, "_dialogue_4_finished")
+	dialogue_inst.connect("finished", self, "_dialogue_3_finished")
 	dialogue_inst.dialogues = [
-		"Vamos, prueba a ir a tomar la llave, solo muevete hacía ella",
-		"Te recuerdo que puedes moverte con las teclas [WASD], así es ¡como todo videojuego!"
+		"Parece que tendras que descubrir la manera de abrirte camino",
+		"Recuerda que puedes abrir el Modo Scripting presionando [TAB]",
+		"Prueba abrir los cerebros de las entidades para descubrir como pasar el obstaculo"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
 
-func _dialogue_4_finished() -> void:
+func _dialogue_3_finished() -> void:
 	Globals.disable_scripting = false
 	Globals.disable_inputs = false
 

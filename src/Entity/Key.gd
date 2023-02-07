@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _on_Area2D_body_entered_once(body : Node) -> void:
-	if !body.is_in_group("Player"):
+	if !body.is_in_group("Player") and !body.is_in_group("Friend"):
 		return
 	tween.interpolate_property(self, "position", position, cage.position, 1.0, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()

@@ -4,7 +4,7 @@ extends Entity
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 
 
-func _process(delta : float) -> void:
+func _process(_delta : float) -> void:
 	if direction == 0.0 || direction == 360.0:
 		animation_player.current_animation = "Right"
 	elif direction == 90.0:

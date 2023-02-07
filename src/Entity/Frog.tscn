@@ -101,7 +101,7 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id=6]
 radius = 12.0
 
-[node name="Frog" type="KinematicBody2D"]
+[node name="Frog" type="KinematicBody2D" groups=["Friend"]]
 script = ExtResource( 2 )
 
 [node name="Shadow" parent="." instance=ExtResource( 5 )]

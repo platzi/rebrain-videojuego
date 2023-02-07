@@ -11,6 +11,8 @@ var node_groups := {
 		["UPDATE", "Actualizar", "res://assets/images/scripting/scripting_icon_update.png"],
 		["COLLISION", "Colisión", "res://assets/images/scripting/scripting_icon_collision.png"],
 		["TRIGGER", "Disparador", "res://assets/images/scripting/scripting_icon_trigger.png"],
+		["PRESSED", "Presionado", "res://assets/images/scripting/scripting_icon_trigger.png"],
+		["RELEASED", "Soltado", ""],
 	],
 	"Acciones": [
 		["ROTATE", "Girar", "res://assets/images/scripting/scripting_icon_rotate.png"],
@@ -21,6 +23,8 @@ var node_groups := {
 		["ACTIVATE", "Activar", "res://assets/images/scripting/scripting_icon_activate.png"],
 		["SHOOT", "Disparar", "res://assets/images/scripting/scripting_icon_shoot.png"],
 		["EXPLODE", "Explotar", "res://assets/images/scripting/scripting_icon_explode.png"],
+		["OPEN", "Abrir", ""],
+		["CLOSE", "Cerrar", ""],
 	],
 	"Lógica": [
 		["COMPARE_ENTITY", "Comparar entidad", "res://assets/images/scripting/scripting_icon_compare.png"],
@@ -56,7 +60,8 @@ func _create_buttons() -> void:
 			var button := Button.new()
 			button.align = Button.ALIGN_LEFT
 			button.text = node[1]
-			button.icon = load(node[2])
+			if node[2] != "":
+				button.icon = load(node[2])
 			button.connect("pressed", self, "_on_node_button_pressed", [node[0]])
 			button.expand_icon = true
 			button.focus_mode = Control.FOCUS_NONE

@@ -4,6 +4,8 @@ var node_scene_list := {
 	UPDATE = preload("res://src/Scripting/Nodes/UpdateNode.tscn"),
 	COLLISION = preload("res://src/Scripting/Nodes/CollisionNode.tscn"),
 	TRIGGER = preload("res://src/Scripting/Nodes/TriggerNode.tscn"),
+	PRESSED = preload("res://src/Scripting/Nodes/PressedNode.tscn"),
+	RELEASED = preload("res://src/Scripting/Nodes/ReleasedNode.tscn"),
 	MOVE_FORWARD = preload("res://src/Scripting/Nodes/MoveForwardNode.tscn"),
 	ROTATE = preload("res://src/Scripting/Nodes/RotateNode.tscn"),
 	TIMER = preload("res://src/Scripting/Nodes/TimerNode.tscn"),
@@ -14,6 +16,8 @@ var node_scene_list := {
 	COMPARE_STRING = preload("res://src/Scripting/Nodes/CompareStringNode.tscn"),
 	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
 	ACTIVATE = preload("res://src/Scripting/Nodes/ActivateNode.tscn"),
+	OPEN = preload("res://src/Scripting/Nodes/OpenNode.tscn"),
+	CLOSE = preload("res://src/Scripting/Nodes/CloseNode.tscn")
 }
 
 var is_open := false

@@ -9,6 +9,8 @@ signal show_message
 signal hide_message
 signal explode
 signal activate
+signal open
+signal close
 
 var brain := {}
 var isRunning := true
@@ -21,7 +23,7 @@ func run(type = "UPDATE", param1 = null) -> void:
 	for node_name in brain:
 		var node = brain[node_name]
 		if node.type == type:
-			if type == "UPDATE":
+			if type == "UPDATE" or type == "PRESSED" or type == "RELEASED":
 				_execute(node, node)
 			elif type == "COLLISION" or type == "TRIGGER":
 				for connection in node.connections:
@@ -31,7 +33,6 @@ func run(type = "UPDATE", param1 = null) -> void:
 
 
 func stop() -> void:
-	print("stop")
 	isRunning = false
 
 
@@ -42,6 +43,10 @@ func _execute(start_node, current_node) -> void:
 		"COLLISION":
 			_run_next(start_node, current_node)
 		"TRIGGER":
+			_run_next(start_node, current_node)
+		"PRESSED":
+			_run_next(start_node, current_node)
+		"RELEASED":
 			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
 			_move_forward(start_node, current_node)
@@ -63,6 +68,10 @@ func _execute(start_node, current_node) -> void:
 			_shoot_trigger(start_node, current_node)
 		"ACTIVATE":
 			_activate(start_node, current_node)
+		"OPEN":
+			_open(start_node, current_node)
+		"CLOSE":
+			_close(start_node, current_node)
 
 
 func _run_next(start_node, current_node) -> void:
@@ -74,13 +83,11 @@ func _run_next(start_node, current_node) -> void:
 	var execute_list := []
 	
 	# Pass parameters
-	var next_node = current_node
 	if current_node.connections.size() > 0:
 		for connection in current_node.connections:
 			if connection.type == 0 and connection.enabled:
 				execute_list.append(brain[connection.to])
 			else:
-				print(connection.to_port)
 				brain[connection.to].inputs[str(connection.to_port)] = connection.output
 	
 	# Execute
@@ -92,7 +99,6 @@ func _run_next(start_node, current_node) -> void:
 
 
 func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
-	print("compare_entity")
 	var entity_tags = [
 		"Player",
 		"Enemy"
@@ -112,7 +118,6 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 
 
 func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
-	print("compare_string")
 	var connections = [{}, {}]
 	for connection in node.connections:
 		if connection.from_port == 0:
@@ -127,7 +132,6 @@ func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
 	_run_next(start_node, node)
 
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
-	print("move_forward")
 	emit_signal("move_forward")
 	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
 #	_timer.connect("timeout", self, "_on_move_forward_end", [start_node, node], CONNECT_ONESHOT)
@@ -135,53 +139,54 @@ func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
-	print("stop_moving")
 	emit_signal("stop_moving")
 	_run_next(start_node, node)
 
 
 func _rotate(start_node : Dictionary, node : Dictionary) -> void:
-	print("turns_towards")
 	emit_signal("turns_towards", "left" if node.params[0] == 0 else "right")
 	_run_next(start_node, node)
 
 
 func _timer(start_node : Dictionary, node : Dictionary) -> void:
-	print("timer_start")
 	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_run_next", [start_node, node])
 
 
 func _shoot(start_node : Dictionary, node : Dictionary):
-	print("shoot")
 	emit_signal("shoot")
 	_run_next(start_node, node)
 
 
 func _message(start_node : Dictionary, node : Dictionary):
-	print("show_message")
 	emit_signal("show_message", node.params[0])
 	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_hide_message", [start_node, node], CONNECT_ONESHOT)
 
 
 func _hide_message(start_node : Dictionary, node):
-	print("hide_message")
 	emit_signal("hide_message")
 	_run_next(start_node, node)
 
 
 func _explode(start_node : Dictionary, node : Dictionary):
-	print("explode")
 	emit_signal("explode")
 	_run_next(start_node, node)
 
 
 func _shoot_trigger(start_node : Dictionary, node : Dictionary):
-	print("shoot_trigger")
 	Globals.emit_signal_trigger(node.params[0])
 	_run_next(start_node, node)
 
 
 func _activate(start_node : Dictionary, node : Dictionary):
-	print("activate")
 	emit_signal("activate")
+	_run_next(start_node, node)
+
+
+func _open(start_node : Dictionary, node : Dictionary):
+	emit_signal("open")
+	_run_next(start_node, node)
+
+
+func _close(start_node : Dictionary, node : Dictionary):
+	emit_signal("close")
 	_run_next(start_node, node)

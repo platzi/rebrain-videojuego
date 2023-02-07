@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=1]
-[ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Scripting/Nodes/UpdateNode.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/scripting/scripting_icon_update.png" type="Texture" id=4]
+[ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=2]
+[ext_resource path="res://src/Scripting/Nodes/ReleasedNode.gd" type="Script" id=3]
 
-[node name="UpdateNode" instance=ExtResource( 2 )]
+[node name="ReleasedNode" instance=ExtResource( 1 )]
 slot/1/left_enabled = false
 slot/1/left_type = 0
 slot/1/left_color = Color( 1, 1, 1, 1 )
@@ -13,22 +12,18 @@ slot/1/right_enabled = true
 slot/1/right_type = 0
 slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
 script = ExtResource( 3 )
-tag = "Actualizar"
+tag = "Soltado"
 subtag = "Evento"
-icon = ExtResource( 4 )
-
-[node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
-texture = ExtResource( 4 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 84.0
+margin_right = 69.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 60.0
-text = "Actualizar"
+margin_right = 45.0
+text = "Soltado"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 60.0
+margin_right = 45.0
 text = "Evento"
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="1"]
@@ -36,7 +31,6 @@ margin_left = 1.0
 margin_top = 44.0
 margin_right = 159.0
 margin_bottom = 68.0
-mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
 margin_left = 12.0
@@ -50,5 +44,5 @@ margin_right = 134.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 10
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 expand = true

@@ -4,10 +4,28 @@ class_name Entity
 extends KinematicBody2D
 
 
-signal button_body_entered
-
-export (Array, String) var blacklist
+#export (Array, String) var blacklist
 export (String) var brain_og
+export (bool) var update_node
+export (bool) var collision_node
+export (bool) var trigger_node
+export (bool) var pressed_node
+export (bool) var released_node
+export (bool) var move_forward_node
+export (bool) var rotate_node
+export (bool) var timer_node
+export (bool) var shoot_node
+export (bool) var explode_node
+export (bool) var message_node
+export (bool) var compare_entity_node
+export (bool) var compare_string_node
+export (bool) var shoot_trigger_node
+export (bool) var activate_node
+export (bool) var open_node
+export (bool) var close_node
+
+
+var blacklist : Array
 
 
 var message_board
@@ -27,13 +45,14 @@ var inmunity = false
 var inmunity_time = 1
 var max_speed = 100
 var projectile_owner = null
-var is_open = false
 var initial_postion : Vector2 = Vector2.ZERO
 var initial_direction := 0.0
 var velocity_vector : Vector2 = Vector2(0.0, 0.0)
 var hit_animation_player : AnimationPlayer
 
 func _ready() -> void:
+	# Create blacklist
+	set_blacklist()
 	# Set nodes
 	set_nodes()
 	# Load default brain
@@ -78,6 +97,43 @@ func _physics_process(delta : float) -> void:
 	velocity_vector = move_and_slide(velocity_vector)
 
 
+func set_blacklist() -> void:
+	if !update_node:
+		blacklist.append("UPDATE")
+	if !collision_node:
+		blacklist.append("COLLISION")
+	if !trigger_node:
+		blacklist.append("TRIGGER")
+	if !pressed_node:
+		blacklist.append("PRESSED")
+	if !released_node:
+		blacklist.append("RELEASED")
+	if !move_forward_node:
+		blacklist.append("MOVE_FORWARD")
+	if !rotate_node:
+		blacklist.append("ROTATE")
+	if !timer_node:
+		blacklist.append("TIMER")
+	if !shoot_node:
+		blacklist.append("SHOOT")
+	if !explode_node:
+		blacklist.append("EXPLODE")
+	if !message_node:
+		blacklist.append("MESSAGE")
+	if !compare_entity_node:
+		blacklist.append("COMPARE_ENTITY")
+	if !compare_string_node:
+		blacklist.append("COMPARE_STRING")
+	if !shoot_trigger_node:
+		blacklist.append("SHOOT_TRIGGER")
+	if !activate_node:
+		blacklist.append("ACTIVATE")
+	if !open_node:
+		blacklist.append("OPEN")
+	if !close_node:
+		blacklist.append("CLOSE")
+
+
 func set_nodes() -> void:
 	message_board = get_node_or_null("MessageBoard")
 	area_2D = get_node_or_null("Area2D")
@@ -93,6 +149,8 @@ func instance_brain() -> void:
 	brain.connect("hide_message", self, "hide_message")
 	brain.connect("explode", self, "activate_explosion")
 	brain.connect("activate", self, "activate")
+	brain.connect("open", self, "open")
+	brain.connect("close", self, "close")
 	brain.brain = brain_dict
 	add_child(brain)
 
@@ -131,6 +189,14 @@ func shoot() -> void:
 		get_tree().current_scene.add_child(bullet)
 		bullet.shoot_projectile(move_vector)
 		start_shooting()
+
+
+func open() -> void:
+	pass
+
+
+func close() -> void:
+	pass
 
 
 func start_shooting() -> void:
@@ -197,18 +263,15 @@ func _on_Area2D_body_entered(body) -> void:
 func _on_Area2D_body_entered_once(body) -> void:
 	if body.get_instance_id() == self.get_instance_id():
 		return
-	elif self.is_in_group("EntityButton"):
-		pass
 	brain.run("COLLISION", body)
 
 
-func _on_Area2D_body_exited(body) -> void:
+func _on_Area2D_body_exited(_body : Node) -> void:
 	pass
 
 
 func activate() -> void:
-	$AnimationPlayer.play("Open")
-	is_open = true
+	pass
 
 
 func reset_position() -> void:

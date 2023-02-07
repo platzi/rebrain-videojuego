@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/images/ui/vaperwave_pattern.png" type="Texture" id=1]
 [ext_resource path="res://src/Menu/LevelCard.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://src/Menu/LevelSelectionMenu.gd" type="Script" id=6]
+[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Level03.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -115,7 +118,7 @@ scroll_vertical_enabled = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 margin_top = 6.0
-margin_right = 1360.0
+margin_right = 896.0
 margin_bottom = 306.0
 size_flags_vertical = 6
 custom_constants/separation = 32
@@ -134,6 +137,7 @@ anchor_bottom = 0.0
 margin_left = 232.0
 margin_right = 432.0
 margin_bottom = 300.0
+target_scene = ExtResource( 7 )
 level_image = ExtResource( 5 )
 title = "01"
 
@@ -143,6 +147,7 @@ anchor_bottom = 0.0
 margin_left = 464.0
 margin_right = 664.0
 margin_bottom = 300.0
+target_scene = ExtResource( 9 )
 level_image = ExtResource( 5 )
 title = "02"
 
@@ -152,27 +157,9 @@ anchor_bottom = 0.0
 margin_left = 696.0
 margin_right = 896.0
 margin_bottom = 300.0
+target_scene = ExtResource( 8 )
 level_image = ExtResource( 5 )
 title = "03"
-
-[node name="LevelCard5" parent="VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 928.0
-margin_right = 1128.0
-margin_bottom = 300.0
-level_image = ExtResource( 5 )
-title = "04"
-
-[node name="LevelCard6" parent="VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1160.0
-margin_right = 1360.0
-margin_bottom = 300.0
-focus_mode = 2
-level_image = ExtResource( 5 )
-title = "07"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 458.0

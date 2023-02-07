@@ -24,7 +24,6 @@ func _ready() -> void:
 	$LogoAP.play("Start")
 	var config = ConfigFile.new()
 	var err = config.load("user://re_brain_data.cfg")
-	var last_level = ""
 #	if err == OK and config.get_value("Player", "has_saved", false):
 #		start_btn.visible = true
 #	else:

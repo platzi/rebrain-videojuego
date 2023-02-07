@@ -27,7 +27,7 @@ func _ready() -> void:
 	_set_subtag(subtag)
 
 
-func _process(delta : float) -> void:
+func _process(_delta : float) -> void:
 	if !Engine.editor_hint and !Globals.DEBUG and disabled:
 		selected = false
 
@@ -43,7 +43,7 @@ func get_params() -> Array:
 	return _get_params()
 
 
-func _set_params(param : Array) -> void:
+func _set_params(_param : Array) -> void:
 	pass
 
 

@@ -8,17 +8,17 @@ func _ready() -> void:
 	connect("mouse_exited", self, "_on_mouse_exited")
 
 
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, _event, _shape_idx):
 	if (
-		event is InputEventMouseButton 
-		and event.button_index == BUTTON_LEFT
-		and event.pressed
+		_event is InputEventMouseButton 
+		and _event.button_index == BUTTON_LEFT
+		and _event.pressed
 		and Globals.scripting_mode
 	):
 		Globals.open_scripting(get_parent())
 
 
-func _process(delta):
+func _process(_delta : float):
 	if Globals.scripting_mode and on_mouse:
 		_on_mouse_entered()
 	elif global_scripting_mode and on_mouse:

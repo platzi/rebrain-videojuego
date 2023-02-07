@@ -70,7 +70,7 @@ func _on_Area2D_area_entered(area : Area2D) -> void:
 	attractor = area
 
 
-func _on_Area2D_area_exited(area : Area2D) -> void:
+func _on_Area2D_area_exited(_area : Area2D) -> void:
 	attractor = null
 	camera_2d.position = Vector2.ZERO
 

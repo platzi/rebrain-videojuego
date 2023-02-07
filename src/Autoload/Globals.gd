@@ -38,8 +38,8 @@ func emit_show_game_over() -> void:
 	is_game_over = true
 
 
-func set_player_name(player_name : String) -> void:
-	self.player_name = player_name
+func set_player_name(pname : String) -> void:
+	player_name = pname
 
 
 func emit_update_life(life : int) -> void:

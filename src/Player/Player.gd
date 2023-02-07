@@ -30,6 +30,7 @@ var shoes_color := 0
 
 
 func _ready() -> void:
+	teleport_animation_player.play("RESET")
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	change_hair(Customization.HAIR_STYLES[hair_style])
 	change_hair_color(Customization.HAIR_COLORS[hair_color])
@@ -37,7 +38,6 @@ func _ready() -> void:
 	change_shirt(Customization.CLOTHES_COLOR[shirt_color])
 	change_pants(Customization.CLOTHES_COLOR[pants_color])
 	change_shoes(Customization.CLOTHES_COLOR[shoes_color])
-	area_2d.connect("body_entered", self, "_on_body_entered")
 
 
 func _physics_process(delta : float) -> void:

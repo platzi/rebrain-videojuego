@@ -1175,7 +1175,6 @@ polygon = PoolVector2Array( -96, 192, -96, 216, -144, 216, -144, 192, -288, 192,
 
 [node name="Teleporter" parent="Game" instance=ExtResource( 8 )]
 position = Vector2( 528, -264 )
-is_active = true
 target_scene = ExtResource( 12 )
 
 [node name="YSort" type="YSort" parent="Game"]

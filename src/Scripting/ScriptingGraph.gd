@@ -91,7 +91,7 @@ func _on_disconnection_request(from : String, from_slot : int, to : String, to_s
 	disconnect_node(from, from_slot, to, to_slot)
 
 
-func _on_node_selected(node : Node) -> void:
+func _on_node_selected(_node : Node) -> void:
 	pass
 
 

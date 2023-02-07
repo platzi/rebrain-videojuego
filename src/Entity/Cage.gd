@@ -31,6 +31,7 @@ onready var animation_player := $AnimationPlayer as AnimationPlayer
 
 
 func _ready() -> void:
+	animation_player.play("RESET")
 	_update_student()
 
 
