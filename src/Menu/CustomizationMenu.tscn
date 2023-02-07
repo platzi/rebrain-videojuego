@@ -33,6 +33,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 10 )
 shader_param/blink = false
+shader_param/glow = null
 shader_param/BLACK = null
 shader_param/SKIN_COLOR = Color( 0.858824, 0.741176, 0.662745, 1 )
 shader_param/SHIRT_COLOR = Color( 1, 1, 1, 1 )
@@ -46,6 +47,7 @@ margin = Rect2( 0, -16, 0, -32 )
 
 [sub_resource type="ShaderMaterial" id=15]
 shader = ExtResource( 11 )
+shader_param/glow = null
 shader_param/HAIR_COLOR = Color( 0.796078, 0.560784, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=16]

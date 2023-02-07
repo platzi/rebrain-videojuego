@@ -317,6 +317,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 128.0
 margin_bottom = 516.0
+custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_right = 120.0
@@ -324,10 +325,11 @@ margin_bottom = 17.0
 text = "Objetivo:"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+modulate = Color( 0.433333, 0.13, 0.65, 1 )
 material = SubResource( 5 )
-margin_top = 21.0
+margin_top = 25.0
 margin_right = 120.0
-margin_bottom = 141.0
+margin_bottom = 145.0
 rect_min_size = Vector2( 120, 120 )
 texture = ExtResource( 7 )
 expand = true
@@ -346,18 +348,18 @@ hframes = 4
 vframes = 4
 
 [node name="SaveBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 145.0
+margin_top = 153.0
 margin_right = 120.0
-margin_bottom = 178.0
+margin_bottom = 186.0
 focus_mode = 0
 text = "Guardar"
 icon = ExtResource( 4 )
 expand_icon = true
 
 [node name="RestoreBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 182.0
+margin_top = 194.0
 margin_right = 120.0
-margin_bottom = 215.0
+margin_bottom = 227.0
 rect_min_size = Vector2( 120, 0 )
 focus_mode = 0
 text = "Restaurar"
@@ -365,9 +367,9 @@ icon = ExtResource( 9 )
 expand_icon = true
 
 [node name="CancelBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 219.0
+margin_top = 235.0
 margin_right = 120.0
-margin_bottom = 252.0
+margin_bottom = 268.0
 rect_min_size = Vector2( 120, 0 )
 focus_mode = 0
 text = "Cancelar"
