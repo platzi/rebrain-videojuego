@@ -67,12 +67,14 @@ func _set_target_path(new_value : NodePath) -> void:
 
 
 func _on_Area2D_area_entered(area : Area2D) -> void:
-	attractor = area
+	if area.is_in_group("CameraAttractor"):
+		attractor = area
 
 
 func _on_Area2D_area_exited(_area : Area2D) -> void:
-	attractor = null
-	camera_2d.position = Vector2.ZERO
+	if _area == attractor:
+		attractor = null
+		camera_2d.position = Vector2.ZERO
 
 
 func _on_ScreenshakeTimer_timeout() -> void:
