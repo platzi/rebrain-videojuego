@@ -20,9 +20,15 @@ var node_scene_list := {
 	CLOSE = preload("res://src/Scripting/Nodes/CloseNode.tscn")
 }
 
+
+export (NodePath) var effect_cr_path;
+
+
 var is_open := false
 
-onready var scripting_effect : Control = $ScriptingEffect
+
+onready var effect_cr := get_node_or_null(effect_cr_path) as ColorRect;
+
 
 onready var node_searcher := $NodeSearcher
 onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/ScriptingGraph
@@ -57,13 +63,15 @@ func _input(event : InputEvent) -> void:
 			if !Globals.scripting_mode:
 				Globals.scripting_mode = true
 				get_tree().paused = true
-				scripting_effect.visible = true
+				if effect_cr:
+					effect_cr.visible = true;
 			elif is_open:
 					on_SaveBtn_pressed()
 			else:
+				if effect_cr:
+					effect_cr.visible = false;
 				Globals.scripting_mode = false
 				get_tree().paused = false
-				scripting_effect.visible = false
 #		elif event.scancode == KEY_A:
 #			print(scripting_graph.get_connection_list())
 

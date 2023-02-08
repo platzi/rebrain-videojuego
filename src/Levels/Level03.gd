@@ -3,11 +3,11 @@ extends Node
 var dialogue_scene := load("res://src/Dialogue/Dialogue.tscn")
 
 onready var ui_canvas_layer := $UI as CanvasLayer
-onready var camera := $Game/Camera
-onready var player := $Game/YSort/Player as KinematicBody2D
-onready var key := $Game/YSort/Key as Entity
-onready var cage := $Game/YSort/Cage as Entity
-onready var teleporter := $Game/YSort/Teleporter as Entity
+onready var camera := $Camera
+onready var player := $Entities/YSort/Player as KinematicBody2D
+onready var key := $Entities/YSort/Key as Entity
+onready var cage := $Entities/YSort/Cage as Entity
+onready var teleporter := $Entities/YSort/Teleporter as Entity
 
 
 func _ready() -> void:
