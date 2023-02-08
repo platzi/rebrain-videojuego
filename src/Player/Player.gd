@@ -22,16 +22,23 @@ onready var hair_sprite := $Sprite/HairSprite
 onready var sprite := $Sprite
 
 
-var player_name : String = SaveManager.save_data["customization"]["player_name"]
-var hair_style : int = SaveManager.save_data["customization"]["hair_style"]
-var hair_color : int = SaveManager.save_data["customization"]["hair_color"]
-var skin_color : int = SaveManager.save_data["customization"]["skin_color"]
-var shirt_color : int = SaveManager.save_data["customization"]["shirt_color"]
-var pants_color : int = SaveManager.save_data["customization"]["pants_color"]
-var shoes_color : int = SaveManager.save_data["customization"]["shoes_color"]
+var player_name := ""
+var hair_style := 0
+var hair_color := 0
+var skin_color := 0
+var shirt_color := 0
+var pants_color := 7
+var shoes_color := 0
 
 
 func _ready() -> void:
+	player_name = SaveManager.save_data["customization"]["player_name"]
+	hair_style = SaveManager.save_data["customization"]["hair_style"]
+	hair_color = SaveManager.save_data["customization"]["hair_color"]
+	skin_color = SaveManager.save_data["customization"]["skin_color"]
+	shirt_color = SaveManager.save_data["customization"]["shirt_color"]
+	pants_color = SaveManager.save_data["customization"]["pants_color"]
+	shoes_color = SaveManager.save_data["customization"]["shoes_color"]
 	teleport_animation_player.play("RESET")
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
 	_update_avatar()
