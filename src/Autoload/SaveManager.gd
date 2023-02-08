@@ -20,8 +20,8 @@ func save() -> void:
 func _load_save() -> void:
 	var err := config_file.load("user://save.dat")
 	save_exists = err == OK
-	save_data["extas"] = {
-		"version" : config_file.get_value("extra", "version", "0.1.0")
+	save_data["extras"] = {
+		"version" : config_file.get_value("extras", "version", "0.1.0")
 	}
 	save_data["customization"] = {
 		"player_name" : config_file.get_value("customization", "player_name", ""),
