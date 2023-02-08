@@ -12,7 +12,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, 0, 0, 0, 0, 480, -1, 0, 0, 0 ),
+"points": PoolRealArray( 16, 0, 0, 0, 0, 480, -1, 0, 0, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
 tracks/1/type = "bezier"
@@ -22,7 +22,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 440, 0, 0, 0, 0, 490, -1, 0, 0, 0 ),
+"points": PoolRealArray( 16, 0, 0, 0, 0, 75, -1, 0, 0, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
 tracks/2/type = "bezier"
@@ -75,7 +75,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 50, 0, 0, 0, 0, 16, -1, 0, 0, 0 ),
+"points": PoolRealArray( 75, 0, 0, 0, 0, 16, -1, 0, 0, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
 tracks/2/type = "bezier"

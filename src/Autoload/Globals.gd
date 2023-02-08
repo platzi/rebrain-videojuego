@@ -46,15 +46,6 @@ func emit_update_life(life : int) -> void:
 	emit_signal("update_life", life)
 
 
-func set_last_level(last_level) -> void:
-	var config = ConfigFile.new()
-	var err = config.load("user://re_brain_data.cfg")
-	if err != OK:
-		return
-	config.set_value("Player", "last_level", last_level)
-	config.save("user://re_brain_data.cfg")
-
-
 func set_pause_game(pause : bool) -> void:
 	is_game_paused = pause
 

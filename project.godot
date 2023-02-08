@@ -41,6 +41,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://src/Autoload/Globals.gd"
+SaveManager="*res://src/Autoload/SaveManager.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 MusicScene="*res://src/Levels/MusicScene.tscn"
 Customization="*res://src/Autoload/Customization.gd"

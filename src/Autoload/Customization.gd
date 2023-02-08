@@ -2,8 +2,8 @@ extends Node
 
 
 const HAIR_STYLES = [
-	preload("res://assets/images/player/hair_01.png"),
 	preload("res://assets/images/player/hair_02.png"),
+	preload("res://assets/images/player/hair_01.png"),
 	preload("res://assets/images/player/hair_03.png"),
 	preload("res://assets/images/player/hair_04.png"),
 	null

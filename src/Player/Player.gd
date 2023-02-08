@@ -8,7 +8,6 @@ var velocity = Vector2.ZERO
 var life = 3
 var inmunity = false
 var inmunity_time = 1
-var player_name = ""
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
 
@@ -18,26 +17,24 @@ onready var teleport_animation_player := $TeleportAnimationPlayer
 onready var animation_tree := $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var inmunity_timer := $InmunityTimer
+onready var hit_animation_player := $HitAnimationPlayer
 onready var hair_sprite := $Sprite/HairSprite
+onready var sprite := $Sprite
 
 
-var hair_style := 0
-var hair_color := 0
-var skin_color := 0
-var shirt_color := 0
-var pants_color := 0
-var shoes_color := 0
+var player_name : String = SaveManager.save_data["customization"]["player_name"]
+var hair_style : int = SaveManager.save_data["customization"]["hair_style"]
+var hair_color : int = SaveManager.save_data["customization"]["hair_color"]
+var skin_color : int = SaveManager.save_data["customization"]["skin_color"]
+var shirt_color : int = SaveManager.save_data["customization"]["shirt_color"]
+var pants_color : int = SaveManager.save_data["customization"]["pants_color"]
+var shoes_color : int = SaveManager.save_data["customization"]["shoes_color"]
 
 
 func _ready() -> void:
 	teleport_animation_player.play("RESET")
 	inmunity_timer.connect("timeout", self, "remove_inmunity")
-	change_hair(Customization.HAIR_STYLES[hair_style])
-	change_hair_color(Customization.HAIR_COLORS[hair_color])
-	change_skin_color(Customization.SKIN_COLORS[skin_color])
-	change_shirt(Customization.CLOTHES_COLOR[shirt_color])
-	change_pants(Customization.CLOTHES_COLOR[pants_color])
-	change_shoes(Customization.CLOTHES_COLOR[shoes_color])
+	_update_avatar()
 
 
 func _physics_process(delta : float) -> void:
@@ -67,7 +64,7 @@ func _physics_process(delta : float) -> void:
 
 func remove_inmunity() -> void:
 	inmunity = false
-	$HitAnimationPlayer.play("RESET")
+	hit_animation_player.play("RESET")
 
 
 func hurt(knockback_direction : Vector2) -> void:
@@ -76,7 +73,7 @@ func hurt(knockback_direction : Vector2) -> void:
 		life -= 1
 		velocity = knockback_direction * MAX_SPEED * 8
 		inmunity_timer.start(inmunity_time)
-		$HitAnimationPlayer.play("Hit")
+		hit_animation_player.play("Hit")
 		play_sound()
 		Globals.emit_update_life(life)
 	if life < 1:
@@ -84,32 +81,13 @@ func hurt(knockback_direction : Vector2) -> void:
 		Globals.emit_show_game_over()
 
 
-func change_hair(hair : Texture) -> void:
-	hair_sprite.texture = hair
-
-
-func change_hair_color(color : Color) -> void:
-	hair_sprite.material.set_shader_param("HAIR_COLOR", color)
-
-
-func change_skin_color(color : Color) -> void:
-	$Sprite.material.set_shader_param("SKIN_COLOR", color)
-
-
-func change_shirt(color : Color) -> void:
-	$Sprite.material.set_shader_param("SHIRT_COLOR", color)
-
-
-func change_pants(color : Color) -> void:
-	$Sprite.material.set_shader_param("PANTS_COLOR", color)
-
-
-func change_shoes(color : Color) -> void:
-	$Sprite.material.set_shader_param("SHOES_COLOR", color)
-
-
-func change_player_name(_name : String) -> void:
-	player_name = _name
+func _update_avatar() -> void:
+	hair_sprite.texture = Customization.HAIR_STYLES[hair_style]
+	hair_sprite.material.set_shader_param("HAIR_COLOR", Customization.HAIR_COLORS[hair_color])
+	sprite.material.set_shader_param("SKIN_COLOR", Customization.SKIN_COLORS[skin_color])
+	sprite.material.set_shader_param("SHIRT_COLOR", Customization.CLOTHES_COLOR[shirt_color])
+	sprite.material.set_shader_param("PANTS_COLOR", Customization.CLOTHES_COLOR[pants_color])
+	sprite.material.set_shader_param("SHOES_COLOR", Customization.CLOTHES_COLOR[shoes_color])
 
 
 func move_towards(position : Vector2) -> void:

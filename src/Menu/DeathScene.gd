@@ -24,6 +24,6 @@ func _on_StartBtn_pressed() -> void:
 
 func _on_MenuBtn_pressed() -> void:
 	$AudioStreamPlayer2D.play()
-	SceneChanger.change_scene("res://src/Menu/Menu.tscn", true)
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
 	Globals.reset_is_game_over()
 	#get_tree().change_scene("res://src/Menu/Menu.tscn")
