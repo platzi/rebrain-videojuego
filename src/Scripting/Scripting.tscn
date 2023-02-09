@@ -30,19 +30,16 @@ shader_param/pattern = ExtResource( 7 )
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 
-uniform sampler2D pattern;
-
 void fragment() {
-	vec2 _uv = UV;
+	vec2 _uv = UV * 1.5;
 	_uv.x += TIME * 0.3;
 	_uv.y += TIME * 0.3;
-	vec4 texture_color = texture(pattern, _uv);
-	COLOR.rgba = texture_color;
+	vec4 color = texture(TEXTURE, _uv);
+	COLOR.rgba = color;
 }"
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 4 )
-shader_param/pattern = ExtResource( 7 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
@@ -325,7 +322,7 @@ margin_bottom = 17.0
 text = "Objetivo:"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
-modulate = Color( 0.433333, 0.13, 0.65, 1 )
+modulate = Color( 0.466667, 0.14, 0.7, 1 )
 material = SubResource( 5 )
 margin_top = 25.0
 margin_right = 120.0
