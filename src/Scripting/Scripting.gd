@@ -21,13 +21,7 @@ var node_scene_list := {
 }
 
 
-export (NodePath) var effect_cr_path;
-
-
 var is_open := false
-
-
-onready var effect_cr := get_node_or_null(effect_cr_path) as ColorRect;
 
 
 onready var node_searcher := $NodeSearcher
@@ -59,19 +53,15 @@ func _ready() -> void:
 func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if !Globals.disable_scripting and event.scancode == KEY_TAB:
-			Globals.emit_signal("scripting_toggled")
 			if !Globals.scripting_mode:
 				Globals.scripting_mode = true
 				get_tree().paused = true
-				if effect_cr:
-					effect_cr.visible = true;
 			elif is_open:
 					on_SaveBtn_pressed()
 			else:
-				if effect_cr:
-					effect_cr.visible = false;
 				Globals.scripting_mode = false
 				get_tree().paused = false
+			Globals.emit_signal("scripting_toggled")
 #		elif event.scancode == KEY_A:
 #			print(scripting_graph.get_connection_list())
 
