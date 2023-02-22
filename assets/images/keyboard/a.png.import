@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/teleporter.png-4f6b46110bcec59a9684864d0eac90c2.stex"
+path="res://.import/a.png-0e7a3fd4fa5c3d6a976e536b8789e45f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/entities/teleporter.png"
-dest_files=[ "res://.import/teleporter.png-4f6b46110bcec59a9684864d0eac90c2.stex" ]
+source_file="res://assets/images/keyboard/a.png"
+dest_files=[ "res://.import/a.png-0e7a3fd4fa5c3d6a976e536b8789e45f.stex" ]
 
 [params]
 

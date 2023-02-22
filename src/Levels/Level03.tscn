@@ -23,9 +23,27 @@ brain_og = "{\"UpdateNode\":{\"type\":\"UPDATE\",\"disabled\":true,\"position\":
 update_node = true
 move_forward_node = true
 rotate_node = true
+direction = 90.0
 
 [node name="Key" parent="Entities/YSort" index="4" instance=ExtResource( 4 )]
 position = Vector2( 808, -72 )
+update_node = true
+collision_node = true
+trigger_node = true
+pressed_node = true
+released_node = true
+move_forward_node = true
+rotate_node = true
+timer_node = true
+shoot_node = true
+explode_node = true
+message_node = true
+compare_entity_node = true
+compare_string_node = true
+shoot_trigger_node = true
+activate_node = true
+open_node = true
+close_node = true
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
 

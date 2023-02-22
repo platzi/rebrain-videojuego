@@ -190,7 +190,7 @@ func _on_SaveBtn_pressed() -> void:
 	SaveManager.save_data["customization"]["shoes_color"] = selected_shoes_color
 	SaveManager.save()
 	if !loaded:
-		SceneChanger.change_scene("res://src/Levels/Level01.tscn")
+		SceneChanger.change_scene("res://src/Levels/Intro01.tscn")
 	else:
 		SceneChanger.change_scene("res://src/Menu/Menu.tscn")
 

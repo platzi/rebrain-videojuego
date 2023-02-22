@@ -24,7 +24,7 @@ var node_scene_list := {
 var is_open := false
 
 
-onready var node_searcher := $NodeSearcher
+onready var node_searcher := $NodeSearcher as PopupPanel
 onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/ScriptingGraph
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
@@ -152,7 +152,7 @@ func load_nodes(nodes) -> void:
 func _create_new_node(node_type : String) -> void:
 	var mousePos := scripting_graph.get_local_mouse_position()
 	var inst : ScriptingNode = node_scene_list[node_type].instance()
-	inst.offset = mousePos + scripting_graph.scroll_offset
+	inst.offset = node_searcher.rect_position - scripting_graph.rect_global_position + scripting_graph.scroll_offset
 	scripting_graph.add_child(inst)
 	node_searcher.hide()
 	Globals.emit_signal("scripting_node_added", inst)

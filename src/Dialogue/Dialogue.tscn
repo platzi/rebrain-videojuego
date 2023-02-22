@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/themes/dialogue_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/Dialogue/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
@@ -173,7 +174,7 @@ script = ExtResource( 2 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -132.0
+margin_top = -157.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -184,26 +185,39 @@ modulate = Color( 1, 1, 1, 0 )
 margin_left = 480.0
 margin_top = 490.0
 margin_right = 1408.0
-margin_bottom = 590.0
-rect_min_size = Vector2( 0, 100 )
+margin_bottom = 615.0
+rect_min_size = Vector2( 0, 125 )
 rect_scale = Vector2( 1e-05, 1e-05 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 912.0
-margin_bottom = 84.0
+margin_bottom = 109.0
+
+[node name="SpeakerLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_right = 896.0
+margin_bottom = 17.0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 3 )
+text = "Speaker"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 896.0
+margin_bottom = 93.0
+size_flags_vertical = 3
 bbcode_enabled = true
 visible_characters = 0
 scroll_active = false
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
 margin_left = 16.0
-margin_top = 70.0
+margin_top = 95.0
 margin_right = 912.0
-margin_bottom = 84.0
+margin_bottom = 109.0
 size_flags_vertical = 8
 text = "[Presiona espacio para continuar]"
 align = 1

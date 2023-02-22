@@ -52,22 +52,25 @@ func _clear_buttons() -> void:
 func _create_buttons() -> void:
 	_clear_buttons()
 	for group in node_groups:
+		var added_count := 0
 		var group_button := Label.new()
 		group_button.align = Label.ALIGN_LEFT
 		group_button.text = group
 		node_list_vbc.add_child(group_button)
 		for node in node_groups[group]:
-			var button := Button.new()
-			button.align = Button.ALIGN_LEFT
-			button.text = node[1]
-			if node[2] != "":
-				button.icon = load(node[2])
-			button.connect("pressed", self, "_on_node_button_pressed", [node[0]])
-			button.expand_icon = true
-			button.focus_mode = Control.FOCUS_NONE
-			if blacklist.has(node[0]):
-				button.disabled = true
-			node_list_vbc.add_child(button)
+			if !blacklist.has(node[0]):
+				var button := Button.new()
+				button.align = Button.ALIGN_LEFT
+				button.text = node[1]
+				if node[2] != "":
+					button.icon = load(node[2])
+				button.connect("pressed", self, "_on_node_button_pressed", [node[0]])
+				button.expand_icon = true
+				button.focus_mode = Control.FOCUS_NONE
+				node_list_vbc.add_child(button)
+				added_count += 1
+		if added_count == 0:
+			group_button.visible = false
 
 
 func _on_node_button_pressed(node_type : String) -> void:

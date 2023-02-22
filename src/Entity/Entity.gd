@@ -23,6 +23,8 @@ export (bool) var shoot_trigger_node
 export (bool) var activate_node
 export (bool) var open_node
 export (bool) var close_node
+export (float, 0.0, 360.0) var direction
+export (bool) var blocked
 
 
 var blacklist : Array
@@ -34,7 +36,6 @@ var area_2D
 var brain_dict := {}
 var brain := Brain.new()
 
-var direction := 0.0
 var speed := 0.0
 var cool_down = 1
 var _timer = null

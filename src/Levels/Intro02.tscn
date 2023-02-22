@@ -1,0 +1,239 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/Levels/LevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/DigitalTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://src/Entity/Chair.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/CollisionTilemap.tres" type="TileSet" id=5]
+[ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Entity/Dummy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Intro02.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_delete_npcs"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 300, 50 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 500, 500 )
+
+[node name="Intro02" instance=ExtResource( 1 )]
+script = ExtResource( 8 )
+npc_paths = [ NodePath("Entities/YSort/NPC8"), NodePath("Entities/YSort/NPC7"), NodePath("Entities/YSort/NPC6"), NodePath("Entities/YSort/NPC5"), NodePath("Entities/YSort/NPC4"), NodePath("Entities/YSort/NPC3"), NodePath("Entities/YSort/NPC2") ]
+
+[node name="FlashAnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+playback_speed = 3.0
+anims/Flash = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="TriggerZone" type="Area2D" parent="." index="1"]
+position = Vector2( 480, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerZone" index="0"]
+position = Vector2( 0, -32 )
+shape = SubResource( 2 )
+
+[node name="CameraAttractor" parent="." index="2" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 480, 72 )
+collision_shape = SubResource( 1 )
+zoom_level = 1.2
+
+[node name="Chair" parent="Entities/YSort" index="0" instance=ExtResource( 4 )]
+position = Vector2( 624, 136 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair4" parent="Entities/YSort" index="1" instance=ExtResource( 4 )]
+position = Vector2( 552, 136 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair3" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
+position = Vector2( 400, 136 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair2" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
+position = Vector2( 336, 136 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair5" parent="Entities/YSort" index="4" instance=ExtResource( 4 )]
+position = Vector2( 624, 240 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair6" parent="Entities/YSort" index="5" instance=ExtResource( 4 )]
+position = Vector2( 552, 240 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair7" parent="Entities/YSort" index="6" instance=ExtResource( 4 )]
+position = Vector2( 400, 232 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Chair8" parent="Entities/YSort" index="7" instance=ExtResource( 4 )]
+position = Vector2( 336, 232 )
+blocked = true
+animation = "IdleUp"
+
+[node name="Player" parent="Entities/YSort" index="8"]
+position = Vector2( 400, 112 )
+
+[node name="Teleporter" parent="Entities/YSort" index="9"]
+visible = true
+position = Vector2( 480, 296 )
+blocked = true
+target_scene = ExtResource( 9 )
+
+[node name="NPC" parent="Entities/YSort" index="10" instance=ExtResource( 6 )]
+position = Vector2( 480, -72 )
+direction = 90.0
+blocked = true
+hair_color = Color( 0.27451, 0.27451, 0.27451, 1 )
+skin_color = Color( 0.815686, 0.603922, 0.376471, 1 )
+shirt_color = Color( 1, 1, 1, 1 )
+
+[node name="NPC8" parent="Entities/YSort" index="11" instance=ExtResource( 6 )]
+position = Vector2( 336, 208 )
+direction = 270.0
+blocked = true
+hair_style = 1
+hair_color = Color( 1, 0.305882, 0, 1 )
+shirt_color = Color( 0.207843, 0.603922, 0.760784, 1 )
+pants_color = Color( 0.596078, 0.827451, 0.247059, 1 )
+
+[node name="NPC7" parent="Entities/YSort" index="12" instance=ExtResource( 6 )]
+position = Vector2( 400, 208 )
+direction = 270.0
+blocked = true
+hair_style = 2
+hair_color = Color( 0.0784314, 0.596078, 0.819608, 1 )
+shirt_color = Color( 0.776471, 0.823529, 0.2, 1 )
+
+[node name="NPC6" parent="Entities/YSort" index="13" instance=ExtResource( 6 )]
+position = Vector2( 552, 216 )
+direction = 270.0
+blocked = true
+hair_style = 3
+hair_color = Color( 0.196078, 0.882353, 0.054902, 1 )
+shirt_color = Color( 0.0117647, 0.65098, 0.666667, 1 )
+pants_color = Color( 0.937255, 0, 0.196078, 1 )
+
+[node name="NPC5" parent="Entities/YSort" index="14" instance=ExtResource( 6 )]
+position = Vector2( 624, 216 )
+direction = 270.0
+blocked = true
+hair_style = 4
+hair_color = Color( 0.498039, 0.388235, 0.239216, 1 )
+skin_color = Color( 1, 0.984314, 0, 1 )
+shirt_color = Color( 1, 1, 1, 1 )
+pants_color = Color( 0.101961, 0.392157, 0.698039, 1 )
+
+[node name="NPC4" parent="Entities/YSort" index="15" instance=ExtResource( 6 )]
+position = Vector2( 624, 112 )
+direction = 270.0
+blocked = true
+hair_style = 2
+hair_color = Color( 1, 0.117647, 0, 1 )
+skin_color = Color( 1, 0.901961, 0.796078, 1 )
+shirt_color = Color( 1, 1, 1, 1 )
+pants_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+
+[node name="NPC3" parent="Entities/YSort" index="16" instance=ExtResource( 6 )]
+position = Vector2( 552, 112 )
+direction = 270.0
+blocked = true
+hair_style = 1
+hair_color = Color( 1, 0.913725, 0, 1 )
+skin_color = Color( 0.952941, 0.890196, 0.603922, 1 )
+shirt_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+pants_color = Color( 0.980392, 0.529412, 0, 1 )
+
+[node name="NPC2" parent="Entities/YSort" index="17" instance=ExtResource( 6 )]
+position = Vector2( 336, 112 )
+direction = 270.0
+blocked = true
+hair_style = 3
+hair_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+shirt_color = Color( 0.0235294, 0.470588, 0.992157, 1 )
+pants_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+
+[node name="Dummy" parent="Entities/YSort" index="18" instance=ExtResource( 7 )]
+position = Vector2( 392, -72 )
+brain_og = "{\"TimerNode\":{\"type\":\"TIMER\",\"disabled\":true,\"position\":[-80,-60],\"connections\":[],\"params\":[1],\"inputs\":{}},\"UpdateNode\":{\"type\":\"UPDATE\",\"disabled\":true,\"position\":[-300,-40],\"connections\":[{\"type\":0,\"from_port\":0,\"to\":\"TimerNode\",\"to_port\":0,\"output\":1,\"enabled\":true}],\"params\":[],\"inputs\":{}}}"
+rotate_node = true
+direction = 90.0
+
+[node name="TileMap" type="TileMap" parent="Background" index="0"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -196602, 0, 8, -196601, 0, 10, -196600, 0, 10, -196599, 0, 10, -196598, 0, 10, -196597, 0, 10, -196596, 0, 10, -196595, 0, 11, -131067, 0, 8, -131066, 0, 65541, -131065, 4, 0, -131064, 3, 0, -131063, 3, 0, -131062, 3, 0, -131061, 3, 0, -131060, 3, 0, -131059, 0, 65542, -131058, 0, 11, -65531, 0, 65544, -65530, 0, 131081, -65529, 0, 131081, -65528, 0, 131081, -65527, 0, 131081, -65526, 0, 131081, -65525, 0, 131081, -65524, 0, 131081, -65523, 0, 131081, -65522, 0, 131083, 5, 0, 65544, 6, 6, 0, 7, 0, 131081, 8, 0, 131081, 9, 0, 131081, 10, 0, 131081, 11, 0, 131081, 12, 0, 131081, 13, 9, 0, 14, 0, 131083, 65541, 0, 65544, 65542, 6, 0, 65543, 0, 131081, 65544, 0, 131081, 65545, 0, 131081, 65546, 0, 131081, 65547, 0, 131081, 65548, 0, 131081, 65549, 7, 0, 65550, 0, 131083, 131077, 0, 65544, 131078, 6, 0, 131079, 0, 131081, 131080, 0, 131081, 131081, 0, 131081, 131082, 0, 131081, 131083, 0, 131081, 131084, 0, 131081, 131085, 7, 0, 131086, 0, 131083, 196613, 0, 65544, 196614, 8, 0, 196615, 0, 131081, 196616, 0, 131081, 196617, 0, 131081, 196618, 0, 131081, 196619, 0, 131081, 196620, 0, 131081, 196621, 7, 0, 196622, 0, 131083, 262149, 0, 196616, 262150, 0, 131077, 262151, 0, 131081, 262152, 0, 131081, 262153, 0, 131081, 262154, 0, 131081, 262155, 0, 131081, 262156, 0, 131081, 262157, 0, 131078, 262158, 0, 196619, 327685, 13, 0, 327686, 0, 196616, 327687, 0, 196617, 327688, 0, 196617, 327689, 0, 131077, 327690, 0, 131078, 327691, 0, 196617, 327692, 0, 196617, 327693, 0, 196619, 327694, 13, 0, 393222, 13, 0, 393223, 14, 0, 393224, 13, 0, 393225, 0, 196616, 393226, 0, 196619, 393227, 13, 0, 393228, 14, 0, 393229, 13, 0, 458761, 13, 0, 458762, 13, 0 )
+
+[node name="CollisionMap" type="TileMap" parent="Background" index="1"]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -196603, 0, 0, -196594, 0, 0, -131068, 0, 0, -131057, 0, 0, -65532, 0, 0, -65521, 0, 0, 4, 0, 0, 15, 0, 0, 65540, 0, 0, 65551, 0, 0, 131076, 0, 0, 131087, 0, 0, 196612, 0, 0, 196623, 0, 0, 262148, 0, 0, 262159, 0, 0, 327685, 0, 0, 327694, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 458761, 0, 0, 458762, 0, 0 )
+
+[node name="Control" type="Control" parent="UI" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control" index="0"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="GUI" parent="UI" index="1"]
+visible = false

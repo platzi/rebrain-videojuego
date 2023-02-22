@@ -1,14 +1,17 @@
+tool
+
+
 extends Entity
+
 
 export (PackedScene) var target_scene
 
 
-var is_active := false
+export (bool) var is_active := false setget _set_is_active
 
 
 func _ready():
-	print(target_scene)
-	$AnimationPlayer.play("RESET")
+	pass
 
 
 func activate() -> void:
@@ -19,8 +22,15 @@ func activate() -> void:
 
 func deactivate() -> void:
 	is_active = false
-	$AnimationPlayer.play("ButtonPressed")
+	$AnimationPlayer.play("RESET")
 	$CPUParticles2D.emitting = false
+
+
+func _set_is_active(new_value : bool) -> void:
+	if new_value:
+		activate()
+	else:
+		deactivate()
 
 
 func _on_Area2D_body_entered_once(body : Node) -> void:

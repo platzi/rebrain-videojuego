@@ -14,6 +14,7 @@ func save() -> void:
 	for section in save_data:
 		for key in save_data[section]:
 			config_file.set_value(section, key, save_data[section][key])
+	Globals.player_name = config_file.get_value("customization", "player_name", "")
 	config_file.save("user://save.dat")
 
 
@@ -32,3 +33,4 @@ func _load_save() -> void:
 		"pants_color" : config_file.get_value("customization", "pants_color", 7),
 		"shoes_color" : config_file.get_value("customization", "shoes_color", 0),
 	}
+	Globals.player_name = config_file.get_value("customization", "player_name", "")

@@ -10,7 +10,6 @@
 [sub_resource type="ShaderMaterial" id=45]
 shader = ExtResource( 5 )
 shader_param/blink = null
-shader_param/glow = 0.0
 shader_param/BLACK = Color( 0, 0, 0, 1 )
 shader_param/SKIN_COLOR = Color( 0.839216, 0.756863, 0.576471, 1 )
 shader_param/SHIRT_COLOR = Color( 0.796078, 0.0705882, 0.631373, 1 )
@@ -19,11 +18,10 @@ shader_param/SHOES_COLOR = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=47]
 shader = ExtResource( 7 )
-shader_param/glow = 0.0
+shader_param/blink = null
 shader_param/HAIR_COLOR = Color( 0.654902, 0.439216, 0.027451, 1 )
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 7.50003
 height = 8.99994
 
 [sub_resource type="Animation" id=7]
@@ -536,7 +534,6 @@ vframes = 4
 frame = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
 rotation = -1.5708
 shape = SubResource( 1 )
 
@@ -577,4 +574,5 @@ anims/Teleport = SubResource( 51 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
 shape = SubResource( 1 )

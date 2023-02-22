@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Entity/LogDoor.gd" type="Script" id=4]
 
 [sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/blink = null
 

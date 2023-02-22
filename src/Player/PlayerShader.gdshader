@@ -1,7 +1,9 @@
 shader_type canvas_item;
 
+const float SPEED = 10.0;
+
+uniform bool blocked;
 uniform bool blink;
-uniform float glow;
 uniform vec4 BLACK : hint_color;
 uniform vec4 SKIN_COLOR : hint_color;
 uniform vec4 SHIRT_COLOR : hint_color;
@@ -24,17 +26,20 @@ void fragment() {
 	referenceColor[11] = SHOES_COLOR * 0.8;
 	referenceColor[12] = SHOES_COLOR;
 	
-	vec4 textureColor = texture(TEXTURE, UV);
-	int idx = int(floor(textureColor.r * 19.0));
+	vec2 uv = UV;
+	vec4 color = texture(TEXTURE, uv);
+	int idx = int(floor(color.r * 19.0));
 	for (int i=0; i<13; i++) {
 		if (idx == i) {
-			COLOR.rgb = referenceColor[i].rgb;
+			color.rgb = referenceColor[i].rgb;
 			break;
 		}
 	}
-	if (blink) {
-		COLOR.rgb += vec3(1.0, 1.0, 1.0) * ((1.0 + sin(TIME * 15.0)) / 2.0);
+	if (blocked) {
+		color.r += 0.5 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
 	}
-		COLOR.rgb += vec3(1.0, 1.0, 1.0) * glow;
-	COLOR.a = textureColor.a;
+	else if (blink) {
+		color.g += 0.2 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
+	}
+	COLOR = color;
 }

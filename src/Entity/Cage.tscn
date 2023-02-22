@@ -12,7 +12,6 @@
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 6 )
 shader_param/blink = false
-shader_param/glow = 0.0
 shader_param/BLACK = null
 shader_param/SKIN_COLOR = Color( 1, 0.807843, 0.533333, 1 )
 shader_param/SHIRT_COLOR = Color( 1, 1, 1, 1 )
@@ -21,7 +20,7 @@ shader_param/SHOES_COLOR = Color( 0.337255, 0.207843, 0.027451, 1 )
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 8 )
-shader_param/glow = 0.0
+shader_param/blink = null
 shader_param/HAIR_COLOR = Color( 0.247059, 0.105882, 0.00784314, 1 )
 
 [sub_resource type="RectangleShape2D" id=1]

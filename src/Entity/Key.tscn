@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Entity/Key.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/key.png" type="Texture" id=2]
 [ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/particles/star.png" type="Texture" id=4]
+[ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=5]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -157,6 +158,9 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.620833, 0.991379 ), 0.0, 0
 offsets = PoolRealArray( 0.483412, 1 )
 colors = PoolColorArray( 1, 0.931183, 0.199219, 1, 1, 1, 1, 0 )
 
+[sub_resource type="CircleShape2D" id=10]
+radius = 30.0
+
 [node name="Key" type="KinematicBody2D" groups=["Key"]]
 script = ExtResource( 1 )
 
@@ -201,3 +205,12 @@ damping = 400.0
 scale_amount = 0.5
 scale_amount_curve = SubResource( 8 )
 color_ramp = SubResource( 9 )
+
+[node name="ScriptingArea" type="Area2D" parent="."]
+pause_mode = 2
+position = Vector2( 0, -10 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScriptingArea"]
+modulate = Color( 0, 1, 0.905882, 1 )
+shape = SubResource( 10 )

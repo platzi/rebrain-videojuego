@@ -148,7 +148,6 @@ tracks/1/keys = {
 
 [node name="Bench" type="KinematicBody2D"]
 script = ExtResource( 2 )
-animation = ""
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

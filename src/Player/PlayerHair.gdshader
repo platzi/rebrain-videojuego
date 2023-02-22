@@ -1,6 +1,9 @@
 shader_type canvas_item;
 
-uniform float glow;
+const float SPEED = 10.0;
+
+uniform bool blocked;
+uniform bool blink;
 uniform vec4 HAIR_COLOR : hint_color;
 
 void fragment() {
@@ -9,14 +12,20 @@ void fragment() {
 	referenceColor[1] = HAIR_COLOR * 0.8;
 	referenceColor[2] = HAIR_COLOR;
 	
-	vec4 textureColor = texture(TEXTURE, UV);
-	int idx = int(floor(textureColor.r * 4.0));
+	vec2 uv = UV;
+	vec4 color = texture(TEXTURE, uv);
+	int idx = int(floor(color.r * 4.0));
 	for (int i=0; i<3; i++) {
 		if (idx == i) {
-			COLOR.rgb = referenceColor[i].rgb;
+			color.rgb = referenceColor[i].rgb;
 			break;
 		}
 	}
-	COLOR.rgb += vec3(1.0) * glow;
-	COLOR.a = textureColor.a;
+	if (blocked) {
+		color.r += 0.5 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
+	}
+	else if (blink) {
+		color.g += 0.2 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
+	}
+	COLOR = color;
 }

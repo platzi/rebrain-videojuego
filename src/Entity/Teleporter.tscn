@@ -1,168 +1,16 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/Entity/MessageBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=2]
 [ext_resource path="res://src/Entity/Teleporter.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/entities/teleporter.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/props/teleporter.png" type="Texture" id=4]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=5]
-[ext_resource path="res://assets/images/particles/line.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/particles/waves.png" type="Texture" id=6]
 [ext_resource path="res://assets/music/Teleport.wav" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=79]
 shader = ExtResource( 5 )
 shader_param/blink = null
-
-[sub_resource type="Animation" id=56]
-resource_name = "ButtonPressed"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
-[sub_resource type="Animation" id=57]
-resource_name = "IdleDown"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.0303687 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=58]
-resource_name = "IdleLeft"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 12 ]
-}
-
-[sub_resource type="Animation" id=59]
-resource_name = "IdleRight"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-
-[sub_resource type="Animation" id=60]
-resource_name = "IdleUp"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 8 ]
-}
-
-[sub_resource type="Animation" id=61]
-resource_name = "MoveDown"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 0 ]
-}
-
-[sub_resource type="Animation" id=62]
-resource_name = "MoveLeft"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 13, 14, 15, 12 ]
-}
-
-[sub_resource type="Animation" id=63]
-resource_name = "MoveRight"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 5, 6, 7, 4 ]
-}
-
-[sub_resource type="Animation" id=64]
-resource_name = "MoveUp"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 9, 10, 11, 8 ]
-}
 
 [sub_resource type="Animation" id=77]
 resource_name = "Open"
@@ -177,7 +25,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=65]
@@ -192,7 +40,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=81]
@@ -283,7 +131,7 @@ nodes/BlendSpace2D/position = Vector2( 240, 140 )
 nodes/TimeScale/node = SubResource( 52 )
 nodes/TimeScale/position = Vector2( 500, 160 )
 nodes/output/position = Vector2( 700, 180 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "BlendSpace2D" ]
+node_connections = [ "TimeScale", 0, "BlendSpace2D", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
@@ -308,7 +156,7 @@ height = 0.0
 
 [sub_resource type="Gradient" id=80]
 offsets = PoolRealArray( 0, 0.994475, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.0386741, 0.015625, 1, 0.907353, 0 )
+colors = PoolColorArray( 0.501961, 0.956863, 1, 1, 0.5, 0.958333, 1, 0, 0.015625, 1, 0.907353, 0 )
 
 [node name="Teleporter" type="KinematicBody2D" groups=["Entity", "EntityStatic", "Teleporter"]]
 collision_layer = 0
@@ -321,20 +169,10 @@ z_index = -2
 z_as_relative = false
 texture = ExtResource( 4 )
 hframes = 2
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
 playback_speed = 0.5
-anims/ButtonPressed = SubResource( 56 )
-anims/IdleDown = SubResource( 57 )
-anims/IdleLeft = SubResource( 58 )
-anims/IdleRight = SubResource( 59 )
-anims/IdleUp = SubResource( 60 )
-anims/MoveDown = SubResource( 61 )
-anims/MoveLeft = SubResource( 62 )
-anims/MoveRight = SubResource( 63 )
-anims/MoveUp = SubResource( 64 )
 anims/Open = SubResource( 77 )
 anims/RESET = SubResource( 65 )
 
@@ -356,9 +194,11 @@ margin_top = -78.0
 margin_bottom = -38.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 76 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -366,22 +206,23 @@ shape = SubResource( 76 )
 
 [node name="ScriptingArea" type="Area2D" parent="."]
 pause_mode = 2
+visible = false
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScriptingArea"]
 shape = SubResource( 78 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -2 )
 emitting = false
-amount = 12
-lifetime = 0.5
+amount = 6
 texture = ExtResource( 6 )
 emission_shape = 2
-emission_rect_extents = Vector2( 20, 10 )
+emission_rect_extents = Vector2( 0, 0 )
 direction = Vector2( 1, -90 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 140.0
+initial_velocity = 60.0
 color_ramp = SubResource( 80 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
