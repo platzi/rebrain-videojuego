@@ -96,6 +96,9 @@ func _physics_process(delta : float) -> void:
 	else:
 		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * max_speed * 100)
 	velocity_vector = move_and_slide(velocity_vector)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		_on_collision(collision)
 
 
 func set_blacklist() -> void:
@@ -145,7 +148,7 @@ func instance_brain() -> void:
 	brain.connect("move_forward", self, "move_forward")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")
-	brain.connect("shoot", self, "shoot")
+	brain.connect("shoot", self, "_shoot")
 	brain.connect("show_message", self, "show_message")
 	brain.connect("hide_message", self, "hide_message")
 	brain.connect("explode", self, "activate_explosion")
@@ -180,16 +183,8 @@ func hide_message() -> void:
 	message_board.hide_message()
 
 
-func shoot() -> void:
-	if not is_shooting:
-		is_shooting = true
-		var bullet = load("res://src/Entity/Bullet.tscn").instance()
-		var move_vector := Vector2.RIGHT.rotated(deg2rad(direction))
-		bullet.projectile_owner = self.get_instance_id()
-		bullet.position = self.position + (move_vector * 40)
-		get_tree().current_scene.add_child(bullet)
-		bullet.shoot_projectile(move_vector)
-		start_shooting()
+func _shoot() -> void:
+	pass
 
 
 func open() -> void:
@@ -301,3 +296,7 @@ func destroy() -> void:
 	brain.stop()
 	yield(get_tree(), "idle_frame")
 	queue_free()
+
+
+func _on_collision(collision : KinematicCollision2D) -> void:
+	pass
