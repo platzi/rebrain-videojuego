@@ -154,7 +154,7 @@ func _timer(start_node : Dictionary, node : Dictionary) -> void:
 
 func _shoot(start_node : Dictionary, node : Dictionary):
 	emit_signal("shoot")
-	_run_next(start_node, node)
+	get_tree().create_timer(1.0, false).connect("timeout", self, "_run_next", [start_node, node])
 
 
 func _message(start_node : Dictionary, node : Dictionary):
