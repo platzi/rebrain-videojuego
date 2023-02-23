@@ -4,7 +4,16 @@ tool
 extends Entity
 
 
+const projectile_scene := preload("res://src/Entity/Banana.tscn")
+
+
 onready var animation_player := $AnimationPlayer as AnimationPlayer
+
+
+func _ready() -> void:
+	if Engine.editor_hint:
+		set_process(false)
+		_process(0.0)
 
 
 func _process(_delta : float) -> void:
@@ -26,3 +35,14 @@ func _process(_delta : float) -> void:
 			animation_player.play("IdleLeft")
 		elif direction == 270.0:
 			animation_player.play("IdleUp")
+
+
+func _shoot() -> void:
+	var lx := sin(deg2rad(direction + 90)) * 30
+	var ly := cos(deg2rad(direction - 90)) * 30
+	var projectile_inst := projectile_scene.instance() as Entity
+	get_parent().add_child(projectile_inst)
+	projectile_inst.blocked = true
+	projectile_inst.position = position + Vector2(lx, ly)
+	projectile_inst.speed = 300
+	projectile_inst.direction = direction
