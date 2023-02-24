@@ -1,14 +1,17 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Entity/ScriptingArea.gd" type="Script" id=2]
+[ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entity/Spike.gd" type="Script" id=3]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=4]
 [ext_resource path="res://assets/images/entities/spike.png" type="Texture" id=5]
+[ext_resource path="res://src/Entity/HitBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
+shader_param/blocked = null
 shader_param/blink = false
 
 [sub_resource type="Animation" id=2]
@@ -162,14 +165,20 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=11]
-radius = 15.0
-height = 0.0
+[sub_resource type="CircleShape2D" id=13]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id=12]
 radius = 24.0
 
 [node name="Spike" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -194,21 +203,19 @@ anims/MoveUp = SubResource( 9 )
 anims/RESET = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+modulate = Color( 0, 1, 0.133333, 1 )
 position = Vector2( 0, -6 )
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="HitBox" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, -16 )
+shape = SubResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="HurtBox" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, -6 )
-shape = SubResource( 11 )
+shape = SubResource( 15 )
+blink_sprite_path = NodePath("../Sprite")
 
-[node name="ScriptingArea" type="Area2D" parent="."]
-pause_mode = 2
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScriptingArea"]
-position = Vector2( 0, -18 )
-shape = SubResource( 12 )
+[node name="ScriptingArea" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -16 )
+shape_2d = SubResource( 12 )

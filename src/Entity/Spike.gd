@@ -7,6 +7,12 @@ extends Entity
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 
 
+func _ready() -> void:
+	if Engine.editor_hint:
+		set_process(false)
+		_process(0.0)
+
+
 func _process(_delta : float) -> void:
 	if speed != 0.0:
 		if direction == 0.0 || direction == 360.0:

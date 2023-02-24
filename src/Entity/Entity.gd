@@ -23,6 +23,7 @@ export (bool) var shoot_trigger_node
 export (bool) var activate_node
 export (bool) var open_node
 export (bool) var close_node
+export (int) var life := 3
 export (float, 0.0, 360.0) var direction
 export (bool) var blocked
 
@@ -31,7 +32,8 @@ var blacklist : Array
 
 
 var message_board
-var area_2D
+var hurt_box
+var hit_box
 
 var brain_dict := {}
 var brain := Brain.new()
@@ -39,17 +41,12 @@ var brain := Brain.new()
 var speed := 0.0
 var cool_down = 1
 var _timer = null
-var inmunity_timer = null
 var is_shooting = false
-var life = 3
-var inmunity = false
-var inmunity_time = 1
 var max_speed = 100
 var projectile_owner = null
 var initial_postion : Vector2 = Vector2.ZERO
 var initial_direction := 0.0
 var velocity_vector : Vector2 = Vector2(0.0, 0.0)
-var hit_animation_player : AnimationPlayer
 
 func _ready() -> void:
 	# Create blacklist
@@ -64,17 +61,6 @@ func _ready() -> void:
 	# Set initial position and direction
 	initial_postion = position
 	initial_direction = direction
-	# Add inmunity timer
-	inmunity_timer = Timer.new()
-	inmunity_timer.connect("timeout", self, "remove_inmunity")
-	inmunity_timer.set_wait_time(inmunity_time)
-	inmunity_timer.set_one_shot(true)
-	add_child(inmunity_timer)
-	# Connection for the ccollisions events
-	if area_2D:
-		area_2D.connect("body_entered", self, "_on_Area2D_body_entered")
-		area_2D.connect("body_entered", self, "_on_Area2D_body_entered_once")
-		area_2D.connect("body_exited", self, "_on_Area2D_body_exited")
 	# Connection for the global trigger
 	Globals.connect("trigger_global", self, "_on_trigger_received")
 	# Instance the brain and make all connections
@@ -82,9 +68,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta : float) -> void:
-	if area_2D:
-		for body in area_2D.get_overlapping_bodies():
-			_on_Area2D_body_entered(body)
 	if speed != 0.0:
 		var move_vector := Vector2.RIGHT.rotated(deg2rad(direction))
 		if self.is_in_group("Projectile"):
@@ -140,8 +123,12 @@ func set_blacklist() -> void:
 
 func set_nodes() -> void:
 	message_board = get_node_or_null("MessageBoard")
-	area_2D = get_node_or_null("Area2D")
-	hit_animation_player = get_node_or_null("HitAnimationPlayer")
+	hurt_box = get_node_or_null("HurtBox")
+	if hurt_box:
+		hurt_box.connect("hurt", self, "hurt")
+	hit_box = get_node_or_null("HitBox")
+	if hit_box:
+		hit_box.connect("hit", self, "_on_hit")
 
 
 func instance_brain() -> void:
@@ -211,58 +198,20 @@ func stop_shooting() -> void:
 	is_shooting = false
 
 
-func remove_inmunity() -> void:
-	inmunity = false
-	if hit_animation_player:
-		hit_animation_player.play("RESET")
-
-
 func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
-	if not inmunity:
-		inmunity = true
-		life -= 1
-		velocity_vector = knockback_direction * max_speed * 8
-		inmunity_timer.start(inmunity_time)
-		if hit_animation_player:
-			hit_animation_player.play("Hit")
-	if life < 1:
+	life -= 1
+	velocity_vector = knockback_direction * max_speed * 8
+	if life <= 0:
 		brain.stop()
 		queue_free()
+	_on_hurt()
 
 
-func _on_Area2D_body_entered(body) -> void:
-	if body.get_instance_id() == self.get_instance_id():
-		return
-	if self.is_in_group("Projectile"):
-		self.hurt()
-	
-	if self.is_in_group("Enemy") and body.is_in_group("Player"):
-		body.hurt(position.direction_to(body.position))
-	
-#	if self.is_in_group("Teleporter") and body.is_in_group("Player") and is_open:
-#		return
-#	elif not self.is_in_group("EntityStatic") and body.is_in_group("Player"):
-#		body.hurt(position.direction_to(body.position))
-#	elif body.is_in_group("Projectile") and body.projectile_owner != self.get_instance_id() and self.is_in_group("Projectile"):
-#		body.hurt()
-#	elif self.is_in_group("EntityButton"):
-#		emit_signal("button_body_entered")
-#		$AnimationPlayer.play("ButtonPressed")
-#	elif body.is_in_group("Entity") and body.projectile_owner == self.get_instance_id():
-#		return
-#	elif self.is_in_group("Projectile") and body.is_in_group("Entity") and not body.is_in_group("EntityStatic"):
-#		body.hurt(position.direction_to(body.position))
-#	elif self.is_in_group("Bomb") and (body.is_in_group("Player") or body.is_in_group("Entity")):
-#		body.hurt(position.direction_to(body.position))
+func _on_hurt() -> void:
+	pass
 
 
-func _on_Area2D_body_entered_once(body) -> void:
-	if body.get_instance_id() == self.get_instance_id():
-		return
-	brain.run("COLLISION", body)
-
-
-func _on_Area2D_body_exited(_body : Node) -> void:
+func _on_hit() -> void:
 	pass
 
 
@@ -277,7 +226,6 @@ func reset_position() -> void:
 	speed = 0.0
 	if message_board:
 		message_board.reset()
-	remove_inmunity()
 	life = 3
 	brain.queue_free()
 	brain = Brain.new()

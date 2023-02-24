@@ -6,20 +6,16 @@ var speed = 100
 var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
 var life = 3
-var inmunity = false
-var inmunity_time = 1
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
 
-onready var area_2d := $Area2D
 onready var audio_stream_player := $AudioStreamPlayer2D
 onready var teleport_animation_player := $TeleportAnimationPlayer
 onready var animation_tree := $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
-onready var inmunity_timer := $InmunityTimer
-onready var hit_animation_player := $HitAnimationPlayer
 onready var hair_sprite := $Sprite/HairSprite
 onready var sprite := $Sprite
+onready var hurt_box := $HurtBox
 
 
 var player_name := ""
@@ -40,7 +36,7 @@ func _ready() -> void:
 	pants_color = SaveManager.save_data["customization"]["pants_color"]
 	shoes_color = SaveManager.save_data["customization"]["shoes_color"]
 	teleport_animation_player.play("RESET")
-	inmunity_timer.connect("timeout", self, "remove_inmunity")
+	hurt_box.connect("hurt", self, "hurt")
 	_update_avatar()
 
 
@@ -69,20 +65,11 @@ func _physics_process(delta : float) -> void:
 	velocity = move_and_slide(velocity)
 
 
-func remove_inmunity() -> void:
-	inmunity = false
-	hit_animation_player.play("RESET")
-
-
 func hurt(knockback_direction : Vector2) -> void:
-	if not inmunity:
-		inmunity = true
-		life -= 1
-		velocity = knockback_direction * MAX_SPEED * 8
-		inmunity_timer.start(inmunity_time)
-		hit_animation_player.play("Hit")
-		play_sound()
-		Globals.emit_update_life(life)
+	life -= 1
+	velocity = knockback_direction * MAX_SPEED * 8
+	play_sound()
+	Globals.emit_update_life(life)
 	if life < 1:
 		queue_free()
 		Globals.emit_show_game_over()

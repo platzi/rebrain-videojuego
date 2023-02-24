@@ -116,6 +116,8 @@ pointing/emulate_touch_from_mouse=true
 
 2d_physics/layer_1="SOLID"
 2d_physics/layer_2="UNWALKABLE"
+2d_physics/layer_3="KEY"
+2d_physics/layer_4="TELEPORTER"
 
 [physics]
 

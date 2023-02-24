@@ -10,8 +10,11 @@ export (PackedScene) var target_scene
 export (bool) var is_active := false setget _set_is_active
 
 
+onready var area_2d := $Area2D as Area2D
+
+
 func _ready():
-	pass
+	area_2d.connect("body_entered", self, "_on_body_entered")
 
 
 func activate() -> void:
@@ -33,7 +36,9 @@ func _set_is_active(new_value : bool) -> void:
 		deactivate()
 
 
-func _on_Area2D_body_entered_once(body : Node) -> void:
-	if body.is_in_group("Player") and is_active:
+func _on_body_entered(body : KinematicBody2D) -> void:
+	if !is_active:
+		return
+	if body.is_in_group("Player"):
 		body.teleport()
 		get_tree().create_timer(0.5).connect("timeout", SceneChanger, "change_scene_to", [target_scene])

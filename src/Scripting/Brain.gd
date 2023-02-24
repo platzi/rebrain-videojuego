@@ -15,8 +15,10 @@ signal close
 var brain := {}
 var isRunning := true
 
+
 func _ready() -> void:
-	run()
+	if !Engine.editor_hint:
+		run()
 
 
 func run(type = "UPDATE", param1 = null) -> void:

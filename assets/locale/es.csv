@@ -1,0 +1,48 @@
+keys,es
+SPEAKER.ANNOUNCER,Anunciante
+SPEAKER.PROFESSOR,Profesor
+CUSTOMIZATION.DIALOGUE.GREETING.01,"Bienvendio al Platziverso, antes de comenzar porfavor crea tu avatar a tu gusto"
+CUSTOMIZATION.DIALOGUE.GREETING.02,"Cuando finalices, puedes presionar el botón Guardar para continuar hacía el metaverso"
+CUSTOMIZATION.DIALOGUE.ERROR.01,Es necesario ingresar un nombre antes de continuar
+INTRO1.DIALOGUE.01.01,"Atención, les informamos a nuestros alumnos que la primer clase del Platziverso esta por comenzar, porfavor dirijanse al edificio principal lo más rápido posible"
+INTRO1.DIALOGUE.01.02,"Para los despistados, les recuerdo que pueden moverse presionando las teclas [img=18]assets/images/keyboard/w.png[/img][img=18]assets/images/keyboard/a.png[/img][img=18]assets/images/keyboard/s.png[/img][img=18]assets/images/keyboard/d.png[/img]"
+INTRO1.DIALOGUE.02.01,Tambien les recordamos que para moverse entre los niveles pueden utilizar los paneles de teletransporte
+INTRO1.DIALOGUE.02.02,Solo basta caminar encima de estos para avanzar al siguiente nivel
+INTRO2.DIALOGUE.01.01,"Excelente, ya que porfin estamos todos aquí, vamos a comenzar nuestra primer clase en el Platziverso"
+INTRO2.DIALOGUE.01.02,Antes de comenzar les doy la bienvenida a todos a clase Programando utilizando Visual Scripting
+INTRO2.DIALOGUE.01.03,"Utilizaremos el sistema ReBrain, el cual fue creado espeficamente para el Platziverso"
+INTRO2.DIALOGUE.01.04,Este sistema les permitira editar el cerebro de las entidades dentro del mundo
+INTRO2.DIALOGUE.01.05,Vamos a comenzar haciendo una pequeña demostración donde veremos lo más básico
+INTRO2.DIALOGUE.01.06,"%s porfavor pasa hacía adelante, me ayudaras a demostrar como funciona ReBrain"
+INTRO2.DIALOGUE.02.01,"Vamos a comenzar activando el modo scripting, para ello presiona [img=36]assets/images/keyboard/tab.png[/img]"
+INTRO2.DIALOGUE.03.01,"¡Muy bien!, ahora mismo estas en el modo scripting, te habrás dado cuenta porque el fondo ha cambiado"
+INTRO2.DIALOGUE.03.02,Lo primero que debés saber es que las entidades con las que puedes interactuar estan resaltadas
+INTRO2.DIALOGUE.03.03,"Tambien como notaras hay entidades resaltadas en rojo, esas no se pueden modificar"
+INTRO2.DIALOGUE.03.04,Adelante prueba hacer click al muñeco de pruebas que se encuentra a mi lado
+INTRO2.DIALOGUE.04.01,"¡Perfecto!, ahora mismo te encuentras en el cerebro de la entidad, en este caso del muñeco de pruebas"
+INTRO2.DIALOGUE.04.02,"En la parte izquierda podrás ver la entidad que se esta programando, y debajo 3 botones"
+INTRO2.DIALOGUE.04.03,Guardar: Guarda los cambios que se hayan realizado a la entidad
+INTRO2.DIALOGUE.04.04,Restaurar: Limpia los cambios y devuelve a la entidad su programación inicial
+INTRO2.DIALOGUE.04.05,Cancelar: Se cierra el cerebro de la entidad sin guardar los cambios realizados
+INTRO2.DIALOGUE.04.06,En la parte derecha encontraras la gráfica donde podrás jugar con los nodos para programar a la entidad
+INTRO2.DIALOGUE.04.07,Para agregar un nodo haz click derecho en cualquier parte de la gráfica
+INTRO2.DIALOGUE.04.08,Vamos prueba agregar un nodo de Girar
+INTRO2.DIALOGUE.05.01,"¡Estas haciendolo excelente!, lo siguiente que tenemos que hacer es conectar los nodos para que estos funcionen"
+INTRO2.DIALOGUE.05.02,Veras que el nodo que se añadio tiene un [img]assets/images/scripting/node_port_green.png[/img] del lado izquierdo y derecho
+INTRO2.DIALOGUE.05.03,"Se conoce como entrada y salida, cada nodo tiene diferentes tipos de entradas y salidas"
+INTRO2.DIALOGUE.05.04,"Y estas van conectadas con respecto a su tipo, gráficamente mostrado por un color"
+INTRO2.DIALOGUE.05.05,"Solo puedes hacer conexiones entre salida y entrada, respetando su tipo"
+INTRO2.DIALOGUE.05.06,"El nodo de Girar tiene dos conexiones de Ejecución, tanto en la entrada como la salida, mostrado con el color verde"
+INTRO2.DIALOGUE.05.07,"Esta conexión ejecutara el nodo una vez activada la entrada, y la salida se activara una vez terminada la ejecución del nodo"
+INTRO2.DIALOGUE.05.08,"Bueno, mucha charla poca acción, vamos a conectar el nodo de Girar con el nodo de Esperar"
+INTRO2.DIALOGUE.05.09,Para hacerlo presiona y arrastra el [img]assets/images/scripting/node_port_green.png[/img] para hacer una conexión
+INTRO2.DIALOGUE.06.01,"¡Excelente trabajo! ya has aprendido a conectar nodos entre si, aún queda más por aprender pero por ahora vamos a Guardar y salir del modo scripting"
+INTRO2.DIALOGUE.06.02,Para salir del modo scripting hay que presionar nuevamente [img=36]assets/images/keyboard/tab.png[/img] en la pantalla de scripting
+INTRO2.DIALOGUE.07.01,"Que bien lo has hecho %s, muchas gracias por tu ayuda"
+INTRO2.DIALOGUE.07.02,Ahora que conocen un poco sobre el sistema ReBrain vamos a continuar con...
+INTRO2.DIALOGUE.08.01,¿Donde ha ido todo el mundo?
+INTRO2.DIALOGUE.09.01,"Hola Platziverso, parece que tienen una pequeña falla en la seguridad, ha sido muy fácil entrar en su sistema"
+INTRO2.DIALOGUE.09.02,"Si se preguntan donde estan sus preciados alumnos, bueno, los he mandado por diferentes niveles del metaverso"
+INTRO2.DIALOGUE.09.03,"Vamos a divertirnos un poco, ¡nos veremos pronto!"
+INTRO2.DIALOGUE.10.01,"No puedo creerlo, hemos sido hackeados"
+INTRO2.DIALOGUE.10.02,"%s vamos salgamos de aquí, los profesores nos encargaremos de esto"

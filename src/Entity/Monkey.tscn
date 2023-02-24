@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Entity/Monkey.gd" type="Script" id=1]
 [ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=4]
 [ext_resource path="res://assets/images/entities/monkey.png" type="Texture" id=5]
+[ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -167,10 +168,10 @@ tracks/0/keys = {
 radius = 15.0
 height = 0.0
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=13]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=14]
 radius = 16.0
 
 [node name="Monkey" type="KinematicBody2D" groups=["Friend"]]
@@ -203,13 +204,11 @@ visible = false
 position = Vector2( 0, -6 )
 shape = SubResource( 11 )
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-position = Vector2( 0, -6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 12 )
-
 [node name="ScriptingArea" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -6 )
 shape_2d = SubResource( 13 )
+
+[node name="HurtBox" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, -6 )
+shape = SubResource( 14 )
+blink_sprite_path = NodePath("../Sprite")

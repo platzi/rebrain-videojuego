@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Levels/ForestTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/LevelBase.tscn" type="PackedScene" id=2]
@@ -7,11 +7,17 @@
 [ext_resource path="res://src/Entity/Barrel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/UnwalkableTileMap.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Level04.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/Level05.tscn" type="PackedScene" id=9]
 
 [node name="Level04" instance=ExtResource( 2 )]
+script = ExtResource( 8 )
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 456, 272 )
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 9 )
 
 [node name="Monkey" parent="Entities/YSort" index="2" instance=ExtResource( 3 )]
 position = Vector2( 584, 488 )
