@@ -9,7 +9,7 @@ void fragment() {
 	vec2 uv = UV;
 	vec4 color = texture(TEXTURE, uv);
 	if (blocked) {
-		color.r += 0.5 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
+//		color.r += 0.5 + step((sin(TIME * -SPEED + (uv.y / TEXTURE_PIXEL_SIZE.y) * 0.5) / 2.0) + 0.5, 0.2) * 0.2;
 		color.a *= 0.2;
 	}
 	else if (blink) {
