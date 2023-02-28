@@ -14,6 +14,7 @@ var parent : Entity
 var on_mouse = false
 var global_scripting_mode = false
 
+
 func _ready() -> void:
 	parent = get_parent()
 	Globals.connect("scripting_toggled", self, "_on_scripting_toggled")
@@ -51,10 +52,18 @@ func _set_shape_2d(new_value : Shape2D) -> void:
 
 func _on_scripting_toggled() -> void:
 	if Globals.scripting_mode and parent.blocked:
-		parent.get_node("Sprite").material.set_shader_param("blocked", true)
+		if parent.has_node("Sprite"):
+			parent.get_node("Sprite").material.set_shader_param("blocked", true)
 		if parent.has_node("HairSprite"):
 			parent.get_node("HairSprite").material.set_shader_param("blocked", true)
+		if parent.has_node("StudentSprite"):
+			parent.get_node("StudentSprite").material.set_shader_param("blocked", true)
+			parent.get_node("StudentSprite/HairSprite").material.set_shader_param("blocked", true)
 	else:
-		parent.get_node("Sprite").material.set_shader_param("blocked", false)
+		if parent.has_node("Sprite"):
+			parent.get_node("Sprite").material.set_shader_param("blocked", false)
 		if parent.has_node("HairSprite"):
 			parent.get_node("HairSprite").material.set_shader_param("blocked", false)
+		if parent.has_node("HairSprite"):
+			parent.get_node("StudentSprite").material.set_shader_param("blocked", false)
+			parent.get_node("StudentSprite/HairSprite").material.set_shader_param("blocked", false)
