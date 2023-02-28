@@ -2,6 +2,7 @@ extends Node
 
 
 var dialogue_scene := load("res://src/Dialogue/Dialogue.tscn")
+var hint_panel_scene := load("res://src/HintPanel/HintPanel.tscn")
 
 
 export(Array, NodePath) var npc_paths
@@ -49,7 +50,7 @@ func _dialogue_2() -> void:
 	player.input_vector = Vector2.UP
 	player.animation_tree.set("parameters/Idle/blend_position", player.input_vector)
 	var dialogue_inst = dialogue_scene.instance()
-	dialogue_inst.connect("finished", self, "_on_dialogue_2_finished")
+	dialogue_inst.connect("finished", self, "_hint_1")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
 		"Vamos a comenzar activando el modo scripting, para ello presiona [img=36]assets/images/keyboard/tab.png[/img]",
@@ -60,7 +61,7 @@ func _dialogue_2() -> void:
 func _dialogue_3() -> void:
 	Globals.disable_scripting = true
 	var dialogue_inst = dialogue_scene.instance()
-	dialogue_inst.connect("finished", self, "_on_dialogue_3_finished")
+	dialogue_inst.connect("finished", self, "_hint_2")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
 		"¡Muy bien!, ahora mismo estas en el modo scripting, te habrás dado cuenta porque el fondo ha cambiado",
@@ -73,17 +74,12 @@ func _dialogue_3() -> void:
 
 func _dialogue_4(entity : Entity) -> void:
 	var dialogue_inst = dialogue_scene.instance()
-	dialogue_inst.connect("finished", self, "_on_dialogue_4_finished")
+	dialogue_inst.connect("finished", self, "_hint_3")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
 		"¡Perfecto!, ahora mismo te encuentras en el cerebro de la entidad, en este caso del muñeco de pruebas",
-		"En la parte izquierda podrás ver la entidad que se esta programando, y debajo 3 botones",
-		"Guardar: Guarda los cambios que se hayan realizado a la entidad",
-		"Restaurar: Limpia los cambios y devuelve a la entidad su programación inicial",
-		"Cancelar: Se cierra el cerebro de la entidad sin guardar los cambios realizados",
-		"En la parte derecha encontraras la gráfica donde podrás jugar con los nodos para programar a la entidad",
-		"Para agregar un nodo haz click derecho en cualquier parte de la gráfica",
-		"Vamos prueba agregar un nodo de Girar"
+		"En la parte izquierda podrás ver la entidad que se esta programando y en la parte derecha encontraras la gráfica donde podrás jugar con los nodos para programar a la entidad",
+		"Probemos agregar un nodo de Girar, haz click derecho sobre la gráfica de la parte derecha"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -162,21 +158,59 @@ func _dialogue_10() -> void:
 	ui_canvas_layer.add_child(dialogue_inst)
 
 
-func _on_dialogue_1_finished() -> void:
-	Globals.disable_inputs = false
+# HINTS
+func _hint_1() -> void:
+	var hint_panel : HintPanel = hint_panel_scene.instance()
+	hint_panel.connect("closed", self, "_on_hint_1_closed")
+	hint_panel.image = preload("res://assets/images/hints/hint_01.png")
+	hint_panel.title = "Guía Básica"
+	hint_panel.content = "[b][color=#3700a7]Modo scripting[/color][/b]\nPresiona [img=36]assets/images/keyboard/tab.png[/img] para activar el [color=#3700a7]Modo scripting[/color]. En este modo se resaltarán las entidades con las cuales puedes interactuar."
+	ui_canvas_layer.add_child(hint_panel)
 
 
-func _on_dialogue_2_finished() -> void:
+func _hint_2() -> void:
+	var hint_panel : HintPanel = hint_panel_scene.instance()
+	hint_panel.connect("closed", self, "_on_hint_2_closed")
+	hint_panel.image = preload("res://assets/images/hints/hint_02.png")
+	hint_panel.title = "Guía Básica"
+	hint_panel.content = "[b][color=#3700a7]ReBrain[/color][/b]\nAl estar en el [color=#3700a7]Modo Scripting[/color] y hacer click sobre una entidad se abrira el cerebro de esta, desde aquí podrás modificar su comportamiento utilizando distintos nodos."
+	ui_canvas_layer.add_child(hint_panel)
+
+
+func _hint_3() -> void:
+	var hint_panel : HintPanel = hint_panel_scene.instance()
+	hint_panel.connect("closed", self, "_hint_4")
+	hint_panel.image = preload("res://assets/images/hints/hint_03.png")
+	hint_panel.title = "Interfaz ReBrain"
+	hint_panel.content = "[b][color=#3700a7]Guardar[/color][/b]\nSe guardaran los cambios que se hagan a la entidad y se reiniciara a su posición inicial\n\n.[b][color=#3700a7]Restaurar[/color][/b]\nSe restaurara el cerebro de la entidad y se reiniciara a su posición inicial\n\n[b][color=#3700a7]Cancelar[/color][/b]\nSe saldra del cerebro de la entidad sin guardar los cambios."
+	ui_canvas_layer.add_child(hint_panel)
+
+
+func _hint_4() -> void:
+	var hint_panel : HintPanel = hint_panel_scene.instance()
+	hint_panel.connect("closed", self, "_on_hint_4_closed")
+	hint_panel.image = preload("res://assets/images/hints/hint_04.png")
+	hint_panel.title = "Interfaz ReBrain"
+	hint_panel.content = "[b][color=#3700a7]Agregar nodo[/color][/b]\nCon click derecho en la gráfica se abrira el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
+	ui_canvas_layer.add_child(hint_panel)
+
+
+func _on_hint_1_closed() -> void:
 	Globals.disable_scripting = false
 	Globals.connect("scripting_toggled", self, "_dialogue_3", [], CONNECT_ONESHOT)
 
 
-func _on_dialogue_3_finished() -> void:
+func _on_hint_2_closed() -> void:
 	Globals.connect("open_scripting", self, "_dialogue_4", [], CONNECT_ONESHOT)
 
 
-func _on_dialogue_4_finished() -> void:
+func _on_hint_4_closed() -> void:
 	Globals.connect("scripting_node_added", self, "_dialogue_5", [], CONNECT_ONESHOT)
+
+
+# DIALOGUES
+func _on_dialogue_1_finished() -> void:
+	Globals.disable_inputs = false
 
 
 func _on_dialogue_5_finished() -> void:
