@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Entity/Cage.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/cage-front.png" type="Texture" id=2]
@@ -8,9 +8,12 @@
 [ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=6]
 [ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=7]
 [ext_resource path="res://src/Player/PlayerHair.gdshader" type="Shader" id=8]
+[ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=10]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 6 )
+shader_param/blocked = null
 shader_param/blink = false
 shader_param/BLACK = null
 shader_param/SKIN_COLOR = Color( 1, 0.807843, 0.533333, 1 )
@@ -20,8 +23,15 @@ shader_param/SHOES_COLOR = Color( 0.337255, 0.207843, 0.027451, 1 )
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 8 )
+shader_param/blocked = null
 shader_param/blink = null
 shader_param/HAIR_COLOR = Color( 0.247059, 0.105882, 0.00784314, 1 )
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/blocked = null
+shader_param/blink = null
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 42, 14 )
@@ -265,8 +275,12 @@ _data = [ Vector2( 0.254167, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.26601, 0.0
 offsets = PoolRealArray( 0.767772, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
+[sub_resource type="CircleShape2D" id=10]
+radius = 42.0
+
 [node name="Cage" type="KinematicBody2D"]
 script = ExtResource( 1 )
+blocked = true
 hair_color = Color( 0.247059, 0.105882, 0.00784314, 1 )
 skin_color = Color( 1, 0.807843, 0.533333, 1 )
 shirt_color = Color( 1, 1, 1, 1 )
@@ -288,10 +302,12 @@ hframes = 4
 vframes = 4
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 11 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -28 )
 
 [node name="SpriteBack" type="Sprite" parent="Sprite"]
+use_parent_material = true
 z_index = -1
 z_as_relative = false
 texture = ExtResource( 3 )
@@ -323,3 +339,7 @@ scale_amount = 1.5
 scale_amount_random = 0.6
 scale_amount_curve = SubResource( 5 )
 color_ramp = SubResource( 4 )
+
+[node name="ScriptingArea" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -26 )
+shape_2d = SubResource( 10 )
