@@ -1,12 +1,88 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/backgrounds/main-menu.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=4]
+[ext_resource path="res://assets/images/backgrounds/main-menu-player-other.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/backgrounds/main-menu-player-hair-02.png" type="Texture" id=6]
 [ext_resource path="res://assets/themes/main_menu_button_small.tres" type="Theme" id=7]
 [ext_resource path="res://assets/images/backgrounds/main-menu-player.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/backgrounds/main-menu-gradient.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform vec4 BLACK : hint_color;
+uniform vec4 SKIN_COLOR : hint_color;
+uniform vec4 SHIRT_COLOR : hint_color;
+uniform vec4 PANTS_COLOR : hint_color;
+uniform vec4 SHOES_COLOR : hint_color;
+
+void fragment() {
+	vec4 referenceColor[13];
+	referenceColor[0] = BLACK;
+	referenceColor[1] = SKIN_COLOR * 0.2;
+	referenceColor[2] = SKIN_COLOR * 0.8;
+	referenceColor[3] = SKIN_COLOR;
+	referenceColor[4] = SHIRT_COLOR * 0.2;
+	referenceColor[5] = SHIRT_COLOR * 0.8;
+	referenceColor[6] = SHIRT_COLOR;
+	referenceColor[7] = PANTS_COLOR * 0.2;
+	referenceColor[8] = PANTS_COLOR * 0.8;
+	referenceColor[9] = PANTS_COLOR;
+	referenceColor[10] = SHOES_COLOR * 0.2;
+	referenceColor[11] = SHOES_COLOR * 0.8;
+	referenceColor[12] = SHOES_COLOR;
+	
+	vec2 uv = UV;
+	vec4 color = texture(TEXTURE, uv);
+	int idx = int(floor(color.r * 19.0));
+	for (int i=0; i<13; i++) {
+		if (idx == i) {
+			color.rgb = referenceColor[i].rgb;
+			break;
+		}
+	}
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+shader_param/BLACK = null
+shader_param/SKIN_COLOR = null
+shader_param/SHIRT_COLOR = null
+shader_param/PANTS_COLOR = null
+shader_param/SHOES_COLOR = null
+
+[sub_resource type="Shader" id=18]
+code = "shader_type canvas_item;
+
+uniform vec4 HAIR_COLOR : hint_color;
+
+void fragment() {
+	vec4 referenceColor[3];
+	referenceColor[0] = HAIR_COLOR * 0.4;
+	referenceColor[1] = HAIR_COLOR * 0.8;
+	referenceColor[2] = HAIR_COLOR;
+	
+	vec2 uv = UV;
+	vec4 color = texture(TEXTURE, uv);
+	int idx = int(floor(color.r * 4.0));
+	for (int i=0; i<3; i++) {
+		if (idx == i) {
+			color.rgb = referenceColor[i].rgb;
+			break;
+		}
+	}
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
+shader_param/HAIR_COLOR = null
 
 [sub_resource type="Animation" id=11]
 length = 0.001
@@ -27,6 +103,46 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("PlayerHairTR:rect_scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("PlayerHairTR:rect_scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("PlayerOtherTR:rect_scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("PlayerOtherTR:rect_scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
@@ -52,6 +168,46 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("PlayerOtherTR:rect_scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("PlayerOtherTR:rect_scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("PlayerHairTR:rect_scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("PlayerHairTR:rect_scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
 }
@@ -113,6 +269,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 logo_tr_path = NodePath("MarginContainer/VBoxContainer/LogoTR")
+player_tr_path = NodePath("PlayerTR")
+player_hair_tr_path = NodePath("PlayerHairTR")
 start_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/StartBtn")
 select_level_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/SelectLevelBtn")
 customization_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/CustomizationBtn")
@@ -135,12 +293,30 @@ expand = true
 stretch_mode = 6
 
 [node name="PlayerTR" type="TextureRect" parent="."]
+material = SubResource( 17 )
 margin_left = 605.0
 margin_top = 93.0
 margin_right = 857.0
 margin_bottom = 465.0
 rect_pivot_offset = Vector2( 125, 340 )
 texture = ExtResource( 8 )
+
+[node name="PlayerHairTR" type="TextureRect" parent="."]
+material = SubResource( 19 )
+margin_left = 605.0
+margin_top = 93.0
+margin_right = 857.0
+margin_bottom = 465.0
+rect_pivot_offset = Vector2( 125, 340 )
+texture = ExtResource( 6 )
+
+[node name="PlayerOtherTR" type="TextureRect" parent="."]
+margin_left = 605.0
+margin_top = 93.0
+margin_right = 857.0
+margin_bottom = 465.0
+rect_pivot_offset = Vector2( 125, 340 )
+texture = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

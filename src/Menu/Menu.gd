@@ -1,6 +1,18 @@
 extends Control
 
+
+const HAIR_STYLES = [
+	preload("res://assets/images/backgrounds/main-menu-player-hair-02.png"),
+	preload("res://assets/images/backgrounds/main-menu-player-hair-01.png"),
+	preload("res://assets/images/backgrounds/main-menu-player-hair-03.png"),
+	preload("res://assets/images/backgrounds/main-menu-player-hair-04.png"),
+	null
+]
+
+
 export(NodePath) var logo_tr_path
+export(NodePath) var player_tr_path
+export(NodePath) var player_hair_tr_path
 export(NodePath) var start_btn_path
 export(NodePath) var select_level_btn_path
 export(NodePath) var customization_btn_path
@@ -9,6 +21,8 @@ export(NodePath) var credits_btn_path
 
 
 onready var logo_tr := get_node(logo_tr_path) as TextureRect
+onready var player_tr := get_node(player_tr_path) as TextureRect
+onready var player_hair_tr := get_node(player_hair_tr_path) as TextureRect
 onready var start_btn := get_node(start_btn_path) as Button
 onready var select_level_btn := get_node(select_level_btn_path) as Button
 onready var customization_btn := get_node(customization_btn_path) as Button
@@ -30,8 +44,21 @@ func _ready() -> void:
 		start_btn.visible = false
 		select_level_btn.visible = true
 		customization_btn.visible = true
+	_load_avatar()
 	yield(get_tree(), "idle_frame")
 	_create_start_transition()
+
+
+func _load_avatar() -> void:
+#	selected_hair = SaveManager.save_data["customization"]["hair_style"]
+#	selected_hair_color = SaveManager.save_data["customization"]["hair_color"]
+	
+	player_hair_tr.texture = HAIR_STYLES[SaveManager.save_data["customization"]["hair_style"]]
+	player_hair_tr.material.set_shader_param("HAIR_COLOR", Customization.HAIR_COLORS[SaveManager.save_data["customization"]["hair_color"]])
+	player_tr.material.set_shader_param("SKIN_COLOR", Customization.SKIN_COLORS[SaveManager.save_data["customization"]["skin_color"]])
+	player_tr.material.set_shader_param("SHIRT_COLOR", Customization.CLOTHES_COLOR[SaveManager.save_data["customization"]["shirt_color"]])
+	player_tr.material.set_shader_param("PANTS_COLOR", Customization.CLOTHES_COLOR[SaveManager.save_data["customization"]["pants_color"]])
+	player_tr.material.set_shader_param("SHOES_COLOR", Customization.CLOTHES_COLOR[SaveManager.save_data["customization"]["shoes_color"]])
 
 
 func _create_start_transition() -> void:
