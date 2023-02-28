@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Entity/Entity.gd"
 }, {
+"base": "Control",
+"class": "HintPanel",
+"language": "GDScript",
+"path": "res://src/HintPanel/HintPanel.gd"
+}, {
 "base": "GraphNode",
 "class": "ScriptingNode",
 "language": "GDScript",
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Brain": "",
 "Entity": "",
+"HintPanel": "",
 "ScriptingNode": ""
 }
 
