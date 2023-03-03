@@ -1,16 +1,20 @@
 tool
 
-class_name ScriptingNode
 extends GraphNode
+
+class_name ScriptingNode
 
 signal run_finished
 
-export(Theme) var disabled_theme
+export(String) var type
 export(String) var tag setget _set_tag
 export(String) var subtag setget _set_subtag
 export(Texture) var icon setget _set_icon
 
 var _params := []
+
+const _disabled_theme := preload("res://assets/themes/scripting_node_disabled_theme.tres")
+const _theme := preload("res://assets/themes/scripting_node_theme.tres")
 
 onready var _is_ready = true
 
@@ -19,9 +23,10 @@ onready var title_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/TitleLabel
 onready var subtitle_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/SubtitleLabel
 
 var disabled = false setget _set_disabled
-var type = "NONE"
 
 func _ready() -> void:
+	theme = _theme
+	update_slots()
 	_set_icon(icon)
 	_set_tag(tag)
 	_set_subtag(subtag)
@@ -30,6 +35,53 @@ func _ready() -> void:
 func _process(_delta : float) -> void:
 	if !Engine.editor_hint and !Globals.DEBUG and disabled:
 		selected = false
+
+
+func update_slots() -> void:
+	for i in get_child_count():
+		var child = get_child(i)
+		if child is ScriptingNodeSlot:
+			set_slot(
+				i,
+				child.left_enabled,
+				child.left_type,
+				child.left_color,
+				child.right_enabled,
+				child.right_type,
+				child.right_color
+			)
+
+
+func get_inputs() -> Dictionary:
+	var dict := {}
+	for i in get_child_count():
+		var child = get_child(i)
+		if child is ScriptingNodeSlot and child.left_enabled and child.left_type != 0:
+			dict[str(i - 1)] = child.get_left_input_value()
+	return dict
+
+
+func get_outputs() -> Dictionary:
+	var dict := {}
+	for i in get_child_count():
+		var child = get_child(i)
+		if child is ScriptingNodeSlot and child.right_enabled and child.right_type != 0:
+			dict[str(i - 1)] = child.get_right_input_value()
+	return dict
+
+
+func set_inputs(inputs : Dictionary) -> void:
+	for i in inputs:
+		var child = get_child(int(i) + 1)
+		if child is ScriptingNodeSlot:
+			child.left_input_value = inputs[i]
+
+
+func set_outputs(inputs : Dictionary) -> void:
+	for i in inputs:
+		var child = get_child(int(i) + 1)
+		if child is ScriptingNodeSlot:
+			child.right_input_value = inputs[i]
 
 
 func set_params(params : Array) -> void:
@@ -73,5 +125,5 @@ func _set_icon(new_value : Texture) -> void:
 func _set_disabled(new_value : bool) -> void:
 	disabled = new_value
 	if disabled:
-		theme = disabled_theme
+		theme = _disabled_theme
 	

@@ -6,23 +6,44 @@ extends KinematicBody2D
 
 #export (Array, String) var blacklist
 export (String) var brain_og
+# EVENTS
 export (bool) var update_node
 export (bool) var collision_node
 export (bool) var trigger_node
 export (bool) var pressed_node
 export (bool) var released_node
+# ACTIONS
 export (bool) var move_forward_node
-export (bool) var rotate_node
+export (bool) var rotate_left_node
+export (bool) var rotate_right_node
 export (bool) var timer_node
 export (bool) var shoot_node
-export (bool) var explode_node
-export (bool) var message_node
-export (bool) var compare_entity_node
-export (bool) var compare_string_node
 export (bool) var shoot_trigger_node
-export (bool) var activate_node
 export (bool) var open_node
 export (bool) var close_node
+# LOGIC
+export (bool) var if_node
+export (bool) var and_node
+export (bool) var or_node
+export (bool) var equal_node
+export (bool) var not_equal_node
+export (bool) var greater_node
+export (bool) var greater_equal_node
+export (bool) var less_node
+export (bool) var less_equal_node
+export (bool) var compare_entity_node
+export (bool) var compare_string_node
+# INPUT
+export (bool) var number_node
+export (bool) var string_node
+export (bool) var bool_node
+export (bool) var entity_node
+# LOCAL VARIABLES
+export (bool) var position_node
+export (bool) var direction_node
+
+export (PackedScene) var death_particles
+export (Vector2) var death_particles_offset
 export (int) var life := 3
 export (float, 0.0, 360.0) var direction
 export (bool) var blocked
@@ -65,6 +86,9 @@ func _ready() -> void:
 	Globals.connect("trigger_global", self, "_on_trigger_received")
 	# Instance the brain and make all connections
 	instance_brain()
+	if Engine.editor_hint:
+		set_physics_process(false)
+		set_process(false)
 
 
 func _physics_process(delta : float) -> void:
@@ -85,6 +109,7 @@ func _physics_process(delta : float) -> void:
 
 
 func set_blacklist() -> void:
+	# EVENT
 	if !update_node:
 		blacklist.append("UPDATE")
 	if !collision_node:
@@ -95,30 +120,58 @@ func set_blacklist() -> void:
 		blacklist.append("PRESSED")
 	if !released_node:
 		blacklist.append("RELEASED")
+	# ACTIONS
 	if !move_forward_node:
 		blacklist.append("MOVE_FORWARD")
-	if !rotate_node:
-		blacklist.append("ROTATE")
+	if !rotate_left_node:
+		blacklist.append("ROTATE_LEFT")
+	if !rotate_right_node:
+		blacklist.append("ROTATE_RIGHT")
 	if !timer_node:
 		blacklist.append("TIMER")
 	if !shoot_node:
 		blacklist.append("SHOOT")
-	if !explode_node:
-		blacklist.append("EXPLODE")
-	if !message_node:
-		blacklist.append("MESSAGE")
-	if !compare_entity_node:
-		blacklist.append("COMPARE_ENTITY")
-	if !compare_string_node:
-		blacklist.append("COMPARE_STRING")
 	if !shoot_trigger_node:
 		blacklist.append("SHOOT_TRIGGER")
-	if !activate_node:
-		blacklist.append("ACTIVATE")
 	if !open_node:
 		blacklist.append("OPEN")
 	if !close_node:
 		blacklist.append("CLOSE")
+	# LOGIC
+	if !if_node:
+		blacklist.append("IF")
+	if !and_node:
+		blacklist.append("AND")
+	if !or_node:
+		blacklist.append("OR")
+	if !equal_node:
+		blacklist.append("EQUAL")
+	if !not_equal_node:
+		blacklist.append("NOT_EQUAL")
+	if !greater_node:
+		blacklist.append("GREATER")
+	if !greater_equal_node:
+		blacklist.append("GREATER_EQUAL")
+	if !less_node:
+		blacklist.append("LESS")
+	if !less_equal_node:
+		blacklist.append("LESS_EQUAL")
+	if !compare_entity_node:
+		blacklist.append("COMPARE_ENTITY")
+	if !compare_string_node:
+		blacklist.append("COMPARE_STRING")
+	# INPUT
+	if !number_node:
+		blacklist.append("NUMBER")
+	if !string_node:
+		blacklist.append("STRING")
+	if !bool_node:
+		blacklist.append("BOOL")
+	if !entity_node:
+		blacklist.append("ENTITY")
+	# LOCAL VARIABLES
+	if !position_node:
+		blacklist.append("POSITION")
 
 
 func set_nodes() -> void:
@@ -202,8 +255,7 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 	life -= 1
 	velocity_vector = knockback_direction * max_speed * 8
 	if life <= 0:
-		brain.stop()
-		queue_free()
+		destroy()
 	_on_hurt()
 
 
@@ -241,6 +293,10 @@ func _on_trigger_received(tag : String) -> void:
 
 
 func destroy() -> void:
+	if death_particles:
+		var death_particles_inst = death_particles.instance()
+		death_particles_inst.position = position + death_particles_offset
+		get_parent().add_child(death_particles_inst)
 	brain.stop()
 	yield(get_tree(), "idle_frame")
 	queue_free()

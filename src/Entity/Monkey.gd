@@ -17,7 +17,6 @@ func _ready() -> void:
 
 
 func _process(_delta : float) -> void:
-	print(direction)
 	if speed != 0.0:
 		if direction == 0.0 || direction == 360.0:
 			animation_player.play("MoveRight")

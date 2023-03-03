@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/backgrounds/main-menu.png" type="Texture" id=2]
@@ -84,10 +84,13 @@ void fragment() {
 shader = SubResource( 18 )
 shader_param/HAIR_COLOR = null
 
+[sub_resource type="ViewportTexture" id=20]
+viewport_path = NodePath("PlayerViewport")
+
 [sub_resource type="Animation" id=11]
 length = 0.001
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("PlayerTR:rect_scale:x")
+tracks/0/path = NodePath("FullPlayerTR:rect_scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -97,52 +100,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("PlayerTR:rect_scale:y")
+tracks/1/path = NodePath("FullPlayerTR:rect_scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("PlayerHairTR:rect_scale:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("PlayerHairTR:rect_scale:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("PlayerOtherTR:rect_scale:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath("PlayerOtherTR:rect_scale:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
@@ -152,7 +115,7 @@ resource_name = "Start"
 loop = true
 step = 0.05
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("PlayerTR:rect_scale:x")
+tracks/0/path = NodePath("FullPlayerTR:rect_scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -162,52 +125,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("PlayerTR:rect_scale:y")
+tracks/1/path = NodePath("FullPlayerTR:rect_scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("PlayerOtherTR:rect_scale:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("PlayerOtherTR:rect_scale:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("PlayerHairTR:rect_scale:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath("PlayerHairTR:rect_scale:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
 }
@@ -268,14 +191,36 @@ format = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+player_tr_path = NodePath("PlayerViewport/PlayerTR")
+player_hair_tr_path = NodePath("PlayerViewport/PlayerHairTR")
 logo_tr_path = NodePath("MarginContainer/VBoxContainer/LogoTR")
-player_tr_path = NodePath("PlayerTR")
-player_hair_tr_path = NodePath("PlayerHairTR")
 start_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/StartBtn")
 select_level_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/SelectLevelBtn")
 customization_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/CustomizationBtn")
 settings_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsBtn")
 credits_btn_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/CreditsBtn")
+
+[node name="PlayerViewport" type="Viewport" parent="."]
+size = Vector2( 249, 369 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="PlayerTR" type="TextureRect" parent="PlayerViewport"]
+material = SubResource( 17 )
+margin_right = 252.0
+margin_bottom = 372.0
+texture = ExtResource( 8 )
+
+[node name="PlayerHairTR" type="TextureRect" parent="PlayerViewport"]
+material = SubResource( 19 )
+margin_right = 252.0
+margin_bottom = 372.0
+texture = ExtResource( 6 )
+
+[node name="PlayerOtherTR" type="TextureRect" parent="PlayerViewport"]
+margin_right = 252.0
+margin_bottom = 372.0
+texture = ExtResource( 5 )
 
 [node name="BackgroundTR" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -292,31 +237,16 @@ texture = ExtResource( 9 )
 expand = true
 stretch_mode = 6
 
-[node name="PlayerTR" type="TextureRect" parent="."]
-material = SubResource( 17 )
-margin_left = 605.0
-margin_top = 93.0
-margin_right = 857.0
-margin_bottom = 465.0
+[node name="FullPlayerTR" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 611.0
+margin_top = 103.0
+margin_right = -100.0
+margin_bottom = -68.0
 rect_pivot_offset = Vector2( 125, 340 )
-texture = ExtResource( 8 )
-
-[node name="PlayerHairTR" type="TextureRect" parent="."]
-material = SubResource( 19 )
-margin_left = 605.0
-margin_top = 93.0
-margin_right = 857.0
-margin_bottom = 465.0
-rect_pivot_offset = Vector2( 125, 340 )
-texture = ExtResource( 6 )
-
-[node name="PlayerOtherTR" type="TextureRect" parent="."]
-margin_left = 605.0
-margin_top = 93.0
-margin_right = 857.0
-margin_bottom = 465.0
-rect_pivot_offset = Vector2( 125, 340 )
-texture = ExtResource( 5 )
+texture = SubResource( 20 )
+expand = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

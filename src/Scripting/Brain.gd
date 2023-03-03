@@ -28,7 +28,7 @@ func run(type = "UPDATE", param1 = null) -> void:
 			if type == "UPDATE" or type == "PRESSED" or type == "RELEASED":
 				_execute(node, node)
 			elif type == "COLLISION" or type == "TRIGGER":
-				for connection in node.connections:
+				for connection in node.connections_out:
 					if connection.from_port == 1:
 						connection.output = param1
 				_execute(node, node)
@@ -39,6 +39,14 @@ func stop() -> void:
 
 
 func _execute(start_node, current_node) -> void:
+	
+	# Run backwards
+	current_node.computed_inputs = current_node.inputs.duplicate()
+	if current_node.connections_in.size() > 0:
+		for connection in current_node.connections_in:
+			if connection.type > 0:
+				_run_backwards(brain[connection.from], connection.from_port, current_node, connection.to_port)
+	
 	match current_node.type:
 		"UPDATE":
 			_run_next(start_node, current_node)
@@ -52,8 +60,10 @@ func _execute(start_node, current_node) -> void:
 			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
 			_move_forward(start_node, current_node)
-		"ROTATE":
-			_rotate(start_node, current_node)
+		"ROTATE_LEFT":
+			_rotate_left(start_node, current_node)
+		"ROTATE_RIGHT":
+			_rotate_right(start_node, current_node)
 		"TIMER":
 			_timer(start_node, current_node)
 		"SHOOT":
@@ -64,8 +74,6 @@ func _execute(start_node, current_node) -> void:
 			_explode(start_node, current_node)
 		"COMPARE_ENTITY":
 			_compare_entity(start_node, current_node)
-		"COMPARE_STRING":
-			_compare_string(start_node, current_node)
 		"SHOOT_TRIGGER":
 			_shoot_trigger(start_node, current_node)
 		"ACTIVATE":
@@ -74,9 +82,11 @@ func _execute(start_node, current_node) -> void:
 			_open(start_node, current_node)
 		"CLOSE":
 			_close(start_node, current_node)
+		"IF":
+			_if(start_node, current_node)
 
 
-func _run_next(start_node, current_node) -> void:
+func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
 	if !isRunning:
 		return
 	if Globals.scripting_mode:
@@ -85,12 +95,10 @@ func _run_next(start_node, current_node) -> void:
 	var execute_list := []
 	
 	# Pass parameters
-	if current_node.connections.size() > 0:
-		for connection in current_node.connections:
-			if connection.type == 0 and connection.enabled:
+	if current_node.connections_out.size() > 0:
+		for connection in current_node.connections_out:
+			if connection.type == 0:
 				execute_list.append(brain[connection.to])
-			else:
-				brain[connection.to].inputs[str(connection.to_port)] = connection.output
 	
 	# Execute
 	if execute_list.size() > 0:
@@ -100,44 +108,64 @@ func _run_next(start_node, current_node) -> void:
 		_execute(start_node, start_node)
 
 
+func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	current_node.computed_inputs = current_node.inputs.duplicate()
+	if current_node.connections_in.size() > 0:
+		for connection in current_node.connections_in:
+			if connection.type > 0:
+				_run_backwards(brain[connection.from], connection.from_port, current_node, connection.to_port)
+	
+	match current_node.type:
+		"STRING":
+			_string(current_node, port, to_node, to_port)
+		"NUMBER":
+			_number(current_node, port, to_node, to_port)
+		"AND":
+			_and(current_node, port, to_node, to_port)
+		"OR":
+			_or(current_node, port, to_node, to_port)
+		"EQUAL":
+			_equal(current_node, port, to_node, to_port)
+		"NOT_EQUAL":
+			_not_equal(current_node, port, to_node, to_port)
+		"COMPARE_STRING":
+			_compare_string(current_node, port, to_node, to_port)
+		"GREATER":
+			_greater(current_node, port, to_node, to_port)
+		"GREATER_EQUAL":
+			_greater_equal(current_node, port, to_node, to_port)
+		"LESS":
+			_less(current_node, port, to_node, to_port)
+		"LESS_EQUAL":
+			_less_equal(current_node, port, to_node, to_port)
+		"POSITION":
+			_position(current_node, port, to_node, to_port)
+		"DIRECTION":
+			_direction(current_node, port, to_node, to_port)
+
+
 func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 	var entity_tags = [
 		"Player",
 		"Enemy"
 	]
 	var connections = [{}, {}]
-	for connection in node.connections:
+	for connection in node.connections_out:
 		if connection.from_port == 0:
 			connections[0] = connection
 		elif connection.from_port == 1:
 			connections[1] = connection
 	connections[0].enabled = false
 	connections[1].enabled = true
-	if node.inputs.has("1") and node.inputs["1"].is_in_group(entity_tags[node.params[0]]):
+	if node.computed_inputs.has("1") and node.computed_inputs["1"].is_in_group(entity_tags[node.params[0]]):
 		connections[0].enabled = true
 		connections[1].enabled = false
 	_run_next(start_node, node)
 
-
-func _compare_string(start_node : Dictionary, node : Dictionary) -> void:
-	var connections = [{}, {}]
-	for connection in node.connections:
-		if connection.from_port == 0:
-			connections[0] = connection
-		elif connection.from_port == 1:
-			connections[1] = connection
-	connections[0].enabled = false
-	connections[1].enabled = true
-	if node.inputs["1"] == node.params[0]:
-		connections[0].enabled = true
-		connections[1].enabled = false
-	_run_next(start_node, node)
 
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("move_forward")
-	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
-#	_timer.connect("timeout", self, "_on_move_forward_end", [start_node, node], CONNECT_ONESHOT)
-#	_timer.start(node.params[0])
+	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
@@ -145,8 +173,13 @@ func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
 	_run_next(start_node, node)
 
 
-func _rotate(start_node : Dictionary, node : Dictionary) -> void:
-	emit_signal("turns_towards", "left" if node.params[0] == 0 else "right")
+func _rotate_left(start_node : Dictionary, node : Dictionary) -> void:
+	emit_signal("turns_towards", "left")
+	_run_next(start_node, node)
+
+
+func _rotate_right(start_node : Dictionary, node : Dictionary) -> void:
+	emit_signal("turns_towards", "right")
 	_run_next(start_node, node)
 
 
@@ -192,3 +225,102 @@ func _open(start_node : Dictionary, node : Dictionary):
 func _close(start_node : Dictionary, node : Dictionary):
 	emit_signal("close")
 	_run_next(start_node, node)
+
+func _if(start_node : Dictionary, node : Dictionary):
+	var connections = [{}, {}]
+	for connection in node.connections_out:
+		if connection.from_port == 0:
+			connections[0] = connection
+		elif connection.from_port == 1:
+			connections[1] = connection
+	connections[0].type = -1
+	connections[1].type = 0
+	if node.computed_inputs["1"] == "true":
+		connections[0].type = 0
+		connections[1].type = -1
+	_run_next(start_node, node)
+
+
+# CALCULATIONS
+
+
+func _string(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = current_node.outputs["0"]
+
+
+func _number(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = current_node.outputs["0"]
+
+
+func _and(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if current_node.computed_inputs["0"] == "true" and current_node.computed_inputs["1"] == "true":
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _or(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if current_node.computed_inputs["0"] == "true" or current_node.computed_inputs["1"] == "true":
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _compare_string(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if current_node.computed_inputs["0"] == current_node.computed_inputs["1"]:
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _equal(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) == int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _not_equal(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) != int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _greater(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) > int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _greater_equal(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) >= int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _less(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) < int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _less_equal(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if int(current_node.computed_inputs["0"]) <= int(current_node.computed_inputs["1"]):
+		to_node.computed_inputs[str(to_port)] = "true"
+	else:
+		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _position(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	if port == 0:
+		to_node.computed_inputs[str(to_port)] = str(int(get_parent().position.x))
+	elif port == 1:
+		to_node.computed_inputs[str(to_port)] = str(int(get_parent().position.y))
+
+
+func _direction(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = str(int(get_parent().direction))

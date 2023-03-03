@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=2]
+[gd_resource type="Theme" load_steps=15 format=2]
 
 [ext_resource path="res://assets/images/ui/spinbox.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/scripting/node_port.png" type="Texture" id=2]
@@ -15,6 +15,7 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+expand_margin_bottom = 4.0
 shadow_color = Color( 0, 0, 0, 0.470588 )
 shadow_size = 4
 shadow_offset = Vector2( -2, 2 )
@@ -30,110 +31,139 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+expand_margin_bottom = 4.0
 shadow_color = Color( 0, 0, 0, 0.470588 )
 shadow_size = 2
 shadow_offset = Vector2( -2, 2 )
 
 [sub_resource type="StyleBoxFlat" id=9]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 3.0
+content_margin_bottom = 0.0
 bg_color = Color( 0.313726, 0.203922, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=16]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 3.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.4, 0.4, 0.4, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=11]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.393833, 0.255, 0.5, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=12]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.392157, 0.254902, 0.501961, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=10]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.313726, 0.203922, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=13]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.313726, 0.203922, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.243137, 0, 0.380392, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.4726, 0.306, 0.6, 1 )
+border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 4.0
 content_margin_right = 4.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
 bg_color = Color( 0.313726, 0.203922, 0.4, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [resource]
 GraphNode/icons/port = ExtResource( 2 )
@@ -142,6 +172,7 @@ GraphNode/styles/selectedframe = SubResource( 1 )
 Label/fonts/font = ExtResource( 3 )
 LineEdit/fonts/font = ExtResource( 3 )
 LineEdit/styles/normal = SubResource( 9 )
+LineEdit/styles/read_only = SubResource( 16 )
 MarginContainer/constants/margin_bottom = 4
 MarginContainer/constants/margin_left = 12
 MarginContainer/constants/margin_right = 12
@@ -153,6 +184,6 @@ OptionButton/styles/normal = SubResource( 10 )
 OptionButton/styles/pressed = SubResource( 13 )
 Panel/styles/panel = SubResource( 4 )
 PopupMenu/fonts/font = ExtResource( 3 )
-PopupMenu/styles/hover = SubResource( 14 )
+PopupMenu/styles/hover = SubResource( 15 )
 PopupMenu/styles/panel = SubResource( 14 )
 SpinBox/icons/updown = ExtResource( 1 )

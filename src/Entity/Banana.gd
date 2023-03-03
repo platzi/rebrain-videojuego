@@ -15,4 +15,4 @@ func _on_screen_exited() -> void:
 
 
 func _on_hit() -> void:
-	queue_free()
+	destroy()

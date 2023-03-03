@@ -1,27 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=1]
+[ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Scripting/Nodes/TriggerNode.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/scripting/scripting_icon_trigger.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/scripting/scripting_icon_string.png" type="Texture" id=5]
 
 [node name="UpdateNode" instance=ExtResource( 2 )]
 margin_bottom = 69.0
 rect_pivot_offset = Vector2( -737, -239 )
 slot/1/left_enabled = false
 slot/1/left_type = 0
-slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/left_color = Color( 0.352941, 1, 0, 1 )
 slot/1/right_enabled = true
 slot/1/right_type = 0
-slot/1/right_color = Color( 0.164706, 0.686275, 0.00392157, 1 )
+slot/1/right_color = Color( 0.352941, 1, 0, 1 )
 slot/2/left_enabled = false
 slot/2/left_type = 0
-slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/left_color = Color( 0.352941, 1, 0, 1 )
 slot/2/right_enabled = true
 slot/2/right_type = 2
-slot/2/right_color = Color( 0.176471, 0.321569, 0.85098, 1 )
-script = ExtResource( 3 )
+slot/2/right_color = Color( 1, 0.666667, 0, 1 )
+type = "TRIGGER"
 tag = "Disparador"
 subtag = "Evento"
 icon = ExtResource( 4 )
@@ -30,7 +28,7 @@ icon = ExtResource( 4 )
 texture = ExtResource( 4 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 98.0
+margin_right = 90.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
 margin_right = 66.0
@@ -40,52 +38,22 @@ text = "Disparador"
 margin_right = 66.0
 text = "Evento"
 
-[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
+[node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
 margin_right = 159.0
 margin_bottom = 68.0
-mouse_filter = 2
+right_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
-margin_left = 12.0
-margin_top = 4.0
-margin_right = 146.0
-margin_bottom = 20.0
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" index="0"]
-margin_left = 118.0
-margin_right = 134.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-size_flags_horizontal = 10
-texture = ExtResource( 1 )
-expand = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="." index="2"]
+[node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 72.0
 margin_right = 159.0
 margin_bottom = 97.0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" index="0"]
-margin_left = 12.0
-margin_top = 4.0
-margin_right = 146.0
-margin_bottom = 21.0
-
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer" index="0"]
-margin_right = 114.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-text = "Etiqueta"
-align = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" index="1"]
-margin_left = 118.0
-margin_right = 134.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 16, 16 )
-texture = ExtResource( 5 )
-expand = true
+right_enabled = true
+right_type = 2
+right_tag = "Identificador"

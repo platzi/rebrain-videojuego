@@ -280,6 +280,7 @@ radius = 42.0
 
 [node name="Cage" type="KinematicBody2D"]
 script = ExtResource( 1 )
+direction = 3
 blocked = true
 hair_color = Color( 0.247059, 0.105882, 0.00784314, 1 )
 skin_color = Color( 1, 0.807843, 0.533333, 1 )

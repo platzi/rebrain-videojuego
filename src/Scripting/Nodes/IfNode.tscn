@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/scripting/scripting_icon_if.png" type="Texture" id=2]
+[ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=3]
+
+[node name="IfNode" instance=ExtResource( 1 )]
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color( 0.352941, 1, 0, 1 )
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color( 0.352941, 1, 0, 1 )
+slot/2/left_enabled = true
+slot/2/left_type = 4
+slot/2/left_color = Color( 0.8, 0.6, 1, 1 )
+slot/2/right_enabled = true
+slot/2/right_type = 0
+slot/2/right_color = Color( 0.352941, 1, 0, 1 )
+type = "IF"
+tag = "Sí"
+subtag = "Lógica"
+icon = ExtResource( 2 )
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 203.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 202.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 202.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 198.0
+
+[node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
+margin_right = 54.0
+
+[node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
+margin_right = 30.0
+text = "Sí"
+
+[node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
+margin_right = 30.0
+text = "Lógica"
+
+[node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = 44.0
+margin_right = 203.0
+margin_bottom = 69.0
+left_enabled = true
+left_tag = "                     "
+left_number_min = 0
+left_number_max = 0
+right_enabled = true
+right_tag = "Verdadero"
+right_number_min = 0
+right_number_max = 0
+
+[node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = 73.0
+margin_right = 203.0
+margin_bottom = 98.0
+left_enabled = true
+left_type = 4
+left_tag = "Condición"
+left_number_min = 0
+left_number_max = 0
+right_enabled = true
+right_tag = "Falso"
+right_number_min = 0
+right_number_max = 0

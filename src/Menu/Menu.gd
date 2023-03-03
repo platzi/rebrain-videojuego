@@ -10,9 +10,9 @@ const HAIR_STYLES = [
 ]
 
 
-export(NodePath) var logo_tr_path
 export(NodePath) var player_tr_path
 export(NodePath) var player_hair_tr_path
+export(NodePath) var logo_tr_path
 export(NodePath) var start_btn_path
 export(NodePath) var select_level_btn_path
 export(NodePath) var customization_btn_path
@@ -20,9 +20,11 @@ export(NodePath) var settings_btn_path
 export(NodePath) var credits_btn_path 
 
 
-onready var logo_tr := get_node(logo_tr_path) as TextureRect
 onready var player_tr := get_node(player_tr_path) as TextureRect
 onready var player_hair_tr := get_node(player_hair_tr_path) as TextureRect
+
+
+onready var logo_tr := get_node(logo_tr_path) as TextureRect
 onready var start_btn := get_node(start_btn_path) as Button
 onready var select_level_btn := get_node(select_level_btn_path) as Button
 onready var customization_btn := get_node(customization_btn_path) as Button
@@ -50,9 +52,6 @@ func _ready() -> void:
 
 
 func _load_avatar() -> void:
-#	selected_hair = SaveManager.save_data["customization"]["hair_style"]
-#	selected_hair_color = SaveManager.save_data["customization"]["hair_color"]
-	
 	player_hair_tr.texture = HAIR_STYLES[SaveManager.save_data["customization"]["hair_style"]]
 	player_hair_tr.material.set_shader_param("HAIR_COLOR", Customization.HAIR_COLORS[SaveManager.save_data["customization"]["hair_color"]])
 	player_tr.material.set_shader_param("SKIN_COLOR", Customization.SKIN_COLORS[SaveManager.save_data["customization"]["skin_color"]])

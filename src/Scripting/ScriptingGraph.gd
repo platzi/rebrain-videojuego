@@ -31,19 +31,26 @@ func save() -> Dictionary:
 				type = child.type,
 				disabled = child.disabled,
 				position = [child.offset.x, child.offset.y],
-				connections = [],
-				params = child.get_params(),
-				inputs = {}
+				connections_in = [],
+				connections_out = [],
+				computed_inputs = child.get_inputs(),
+				inputs = child.get_inputs(),
+				outputs = child.get_outputs()
 			}
 	for connection in get_connection_list():
-		var node_instance : GraphNode = get_node(connection.from)
-		nodes[connection.from].connections.append({
-			type = node_instance.get_connection_output_type(connection.from_port),
+		var node_to_instance : GraphNode = get_node(connection.to)
+		var node_from_instance : GraphNode = get_node(connection.from)
+		nodes[connection.from].connections_out.append({
+			type = node_from_instance.get_connection_output_type(connection.from_port),
 			from_port = connection.from_port,
 			to = connection.to,
-			to_port = connection.to_port,
-			output = 1,
-			enabled = true
+			to_port = connection.to_port
+		})
+		nodes[connection.to].connections_in.append({
+			type = node_to_instance.get_connection_input_type(connection.to_port),
+			from = connection.from,
+			from_port = connection.from_port,
+			to_port = connection.to_port
 		})
 	return nodes
 
@@ -95,5 +102,5 @@ func _on_node_selected(_node : Node) -> void:
 	pass
 
 
-func _on_delete_nodes_request() -> void:
+func _on_delete_nodes_request(_nodes : Array) -> void:
 	pass

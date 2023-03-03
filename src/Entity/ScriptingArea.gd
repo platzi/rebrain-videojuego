@@ -64,6 +64,6 @@ func _on_scripting_toggled() -> void:
 			parent.get_node("Sprite").material.set_shader_param("blocked", false)
 		if parent.has_node("HairSprite"):
 			parent.get_node("HairSprite").material.set_shader_param("blocked", false)
-		if parent.has_node("HairSprite"):
+		if parent.has_node("StudentSprite"):
 			parent.get_node("StudentSprite").material.set_shader_param("blocked", false)
 			parent.get_node("StudentSprite/HairSprite").material.set_shader_param("blocked", false)

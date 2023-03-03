@@ -8,4 +8,3 @@ func _ready():
 	timer.autostart = true
 	timer.wait_time = 5
 	add_child(timer)
-	$AudioStreamPlayer2D.play()

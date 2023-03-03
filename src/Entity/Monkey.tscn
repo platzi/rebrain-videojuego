@@ -189,6 +189,7 @@ frame = 4
 [node name="Shadow" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.5
 anims/IdleDown = SubResource( 2 )
 anims/IdleLeft = SubResource( 3 )
 anims/IdleRight = SubResource( 4 )

@@ -1,23 +1,41 @@
 extends Control
 
 var node_scene_list := {
+	# EVENTS
 	UPDATE = preload("res://src/Scripting/Nodes/UpdateNode.tscn"),
 	COLLISION = preload("res://src/Scripting/Nodes/CollisionNode.tscn"),
 	TRIGGER = preload("res://src/Scripting/Nodes/TriggerNode.tscn"),
 	PRESSED = preload("res://src/Scripting/Nodes/PressedNode.tscn"),
 	RELEASED = preload("res://src/Scripting/Nodes/ReleasedNode.tscn"),
+	# ACTIONS
 	MOVE_FORWARD = preload("res://src/Scripting/Nodes/MoveForwardNode.tscn"),
-	ROTATE = preload("res://src/Scripting/Nodes/RotateNode.tscn"),
+	ROTATE_LEFT = preload("res://src/Scripting/Nodes/RotateLeftNode.tscn"),
+	ROTATE_RIGHT = preload("res://src/Scripting/Nodes/RotateRightNode.tscn"),
 	TIMER = preload("res://src/Scripting/Nodes/TimerNode.tscn"),
 	SHOOT = preload("res://src/Scripting/Nodes/ShootNode.tscn"),
-	EXPLODE = preload("res://src/Scripting/Nodes/ExplodeNode.tscn"),
-	MESSAGE = preload("res://src/Scripting/Nodes/MessageNode.tscn"),
+	OPEN = preload("res://src/Scripting/Nodes/OpenNode.tscn"),
+	CLOSE = preload("res://src/Scripting/Nodes/CloseNode.tscn"),
+	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
+	# LOGIC
+	IF = preload("res://src/Scripting/Nodes/IfNode.tscn"),
+	AND = preload("res://src/Scripting/Nodes/AndNode.tscn"),
+	OR = preload("res://src/Scripting/Nodes/OrNode.tscn"),
+	EQUAL = preload("res://src/Scripting/Nodes/EqualNode.tscn"),
+	NOT_EQUAL = preload("res://src/Scripting/Nodes/NotEqualNode.tscn"),
+	GREATER = preload("res://src/Scripting/Nodes/GreaterNode.tscn"),
+	GREATER_EQUAL = preload("res://src/Scripting/Nodes/GreaterEqualNode.tscn"),
+	LESS = preload("res://src/Scripting/Nodes/LessNode.tscn"),
+	LESS_EQUAL = preload("res://src/Scripting/Nodes/LessEqualNode.tscn"),
 	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
 	COMPARE_STRING = preload("res://src/Scripting/Nodes/CompareStringNode.tscn"),
-	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
-	ACTIVATE = preload("res://src/Scripting/Nodes/ActivateNode.tscn"),
-	OPEN = preload("res://src/Scripting/Nodes/OpenNode.tscn"),
-	CLOSE = preload("res://src/Scripting/Nodes/CloseNode.tscn")
+	# INPUT
+	NUMBER = preload("res://src/Scripting/Nodes/NumberNode.tscn"),
+	STRING = preload("res://src/Scripting/Nodes/StringNode.tscn"),
+	BOOL = preload("res://src/Scripting/Nodes/BoolNode.tscn"),
+	ENTITY = preload("res://src/Scripting/Nodes/EntityNode.tscn"),
+	# LOCAL VARIABLES
+	POSITION = preload("res://src/Scripting/Nodes/PositionNode.tscn"),
+	DIRECTION = preload("res://src/Scripting/Nodes/DirectionNode.tscn"),
 }
 
 
@@ -132,19 +150,26 @@ func load_nodes(nodes) -> void:
 	# Instance nodes
 	for key in nodes:
 		var node = nodes[key]
+		if !node_scene_list.has(node.type):
+			continue
 		var inst : ScriptingNode = node_scene_list[node.type].instance()
 		inst.offset.x = node.position[0]
 		inst.offset.y = node.position[1]
 		inst.disabled = node.disabled
-		inst.set_params(node.params)
+		inst.set_inputs(node.inputs)
+		inst.set_outputs(node.outputs)
 		scripting_graph.add_child(inst)
 		nodes[key].instance = inst
 	node_searcher.hide()
 	# Make connections
 	for key in nodes:
 		var node = nodes[key]
+		if !node.has("instance"):
+			continue
 		var from = node.instance
-		for connection in node.connections:
+		for connection in node.connections_out:
+			if !nodes.has(connection.to) or !nodes[connection.to].has("instance"):
+				continue
 			var to = nodes[connection.to].instance
 			scripting_graph.connect_node(from.name, connection.from_port, to.name, connection.to_port)
 

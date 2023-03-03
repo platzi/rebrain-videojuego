@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "ScriptingNode",
 "language": "GDScript",
 "path": "res://src/Scripting/ScriptingNode.gd"
+}, {
+"base": "MarginContainer",
+"class": "ScriptingNodeSlot",
+"language": "GDScript",
+"path": "res://src/Scripting/ScriptingNodeSlot.gd"
 } ]
 _global_script_class_icons={
 "Brain": "",
 "Entity": "",
 "HintPanel": "",
-"ScriptingNode": ""
+"ScriptingNode": "",
+"ScriptingNodeSlot": ""
 }
 
 [application]

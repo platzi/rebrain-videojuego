@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Scripting/ScriptingNodeSlot.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/scripting/scripting_icon_run.png" type="Texture" id=2]
+
+[node name="ScriptingNodeSlot" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 1 )
+left_enabled = false
+left_type = 0
+left_tag = ""
+left_show_input = false
+right_enabled = false
+right_type = 0
+right_tag = ""
+right_show_input = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 960.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="InputHBC" type="HBoxContainer" parent="HBoxContainer"]
+margin_bottom = 540.0
+size_flags_horizontal = 2
+custom_constants/separation = 4
+
+[node name="LeftIconTR" type="TextureRect" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_right = 16.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="LeftTagLabel" type="Label" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_left = 24.0
+margin_top = 263.0
+margin_right = 24.0
+margin_bottom = 277.0
+
+[node name="TextInputLE" type="LineEdit" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_right = 58.0
+margin_bottom = 540.0
+
+[node name="NumberInputSB" type="SpinBox" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_right = 74.0
+margin_bottom = 540.0
+align = 2
+
+[node name="BooleanInputCB" type="CheckBox" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 540.0
+
+[node name="EntityInputOB" type="OptionButton" parent="HBoxContainer/InputHBC"]
+visible = false
+margin_right = 75.0
+margin_bottom = 540.0
+text = "Jugador"
+items = [ "Jugador", null, false, 0, null, "Amistoso", null, false, 1, null, "Hostil", null, false, 2, null ]
+selected = 0
+
+[node name="OutputHBC" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 960.0
+margin_right = 960.0
+margin_bottom = 540.0
+custom_constants/separation = 4
+
+[node name="TextOutputLE" type="LineEdit" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_left = -960.0
+margin_right = -902.0
+margin_bottom = 540.0
+
+[node name="NumberOutputSB" type="SpinBox" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_left = -960.0
+margin_right = -886.0
+margin_bottom = 540.0
+align = 2
+
+[node name="BooleanOutputCB" type="CheckBox" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_left = -960.0
+margin_right = -936.0
+margin_bottom = 540.0
+
+[node name="EntityOutputOB" type="OptionButton" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_left = -960.0
+margin_right = -885.0
+margin_bottom = 540.0
+text = "Jugador"
+items = [ "Jugador", null, false, 0, null, "Amistoso", null, false, 1, null, "Hostil", null, false, 2, null ]
+selected = 0
+
+[node name="RightTagLabel" type="Label" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_top = 263.0
+margin_bottom = 277.0
+align = 2
+
+[node name="RightIconTR" type="TextureRect" parent="HBoxContainer/OutputHBC"]
+visible = false
+margin_left = 8.0
+margin_right = 24.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 8
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
