@@ -49,6 +49,7 @@ func _execute(start_node, current_node) -> void:
 	
 	match current_node.type:
 		"UPDATE":
+			yield(get_tree(), "idle_frame")
 			_run_next(start_node, current_node)
 		"COLLISION":
 			_run_next(start_node, current_node)
@@ -91,7 +92,6 @@ func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
 		return
 	if Globals.scripting_mode:
 		yield(Globals, "scripting_toggled")
-	yield(get_tree(), "idle_frame")
 	var execute_list := []
 	
 	# Pass parameters
