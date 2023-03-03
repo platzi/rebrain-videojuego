@@ -46,9 +46,13 @@ margin_bottom = 69.0
 left_enabled = true
 left_type = 1
 left_tag = "A"
+left_number_min = 0
+left_number_max = 100
 right_enabled = true
 right_type = 4
 right_tag = "A == B"
+right_number_min = 0
+right_number_max = 100
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -60,3 +64,7 @@ margin_bottom = 98.0
 left_enabled = true
 left_type = 1
 left_tag = "B"
+left_number_min = 0
+left_number_max = 100
+right_number_min = 0
+right_number_max = 100
