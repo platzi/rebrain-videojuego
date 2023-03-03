@@ -97,7 +97,7 @@ func _physics_process(delta : float) -> void:
 		if self.is_in_group("Projectile"):
 			velocity_vector = move_vector * speed
 		else:
-			velocity_vector += move_vector * speed
+			velocity_vector = move_vector * speed
 			if velocity_vector.distance_to(Vector2.ZERO) > max_speed:
 				velocity_vector = velocity_vector.move_toward(move_vector * max_speed, delta * max_speed * 100)
 	else:
@@ -207,7 +207,7 @@ func turns_towards(towards : String) -> void:
 
 
 func move_forward() -> void:
-	speed = 10.0
+	speed = 54.0
 
 
 func stop_moving() -> void:
