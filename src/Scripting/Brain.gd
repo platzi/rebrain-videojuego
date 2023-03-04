@@ -18,7 +18,7 @@ var isRunning := true
 
 func _ready() -> void:
 	if !Engine.editor_hint:
-		run()
+		get_tree().create_timer(0.2).connect("timeout", self, "run")
 
 
 func run(type = "UPDATE", param1 = null) -> void:
@@ -39,7 +39,6 @@ func stop() -> void:
 
 
 func _execute(start_node, current_node) -> void:
-	
 	# Run backwards
 	current_node.computed_inputs = current_node.inputs.duplicate()
 	if current_node.connections_in.size() > 0:
@@ -165,7 +164,10 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("move_forward")
-	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
+#	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
+	yield(get_tree().create_timer(1.0, false), "timeout")
+	emit_signal("stop_moving")
+	_run_next(start_node, node)
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
@@ -184,7 +186,7 @@ func _rotate_right(start_node : Dictionary, node : Dictionary) -> void:
 
 
 func _timer(start_node : Dictionary, node : Dictionary) -> void:
-	get_tree().create_timer(node.params[0], false).connect("timeout", self, "_run_next", [start_node, node])
+	get_tree().create_timer(int(node.computed_inputs["1"]), false).connect("timeout", self, "_run_next", [start_node, node])
 
 
 func _shoot(start_node : Dictionary, node : Dictionary):
