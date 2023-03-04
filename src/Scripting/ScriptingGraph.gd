@@ -86,7 +86,9 @@ func _disable_selected() -> void:
 func _on_connection_request(from : String, from_slot : int, to : String, to_slot : int) -> void:
 	var connections = get_connection_list()
 	for connection in connections:
-		if connection.from == from && connection.from_port == from_slot:
+		var node_from : GraphNode = get_node(connection.from)
+		print(connection)
+		if connection.from == from and connection.from_port == from_slot and node_from.get_connection_output_type(from_slot) <= 0:
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
 		elif connection.to == to && connection.to_port == to_slot:
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
