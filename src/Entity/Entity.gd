@@ -70,9 +70,7 @@ var initial_direction := 0.0
 var velocity_vector : Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
-	# Create blacklist
 	set_blacklist()
-	# Set nodes
 	set_nodes()
 	# Load default brain
 	if brain_og != "":
@@ -93,16 +91,8 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	if speed != 0.0:
-		var move_vector := Vector2.RIGHT.rotated(deg2rad(direction))
-		if self.is_in_group("Projectile"):
-			velocity_vector = move_vector * speed
-		else:
-			velocity_vector = move_vector * speed
-			if velocity_vector.distance_to(Vector2.ZERO) > max_speed:
-				velocity_vector = velocity_vector.move_toward(move_vector * max_speed, delta * max_speed * 100)
-	else:
-		velocity_vector = velocity_vector.move_toward(Vector2.ZERO, delta * max_speed * 100)
-	velocity_vector = move_and_slide(velocity_vector)
+		var linear_veolicty := Vector2.RIGHT.rotated(deg2rad(direction)) * speed
+		move_and_slide(linear_veolicty)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		_on_collision(collision)
@@ -207,7 +197,7 @@ func turns_towards(towards : String) -> void:
 
 
 func move_forward() -> void:
-	speed = 54.0
+	speed = 48.0
 
 
 func stop_moving() -> void:
