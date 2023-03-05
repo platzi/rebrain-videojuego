@@ -14,6 +14,7 @@ slot/1/right_color = Color( 0.352941, 1, 0, 1 )
 type = "UPDATE"
 tag = "Actualizar"
 subtag = "Evento"
+icon = ExtResource( 4 )
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 4 )
@@ -36,4 +37,8 @@ margin_left = 1.0
 margin_top = 44.0
 margin_right = 159.0
 margin_bottom = 68.0
+left_number_min = 0
+left_number_max = 100
 right_enabled = true
+right_number_min = 0
+right_number_max = 100

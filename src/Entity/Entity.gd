@@ -4,43 +4,45 @@ class_name Entity
 extends KinematicBody2D
 
 
-#export (Array, String) var blacklist
+enum NODE_TYPES {
+	UPDATE,
+	COLLISION,
+	TRIGGER,
+	PRESSED,
+	RELEASED,
+	
+	MOVE_FORWARD,
+	ROTTATE_LEFT,
+	ROTATE_RIGHT
+	TIMER,
+	SHOOT,
+	SHOOT_TRIGGER,
+	OPEN,
+	CLOSE,
+	
+	IF,
+	AND,
+	OR,
+	EQUAL,
+	NOT_EQUAL,
+	GREATER,
+	GREATER_EQUAL,
+	LESS,
+	LESS_EQUAL,
+	COMPARE_ENTITY,
+	COMPARE_STRING,
+	
+	NUMBER,
+	STRING,
+	BOOL,
+	ENTITY,
+	
+	POSITION,
+	DIRECTION
+}
+
+
 export (String) var brain_og
-# EVENTS
-export (bool) var update_node
-export (bool) var collision_node
-export (bool) var trigger_node
-export (bool) var pressed_node
-export (bool) var released_node
-# ACTIONS
-export (bool) var move_forward_node
-export (bool) var rotate_left_node
-export (bool) var rotate_right_node
-export (bool) var timer_node
-export (bool) var shoot_node
-export (bool) var shoot_trigger_node
-export (bool) var open_node
-export (bool) var close_node
-# LOGIC
-export (bool) var if_node
-export (bool) var and_node
-export (bool) var or_node
-export (bool) var equal_node
-export (bool) var not_equal_node
-export (bool) var greater_node
-export (bool) var greater_equal_node
-export (bool) var less_node
-export (bool) var less_equal_node
-export (bool) var compare_entity_node
-export (bool) var compare_string_node
-# INPUT
-export (bool) var number_node
-export (bool) var string_node
-export (bool) var bool_node
-export (bool) var entity_node
-# LOCAL VARIABLES
-export (bool) var position_node
-export (bool) var direction_node
 
 export (PackedScene) var death_particles
 export (Vector2) var death_particles_offset
@@ -49,8 +51,7 @@ export (float, 0.0, 360.0) var direction
 export (bool) var blocked
 
 
-var blacklist : Array
-
+var nodes_limit : Dictionary
 
 var message_board
 var hurt_box
@@ -70,7 +71,6 @@ var initial_direction := 0.0
 var velocity_vector : Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
-	set_blacklist()
 	set_nodes()
 	# Load default brain
 	if brain_og != "":
@@ -98,70 +98,38 @@ func _physics_process(delta : float) -> void:
 		_on_collision(collision)
 
 
-func set_blacklist() -> void:
-	# EVENT
-	if !update_node:
-		blacklist.append("UPDATE")
-	if !collision_node:
-		blacklist.append("COLLISION")
-	if !trigger_node:
-		blacklist.append("TRIGGER")
-	if !pressed_node:
-		blacklist.append("PRESSED")
-	if !released_node:
-		blacklist.append("RELEASED")
-	# ACTIONS
-	if !move_forward_node:
-		blacklist.append("MOVE_FORWARD")
-	if !rotate_left_node:
-		blacklist.append("ROTATE_LEFT")
-	if !rotate_right_node:
-		blacklist.append("ROTATE_RIGHT")
-	if !timer_node:
-		blacklist.append("TIMER")
-	if !shoot_node:
-		blacklist.append("SHOOT")
-	if !shoot_trigger_node:
-		blacklist.append("SHOOT_TRIGGER")
-	if !open_node:
-		blacklist.append("OPEN")
-	if !close_node:
-		blacklist.append("CLOSE")
-	# LOGIC
-	if !if_node:
-		blacklist.append("IF")
-	if !and_node:
-		blacklist.append("AND")
-	if !or_node:
-		blacklist.append("OR")
-	if !equal_node:
-		blacklist.append("EQUAL")
-	if !not_equal_node:
-		blacklist.append("NOT_EQUAL")
-	if !greater_node:
-		blacklist.append("GREATER")
-	if !greater_equal_node:
-		blacklist.append("GREATER_EQUAL")
-	if !less_node:
-		blacklist.append("LESS")
-	if !less_equal_node:
-		blacklist.append("LESS_EQUAL")
-	if !compare_entity_node:
-		blacklist.append("COMPARE_ENTITY")
-	if !compare_string_node:
-		blacklist.append("COMPARE_STRING")
-	# INPUT
-	if !number_node:
-		blacklist.append("NUMBER")
-	if !string_node:
-		blacklist.append("STRING")
-	if !bool_node:
-		blacklist.append("BOOL")
-	if !entity_node:
-		blacklist.append("ENTITY")
-	# LOCAL VARIABLES
-	if !position_node:
-		blacklist.append("POSITION")
+func _get_property_list() -> Array:
+	var properties := []
+	properties.append({
+		name = "Nodes List",
+		type = TYPE_NIL,
+		hint = "nodes_limit_",
+		usage = PROPERTY_USAGE_GROUP
+	})
+	for i in NODE_TYPES:
+		properties.append({
+			name = "node_limit_" + str(i),
+			type = TYPE_INT
+		})
+	return properties
+
+func _get(property : String):
+	if "node_limit_" in property:
+		var property_split = property.trim_prefix("node_limit_")
+		if NODE_TYPES.has(property_split):
+			if nodes_limit.has(property_split):
+				return nodes_limit[property_split]
+			else:
+				return 0
+
+
+func _set(property : String, value) -> bool:
+	if "node_limit_" in property:
+		var property_split = property.trim_prefix("node_limit_")
+		if NODE_TYPES.has(property_split):
+			nodes_limit[property_split] = value
+			return true
+	return false
 
 
 func set_nodes() -> void:

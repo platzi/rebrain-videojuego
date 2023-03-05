@@ -49,7 +49,7 @@ var node_groups := {
 	]
 }
 
-var blacklist := [] setget _set_blacklist
+var nodes_limit := {} setget _set_nodes_limit
 
 func _ready():
 	_create_buttons()
@@ -57,7 +57,7 @@ func _ready():
 
 func _input(event : InputEvent) -> void:
 	if Globals.DEBUG and event is InputEventKey and event.pressed and event.scancode == KEY_U:
-		blacklist = []
+		nodes_limit = {}
 		_create_buttons()
 
 
@@ -75,12 +75,17 @@ func _create_buttons() -> void:
 		group_button.text = group
 		node_list_vbc.add_child(group_button)
 		for node in node_groups[group]:
-			if !blacklist.has(node[0]):
+			var node_type : String = node[0]
+			var node_name : String = node[1]
+			var node_image : StreamTexture = node[2]
+			if Engine.editor_hint:
+				nodes_limit[node_type] = round(rand_range(1.0, 3.0))
+			if nodes_limit.has(node_type):
 				var button := Button.new()
 				button.align = Button.ALIGN_LEFT
-				button.text = node[1]
-				if node[2]:
-					button.icon = node[2]
+				button.text = node_name + ((" (%s)" % nodes_limit[node_type]) if nodes_limit[node_type] >= 0 else "")
+				button.icon = node_image if node_image else null
+				button.disabled = true if nodes_limit[node_type] == 0 else false
 				button.connect("pressed", self, "_on_node_button_pressed", [node[0]])
 				button.expand_icon = true
 				button.focus_mode = Control.FOCUS_NONE
@@ -94,7 +99,7 @@ func _on_node_button_pressed(node_type : String) -> void:
 	emit_signal("node_selected", node_type)
 
 
-func _set_blacklist(new_value : Array) -> void:
-	blacklist = new_value
+func _set_nodes_limit(new_value : Dictionary) -> void:
+	nodes_limit = new_value
 	_create_buttons()
 

@@ -20,6 +20,7 @@ margin_bottom = 192.0
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 176.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 custom_styles/normal = SubResource( 1 )
 text = "Nodos"
 align = 1
@@ -37,5 +38,5 @@ size_flags_vertical = 3
 
 [node name="NodeListVBC" type="VBoxContainer" parent="VBoxContainer/NodeListSC"]
 margin_right = 176.0
-margin_bottom = 463.0
+margin_bottom = 855.0
 size_flags_horizontal = 3

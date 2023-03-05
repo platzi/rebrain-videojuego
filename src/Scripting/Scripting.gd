@@ -43,7 +43,7 @@ var is_open := false
 
 
 onready var node_searcher := $NodeSearcher as PopupPanel
-onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/ScriptingGraph
+onready var scripting_graph : GraphEdit = $MarginContainer/HBoxContainer/MarginContainer/ScriptingGraph
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 onready var sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Sprite
@@ -62,6 +62,7 @@ func _ready() -> void:
 	Globals.connect("scripting_abort", self, "abort")
 	node_searcher.connect("node_selected", self, "_create_new_node")
 	scripting_graph.connect("popup_request", self, "open_node_searcher")
+	scripting_graph.connect("delete_nodes_request", self, "_on_delete_nodes_request")
 	save_btn.connect("pressed", self, "on_SaveBtn_pressed")
 	restore_btn.connect("pressed", self, "on_RestoreBtn_pressed")
 	cancel_btn.connect("pressed", self, "on_CancelBtn_pressed")
@@ -95,26 +96,10 @@ func abort() -> void:
 
 func open(entity : Entity) -> void:
 	_target_entity = entity
-	var target_sprite = _target_entity.get_node("Sprite")
-	sprite.texture = target_sprite.texture
-	sprite.hframes = target_sprite.hframes
-	sprite.vframes = target_sprite.vframes
-	sprite.frame = target_sprite.frame
-	if _target_entity.is_in_group("NPC"):
-		sprite.material = target_sprite.material
-		var target_hair_sprite = _target_entity.get_node("HairSprite")
-		hair_sprite.texture = target_hair_sprite.texture
-		hair_sprite.hframes = target_hair_sprite.hframes
-		hair_sprite.vframes = target_hair_sprite.vframes
-		hair_sprite.frame = target_hair_sprite.frame
-		hair_sprite.material = target_hair_sprite.material
-	else:
-		sprite.material = null
-		hair_sprite.material = null
-		hair_sprite.visible = false
-	node_searcher.blacklist = entity.blacklist
+	_set_entity_preview()
 	brain = entity.brain.brain
 	load_nodes(brain)
+	update_nodes_limit()
 	is_open = true
 	animation_player.play("Open")
 	var target_position = get_global_mouse_position()
@@ -143,6 +128,19 @@ func close() -> void:
 	position_y_values[0] = _open_position.y
 	close_anim.track_set_key_value(position_x_track, 1, position_x_values)
 	close_anim.track_set_key_value(position_y_track, 1, position_y_values)
+
+
+func update_nodes_limit() -> void:
+	for node_type in _target_entity.nodes_limit:
+		var node_qty = _target_entity.nodes_limit[node_type]
+		if node_qty != 0:
+			node_searcher.nodes_limit[node_type] = node_qty
+	for child in scripting_graph.get_children():
+		if child is ScriptingNode:
+			var node := child as ScriptingNode
+			var node_type = node.type
+			if node_searcher.nodes_limit.has(node_type) and node_searcher.nodes_limit[node_type] > 0:
+				node_searcher.nodes_limit[node_type] -= 1
 
 
 func load_nodes(nodes) -> void:
@@ -174,6 +172,26 @@ func load_nodes(nodes) -> void:
 			scripting_graph.connect_node(from.name, connection.from_port, to.name, connection.to_port)
 
 
+func _set_entity_preview() -> void:
+	var target_sprite = _target_entity.get_node("Sprite")
+	sprite.texture = target_sprite.texture
+	sprite.hframes = target_sprite.hframes
+	sprite.vframes = target_sprite.vframes
+	sprite.frame = target_sprite.frame
+	if _target_entity.is_in_group("NPC"):
+		sprite.material = target_sprite.material
+		var target_hair_sprite = _target_entity.get_node("HairSprite")
+		hair_sprite.texture = target_hair_sprite.texture
+		hair_sprite.hframes = target_hair_sprite.hframes
+		hair_sprite.vframes = target_hair_sprite.vframes
+		hair_sprite.frame = target_hair_sprite.frame
+		hair_sprite.material = target_hair_sprite.material
+	else:
+		sprite.material = null
+		hair_sprite.material = null
+		hair_sprite.visible = false
+
+
 func _create_new_node(node_type : String) -> void:
 	var mousePos := scripting_graph.get_local_mouse_position()
 	var inst : ScriptingNode = node_scene_list[node_type].instance()
@@ -181,6 +199,7 @@ func _create_new_node(node_type : String) -> void:
 	scripting_graph.add_child(inst)
 	node_searcher.hide()
 	Globals.emit_signal("scripting_node_added", inst)
+	update_nodes_limit()
 
 
 func on_SaveBtn_pressed() -> void:
@@ -196,3 +215,7 @@ func on_RestoreBtn_pressed() -> void:
 
 func on_CancelBtn_pressed() -> void:
 	close()
+
+
+func _on_delete_nodes_request(_nodes : Array) -> void:
+	get_tree().create_timer(0.1, true).connect("timeout", self, "update_nodes_limit")
