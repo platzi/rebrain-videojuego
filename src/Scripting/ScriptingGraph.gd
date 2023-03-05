@@ -116,5 +116,8 @@ func _on_node_selected(_node : Node) -> void:
 
 func _on_delete_nodes_request(_nodes : Array) -> void:
 	for node_name in _nodes:
+		for connection in get_connection_list():
+			if connection.from == node_name or connection.to == node_name:
+				_on_disconnection_request(connection.from, connection.from_port, connection.to, connection.to_port)
 		if has_node(node_name):
 			get_node(node_name).queue_free()
