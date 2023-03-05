@@ -12,9 +12,6 @@ func _ready():
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-#		print(event.scancode)
-#		if event.scancode == KEY_DELETE:
-#			_delete_selected()
 		if Globals.DEBUG:
 			if event.scancode == KEY_F2:
 				var save_string = JSON.print(save())
@@ -69,7 +66,6 @@ func delete_all_nodes() -> void:
 
 func _delete_selected() -> void:
 	var disconnect_list := []
-	print(get_focus_owner())
 	for child in get_children():
 		if child is GraphNode && child.selected:
 			disconnect_list.append(child.name)

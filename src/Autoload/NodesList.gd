@@ -34,6 +34,7 @@ const NODES = {
 		["LESS_EQUAL", "Menor o igual que", preload("res://assets/images/scripting/scripting_icon_less_equal.png"), preload("res://src/Scripting/Nodes/LessNode.tscn")],
 		["COMPARE_ENTITY", "Comparar entidad", preload("res://assets/images/scripting/scripting_icon_compare.png"), preload("res://src/Scripting/Nodes/CompareEntityNode.tscn")],
 		["COMPARE_STRING", "Comparar texto", preload("res://assets/images/scripting/scripting_icon_compare.png"), preload("res://src/Scripting/Nodes/CompareStringNode.tscn")],
+		["PATH_AHEAD", "Camino adelante", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathAheadNode.tscn")],
 	],
 	"Entradas": [
 		["NUMBER", "Numero", preload("res://assets/images/scripting/scripting_icon_number.png"), preload("res://src/Scripting/Nodes/NumberNode.tscn")],

@@ -48,9 +48,9 @@ func _execute(start_node, current_node) -> void:
 	
 	match current_node.type:
 		"UPDATE":
-#			yield(get_tree(), "idle_frame")
-			call_deferred("_run_next", start_node, current_node)
-#			_run_next(start_node, current_node)
+			yield(get_tree(), "idle_frame")
+#			call_deferred("_run_next", start_node, current_node)
+			_run_next(start_node, current_node)
 		"COLLISION":
 			_run_next(start_node, current_node)
 		"TRIGGER":
@@ -138,6 +138,9 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 			_less(current_node, port, to_node, to_port)
 		"LESS_EQUAL":
 			_less_equal(current_node, port, to_node, to_port)
+		"PATH_AHEAD":
+			_path_ahead(current_node, port, to_node, to_port)
+		
 		"POSITION":
 			_position(current_node, port, to_node, to_port)
 		"DIRECTION":
@@ -316,6 +319,10 @@ func _less_equal(current_node : Dictionary, port : int, to_node : Dictionary, to
 		to_node.computed_inputs[str(to_port)] = "true"
 	else:
 		to_node.computed_inputs[str(to_port)] = "false"
+
+
+func _path_ahead(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_ahead() else "false"
 
 
 func _position(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:

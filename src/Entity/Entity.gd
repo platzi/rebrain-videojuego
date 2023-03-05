@@ -99,6 +99,11 @@ func _set(property : String, value) -> bool:
 	return false
 
 
+func get_path_ahead() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	return true if space_state.intersect_ray(global_position, global_position + Vector2.RIGHT.rotated(deg2rad(direction)) * 48, [self], collision_mask).empty() else false
+
+
 func set_nodes() -> void:
 	message_board = get_node_or_null("MessageBoard")
 	hurt_box = get_node_or_null("HurtBox")

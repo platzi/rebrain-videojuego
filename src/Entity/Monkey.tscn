@@ -201,6 +201,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
