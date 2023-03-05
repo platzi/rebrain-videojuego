@@ -131,10 +131,12 @@ func close() -> void:
 
 
 func update_nodes_limit() -> void:
+	var _nodes_limit = {}
 	for node_type in _target_entity.nodes_limit:
 		var node_qty = _target_entity.nodes_limit[node_type]
 		if node_qty != 0:
-			node_searcher.nodes_limit[node_type] = node_qty
+			_nodes_limit[node_type] = node_qty
+	node_searcher.nodes_limit = _nodes_limit
 	for child in scripting_graph.get_children():
 		if child is ScriptingNode:
 			var node := child as ScriptingNode

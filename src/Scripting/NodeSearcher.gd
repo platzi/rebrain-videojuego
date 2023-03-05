@@ -63,6 +63,7 @@ func _input(event : InputEvent) -> void:
 
 func _clear_buttons() -> void:
 	for child in node_list_vbc.get_children():
+		child.visible = false
 		child.queue_free()
 
 

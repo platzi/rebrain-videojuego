@@ -10,10 +10,11 @@ func _ready():
 	get_zoom_hbox().visible = false
 
 
-func _input(event : InputEvent) -> void:
+func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.scancode == KEY_DELETE:
-			_delete_selected()
+#		print(event.scancode)
+#		if event.scancode == KEY_DELETE:
+#			_delete_selected()
 		if Globals.DEBUG:
 			if event.scancode == KEY_F2:
 				var save_string = JSON.print(save())
@@ -68,6 +69,7 @@ func delete_all_nodes() -> void:
 
 func _delete_selected() -> void:
 	var disconnect_list := []
+	print(get_focus_owner())
 	for child in get_children():
 		if child is GraphNode && child.selected:
 			disconnect_list.append(child.name)
@@ -105,4 +107,6 @@ func _on_node_selected(_node : Node) -> void:
 
 
 func _on_delete_nodes_request(_nodes : Array) -> void:
-	pass
+	for node_name in _nodes:
+		if has_node(node_name):
+			get_node(node_name).queue_free()
