@@ -4,7 +4,7 @@
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/scripting/scripting_icon_timer.png" type="Texture" id=4]
 
-[node name="TimerNode" instance=ExtResource( 3 )]
+[node name="WaitNode" instance=ExtResource( 3 )]
 slot/1/left_enabled = true
 slot/1/left_type = 0
 slot/1/left_color = Color( 0.352941, 1, 0, 1 )
@@ -17,8 +17,8 @@ slot/2/left_color = Color( 0, 0.666667, 0.8, 1 )
 slot/2/right_enabled = false
 slot/2/right_type = 0
 slot/2/right_color = Color( 0.352941, 1, 0, 1 )
-type = "TIMER"
-tag = "Temporizador"
+type = "WAIT"
+tag = "Esperar"
 subtag = "Acción"
 icon = ExtResource( 4 )
 
@@ -38,14 +38,14 @@ margin_right = 162.0
 texture = ExtResource( 4 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 107.0
+margin_right = 69.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 83.0
-text = "Temporizador"
+margin_right = 45.0
+text = "Esperar"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 83.0
+margin_right = 45.0
 text = "Acción"
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 1 )]

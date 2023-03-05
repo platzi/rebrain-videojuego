@@ -1,44 +1,7 @@
 extends Control
 
-var node_scene_list := {
-	# EVENTS
-	UPDATE = preload("res://src/Scripting/Nodes/UpdateNode.tscn"),
-	COLLISION = preload("res://src/Scripting/Nodes/CollisionNode.tscn"),
-	TRIGGER = preload("res://src/Scripting/Nodes/TriggerNode.tscn"),
-	PRESSED = preload("res://src/Scripting/Nodes/PressedNode.tscn"),
-	RELEASED = preload("res://src/Scripting/Nodes/ReleasedNode.tscn"),
-	# ACTIONS
-	MOVE_FORWARD = preload("res://src/Scripting/Nodes/MoveForwardNode.tscn"),
-	ROTATE_LEFT = preload("res://src/Scripting/Nodes/RotateLeftNode.tscn"),
-	ROTATE_RIGHT = preload("res://src/Scripting/Nodes/RotateRightNode.tscn"),
-	TIMER = preload("res://src/Scripting/Nodes/TimerNode.tscn"),
-	SHOOT = preload("res://src/Scripting/Nodes/ShootNode.tscn"),
-	OPEN = preload("res://src/Scripting/Nodes/OpenNode.tscn"),
-	CLOSE = preload("res://src/Scripting/Nodes/CloseNode.tscn"),
-	SHOOT_TRIGGER = preload("res://src/Scripting/Nodes/ShootTriggerNode.tscn"),
-	# LOGIC
-	IF = preload("res://src/Scripting/Nodes/IfNode.tscn"),
-	AND = preload("res://src/Scripting/Nodes/AndNode.tscn"),
-	OR = preload("res://src/Scripting/Nodes/OrNode.tscn"),
-	EQUAL = preload("res://src/Scripting/Nodes/EqualNode.tscn"),
-	NOT_EQUAL = preload("res://src/Scripting/Nodes/NotEqualNode.tscn"),
-	GREATER = preload("res://src/Scripting/Nodes/GreaterNode.tscn"),
-	GREATER_EQUAL = preload("res://src/Scripting/Nodes/GreaterEqualNode.tscn"),
-	LESS = preload("res://src/Scripting/Nodes/LessNode.tscn"),
-	LESS_EQUAL = preload("res://src/Scripting/Nodes/LessEqualNode.tscn"),
-	COMPARE_ENTITY = preload("res://src/Scripting/Nodes/CompareEntityNode.tscn"),
-	COMPARE_STRING = preload("res://src/Scripting/Nodes/CompareStringNode.tscn"),
-	# INPUT
-	NUMBER = preload("res://src/Scripting/Nodes/NumberNode.tscn"),
-	STRING = preload("res://src/Scripting/Nodes/StringNode.tscn"),
-	BOOL = preload("res://src/Scripting/Nodes/BoolNode.tscn"),
-	ENTITY = preload("res://src/Scripting/Nodes/EntityNode.tscn"),
-	# LOCAL VARIABLES
-	POSITION = preload("res://src/Scripting/Nodes/PositionNode.tscn"),
-	DIRECTION = preload("res://src/Scripting/Nodes/DirectionNode.tscn"),
-}
 
-
+var nodes_scenes_list := {}
 var is_open := false
 
 
@@ -58,6 +21,7 @@ var _target_entity : Entity
 var _open_position : Vector2
 
 func _ready() -> void:
+	_set_nodes_scenes_list()
 	Globals.connect("open_scripting", self, "open")
 	Globals.connect("scripting_abort", self, "abort")
 	node_searcher.connect("node_selected", self, "_create_new_node")
@@ -150,9 +114,9 @@ func load_nodes(nodes) -> void:
 	# Instance nodes
 	for key in nodes:
 		var node = nodes[key]
-		if !node_scene_list.has(node.type):
+		if !nodes_scenes_list.has(node.type):
 			continue
-		var inst : ScriptingNode = node_scene_list[node.type].instance()
+		var inst : ScriptingNode = nodes_scenes_list[node.type].instance()
 		inst.offset.x = node.position[0]
 		inst.offset.y = node.position[1]
 		inst.disabled = node.disabled
@@ -170,8 +134,18 @@ func load_nodes(nodes) -> void:
 		for connection in node.connections_out:
 			if !nodes.has(connection.to) or !nodes[connection.to].has("instance"):
 				continue
-			var to = nodes[connection.to].instance
-			scripting_graph.connect_node(from.name, connection.from_port, to.name, connection.to_port)
+			var node_to : ScriptingNode = nodes[connection.to].instance
+			var node_to_port : ScriptingNodeSlot = node_to.get_slot(connection.to_port)
+			node_to_port.hide_left_input()
+			scripting_graph.connect_node(from.name, connection.from_port, node_to.name, connection.to_port)
+
+
+func _set_nodes_scenes_list() -> void:
+	for group in NodesList.NODES:
+		for node in NodesList.NODES[group]:
+			var node_type = node[0]
+			var node_scene = node[3]
+			nodes_scenes_list[node_type] = node_scene
 
 
 func _set_entity_preview() -> void:
@@ -196,7 +170,7 @@ func _set_entity_preview() -> void:
 
 func _create_new_node(node_type : String) -> void:
 	var mousePos := scripting_graph.get_local_mouse_position()
-	var inst : ScriptingNode = node_scene_list[node_type].instance()
+	var inst : ScriptingNode = nodes_scenes_list[node_type].instance()
 	inst.offset = node_searcher.rect_position - scripting_graph.rect_global_position + scripting_graph.scroll_offset
 	scripting_graph.add_child(inst)
 	node_searcher.hide()

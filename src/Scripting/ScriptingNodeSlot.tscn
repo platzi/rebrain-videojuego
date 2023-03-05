@@ -12,10 +12,14 @@ left_enabled = false
 left_type = 0
 left_tag = ""
 left_show_input = false
+left_number_min = 0
+left_number_max = 100
 right_enabled = false
 right_type = 0
 right_tag = ""
 right_show_input = false
+right_number_min = 0
+right_number_max = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 960.0

@@ -57,6 +57,7 @@ SaveManager="*res://src/Autoload/SaveManager.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 MusicScene="*res://src/Levels/MusicScene.tscn"
 Customization="*res://src/Autoload/Customization.gd"
+NodesList="*res://src/Autoload/NodesList.gd"
 
 [debug]
 

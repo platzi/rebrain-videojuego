@@ -6,6 +6,7 @@ extends MarginContainer
 
 class_name ScriptingNodeSlot
 
+
 const COLORS = [
 	Color("5aff00"),
 	Color("ff0000"),
@@ -141,6 +142,14 @@ func _get_property_list() -> Array:
 	return properties
 
 
+func hide_left_input() -> void:
+	_set_left_input_visible(false)
+
+
+func show_left_input() -> void:
+	_set_left_input_visible(true)
+
+
 func get_left_input_value() -> String:
 	match left_type:
 		1:
@@ -165,6 +174,20 @@ func get_right_input_value() -> String:
 		4:
 			return "true" if boolean_output_cb.pressed else "false"
 	return ""
+
+
+func _set_left_input_visible(value : bool) -> void:
+	if !left_enabled or !left_show_input:
+		return
+	match left_type:
+		1:
+			entity_input_ob.visible = value
+		2:
+			text_input_le.visible = value
+		3:
+			number_input_sb.visible = value
+		4:
+			boolean_input_cb.visible = value
 
 
 func _set_left_input_value(value) -> void:

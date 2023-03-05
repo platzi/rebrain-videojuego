@@ -4,44 +4,6 @@ class_name Entity
 extends KinematicBody2D
 
 
-enum NODE_TYPES {
-	UPDATE,
-	COLLISION,
-	TRIGGER,
-	PRESSED,
-	RELEASED,
-	
-	MOVE_FORWARD,
-	ROTTATE_LEFT,
-	ROTATE_RIGHT
-	TIMER,
-	SHOOT,
-	SHOOT_TRIGGER,
-	OPEN,
-	CLOSE,
-	
-	IF,
-	AND,
-	OR,
-	EQUAL,
-	NOT_EQUAL,
-	GREATER,
-	GREATER_EQUAL,
-	LESS,
-	LESS_EQUAL,
-	COMPARE_ENTITY,
-	COMPARE_STRING,
-	
-	NUMBER,
-	STRING,
-	BOOL,
-	ENTITY,
-	
-	POSITION,
-	DIRECTION
-}
-
-
 export (String) var brain_og
 
 export (PackedScene) var death_particles
@@ -103,32 +65,37 @@ func _get_property_list() -> Array:
 	properties.append({
 		name = "Nodes List",
 		type = TYPE_NIL,
-		hint = "nodes_limit_",
-		usage = PROPERTY_USAGE_GROUP
+		usage = PROPERTY_USAGE_CATEGORY
 	})
-	for i in NODE_TYPES:
+	for group in NodesList.NODES:
 		properties.append({
-			name = "node_limit_" + str(i),
-			type = TYPE_INT
+			name = group,
+			type = TYPE_NIL,
+			hint_string = "node_limit_",
+			usage = PROPERTY_USAGE_GROUP
 		})
+		for node in NodesList.NODES[group]:
+			var node_type = node[0]
+			properties.append({
+				name = "node_limit_" + node_type,
+				type = TYPE_INT
+			})
 	return properties
 
 func _get(property : String):
 	if "node_limit_" in property:
 		var property_split = property.trim_prefix("node_limit_")
-		if NODE_TYPES.has(property_split):
-			if nodes_limit.has(property_split):
-				return nodes_limit[property_split]
-			else:
-				return 0
+		if nodes_limit.has(property_split):
+			return nodes_limit[property_split]
+		else:
+			return 0
 
 
 func _set(property : String, value) -> bool:
 	if "node_limit_" in property:
 		var property_split = property.trim_prefix("node_limit_")
-		if NODE_TYPES.has(property_split):
-			nodes_limit[property_split] = value
-			return true
+		nodes_limit[property_split] = value
+		return true
 	return false
 
 

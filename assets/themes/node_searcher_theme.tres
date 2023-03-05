@@ -59,18 +59,17 @@ content_margin_bottom = 4.0
 bg_color = Color( 0.160784, 0, 0.290196, 1 )
 
 [sub_resource type="StyleBoxLine" id=9]
-color = Color( 0.0784314, 0.0509804, 0.101961, 1 )
-thickness = 2
+color = Color( 0.2, 0.06, 0.3, 1 )
 
 [sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-bg_color = Color( 0.215851, 0.137589, 0.277344, 1 )
+bg_color = Color( 0.266667, 0.08, 0.4, 1 )
 border_width_top = 1
 border_width_bottom = 1
-border_color = Color( 0.0922309, 0.0512695, 0.125, 1 )
+border_color = Color( 0.133333, 0.04, 0.2, 1 )
 
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.333333, 0.101961, 0.501961, 1 )

@@ -84,23 +84,11 @@ func set_outputs(inputs : Dictionary) -> void:
 			child.right_input_value = inputs[i]
 
 
-func set_params(params : Array) -> void:
-	_params = params
-	if !_is_ready:
-		return
-	_set_params(_params)
-
-
-func get_params() -> Array:
-	return _get_params()
-
-
-func _set_params(_param : Array) -> void:
-	pass
-
-
-func _get_params() -> Array:
-	return []
+func get_slot(i : int) -> ScriptingNodeSlot:
+	var child = get_child(i + 1)
+	if child is ScriptingNodeSlot:
+		return child
+	return null
 
 
 func _set_tag(new_value : String) -> void:

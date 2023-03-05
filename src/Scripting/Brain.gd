@@ -48,8 +48,9 @@ func _execute(start_node, current_node) -> void:
 	
 	match current_node.type:
 		"UPDATE":
-			yield(get_tree(), "idle_frame")
-			_run_next(start_node, current_node)
+#			yield(get_tree(), "idle_frame")
+			call_deferred("_run_next", start_node, current_node)
+#			_run_next(start_node, current_node)
 		"COLLISION":
 			_run_next(start_node, current_node)
 		"TRIGGER":
@@ -64,8 +65,8 @@ func _execute(start_node, current_node) -> void:
 			_rotate_left(start_node, current_node)
 		"ROTATE_RIGHT":
 			_rotate_right(start_node, current_node)
-		"TIMER":
-			_timer(start_node, current_node)
+		"WAIT":
+			_wait(start_node, current_node)
 		"SHOOT":
 			_shoot(start_node, current_node)
 		"MESSAGE":
@@ -164,10 +165,10 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("move_forward")
-#	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
-	yield(get_tree().create_timer(1.0, false), "timeout")
-	emit_signal("stop_moving")
-	_run_next(start_node, node)
+	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
+#	yield(get_tree().create_timer(1.0, false), "timeout")
+#	emit_signal("stop_moving")
+#	_run_next(start_node, node)
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
@@ -185,7 +186,7 @@ func _rotate_right(start_node : Dictionary, node : Dictionary) -> void:
 	_run_next(start_node, node)
 
 
-func _timer(start_node : Dictionary, node : Dictionary) -> void:
+func _wait(start_node : Dictionary, node : Dictionary) -> void:
 	get_tree().create_timer(int(node.computed_inputs["1"]), false).connect("timeout", self, "_run_next", [start_node, node])
 
 

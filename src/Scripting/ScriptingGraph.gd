@@ -87,18 +87,26 @@ func _disable_selected() -> void:
 
 func _on_connection_request(from : String, from_slot : int, to : String, to_slot : int) -> void:
 	var connections = get_connection_list()
+	var node_to : ScriptingNode = get_node(to)
 	for connection in connections:
-		var node_from : GraphNode = get_node(connection.from)
-		print(connection)
-		if connection.from == from and connection.from_port == from_slot and node_from.get_connection_output_type(from_slot) <= 0:
+		var conn_node_from : ScriptingNode = get_node(connection.from)
+		var conn_node_to : ScriptingNode = get_node(connection.to)
+		if connection.from == from and connection.from_port == from_slot and conn_node_from.get_connection_output_type(from_slot) <= 0:
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
 		elif connection.to == to && connection.to_port == to_slot:
+			var conn_node_slot : ScriptingNodeSlot = conn_node_to.get_slot(connection.to_port)
+			conn_node_slot.show_left_input()
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
-	Globals.emit_signal("scripting_node_connection", get_node(from), from_slot, get_node(to), to_slot)
+	var node_slot : ScriptingNodeSlot = node_to.get_slot(to_slot)
+	node_slot.hide_left_input()
 	connect_node(from, from_slot, to, to_slot)
+	Globals.emit_signal("scripting_node_connection", get_node(from), from_slot, get_node(to), to_slot)
 
 
 func _on_disconnection_request(from : String, from_slot : int, to : String, to_slot : int) -> void:
+	var node_to : ScriptingNode = get_node(to)
+	var node_slot : ScriptingNodeSlot = node_to.get_slot(to_slot)
+	node_slot.show_left_input()
 	disconnect_node(from, from_slot, to, to_slot)
 
 
