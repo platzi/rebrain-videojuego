@@ -180,12 +180,17 @@ func _create_new_node(node_type : String) -> void:
 
 func on_SaveBtn_pressed() -> void:
 	_target_entity.brain_dict = scripting_graph.save()
-	_target_entity.reset_position()
+	_target_entity.restart()
 	close()
 
 
 func on_RestoreBtn_pressed() -> void:
-	load_nodes(_target_entity.brain.brain)
+	if _target_entity.brain_og != "":
+		var result = JSON.parse(_target_entity.brain_og)
+		if result.error == OK:
+			load_nodes(result.result)
+	else:
+		load_nodes({})
 
 
 func on_CancelBtn_pressed() -> void:

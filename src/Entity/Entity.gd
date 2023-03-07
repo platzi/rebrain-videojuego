@@ -4,6 +4,9 @@ class_name Entity
 extends KinematicBody2D
 
 
+const TRASLATION_EFFECT_SCN := preload("res://src/TraslateEffect/TraslateEffect.tscn")
+
+
 export (String) var brain_og
 
 export (PackedScene) var death_particles
@@ -201,7 +204,14 @@ func activate() -> void:
 	pass
 
 
-func reset_position() -> void:
+func restart() -> void:
+	var traslation_inst = TRASLATION_EFFECT_SCN.instance()
+	traslation_inst.position = position
+	traslation_inst.target = initial_postion - position
+	get_parent().add_child(traslation_inst)
+	visible = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	visible = true
 	position = initial_postion
 	direction = initial_direction
 	velocity_vector = Vector2.RIGHT.rotated(deg2rad(direction))
