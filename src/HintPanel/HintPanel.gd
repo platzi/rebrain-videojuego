@@ -8,29 +8,54 @@ signal closed
 
 
 export(NodePath) var title_label_path : NodePath
-export(NodePath) var image_tr_path : NodePath
-export(NodePath) var content_rtl_path : NodePath
+export(NodePath) var content_container_path : NodePath
 export(NodePath) var close_btn_path : NodePath
 
 
 export var title : String setget _on_title_set
-export var image : Texture setget _on_image_set
-export var content : String setget _on_content_set
 
 
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var title_label := get_node(title_label_path) as Label
-onready var image_tr := get_node(image_tr_path) as TextureRect
-onready var content_rtl := get_node(content_rtl_path) as RichTextLabel
+onready var content_container := get_node(content_container_path) as MarginContainer
 onready var close_btn := get_node(close_btn_path) as Button
 
 
+var hints := []
+var hint_current := 0
+
+
 func _ready():
-	image_tr.texture = image
 	title_label.text = title
-	content_rtl.bbcode_text = content
 	animation_player.play("Open")
 	close_btn.connect("pressed", self, "_on_CloseBtn_pressed")
+	_add_hint()
+
+
+func _add_hint() -> void:
+	var hint : Array = hints.pop_back()
+	if hint == null:
+		return
+	var image : Texture = hint[0]
+	var content : String = hint[1]
+	var hbc := HBoxContainer.new()
+	var tr := TextureRect.new()
+	var rtl := RichTextLabel.new()
+	tr.texture = image
+	tr.expand = true
+	tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	tr.rect_min_size = Vector2(320.0, 186.0)
+	rtl.bbcode_enabled = true
+	rtl.bbcode_text = content
+	rtl.fit_content_height = true
+	rtl.size_flags_horizontal = SIZE_EXPAND_FILL
+	rtl.size_flags_vertical = SIZE_SHRINK_CENTER
+	hbc.visible = content_container.get_child_count() == 0
+	hbc.add_child(tr)
+	hbc.add_child(rtl)
+	hbc.add_constant_override("separation", 20)
+	content_container.add_child(hbc)
+	
 
 
 func _on_CloseBtn_pressed() -> void:
@@ -45,11 +70,3 @@ func _on_close_animation_finished(_anim : String) -> void:
 
 func _on_title_set(new_value : String) -> void:
 	title = new_value
-
-
-func _on_image_set(new_value : StreamTexture) -> void:
-	image = new_value
-
-
-func _on_content_set(new_value : String) -> void:
-	content = new_value
