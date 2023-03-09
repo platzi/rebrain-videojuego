@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/images/entities/frog.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/Frog.gd" type="Script" id=2]
@@ -96,14 +96,42 @@ tracks/0/keys = {
 
 [sub_resource type="CircleShape2D" id=9]
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 12.0
-
 [sub_resource type="CircleShape2D" id=10]
 radius = 24.0
 
 [node name="Frog" type="KinematicBody2D" groups=["Friend"]]
 script = ExtResource( 2 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
 
 [node name="Shadow" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 5 )
@@ -117,6 +145,7 @@ hframes = 4
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.0
 anims/Down = SubResource( 3 )
 anims/Left = SubResource( 4 )
 anims/RESET = SubResource( 2 )
@@ -126,13 +155,6 @@ anims/Up = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -10 )
 shape = SubResource( 9 )
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, -10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-modulate = Color( 1, 0, 0, 1 )
-shape = SubResource( 6 )
 
 [node name="ScriptingArea" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -10 )
