@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/images/entities/barrel.png" type="Texture" id=1]
-[ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/images/entities/raft.png" type="Texture" id=1]
+[ext_resource path="res://src/Entity/Raft.gd" type="Script" id=2]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=4]
-[ext_resource path="res://src/Entity/Barrel.gd" type="Script" id=5]
-[ext_resource path="res://src/Particles/SmokeExplosion.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -13,19 +11,19 @@ shader = ExtResource( 4 )
 shader_param/blocked = null
 shader_param/blink = null
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 20.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 48 )
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 48 )
 
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 20.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 52, 52 )
 
-[node name="Barrel" type="KinematicBody2D"]
-script = ExtResource( 5 )
-death_particles = ExtResource( 6 )
-death_particles_offset = Vector2( 0, -26 )
+[node name="Raft" type="KinematicBody2D" groups=["Platform"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 2 )
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
 node_limit_TRIGGER = 0
@@ -60,18 +58,18 @@ node_limit_DIRECTION = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 3 )
+z_index = -10
+z_as_relative = false
 texture = ExtResource( 1 )
-offset = Vector2( 0, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.57079
 shape = SubResource( 1 )
 
 [node name="ScriptingArea" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -16 )
 shape_2d = SubResource( 2 )
 
-[node name="HurtBox" parent="." instance=ExtResource( 2 )]
-rotation = 1.5708
+[node name="RidersArea" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RidersArea"]
 shape = SubResource( 4 )
-blink_sprite_path = NodePath("../Sprite")

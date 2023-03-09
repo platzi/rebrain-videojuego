@@ -11,7 +11,7 @@ export (String) var brain_og
 
 export (PackedScene) var death_particles
 export (Vector2) var death_particles_offset
-export (int) var life := 3
+export (int) var life_max := 1
 export (float, 0.0, 360.0) var direction
 export (bool) var blocked
 
@@ -25,6 +25,7 @@ var hit_box
 var brain_dict := {}
 var brain := Brain.new()
 
+var life := life_max
 var speed := 0.0
 var cool_down = 1
 var _timer = null
@@ -56,11 +57,20 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	if speed != 0.0:
-		var linear_veolicty := Vector2.RIGHT.rotated(deg2rad(direction)) * speed
-		move_and_slide(linear_veolicty)
+		var direction_vector := Vector2.RIGHT.rotated(deg2rad(direction))
+		if is_in_group("Projectile") or _is_place_walkable(direction_vector.x * 16.0, direction_vector.y * 16.0):
+			move_and_slide(direction_vector * speed)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		_on_collision(collision)
+
+
+func _is_place_walkable(x : float, y : float) -> bool:
+	if is_in_group("Platform") and get_world_2d().direct_space_state.intersect_point(position + Vector2(x, y), 1, [self], 16, true, true).empty():
+		return true
+	elif not get_world_2d().direct_space_state.intersect_point(position + Vector2(x, y), 1, [self], 16, true, true).empty():
+		return true
+	return false
 
 
 func _get_property_list() -> Array:
@@ -104,7 +114,8 @@ func _set(property : String, value) -> bool:
 
 func get_path_ahead() -> bool:
 	var space_state = get_world_2d().direct_space_state
-	return true if space_state.intersect_ray(global_position, global_position + Vector2.RIGHT.rotated(deg2rad(direction)) * 48, [self], collision_mask).empty() else false
+	var direction_vector := Vector2.RIGHT.rotated(deg2rad(direction))
+	return true if _is_place_walkable(direction_vector.x * 16.0, direction_vector.y * 16.0) and space_state.intersect_ray(global_position, global_position + Vector2.RIGHT.rotated(deg2rad(direction)) * 48, [self], collision_mask).empty() else false
 
 
 func set_nodes() -> void:
@@ -218,7 +229,7 @@ func restart() -> void:
 	speed = 0.0
 	if message_board:
 		message_board.reset()
-	life = 3
+	life = life_max
 	brain.queue_free()
 	brain = Brain.new()
 	instance_brain()

@@ -91,6 +91,8 @@ corner_radius_bottom_left = 4
 
 [resource]
 GraphNode/icons/port = ExtResource( 3 )
+GraphNode/styles/comment = SubResource( 15 )
+GraphNode/styles/commentfocus = SubResource( 15 )
 GraphNode/styles/frame = SubResource( 15 )
 GraphNode/styles/selectedframe = SubResource( 16 )
 Label/fonts/font = ExtResource( 1 )

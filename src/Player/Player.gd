@@ -1,18 +1,17 @@
 extends KinematicBody2D
 
 
-const MAX_SPEED = 200
-var speed = 100
-var input_vector = Vector2.ZERO
+var direction := 0.0
+var speed := 144.0
 var velocity = Vector2.ZERO
 var life = 3
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
+var input_vector = Vector2.ZERO
 
 onready var audio_stream_player := $AudioStreamPlayer2D
+onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var teleport_animation_player := $TeleportAnimationPlayer
-onready var animation_tree := $AnimationTree
-onready var animation_state = animation_tree.get("parameters/playback")
 onready var hair_sprite := $Sprite/HairSprite
 onready var sprite := $Sprite
 onready var hurt_box := $HurtBox
@@ -40,34 +39,64 @@ func _ready() -> void:
 	_update_avatar()
 
 
-func _physics_process(delta : float) -> void:
-	if !Globals.disable_inputs:
-		input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-		input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-		input_vector = input_vector.normalized()
+func _process(_delta : float) -> void:
+	if input_vector != Vector2.ZERO:
+		if direction >= 315.0 or direction <= 45.0:
+			animation_player.play("MoveRight")
+		elif direction > 45.0 and direction < 135:
+			animation_player.play("MoveDown")
+		elif direction >= 135.0 and direction <= 225:
+			animation_player.play("MoveLeft")
+		elif direction > 225.0 and direction < 315:
+			animation_player.play("MoveUp")
 	else:
-		input_vector = Vector2.ZERO
-	if position.distance_to(move_towards_vector) <= 5.0:
-		is_moving_towards = false
-	if is_moving_towards:
-		input_vector = position.direction_to(move_towards_vector)
+		if direction >= 315.0 or direction <= 45.0:
+			animation_player.play("IdleRight")
+		elif direction > 45.0 and direction < 135:
+			animation_player.play("IdleDown")
+		elif direction >= 135.0 and direction <= 225:
+			animation_player.play("IdleLeft")
+		elif direction > 225.0 and direction < 315:
+			animation_player.play("IdleUp")
+
+
+func _physics_process(delta : float) -> void:
+	var movement_vector = Vector2.ZERO
+	input_vector = Vector2.ZERO
+	if !Globals.disable_inputs:
+		if Input.is_action_pressed("move_right"):
+			input_vector.x = 1.0
+			if _is_place_walkable(16.0, 0.0):
+				movement_vector.x = 1.0
+		elif Input.is_action_pressed("move_left"):
+			input_vector.x = -1.0
+			if _is_place_walkable(-16.0, 0.0):
+				movement_vector.x = -1.0
+		if Input.is_action_pressed("move_up"):
+			input_vector.y = -1.0
+			if _is_place_walkable(0.0, -16.0):
+				movement_vector.y = -1.0
+		elif Input.is_action_pressed("move_down"):
+			input_vector.y = 1.0
+			if _is_place_walkable(0.0, 16.0):
+				movement_vector.y = 1.0
 		input_vector = input_vector.normalized()
 	if input_vector != Vector2.ZERO:
-		velocity += input_vector * speed
-		if velocity.distance_to(Vector2.ZERO) > MAX_SPEED:
-			velocity = velocity.move_toward(input_vector * MAX_SPEED, delta * MAX_SPEED * 100)
-		animation_tree.set("parameters/Idle/blend_position", input_vector)
-		animation_tree.set("parameters/Move/blend_position", input_vector)
-		animation_state.travel("Move")
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, delta * MAX_SPEED * 100)
-		animation_state.travel("Idle")
-	velocity = move_and_slide(velocity)
+		direction = fmod(round(rad2deg(input_vector.angle())) + 360.0, 360.0)
+	if movement_vector != Vector2.ZERO:
+		movement_vector = movement_vector.normalized()
+		move_and_slide(movement_vector * speed)
+
+
+func _is_place_walkable(x : float, y : float) -> bool:
+	if len(get_world_2d().direct_space_state.intersect_point(position + Vector2(x, y), 1, [self], 16, true, true)) > 0:
+		return true
+	return false
 
 
 func hurt(knockback_direction : Vector2) -> void:
 	life -= 1
-	velocity = knockback_direction * MAX_SPEED * 8
+	velocity = knockback_direction * speed * 8
 	play_sound()
 	Globals.emit_update_life(life)
 	if life < 1:

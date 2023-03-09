@@ -214,7 +214,7 @@ func _explode(start_node : Dictionary, node : Dictionary):
 
 
 func _shoot_trigger(start_node : Dictionary, node : Dictionary):
-	Globals.emit_signal_trigger(node.params[0])
+	Globals.emit_signal_trigger(node.computed_inputs["1"])
 	_run_next(start_node, node)
 
 

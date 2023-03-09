@@ -114,4 +114,7 @@ func _set_disabled(new_value : bool) -> void:
 	disabled = new_value
 	if disabled:
 		theme = _disabled_theme
-	
+		comment = true
+	else:
+		theme = _theme
+		comment = false

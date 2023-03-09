@@ -19,7 +19,6 @@ func _ready() -> void:
 	Globals.disable_scripting = true
 	Globals.disable_inputs = true
 	player.input_vector = Vector2.UP
-	player.animation_tree.set("parameters/Idle/blend_position", player.input_vector)
 	trigger_zone.connect("body_entered", self, "_on_TriggerZone_body_entered")
 	get_tree().create_timer(0.5).connect("timeout", self, "_dialogue_1")
 
@@ -48,7 +47,6 @@ func _dialogue_1() -> void:
 func _dialogue_2() -> void:
 	Globals.disable_inputs = true
 	player.input_vector = Vector2.UP
-	player.animation_tree.set("parameters/Idle/blend_position", player.input_vector)
 	var dialogue_inst = dialogue_scene.instance()
 	dialogue_inst.connect("finished", self, "_hint_1")
 	dialogue_inst.speaker = "Profesor"

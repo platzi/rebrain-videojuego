@@ -14,8 +14,7 @@ onready var log_door := $Entities/YSort/LogDoor as Entity
 func _ready() -> void:
 	Globals.disable_scripting = true
 	Globals.disable_inputs = true
-	player.input_vector = Vector2.UP
-	player.animation_tree.set("parameters/Idle/blend_position", player.input_vector)
+	player.direction = 270.0
 	get_tree().create_timer(0.5).connect("timeout", self, "_dialogue_1")
 	cage.connect("unlocked", self, "_on_cage_unlocked")
 	cage.connect("teleported", self, "_on_cage_teleported")
