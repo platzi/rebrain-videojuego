@@ -22,6 +22,7 @@ func _ready() -> void:
 func _dialogue_1() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	dialogue_inst.connect("finished", self, "_dialogue_2")
+	dialogue_inst.speaker = "hacker"
 	dialogue_inst.dialogues = [
 		"Tranquilo no te asustes, seguimos en el Platziverso, este solo es un mundo tematico",
 		"Tampoco tienes mucho que temer, recuerda que todo lo que aquí sucede no te afecta en el mundo real... o por lo menos eso creemos",
@@ -34,6 +35,7 @@ func _dialogue_2() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	camera.target = key
 	dialogue_inst.connect("finished", self, "_dialogue_3")
+	dialogue_inst.speaker = "hacker"
 	dialogue_inst.dialogues = [
 		"Este pequeño objeto reluciente es una llave, ¿sabes para que funcionan las llaves cierto?",
 		"¿No? ¿Enserio?...",
@@ -46,6 +48,7 @@ func _dialogue_3() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	camera.target = cage
 	dialogue_inst.connect("finished", self, "_dialogue_4")
+	dialogue_inst.speaker = "hacker"
 	dialogue_inst.dialogues = [
 		"Abrir esta celda y rescatar al estudiante que se encuentra prisionero",
 		"Solo basta con tocar la llave y la celda se abrira como por arte de mágia, aunque realmente no es mágia si no multiples líneas de código...",
@@ -58,6 +61,7 @@ func _dialogue_4() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	camera.target = player
 	dialogue_inst.connect("finished", self, "_dialogue_4_finished")
+	dialogue_inst.speaker = "hacker"
 	dialogue_inst.dialogues = [
 		"Vamos, prueba a ir a tomar la llave, solo muevete hacía ella",
 		"Te recuerdo que puedes moverte con las teclas [WASD], así es ¡como todo videojuego!"
@@ -73,6 +77,7 @@ func _dialogue_4_finished() -> void:
 func _on_cage_unlocked() -> void:
 	var dialogue_inst = dialogue_scene.instance()
 	dialogue_inst.connect("finished", cage, "teleport")
+	dialogue_inst.speaker = "Alumno"
 	dialogue_inst.dialogues = [
 		"¡Muchisimas gracias por rescatarme, te debo una!"
 	]

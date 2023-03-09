@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/Levels/LevelTilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Levels/TileMaps/LevelTilemap.tres" type="TileSet" id=1]
 
 [node name="DigitalTileMap" type="TileMap"]
 z_index = -10

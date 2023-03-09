@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Levels/GridEffect.gd" type="Script" id=8]
+[ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/GUI/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Base/GridEffect.gd" type="Script" id=8]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
@@ -78,7 +78,7 @@ tracks/0/keys = {
 
 [node name="Level" type="Node"]
 
-[node name="Camera" parent="." instance=ExtResource( 4 )]
+[node name="Camera" parent="." instance=ExtResource( 2 )]
 position = Vector2( 480, 264 )
 target_path = NodePath("../Entities/YSort/Player")
 
@@ -89,11 +89,42 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="Entities/YSort" instance=ExtResource( 2 )]
+[node name="Player" parent="Entities/YSort" instance=ExtResource( 5 )]
 position = Vector2( 480, 264 )
 
-[node name="Teleporter" parent="Entities/YSort" instance=ExtResource( 1 )]
+[node name="Teleporter" parent="Entities/YSort" instance=ExtResource( 4 )]
 visible = false
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -10
@@ -130,23 +161,23 @@ anims/Shockwave = SubResource( 3 )
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GUI" parent="UI" instance=ExtResource( 7 )]
+[node name="GUI" parent="UI" instance=ExtResource( 6 )]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Scripting" parent="UI" instance=ExtResource( 6 )]
+[node name="Scripting" parent="UI" instance=ExtResource( 1 )]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DeathScene" parent="UI" instance=ExtResource( 5 )]
+[node name="DeathScene" parent="UI" instance=ExtResource( 3 )]
 visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PauseMenu" parent="UI" instance=ExtResource( 3 )]
+[node name="PauseMenu" parent="UI" instance=ExtResource( 7 )]
 __meta__ = {
 "_edit_lock_": true
 }

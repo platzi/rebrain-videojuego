@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/Levels/LevelBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Levels/DigitalTileSet.tres" type="TileSet" id=3]
-[ext_resource path="res://src/Entity/Chair.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Entity/Dummy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Levels/Intro02.gd" type="Script" id=8]
-[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entity/Chair.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/NPC.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/LevelTutorial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/Dummy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/TileMaps/DigitalTileSet.tres" type="TileSet" id=7]
+[ext_resource path="res://src/Levels/Intro/Intro02.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Flash"
@@ -75,7 +75,7 @@ position = Vector2( 480, 16 )
 position = Vector2( 0, -32 )
 shape = SubResource( 2 )
 
-[node name="CameraAttractor" parent="." index="2" instance=ExtResource( 2 )]
+[node name="CameraAttractor" parent="." index="2" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 480, 72 )
 collision_shape = SubResource( 1 )
@@ -88,40 +88,9 @@ position = Vector2( 400, 112 )
 visible = true
 position = Vector2( 480, 296 )
 blocked = true
-target_scene = ExtResource( 9 )
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_PATH_AHEAD = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
+target_scene = ExtResource( 4 )
 
-[node name="Chair" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
+[node name="Chair" parent="Entities/YSort" index="2" instance=ExtResource( 2 )]
 position = Vector2( 624, 136 )
 blocked = true
 animation = "IdleUp"
@@ -157,7 +126,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair4" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
+[node name="Chair4" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
 position = Vector2( 552, 136 )
 blocked = true
 animation = "IdleUp"
@@ -193,7 +162,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair3" parent="Entities/YSort" index="4" instance=ExtResource( 4 )]
+[node name="Chair3" parent="Entities/YSort" index="4" instance=ExtResource( 2 )]
 position = Vector2( 400, 136 )
 blocked = true
 animation = "IdleUp"
@@ -229,7 +198,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair2" parent="Entities/YSort" index="5" instance=ExtResource( 4 )]
+[node name="Chair2" parent="Entities/YSort" index="5" instance=ExtResource( 2 )]
 position = Vector2( 336, 136 )
 blocked = true
 animation = "IdleUp"
@@ -265,7 +234,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair5" parent="Entities/YSort" index="6" instance=ExtResource( 4 )]
+[node name="Chair5" parent="Entities/YSort" index="6" instance=ExtResource( 2 )]
 position = Vector2( 624, 240 )
 blocked = true
 animation = "IdleUp"
@@ -301,7 +270,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair6" parent="Entities/YSort" index="7" instance=ExtResource( 4 )]
+[node name="Chair6" parent="Entities/YSort" index="7" instance=ExtResource( 2 )]
 position = Vector2( 552, 240 )
 blocked = true
 animation = "IdleUp"
@@ -337,7 +306,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair7" parent="Entities/YSort" index="8" instance=ExtResource( 4 )]
+[node name="Chair7" parent="Entities/YSort" index="8" instance=ExtResource( 2 )]
 position = Vector2( 400, 232 )
 blocked = true
 animation = "IdleUp"
@@ -373,7 +342,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Chair8" parent="Entities/YSort" index="9" instance=ExtResource( 4 )]
+[node name="Chair8" parent="Entities/YSort" index="9" instance=ExtResource( 2 )]
 position = Vector2( 336, 232 )
 blocked = true
 animation = "IdleUp"
@@ -409,7 +378,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC" parent="Entities/YSort" index="10" instance=ExtResource( 6 )]
+[node name="NPC" parent="Entities/YSort" index="10" instance=ExtResource( 3 )]
 position = Vector2( 480, -72 )
 direction = 90.0
 blocked = true
@@ -448,7 +417,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC8" parent="Entities/YSort" index="11" instance=ExtResource( 6 )]
+[node name="NPC8" parent="Entities/YSort" index="11" instance=ExtResource( 3 )]
 position = Vector2( 336, 208 )
 direction = 270.0
 blocked = true
@@ -488,7 +457,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC7" parent="Entities/YSort" index="12" instance=ExtResource( 6 )]
+[node name="NPC7" parent="Entities/YSort" index="12" instance=ExtResource( 3 )]
 position = Vector2( 400, 208 )
 direction = 270.0
 blocked = true
@@ -527,7 +496,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC6" parent="Entities/YSort" index="13" instance=ExtResource( 6 )]
+[node name="NPC6" parent="Entities/YSort" index="13" instance=ExtResource( 3 )]
 position = Vector2( 552, 216 )
 direction = 270.0
 blocked = true
@@ -567,7 +536,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC5" parent="Entities/YSort" index="14" instance=ExtResource( 6 )]
+[node name="NPC5" parent="Entities/YSort" index="14" instance=ExtResource( 3 )]
 position = Vector2( 624, 216 )
 direction = 270.0
 blocked = true
@@ -608,7 +577,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC4" parent="Entities/YSort" index="15" instance=ExtResource( 6 )]
+[node name="NPC4" parent="Entities/YSort" index="15" instance=ExtResource( 3 )]
 position = Vector2( 624, 112 )
 direction = 270.0
 blocked = true
@@ -649,7 +618,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC3" parent="Entities/YSort" index="16" instance=ExtResource( 6 )]
+[node name="NPC3" parent="Entities/YSort" index="16" instance=ExtResource( 3 )]
 position = Vector2( 552, 112 )
 direction = 270.0
 blocked = true
@@ -690,7 +659,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="NPC2" parent="Entities/YSort" index="17" instance=ExtResource( 6 )]
+[node name="NPC2" parent="Entities/YSort" index="17" instance=ExtResource( 3 )]
 position = Vector2( 336, 112 )
 direction = 270.0
 blocked = true
@@ -730,7 +699,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Dummy" parent="Entities/YSort" index="18" instance=ExtResource( 7 )]
+[node name="Dummy" parent="Entities/YSort" index="18" instance=ExtResource( 5 )]
 position = Vector2( 392, -72 )
 brain_og = "{\"UpdateNode\":{\"type\":\"UPDATE\",\"disabled\":false,\"position\":[-280,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"WaitNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"WaitNode\":{\"type\":\"WAIT\",\"disabled\":false,\"position\":[-40,-160],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"1\"},\"inputs\":{\"1\":\"1\"},\"outputs\":{}}}"
 direction = 90.0
@@ -767,7 +736,7 @@ node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="TileMap" type="TileMap" parent="Background" index="0"]
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 48, 48 )
 collision_layer = 16
 collision_mask = 0

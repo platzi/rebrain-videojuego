@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/Levels/ForestTileMap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Levels/LevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entity/Monkey.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Entity/Barrel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/UnwalkableTileMap.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Levels/Level04.gd" type="Script" id=8]
-[ext_resource path="res://src/Levels/Level05.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/OldOld/Level04.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/OldOld/Level05.tscn" type="PackedScene" id=9]
 
 [node name="Level04" instance=ExtResource( 2 )]
 script = ExtResource( 8 )

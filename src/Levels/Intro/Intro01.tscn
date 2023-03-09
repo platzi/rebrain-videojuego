@@ -1,19 +1,19 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Entity/Fountain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/images/backgrounds/platzi-school.png" type="Texture" id=1]
+[ext_resource path="res://src/Scripting/Scripting.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Player/Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Menu/DeathScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Entity/Teleporter.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Entity/Bench.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/images/backgrounds/platzi-school.png" type="Texture" id=10]
-[ext_resource path="res://src/Levels/DigitalTileSet.tres" type="TileSet" id=11]
-[ext_resource path="res://src/Levels/Intro02.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Entity/PlatziStatue.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Levels/Intro01.gd" type="Script" id=15]
+[ext_resource path="res://src/Menu/PauseMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Intro/Intro02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Entity/Fountain.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Entity/Bench.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Entity/PlatziStatue.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Levels/Intro/Intro01.gd" type="Script" id=13]
+[ext_resource path="res://src/Levels/TileMaps/DigitalTileSet.tres" type="TileSet" id=14]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 300, 100 )
@@ -22,7 +22,7 @@ extents = Vector2( 300, 100 )
 extents = Vector2( 500, 250 )
 
 [node name="Intro01" type="Node"]
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -34,18 +34,18 @@ shape = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="Game"]
 z_index = -10
-tile_set = ExtResource( 11 )
+tile_set = ExtResource( 14 )
 cell_size = Vector2( 48, 48 )
 collision_layer = 16
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -393221, 0, 8, -393220, 0, 10, -393219, 0, 10, -393218, 0, 10, -393217, 0, 10, -458752, 0, 10, -458751, 0, 10, -458750, 0, 10, -458749, 0, 10, -458748, 0, 10, -458747, 0, 10, -458746, 0, 10, -458745, 0, 10, -458744, 0, 10, -458743, 0, 10, -458742, 0, 10, -458741, 0, 10, -458740, 0, 10, -458739, 0, 10, -458738, 0, 10, -458737, 0, 10, -458736, 0, 10, -458735, 0, 10, -458734, 0, 10, -458733, 0, 10, -458732, 0, 10, -458731, 0, 10, -458730, 0, 10, -458729, 0, 10, -458728, 0, 10, -458727, 0, 10, -458726, 0, 11, -327685, 0, 196616, -327684, 0, 196617, -327683, 0, 196617, -327682, 0, 196617, -327681, 0, 196617, -393216, 0, 196617, -393215, 0, 196617, -393214, 0, 196617, -393213, 0, 196617, -393212, 0, 196617, -393211, 0, 196617, -393210, 0, 131077, -393209, 0, 131081, -393208, 0, 131081, -393207, 0, 131081, -393206, 0, 131081, -393205, 0, 131081, -393204, 0, 131081, -393203, 0, 131081, -393202, 0, 131081, -393201, 0, 131078, -393200, 0, 196617, -393199, 0, 196617, -393198, 0, 196617, -393197, 0, 196617, -393196, 0, 196617, -393195, 0, 196617, -393194, 0, 196617, -393193, 0, 196617, -393192, 0, 196617, -393191, 0, 196617, -393190, 0, 196619, -262149, 13, 0, -262148, 13, 0, -262147, 13, 0, -262146, 13, 0, -262145, 13, 0, -327680, 14, 0, -327679, 13, 0, -327678, 13, 0, -327677, 13, 0, -327676, 14, 0, -327675, 13, 0, -327674, 0, 65544, -327673, 0, 131081, -327672, 0, 131081, -327671, 0, 131081, -327670, 0, 131081, -327669, 0, 131081, -327668, 0, 131081, -327667, 0, 131081, -327666, 0, 131081, -327665, 0, 131083, -327664, 13, 0, -327663, 14, 0, -327662, 13, 0, -327661, 13, 0, -327660, 13, 0, -327659, 14, 0, -327658, 13, 0, -327657, 13, 0, -327656, 13, 0, -327655, 13, 0, -327654, 13, 0, -262138, 0, 65544, -262137, 0, 131081, -262136, 0, 131081, -262135, 0, 131081, -262134, 0, 131081, -262133, 0, 131081, -262132, 0, 131081, -262131, 0, 131081, -262130, 0, 131081, -262129, 0, 131083, -196602, 0, 65544, -196601, 0, 131081, -196600, 0, 131081, -196599, 0, 131081, -196598, 0, 131081, -196597, 0, 131081, -196596, 0, 131081, -196595, 0, 131081, -196594, 0, 131081, -196593, 0, 131083, -131066, 0, 196616, -131065, 0, 131077, -131064, 0, 131081, -131063, 0, 131081, -131062, 0, 131081, -131061, 0, 131081, -131060, 0, 131081, -131059, 0, 131081, -131058, 0, 131078, -131057, 0, 196619, -65530, 13, 0, -65529, 0, 196616, -65528, 0, 196617, -65527, 0, 131077, -65526, 0, 131081, -65525, 0, 131081, -65524, 0, 131078, -65523, 0, 196617, -65522, 0, 196619, -65521, 13, 0, 7, 13, 0, 8, 14, 0, 9, 0, 65544, 10, 8, 0, 11, 7, 0, 12, 0, 131083, 13, 14, 0, 14, 13, 0, 65545, 0, 65544, 65546, 0, 131081, 65547, 0, 131081, 65548, 0, 131083, 131081, 0, 65544, 131082, 6, 0, 131083, 7, 0, 131084, 0, 131083, 196617, 0, 65544, 196618, 0, 131081, 196619, 0, 131081, 196620, 0, 131083, 262153, 0, 65544, 262154, 6, 0, 262155, 7, 0, 262156, 0, 131083, 327689, 0, 65544, 327690, 0, 131081, 327691, 0, 131081, 327692, 0, 131083, 393225, 0, 65544, 393226, 6, 0, 393227, 7, 0, 393228, 0, 131083, 458761, 0, 65544, 458762, 0, 131081, 458763, 0, 131081, 458764, 0, 131083, 524297, 0, 65544, 524298, 6, 0, 524299, 7, 0, 524300, 0, 131083, 589833, 0, 65544, 589834, 0, 131081, 589835, 0, 131081, 589836, 0, 131083, 655369, 0, 65544, 655370, 6, 0, 655371, 7, 0, 655372, 0, 131083, 720902, 0, 8, 720903, 0, 11, 720905, 0, 65544, 720906, 0, 131081, 720907, 0, 131081, 720908, 0, 131083, 720910, 0, 8, 720911, 0, 11, 786438, 0, 196616, 786439, 0, 196619, 786441, 0, 65544, 786442, 6, 0, 786443, 7, 0, 786444, 0, 131083, 786446, 0, 196616, 786447, 0, 196619, 851974, 13, 0, 851975, 13, 0, 851977, 0, 65544, 851978, 0, 131081, 851979, 0, 131081, 851980, 0, 131083, 851982, 13, 0, 851983, 13, 0, 917513, 0, 65544, 917514, 6, 0, 917515, 9, 0, 917516, 0, 131083, 983046, 0, 8, 983047, 0, 10, 983048, 0, 10, 983049, 0, 65541, 983050, 0, 131081, 983051, 0, 131081, 983052, 0, 65542, 983053, 0, 10, 983054, 0, 10, 983055, 0, 11, 1048581, 0, 8, 1048582, 0, 65541, 1048583, 0, 131081, 1048584, 0, 131081, 1048585, 0, 131081, 1048586, 0, 131081, 1048587, 0, 131081, 1048588, 0, 131081, 1048589, 0, 131081, 1048590, 0, 131081, 1048591, 0, 65542, 1048592, 0, 11, 1114116, 0, 8, 1114117, 0, 65541, 1114118, 1, 0, 1114119, 4, 0, 1114120, 0, 131081, 1114121, 3, 0, 1114122, 0, 131081, 1114123, 0, 131081, 1114124, 3, 0, 1114125, 0, 131081, 1114126, 3, 0, 1114127, 1, 0, 1114128, 0, 65542, 1114129, 0, 11, 1179652, 0, 65544, 1179653, 0, 131081, 1179654, 6, 0, 1179655, 0, 131081, 1179656, 0, 131081, 1179657, 0, 131081, 1179658, 0, 131081, 1179659, 0, 131081, 1179660, 0, 131081, 1179661, 0, 131081, 1179662, 0, 131081, 1179663, 9, 0, 1179664, 0, 131081, 1179665, 0, 131083, 1245188, 0, 65544, 1245189, 0, 131081, 1245190, 0, 131081, 1245191, 0, 131081, 1245192, 0, 131081, 1245193, 0, 131081, 1245194, 0, 131081, 1245195, 0, 131081, 1245196, 0, 131081, 1245197, 0, 131081, 1245198, 0, 131081, 1245199, 0, 131081, 1245200, 0, 131081, 1245201, 0, 131083, 1310724, 0, 65544, 1310725, 0, 131081, 1310726, 6, 0, 1310727, 0, 131081, 1310728, 0, 131081, 1310729, 0, 131081, 1310730, 0, 131081, 1310731, 0, 131081, 1310732, 0, 131081, 1310733, 0, 131081, 1310734, 0, 131081, 1310735, 7, 0, 1310736, 0, 131081, 1310737, 0, 131083, 1376260, 0, 65544, 1376261, 0, 131081, 1376262, 0, 131081, 1376263, 0, 131081, 1376264, 0, 131081, 1376265, 0, 131081, 1376266, 0, 131081, 1376267, 0, 131081, 1376268, 0, 131081, 1376269, 0, 131081, 1376270, 0, 131081, 1376271, 0, 131081, 1376272, 0, 131081, 1376273, 0, 131083, 1441796, 0, 65544, 1441797, 0, 131081, 1441798, 6, 0, 1441799, 0, 131081, 1441800, 0, 131081, 1441801, 0, 131081, 1441802, 0, 131081, 1441803, 0, 131081, 1441804, 0, 131081, 1441805, 0, 131081, 1441806, 0, 131081, 1441807, 7, 0, 1441808, 0, 131081, 1441809, 0, 131083, 1507332, 0, 65544, 1507333, 0, 131081, 1507334, 0, 131081, 1507335, 0, 131081, 1507336, 0, 131081, 1507337, 0, 131081, 1507338, 0, 131081, 1507339, 0, 131081, 1507340, 0, 131081, 1507341, 0, 131081, 1507342, 0, 131081, 1507343, 0, 131081, 1507344, 0, 131081, 1507345, 0, 131083, 1572868, 0, 65544, 1572869, 0, 131081, 1572870, 8, 0, 1572871, 0, 131081, 1572872, 0, 131081, 1572873, 0, 131081, 1572874, 0, 131081, 1572875, 0, 131081, 1572876, 0, 131081, 1572877, 0, 131081, 1572878, 0, 131081, 1572879, 7, 0, 1572880, 0, 131081, 1572881, 0, 131083, 1638404, 0, 196616, 1638405, 0, 131077, 1638406, 1, 0, 1638407, 2, 0, 1638408, 0, 131081, 1638409, 2, 0, 1638410, 0, 131081, 1638411, 0, 131081, 1638412, 2, 0, 1638413, 0, 131081, 1638414, 5, 0, 1638415, 1, 0, 1638416, 0, 131078, 1638417, 0, 196619, 1703940, 13, 0, 1703941, 0, 196616, 1703942, 0, 131077, 1703943, 0, 131081, 1703944, 0, 131081, 1703945, 0, 131081, 1703946, 0, 131081, 1703947, 0, 131081, 1703948, 0, 131081, 1703949, 0, 131081, 1703950, 0, 131081, 1703951, 0, 131078, 1703952, 0, 196619, 1703953, 13, 0, 1769477, 13, 0, 1769478, 0, 196616, 1769479, 0, 196617, 1769480, 0, 196617, 1769481, 0, 196617, 1769482, 0, 196617, 1769483, 0, 196617, 1769484, 0, 196617, 1769485, 0, 196617, 1769486, 0, 196617, 1769487, 0, 196619, 1769488, 13, 0, 1835014, 13, 0, 1835015, 14, 0, 1835016, 13, 0, 1835017, 13, 0, 1835018, 14, 0, 1835019, 14, 0, 1835020, 13, 0, 1835021, 13, 0, 1835022, 14, 0, 1835023, 13, 0 )
 
-[node name="CameraAttractor" parent="Game" instance=ExtResource( 7 )]
+[node name="CameraAttractor" parent="Game" instance=ExtResource( 12 )]
 position = Vector2( 528, -336 )
 collision_shape = SubResource( 1 )
 
-[node name="Camera" parent="Game" instance=ExtResource( 5 )]
+[node name="Camera" parent="Game" instance=ExtResource( 3 )]
 position = Vector2( 528, 1166 )
 target_path = NodePath("../YSort/Player")
 
@@ -56,7 +56,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="Game/StaticBody2D"]
-texture = ExtResource( 10 )
+texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Game/StaticBody2D"]
 polygon = PoolVector2Array( -96, 192, -96, 216, -144, 216, -144, 192, -288, 192, -288, 240, -336, 240, -336, 72, 336, 72, 336, 240, 288, 240, 288, 192, 144, 192, 144, 216, 96, 216, 96, 192 )
@@ -73,10 +73,10 @@ __meta__ = {
 "_edit_vertical_guides_": [ -238.0 ]
 }
 
-[node name="Fountain" parent="Game/YSort" instance=ExtResource( 2 )]
+[node name="Fountain" parent="Game/YSort" instance=ExtResource( 9 )]
 position = Vector2( 528, 1048 )
 
-[node name="Bench" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 360, 756.076 )
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
@@ -110,7 +110,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench7" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench7" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 817.924, 844.076 )
 animation = "IdleLeft"
 node_limit_UPDATE = 0
@@ -145,7 +145,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench10" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench10" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 809.924, 1185.48 )
 animation = "IdleLeft"
 node_limit_UPDATE = 0
@@ -180,7 +180,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench11" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench11" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 246.076, 881.483 )
 animation = "IdleRight"
 node_limit_UPDATE = 0
@@ -215,7 +215,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench12" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench12" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 246.076, 1176 )
 animation = "IdleRight"
 node_limit_UPDATE = 0
@@ -250,7 +250,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench9" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench9" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 696, 1312 )
 animation = "IdleUp"
 node_limit_UPDATE = 0
@@ -285,7 +285,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench8" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench8" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 360, 1312 )
 animation = "IdleUp"
 node_limit_UPDATE = 0
@@ -320,7 +320,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench2" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench2" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 696, 756.076 )
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
@@ -354,7 +354,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench3" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench3" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 721.924, -106.064 )
 animation = "IdleLeft"
 node_limit_UPDATE = 0
@@ -389,7 +389,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench6" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench6" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 721.924, -202.064 )
 animation = "IdleLeft"
 node_limit_UPDATE = 0
@@ -424,7 +424,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench5" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench5" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 334.076, -202.064 )
 animation = "IdleRight"
 node_limit_UPDATE = 0
@@ -459,7 +459,7 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="Bench4" parent="Game/YSort" instance=ExtResource( 9 )]
+[node name="Bench4" parent="Game/YSort" instance=ExtResource( 10 )]
 position = Vector2( 334.076, -106.064 )
 animation = "IdleRight"
 node_limit_UPDATE = 0
@@ -494,21 +494,21 @@ node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
-[node name="PlatziStatue7" parent="Game/YSort" instance=ExtResource( 14 )]
+[node name="PlatziStatue7" parent="Game/YSort" instance=ExtResource( 11 )]
 position = Vector2( 336, 576 )
 
-[node name="PlatziStatue8" parent="Game/YSort" instance=ExtResource( 14 )]
+[node name="PlatziStatue8" parent="Game/YSort" instance=ExtResource( 11 )]
 position = Vector2( 720, 576 )
 
-[node name="PlatziStatue3" parent="Game/YSort" instance=ExtResource( 14 )]
+[node name="PlatziStatue3" parent="Game/YSort" instance=ExtResource( 11 )]
 position = Vector2( 672, -32 )
 
-[node name="PlatziStatue4" parent="Game/YSort" instance=ExtResource( 14 )]
+[node name="PlatziStatue4" parent="Game/YSort" instance=ExtResource( 11 )]
 position = Vector2( 384, -32 )
 
-[node name="Teleporter" parent="Game/YSort" instance=ExtResource( 8 )]
+[node name="Teleporter" parent="Game/YSort" instance=ExtResource( 5 )]
 position = Vector2( 528, -264 )
-target_scene = ExtResource( 12 )
+target_scene = ExtResource( 8 )
 is_active = true
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
@@ -545,9 +545,9 @@ node_limit_DIRECTION = 0
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="DeathScene" parent="UI" instance=ExtResource( 3 )]
+[node name="DeathScene" parent="UI" instance=ExtResource( 4 )]
 visible = false
 
-[node name="PauseMenu" parent="UI" instance=ExtResource( 4 )]
+[node name="PauseMenu" parent="UI" instance=ExtResource( 7 )]
 
-[node name="Scripting" parent="UI" instance=ExtResource( 1 )]
+[node name="Scripting" parent="UI" instance=ExtResource( 2 )]
