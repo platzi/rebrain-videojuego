@@ -161,11 +161,11 @@ func _hint_1() -> void:
 	var hint_panel : HintPanel = hint_panel_scene.instance()
 	hint_panel.connect("closed", self, "_on_hint_1_closed")
 	hint_panel.title = "Guía Básica"
+	var hint_resource := HintResource.new()
+	hint_resource.image = preload("res://assets/images/hints/hint_open_scripting_mode.png")
+	hint_resource.content = "[b][color=#3700a7]Modo scripting[/color][/b]\nPresiona [img=36]assets/images/keyboard/tab.png[/img] para activar el [color=#3700a7]Modo scripting[/color]. En este modo se resaltarán las entidades con las cuales puedes interactuar."
 	hint_panel.hints = [
-		[
-			preload("res://assets/images/hints/hint_open_scripting_mode.png"),
-			"[b][color=#3700a7]Modo scripting[/color][/b]\nPresiona [img=36]assets/images/keyboard/tab.png[/img] para activar el [color=#3700a7]Modo scripting[/color]. En este modo se resaltarán las entidades con las cuales puedes interactuar."
-		]
+		hint_resource
 	]
 	ui_canvas_layer.add_child(hint_panel)
 
@@ -174,11 +174,11 @@ func _hint_2() -> void:
 	var hint_panel : HintPanel = hint_panel_scene.instance()
 	hint_panel.connect("closed", self, "_on_hint_2_closed")
 	hint_panel.title = "Guía Básica"
+	var hint_resource := HintResource.new()
+	hint_resource.image = preload("res://assets/images/hints/hint_open_brain.png")
+	hint_resource.content = "[b][color=#3700a7]ReBrain[/color][/b]\nAl estar en el [color=#3700a7]Modo Scripting[/color] y hacer click sobre una entidad se abrira el cerebro de esta, desde aquí podrás modificar su comportamiento utilizando distintos nodos."
 	hint_panel.hints = [
-		[
-			preload("res://assets/images/hints/hint_open_brain.png"),
-			"[b][color=#3700a7]ReBrain[/color][/b]\nAl estar en el [color=#3700a7]Modo Scripting[/color] y hacer click sobre una entidad se abrira el cerebro de esta, desde aquí podrás modificar su comportamiento utilizando distintos nodos."
-		]
+		hint_resource
 	]
 	ui_canvas_layer.add_child(hint_panel)
 
@@ -187,11 +187,11 @@ func _hint_3() -> void:
 	var hint_panel : HintPanel = hint_panel_scene.instance()
 	hint_panel.connect("closed", self, "_on_hint_3_closed")
 	hint_panel.title = "Guía Básica"
+	var hint_resource := HintResource.new()
+	hint_resource.image = preload("res://assets/images/hints/hint_add_node.png")
+	hint_resource.content = "[b][color=#3700a7]Agregar nodo[/color][/b]\nCon click derecho en la gráfica se abrira el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
 	hint_panel.hints = [
-		[
-			preload("res://assets/images/hints/hint_add_node.png"),
-			"[b][color=#3700a7]Agregar nodo[/color][/b]\nCon click derecho en la gráfica se abrira el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
-		]
+		hint_resource
 	]
 	ui_canvas_layer.add_child(hint_panel)
 
@@ -200,11 +200,11 @@ func _hint_4() -> void:
 	var hint_panel : HintPanel = hint_panel_scene.instance()
 	hint_panel.connect("closed", self, "_on_hint_4_closed")
 	hint_panel.title = "Guía Básica"
+	var hint_resource := HintResource.new()
+	hint_resource.image = preload("res://assets/images/hints/hint_connect_nodes.png")
+	hint_resource.content = "[b][color=#3700a7]Conectar nodos[/color][/b]\nArrastra con click izquierdo los círculos de las entradas o salidas para crear una conexión entre nodos."
 	hint_panel.hints = [
-		[
-			preload("res://assets/images/hints/hint_connect_nodes.png"),
-			"[b][color=#3700a7]Conectar nodos[/color][/b]\nCon click derecho en la gráfica se abrira el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
-		]
+		hint_resource
 	]
 	ui_canvas_layer.add_child(hint_panel)
 
@@ -213,11 +213,11 @@ func _hint_5() -> void:
 	var hint_panel : HintPanel = hint_panel_scene.instance()
 	hint_panel.connect("closed", self, "_on_hint_5_closed")
 	hint_panel.title = "Guía Básica"
+	var hint_resource := HintResource.new()
+	hint_resource.image = preload("res://assets/images/hints/hint_save_brain.png")
+	hint_resource.content = "[b][color=#3700a7]Guardar[/color][/b]\nGuarda los cambios que se hayan realizado al cerebro de la entidad y hace que esta se reinicie a su posición inicial."
 	hint_panel.hints = [
-		[
-			preload("res://assets/images/hints/hint_save_brain.png"),
-			"[b][color=#3700a7]Guardar[/color][/b]\nGuarda los cambios que se hayan realizado al cerebro de la entidad y hace que esta se reinicie a su posición inicial."
-		]
+		hint_resource
 	]
 	ui_canvas_layer.add_child(hint_panel)
 
