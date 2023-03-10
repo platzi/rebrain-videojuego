@@ -103,7 +103,7 @@ func update_nodes_limit() -> void:
 			_nodes_limit[node_type] = node_qty
 	node_searcher.nodes_limit = _nodes_limit
 	for child in scripting_graph.get_children():
-		if child is ScriptingNode:
+		if child is ScriptingNode and child.visible:
 			var node := child as ScriptingNode
 			var node_type = node.type
 			if node_searcher.nodes_limit.has(node_type) and node_searcher.nodes_limit[node_type] > 0:
