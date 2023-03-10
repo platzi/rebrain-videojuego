@@ -253,9 +253,9 @@ func _if(start_node : Dictionary, node : Dictionary):
 func _repeat(start_node : Dictionary, node : Dictionary) -> void:
 	if node.has("count"):
 		node.count -= 1
-		node.first_node = start_node
 	else:
 		node.count = max(0, int(node.computed_inputs["1"]))
+		node.first_node = start_node
 	var connections = [{}, {}]
 	for connection in node.connections_out:
 		if connection.from_port == 0:
@@ -270,7 +270,7 @@ func _repeat(start_node : Dictionary, node : Dictionary) -> void:
 		node.erase("first_node")
 		connections[0].type = 0
 		connections[1].type = -1
-		_run_next(start_node, node)
+		_run_next(first_node, node)
 	else:
 		_run_next(node, node)
 
