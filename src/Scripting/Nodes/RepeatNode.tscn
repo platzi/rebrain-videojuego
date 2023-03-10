@@ -17,21 +17,10 @@ slot/2/left_color = Color( 0, 0.666667, 0.8, 1 )
 slot/2/right_enabled = true
 slot/2/right_type = 0
 slot/2/right_color = Color( 0.352941, 1, 0, 1 )
+type = "REPEAT"
 tag = "Repetir"
 subtag = "Lógica"
 icon = ExtResource( 3 )
-
-[node name="TitleMC" parent="." index="0"]
-margin_right = 219.0
-
-[node name="Panel" parent="TitleMC" index="0"]
-margin_right = 218.0
-
-[node name="TitleMC" parent="TitleMC" index="1"]
-margin_right = 218.0
-
-[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
-margin_right = 214.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 3 )
@@ -52,30 +41,21 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 219.0
-margin_bottom = 69.0
+margin_right = 159.0
+margin_bottom = 79.0
 left_enabled = true
-left_number_min = 0
-left_number_max = 100
 right_enabled = true
 right_tag = "Salida"
-right_number_min = 0
-right_number_max = 100
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 73.0
-margin_right = 219.0
-margin_bottom = 101.0
+margin_top = 83.0
+margin_right = 159.0
+margin_bottom = 118.0
 left_enabled = true
 left_type = 3
 left_tag = "Veces"
-left_show_input = true
-left_number_min = 0
-left_number_max = 100
 right_enabled = true
 right_tag = "Cuerpo"
-right_number_min = 0
-right_number_max = 100

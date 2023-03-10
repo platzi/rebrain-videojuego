@@ -22,6 +22,7 @@ Hay muchas maneras de obtener la llave, una de ellas es caminando hacía ella."
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 1 )
+node_limit_REPEAT = 0
 
 [node name="Cage" parent="Entities/YSort" index="2" instance=ExtResource( 7 )]
 position = Vector2( 480, -384 )
@@ -53,6 +54,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -89,6 +91,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0

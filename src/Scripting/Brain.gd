@@ -85,6 +85,8 @@ func _execute(start_node, current_node) -> void:
 			_close(start_node, current_node)
 		"IF":
 			_if(start_node, current_node)
+		"REPEAT":
+			_repeat(start_node, current_node)
 
 
 func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
@@ -104,7 +106,7 @@ func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
 	if execute_list.size() > 0:
 		for exec_node in execute_list:
 			_execute(start_node, exec_node)
-	elif start_node.type == "UPDATE":
+	else:
 		_execute(start_node, start_node)
 
 
@@ -232,6 +234,7 @@ func _close(start_node : Dictionary, node : Dictionary):
 	emit_signal("close")
 	_run_next(start_node, node)
 
+
 func _if(start_node : Dictionary, node : Dictionary):
 	var connections = [{}, {}]
 	for connection in node.connections_out:
@@ -245,6 +248,31 @@ func _if(start_node : Dictionary, node : Dictionary):
 		connections[0].type = 0
 		connections[1].type = -1
 	_run_next(start_node, node)
+
+
+func _repeat(start_node : Dictionary, node : Dictionary) -> void:
+	if node.has("count"):
+		node.count -= 1
+		node.first_node = start_node
+	else:
+		node.count = max(0, int(node.computed_inputs["1"]))
+	var connections = [{}, {}]
+	for connection in node.connections_out:
+		if connection.from_port == 0:
+			connections[0] = connection
+		elif connection.from_port == 1:
+			connections[1] = connection
+	connections[0].type = -1
+	connections[1].type = 0
+	if node.count <= 0:
+		var first_node = node.first_node
+		node.erase("count")
+		node.erase("first_node")
+		connections[0].type = 0
+		connections[1].type = -1
+		_run_next(start_node, node)
+	else:
+		_run_next(node, node)
 
 
 # CALCULATIONS

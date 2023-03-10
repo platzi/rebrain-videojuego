@@ -32,12 +32,16 @@ collision_shape = SubResource( 1 )
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 276 )
 
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+node_limit_REPEAT = 0
+
 [node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 2 )]
 position = Vector2( 408, 120 )
 direction = 270.0
 node_limit_UPDATE = 1
 node_limit_MOVE_FORWARD = -1
 node_limit_ROTATE_RIGHT = -1
+node_limit_REPEAT = 0
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 1 )]
 position = Vector2( 480, 376 )
@@ -65,6 +69,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -101,6 +106,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -112,10 +118,12 @@ node_limit_DIRECTION = 0
 [node name="Palm" parent="Entities/YSort" index="5" instance=ExtResource( 11 )]
 position = Vector2( 288, 240 )
 blocked = true
+node_limit_REPEAT = 0
 
 [node name="Palm2" parent="Entities/YSort" index="6" instance=ExtResource( 11 )]
 position = Vector2( 672, 144 )
 blocked = true
+node_limit_REPEAT = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 8 )]
 speaker = "Profesor"
