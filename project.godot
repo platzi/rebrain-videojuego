@@ -14,15 +14,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Scripting/Brain.gd"
 }, {
+"base": "Control",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://src/Dialogue/Dialogue.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://src/Entity/Entity.gd"
 }, {
+"base": "Node",
+"class": "EventDialogue",
+"language": "GDScript",
+"path": "res://src/Levels/Base/EventDialogue.gd"
+}, {
+"base": "Node",
+"class": "EventHint",
+"language": "GDScript",
+"path": "res://src/Levels/Base/EventHint.gd"
+}, {
 "base": "Control",
 "class": "HintPanel",
 "language": "GDScript",
 "path": "res://src/HintPanel/HintPanel.gd"
+}, {
+"base": "Resource",
+"class": "HintResource",
+"language": "GDScript",
+"path": "res://src/HintPanel/HintResource.gd"
 }, {
 "base": "GraphNode",
 "class": "ScriptingNode",
@@ -36,8 +56,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Brain": "",
+"Dialogue": "",
 "Entity": "",
+"EventDialogue": "",
+"EventHint": "",
 "HintPanel": "",
+"HintResource": "",
 "ScriptingNode": "",
 "ScriptingNodeSlot": ""
 }
@@ -55,7 +79,6 @@ config/icon="res://icon.png"
 Globals="*res://src/Autoload/Globals.gd"
 SaveManager="*res://src/Autoload/SaveManager.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
-MusicScene="*res://src/Levels/MusicScene.tscn"
 Customization="*res://src/Autoload/Customization.gd"
 NodesList="*res://src/Autoload/NodesList.gd"
 

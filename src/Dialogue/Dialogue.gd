@@ -1,5 +1,9 @@
 extends Control
 
+
+class_name Dialogue
+
+
 signal finished
 
 export(String) var speaker : String

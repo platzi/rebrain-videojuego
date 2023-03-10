@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Levels/Base/EventDialogue.gd" type="Script" id=1]
+
+[node name="EventDialogue" type="Node"]
+script = ExtResource( 1 )

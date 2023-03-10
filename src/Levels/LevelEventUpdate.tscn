@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Frog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=9]
+[ext_resource path="res://assets/images/hints/hint_update_node.png" type="Texture" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 300, 300 )
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 9 )
+image = ExtResource( 10 )
+content = "[b][color=purple]Eventos[/color][/b]
+Los nodos no se ejecutan por si solos, es necesario que cada secuencia comience por un evento, un ejemplo de un [color=purple]Evento[/color] muy importante es el nodo [color=purple]Actualizar[/color]
+
+[b][color=purple]Nodo Actualizar[/color][/b]
+Se ejecuta automaticamente cada vez que se termina la secuencia establecida."
+
+[node name="LevelEventUpdate" instance=ExtResource( 1 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 6 )]
+position = Vector2( 480, 144 )
+collision_shape = SubResource( 1 )
+zoom_level = 1.2
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 408, 264 )
+
+[node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
+position = Vector2( 360, -24 )
+brain_og = "{\"MoveForwardNode\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-60,-40],\"connections_in\":[],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+node_limit_UPDATE = 1
+node_limit_MOVE_FORWARD = 1
+
+[node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
+position = Vector2( 600, -24 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Cage" parent="Entities/YSort" index="4" instance=ExtResource( 5 )]
+position = Vector2( 552, 264 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 7 )]
+speaker = "Profesor"
+dialogues = [ "Puedo ver que no tienes la llave a tu alcance, pero no te preocupes que otras entidades pueden obtenerla por tí.", "Intenta programar la entidad para que se mueva hacía la llave." ]
+
+[node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
+__meta__ = {
+"_editor_description_": ""
+}
+title = "Eventos"
+hints = [ SubResource( 2 ) ]
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 7 )]
+speaker = "Alumno"
+dialogues = [ "¡Gracias por rescatarme! La verdad no la pase tan mal." ]
+
+[node name="EventDialogue" parent="CompletedEvents" index="0" instance=ExtResource( 7 )]
+speaker = "Profesor"
+dialogues = [ "Ese alumno si que se vea muy comodo, avanzemos  al siguiente nivel." ]
+
+[node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 3 )]
+tile_data = PoolIntArray( -262139, 1, 0, -262138, 1, 0, -262137, 1, 0, -262136, 1, 0, -262135, 1, 0, -262134, 1, 0, -262133, 1, 0, -262132, 1, 0, -262131, 1, 0, -262130, 1, 0, -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -196595, 1, 0, -196594, 1, 0, -196593, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 0, 8, -131065, 0, 10, -131064, 0, 10, -131063, 0, 10, -131062, 0, 10, -131061, 0, 10, -131060, 0, 10, -131059, 0, 11, -131058, 1, 0, -131057, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 0, 65544, -65529, 2, 196609, -65528, 2, 196610, -65527, 2, 196610, -65526, 2, 196610, -65525, 2, 196610, -65524, 2, 196611, -65523, 0, 131083, -65522, 1, 0, -65521, 1, 0, 4, 1, 0, 5, 1, 0, 6, 0, 196616, 7, 0, 196617, 8, 0, 196617, 9, 0, 196617, 10, 0, 196617, 11, 0, 196617, 12, 0, 196617, 13, 0, 196619, 14, 1, 0, 15, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 131076, 3, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 3, 0, 196613, 3, 0, 196614, 1, 0, 196615, 0, 8, 196616, 0, 10, 196617, 0, 10, 196618, 0, 10, 196619, 0, 10, 196620, 0, 11, 196621, 1, 0, 196622, 3, 0, 262150, 1, 0, 262151, 0, 65544, 262152, 0, 262145, 262153, 0, 131081, 262154, 0, 131081, 262155, 0, 131081, 262156, 0, 131083, 262157, 1, 0, 327686, 1, 0, 327687, 0, 65544, 327688, 2, 196609, 327689, 2, 196610, 327690, 2, 196610, 327691, 2, 196611, 327692, 0, 131083, 327693, 1, 0, 393222, 1, 0, 393223, 0, 65544, 393224, 0, 262147, 393225, 0, 262144, 393226, 0, 131081, 393227, 0, 262146, 393228, 0, 131083, 393229, 1, 0, 458758, 1, 0, 458759, 0, 196616, 458760, 0, 196617, 458761, 0, 196617, 458762, 0, 196617, 458763, 0, 196617, 458764, 0, 196619, 458765, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589830, 3, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 3, 0, 655367, 3, 0, 655368, 3, 0, 655369, 3, 0, 655370, 3, 0, 655371, 3, 0, 655372, 3, 0 )

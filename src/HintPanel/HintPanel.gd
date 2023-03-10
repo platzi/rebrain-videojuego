@@ -33,20 +33,19 @@ func _ready():
 
 
 func _add_hint() -> void:
-	var hint : Array = hints.pop_back()
+	var hint : HintResource = hints.pop_back()
+	print(hint.content)
 	if hint == null:
 		return
-	var image : Texture = hint[0]
-	var content : String = hint[1]
 	var hbc := HBoxContainer.new()
 	var tr := TextureRect.new()
 	var rtl := RichTextLabel.new()
-	tr.texture = image
+	tr.texture = hint.image if hint.image else null
 	tr.expand = true
 	tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	tr.rect_min_size = Vector2(320.0, 186.0)
 	rtl.bbcode_enabled = true
-	rtl.bbcode_text = content
+	rtl.bbcode_text = hint.content
 	rtl.fit_content_height = true
 	rtl.size_flags_horizontal = SIZE_EXPAND_FILL
 	rtl.size_flags_vertical = SIZE_SHRINK_CENTER
