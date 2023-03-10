@@ -49,8 +49,8 @@ func _on_cage_unlocked() -> void:
 
 
 func _on_cage_teleported() -> void:
-	Globals.disable_inputs = true
-	Globals.disable_scripting = true
+	Globals.disable_inputs = false
+	Globals.disable_scripting = false
 	completed_events.execute()
 	camera.target = player
 
