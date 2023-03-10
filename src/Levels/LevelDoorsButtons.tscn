@@ -1,0 +1,303 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Entity/Frog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/ButtonEntity.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Entity/LogDoor.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 400, 300 )
+
+[node name="LevelDoorsButtons" instance=ExtResource( 4 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 7 )]
+position = Vector2( 480, 264 )
+collision_shape = SubResource( 1 )
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 720, 504 )
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
+
+[node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 6 )]
+position = Vector2( 720, 48 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 5 )]
+position = Vector2( 840, 480 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Frog" parent="Entities/YSort" index="4" instance=ExtResource( 1 )]
+position = Vector2( 144, 480 )
+direction = 270.0
+node_limit_UPDATE = 1
+node_limit_MOVE_FORWARD = 4
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 2
+node_limit_ROTATE_RIGHT = 1
+node_limit_IF = 1
+node_limit_REPEAT = 3
+node_limit_PATH_AHEAD = 1
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 3
+
+[node name="LogDoor" parent="Entities/YSort" index="5" instance=ExtResource( 8 )]
+position = Vector2( 720, 120 )
+brain_og = "{\"@UpdateNode@1443\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-360,-180],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@1546\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"@IfNode@1505\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"@StringNode@1464\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@1546\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn3\"}},\"@IfNode@1505\":{\"type\":\"IF\",\"disabled\":false,\"position\":[-20,-220],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@1443\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"@CompareStringNode@1546\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@OpenNode@1567\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"@CompareStringNode@1546\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-160,-20],\"connections_in\":[{\"type\":2,\"from\":\"@UpdateNode@1443\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@1464\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@1505\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@OpenNode@1567\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[200,-20],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@1505\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_OPEN = 1
+node_limit_IF = 1
+node_limit_COMPARE_STRING = 1
+node_limit_PASSENGERS = 0
+node_limit_STRING = 1
+
+[node name="LogDoor2" parent="Entities/YSort" index="6" instance=ExtResource( 8 )]
+position = Vector2( 720, 240 )
+brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-360,-180],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn2\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[-20,-220],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-160,-20],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[200,-20],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_OPEN = 1
+node_limit_IF = 1
+node_limit_COMPARE_STRING = 1
+node_limit_PASSENGERS = 0
+node_limit_STRING = 1
+
+[node name="LogDoor3" parent="Entities/YSort" index="7" instance=ExtResource( 8 )]
+position = Vector2( 720, 384 )
+brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-360,-180],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn1\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[-20,-220],\"connections_in\":[{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-160,-20],\"connections_in\":[{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1},{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[200,-20],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_OPEN = 1
+node_limit_IF = 1
+node_limit_COMPARE_STRING = 1
+node_limit_PASSENGERS = 0
+node_limit_STRING = 1
+
+[node name="ButtonEntity" parent="Entities/YSort" index="8" instance=ExtResource( 3 )]
+position = Vector2( 240, 96 )
+brain_og = "{\"@MessageNode@426\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-80,-200],\"connections_in\":[{\"type\":2,\"from\":\"@StringNode@447\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"@PressedNode@468\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@447\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-300,-100],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@426\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn3\"}},\"@PressedNode@468\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-320,-240],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@426\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 1
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 1
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 1
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="ButtonEntity2" parent="Entities/YSort" index="9" instance=ExtResource( 3 )]
+position = Vector2( 384, 240 )
+brain_og = "{\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-80,-200],\"connections_in\":[{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-300,-100],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn2\"}},\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-320,-240],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 1
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 1
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 1
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="ButtonEntity3" parent="Entities/YSort" index="10" instance=ExtResource( 3 )]
+position = Vector2( 144, 384 )
+brain_og = "{\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-80,-200],\"connections_in\":[{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-300,-100],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn1\"}},\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-320,-240],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+blocked = true
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 1
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 1
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 1
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 14, 0, 8, 15, 0, 11, 65540, 0, 8, 65541, 0, 10, 65542, 0, 10, 65543, 0, 10, 65544, 0, 11, 65550, 0, 65544, 65551, 0, 131083, 131076, 0, 196616, 131077, 0, 196617, 131078, 0, 196617, 131079, 0, 131077, 131080, 0, 131083, 131086, 0, 65544, 131087, 0, 131083, 196615, 0, 65544, 196616, 0, 131083, 196622, 0, 65544, 196623, 0, 131083, 262151, 0, 65544, 262152, 0, 131083, 262158, 0, 65544, 262159, 0, 131083, 327687, 0, 65544, 327688, 0, 131083, 327694, 0, 65544, 327695, 0, 131083, 393223, 0, 65544, 393224, 0, 131083, 393230, 0, 65544, 393231, 0, 131083, 458754, 0, 8, 458755, 0, 10, 458756, 0, 10, 458757, 0, 10, 458758, 0, 10, 458759, 0, 65541, 458760, 0, 131083, 458766, 0, 65544, 458767, 0, 131083, 524290, 0, 65544, 524291, 0, 131078, 524292, 0, 196617, 524293, 0, 196617, 524294, 0, 196617, 524295, 0, 196617, 524296, 0, 196619, 524302, 0, 65544, 524303, 0, 131083, 589826, 0, 65544, 589827, 0, 131083, 589838, 0, 65544, 589839, 0, 65542, 589840, 0, 10, 589841, 0, 10, 589842, 0, 11, 655362, 0, 196616, 655363, 0, 196619, 655374, 0, 196616, 655375, 0, 196617, 655376, 0, 196617, 655377, 0, 196617, 655378, 0, 196619 )
