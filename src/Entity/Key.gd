@@ -27,6 +27,7 @@ func _on_body_entered(body : KinematicBody2D) -> void:
 	tween.interpolate_property(self, "position", position, cage.position, 1.0, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
 	pause_mode = Node.PAUSE_MODE_PROCESS
+	camera.target = self
 	z_as_relative = false
 	z_index = 10
 	Globals.disable_inputs = true
