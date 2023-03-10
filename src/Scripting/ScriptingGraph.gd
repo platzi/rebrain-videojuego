@@ -13,7 +13,7 @@ func _ready():
 func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if Globals.DEBUG:
-			if event.scancode == KEY_F2:
+			if event.scancode == KEY_P:
 				var save_string = JSON.print(save())
 				OS.clipboard = save_string
 				print(save_string)
