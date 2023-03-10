@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/images/hints/hints_look_avaible_nodes.png" type="Texture" id=1]
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Entity/Barrel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=15]
+[ext_resource path="res://src/Levels/LevelBasicRaft.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 500 )
@@ -37,7 +38,13 @@ zoom_level = 1.2
 position = Vector2( 96, 288 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
+death_particles = ExtResource( 16 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 13 )]
 position = Vector2( 264, 204 )
@@ -49,6 +56,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -69,6 +80,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -84,6 +96,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -104,6 +120,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -117,20 +134,35 @@ direction = 90.0
 node_limit_UPDATE = 1
 node_limit_TRIGGER = 1
 node_limit_MOVE_FORWARD = -1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = -1
 node_limit_ROTATE_RIGHT = -1
+node_limit_PASSENGERS = 0
 
 [node name="Monkey" parent="Entities/YSort" index="5" instance=ExtResource( 8 )]
 position = Vector2( 432, 288 )
 direction = 180.0
 node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_SHOOT = 1
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Barrel" parent="Entities/YSort" index="6" instance=ExtResource( 14 )]
 position = Vector2( 264, 288 )
 blocked = true
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="ButtonEntity" parent="Entities/YSort" index="7" instance=ExtResource( 5 )]
 position = Vector2( 264, 456 )
@@ -140,6 +172,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -160,6 +196,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -170,12 +207,22 @@ node_limit_DIRECTION = 0
 [node name="Palm" parent="Entities/YSort" index="8" instance=ExtResource( 11 )]
 position = Vector2( -96, 192 )
 blocked = true
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Rock" parent="Entities/YSort" index="9" instance=ExtResource( 9 )]
 position = Vector2( 624, 144 )
 blocked = true
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Profesor"

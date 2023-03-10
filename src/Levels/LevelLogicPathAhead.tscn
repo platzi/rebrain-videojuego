@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/hints/hint_if.png" type="Texture" id=3]
+[ext_resource path="res://src/Levels/LevelLogicRepeat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Entity/Frog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=7]
@@ -23,15 +24,26 @@ Este nodo revisara si la condición de entrada (la cual es un booleano que puede
 position = Vector2( 408, 264 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 4 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 5 )]
 position = Vector2( 552, 120 )
 node_limit_UPDATE = 1
 node_limit_MOVE_FORWARD = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_RIGHT = 1
 node_limit_IF = 1
 node_limit_PATH_AHEAD = 1
+node_limit_PASSENGERS = 0
 
 [node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 6 )]
 position = Vector2( 408, 120 )
@@ -43,6 +55,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -63,6 +79,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -78,6 +95,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -98,6 +119,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0

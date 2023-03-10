@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/Barrel.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Entity/Monkey.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/Palm.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/LevelEventTrigger.tscn" type="PackedScene" id=9]
 
 [node name="LevelActionShoot" instance=ExtResource( 5 )]
 
@@ -15,13 +16,24 @@
 position = Vector2( 600, 72 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 9 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Monkey" parent="Entities/YSort" index="2" instance=ExtResource( 6 )]
 position = Vector2( 312, 168 )
 node_limit_UPDATE = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_SHOOT = 1
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
 position = Vector2( 600, 360 )
@@ -33,6 +45,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -53,6 +69,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -62,7 +79,12 @@ node_limit_DIRECTION = 0
 
 [node name="Barrel" parent="Entities/YSort" index="4" instance=ExtResource( 2 )]
 position = Vector2( 600, 168 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Cage" parent="Entities/YSort" index="5" instance=ExtResource( 3 )]
 position = Vector2( 312, 360 )
@@ -72,6 +94,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -92,6 +118,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -101,11 +128,21 @@ node_limit_DIRECTION = 0
 
 [node name="Palm" parent="Entities/YSort" index="6" instance=ExtResource( 7 )]
 position = Vector2( 816, 48 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Palm2" parent="Entities/YSort" index="7" instance=ExtResource( 7 )]
 position = Vector2( 240, 0 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 8 )]
 speaker = "Profesor"

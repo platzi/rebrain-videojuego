@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/images/hints/hint_compare_string.png" type="Texture" id=1]
 [ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=12]
+[ext_resource path="res://src/Levels/LevelEventTrigger3.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 500 )
@@ -34,7 +35,13 @@ zoom_level = 1.2
 position = Vector2( 480, 168 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 13 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 9 )]
 position = Vector2( 624, 480 )
@@ -46,6 +53,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -66,6 +77,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -81,6 +93,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -101,6 +117,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -117,6 +134,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -137,6 +158,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 1
 node_limit_BOOL = 0
@@ -153,6 +175,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -173,6 +199,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 1
 node_limit_BOOL = 0
@@ -185,18 +212,33 @@ position = Vector2( 336, 384 )
 direction = 90.0
 node_limit_TRIGGER = 1
 node_limit_MOVE_FORWARD = -1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = -1
 node_limit_IF = 1
 node_limit_COMPARE_STRING = 1
+node_limit_PASSENGERS = 0
 node_limit_STRING = 1
 
 [node name="Palm" parent="Entities/YSort" index="7" instance=ExtResource( 3 )]
 position = Vector2( 672, 144 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Palm2" parent="Entities/YSort" index="8" instance=ExtResource( 3 )]
 position = Vector2( 288, 144 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 11 )]
 speaker = "Profesor"

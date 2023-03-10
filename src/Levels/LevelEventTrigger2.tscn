@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Entity/Spike.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Entity/ButtonEntity.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/LevelLogicPathAhead.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=12]
 
 [node name="LevelEventTrigger2" instance=ExtResource( 1 )]
@@ -16,7 +17,13 @@
 position = Vector2( 624, 216 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 9 )
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 3 )]
 position = Vector2( 192, 96 )
@@ -25,15 +32,25 @@ direction = 90.0
 blocked = true
 node_limit_TRIGGER = 1
 node_limit_MOVE_FORWARD = -1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_REPEAT = 1
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 1
 
 [node name="Monkey" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
 position = Vector2( 360, 216 )
 direction = 180.0
 node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_SHOOT = 1
 node_limit_REPEAT = 0
+node_limit_PASSENGERS = 0
 
 [node name="ButtonEntity" parent="Entities/YSort" index="4" instance=ExtResource( 8 )]
 position = Vector2( 528, 216 )
@@ -44,6 +61,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -64,6 +85,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -81,6 +103,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -101,6 +127,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -116,6 +143,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -136,6 +167,7 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -146,6 +178,11 @@ node_limit_DIRECTION = 0
 [node name="Spike" parent="Entities/YSort" index="7" instance=ExtResource( 6 )]
 position = Vector2( 192, 216 )
 blocked = true
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Profesor"
