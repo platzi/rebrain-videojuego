@@ -175,6 +175,7 @@ GraphNode/styles/commentfocus = SubResource( 2 )
 GraphNode/styles/frame = SubResource( 2 )
 GraphNode/styles/selectedframe = SubResource( 1 )
 Label/fonts/font = ExtResource( 3 )
+LineEdit/constants/minimum_spaces = 4
 LineEdit/fonts/font = ExtResource( 3 )
 LineEdit/styles/normal = SubResource( 9 )
 LineEdit/styles/read_only = SubResource( 16 )

@@ -27,20 +27,19 @@ var left_enabled : bool setget _set_left_enabled
 var left_type : int setget _set_left_type
 var left_tag : String setget _set_left_tag
 var left_show_input : bool setget _set_left_show_input
-var left_number_min := 0 setget _set_left_number_min
-var left_number_max := 100 setget _set_left_number_max
 var left_input_value := ""
 
 var right_enabled : bool setget _set_right_enabled
 var right_type : int setget _set_right_type
 var right_tag : String setget _set_right_tag
 var right_show_input : bool setget _set_right_show_input
-var right_number_min := 0 setget _set_right_number_min
-var right_number_max := 100 setget _set_right_number_max
 var right_input_value := ""
 
 var left_color : Color
 var right_color : Color
+
+var number_input_value := "0"
+var number_output_value := "0"
 
 
 onready var left_icon_tr := $HBoxContainer/InputHBC/LeftIconTR as TextureRect
@@ -49,12 +48,12 @@ onready var right_icon_tr := $HBoxContainer/OutputHBC/RightIconTR as TextureRect
 onready var right_tag_label := $HBoxContainer/OutputHBC/RightTagLabel as Label
 
 onready var text_input_le := $HBoxContainer/InputHBC/TextInputLE as LineEdit
-onready var number_input_sb := $HBoxContainer/InputHBC/NumberInputSB as SpinBox
+onready var number_input_le := $HBoxContainer/InputHBC/NumberInputLE as LineEdit
 onready var boolean_input_cb := $HBoxContainer/InputHBC/BooleanInputCB as CheckBox
 onready var entity_input_ob := $HBoxContainer/InputHBC/EntityInputOB as OptionButton
 
 onready var text_output_le := $HBoxContainer/OutputHBC/TextOutputLE as LineEdit
-onready var number_output_sb := $HBoxContainer/OutputHBC/NumberOutputSB as SpinBox
+onready var number_output_le := $HBoxContainer/OutputHBC/NumberOutputLE as LineEdit
 onready var boolean_output_cb := $HBoxContainer/OutputHBC/BooleanOutputCB as CheckBox
 onready var entity_output_ob := $HBoxContainer/OutputHBC/EntityOutputOB as OptionButton
 
@@ -64,11 +63,15 @@ var _is_ready := false
 
 func _ready() -> void:
 	_is_ready = true
+	number_input_le.connect("focus_entered", self, "_text_select_all", [number_input_le])
+	number_output_le.connect("focus_entered", self, "_text_select_all", [number_output_le])
+	text_input_le.connect("focus_entered", self, "_text_select_all", [text_input_le])
+	text_output_le.connect("focus_entered", self, "_text_select_all", [text_output_le])
+	text_input_le.connect("focus_exited", self, "_text_strip_edges", [text_input_le])
+	text_output_le.connect("focus_exited", self, "_text_strip_edges", [text_output_le])
+	number_input_le.connect("focus_exited", self, "_on_number_input_focus_exited")
+	number_output_le.connect("focus_exited", self, "_on_number_output_focus_exited")
 	update_slot()
-	_set_left_number_min(left_number_min)
-	_set_left_number_max(left_number_max)
-	_set_right_number_min(right_number_min)
-	_set_right_number_max(right_number_max)
 	_set_left_input_value(left_input_value)
 	_set_right_input_value(right_input_value)
 
@@ -157,7 +160,7 @@ func get_left_input_value() -> String:
 		2:
 			return text_input_le.text
 		3:
-			return str(number_input_sb.value)
+			return number_input_le.text
 		4:
 			return "true" if boolean_input_cb.pressed else "false"
 	return ""
@@ -170,7 +173,7 @@ func get_right_input_value() -> String:
 		2:
 			return text_output_le.text
 		3:
-			return str(number_output_sb.value)
+			return number_output_le.text
 		4:
 			return "true" if boolean_output_cb.pressed else "false"
 	return ""
@@ -185,7 +188,7 @@ func _set_left_input_visible(value : bool) -> void:
 		2:
 			text_input_le.visible = value
 		3:
-			number_input_sb.visible = value
+			number_input_le.visible = value
 		4:
 			boolean_input_cb.visible = value
 
@@ -197,7 +200,8 @@ func _set_left_input_value(value) -> void:
 		2:
 			text_input_le.text = value
 		3:
-			number_input_sb.value = int(value)
+			number_input_le.text = value if value.is_valid_integer() else "0"
+			number_input_value = number_input_le.text
 		4:
 			boolean_input_cb.pressed = value == "true"
 
@@ -209,7 +213,8 @@ func _set_right_input_value(value) -> void:
 		2:
 			text_output_le.text = value
 		3:
-			number_output_sb.value = int(value)
+			number_output_le.text = value if value.is_valid_integer() else "0"
+			number_output_value = number_output_le.text
 		4:
 			boolean_output_cb.pressed = value == "true"
 
@@ -242,7 +247,7 @@ func update_slot() -> void:
 
 func _deactivate_inputs() -> void:
 	text_input_le.visible = false
-	number_input_sb.visible = false
+	number_input_le.visible = false
 	boolean_input_cb.visible = false
 	entity_input_ob.visible = false
 
@@ -256,14 +261,14 @@ func _activate_input() -> void:
 		2:
 			text_input_le.visible = true
 		3:
-			number_input_sb.visible = true
+			number_input_le.visible = true
 		4:
 			boolean_input_cb.visible = true
 
 
 func _deactivate_outputs() -> void:
 	text_output_le.visible = false
-	number_output_sb.visible = false
+	number_output_le.visible = false
 	boolean_output_cb.visible = false
 	entity_output_ob.visible = false
 
@@ -277,7 +282,7 @@ func _activate_output() -> void:
 		2:
 			text_output_le.visible = true
 		3:
-			number_output_sb.visible = true
+			number_output_le.visible = true
 		4:
 			boolean_output_cb.visible = true
 
@@ -314,18 +319,6 @@ func _set_left_show_input(new_value : bool) -> void:
 	update_slot()
 
 
-func _set_left_number_min(new_value : int) -> void:
-	left_number_min = new_value
-	if _is_ready:
-		number_input_sb.min_value = new_value
-
-
-func _set_left_number_max(new_value : int) -> void:
-	left_number_max = new_value
-	if _is_ready:
-		number_input_sb.max_value = new_value
-
-
 func _set_right_enabled(new_value : bool) -> void:
 	right_enabled = new_value
 	update_slot()
@@ -346,13 +339,24 @@ func _set_right_show_input(new_value : bool) -> void:
 	update_slot()
 
 
-func _set_right_number_min(new_value : int) -> void:
-	right_number_min = new_value
-	if _is_ready:
-		number_output_sb.min_value = new_value
+func _text_select_all(le : LineEdit) -> void:
+	le.call_deferred("select_all")
 
 
-func _set_right_number_max(new_value : int) -> void:
-	right_number_max = new_value
-	if _is_ready:
-		number_output_sb.max_value = new_value
+func _text_strip_edges(le : LineEdit) -> void:
+	le.text = le.text.strip_edges()
+
+
+func _on_number_input_focus_exited() -> void:
+	if !number_input_le.text.is_valid_integer():
+		number_input_le.text = number_input_value
+		return
+	number_input_value = number_input_le.text.strip_edges()
+
+
+func _on_number_output_focus_exited() -> void:
+	if !number_output_le.text.is_valid_integer():
+		number_output_le.text = number_output_value
+		return
+	number_output_value = number_output_le.text.strip_edges()
+		

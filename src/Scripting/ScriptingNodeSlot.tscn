@@ -13,14 +13,14 @@ left_enabled = false
 left_type = 0
 left_tag = ""
 left_show_input = false
-left_number_min = 0
-left_number_max = 100
+left_number_min = null
+left_number_max = null
 right_enabled = false
 right_type = 0
 right_tag = ""
 right_show_input = false
-right_number_min = 0
-right_number_max = 100
+right_number_min = null
+right_number_max = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 960.0
@@ -44,22 +44,30 @@ stretch_mode = 6
 
 [node name="LeftTagLabel" type="Label" parent="HBoxContainer/InputHBC"]
 visible = false
-margin_left = 24.0
 margin_top = 263.0
-margin_right = 24.0
 margin_bottom = 277.0
 
 [node name="TextInputLE" type="LineEdit" parent="HBoxContainer/InputHBC"]
 visible = false
 margin_right = 58.0
 margin_bottom = 540.0
+align = 1
 expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 
-[node name="NumberInputSB" type="SpinBox" parent="HBoxContainer/InputHBC"]
+[node name="NumberInputLE" type="LineEdit" parent="HBoxContainer/InputHBC"]
 visible = false
 margin_right = 74.0
 margin_bottom = 540.0
-align = 2
+align = 1
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="BooleanInputCB" type="CheckBox" parent="HBoxContainer/InputHBC"]
 visible = false
@@ -83,17 +91,26 @@ custom_constants/separation = 4
 
 [node name="TextOutputLE" type="LineEdit" parent="HBoxContainer/OutputHBC"]
 visible = false
-margin_left = -960.0
-margin_right = -902.0
+margin_right = 58.0
 margin_bottom = 540.0
+align = 1
 expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 
-[node name="NumberOutputSB" type="SpinBox" parent="HBoxContainer/OutputHBC"]
+[node name="NumberOutputLE" type="LineEdit" parent="HBoxContainer/OutputHBC"]
 visible = false
 margin_left = -960.0
 margin_right = -886.0
 margin_bottom = 540.0
-align = 2
+align = 1
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="BooleanOutputCB" type="CheckBox" parent="HBoxContainer/OutputHBC"]
 visible = false
