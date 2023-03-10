@@ -28,9 +28,7 @@ func run(type = "UPDATE", param1 = null) -> void:
 			if type == "UPDATE" or type == "PRESSED" or type == "RELEASED":
 				_execute(node, node)
 			elif type == "COLLISION" or type == "TRIGGER":
-				for connection in node.connections_out:
-					if connection.from_port == 1:
-						connection.output = param1
+				node.outputs["1"] = param1
 				_execute(node, node)
 
 
@@ -118,6 +116,8 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 				_run_backwards(brain[connection.from], connection.from_port, current_node, connection.to_port)
 	
 	match current_node.type:
+		"TRIGGER":
+			_trigger(current_node, port, to_node, to_port)
 		"STRING":
 			_string(current_node, port, to_node, to_port)
 		"NUMBER":
@@ -276,6 +276,10 @@ func _repeat(start_node : Dictionary, node : Dictionary) -> void:
 
 
 # CALCULATIONS
+
+
+func _trigger(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = current_node.outputs["1"]
 
 
 func _string(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
