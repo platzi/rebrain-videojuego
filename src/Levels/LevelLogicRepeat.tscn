@@ -10,7 +10,7 @@
 [ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Levels/LevelCompareString.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/LevelLogicRepeatAdvanced.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 500, 500 )

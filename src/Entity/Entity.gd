@@ -113,9 +113,28 @@ func _set(property : String, value) -> bool:
 
 
 func get_path_ahead() -> bool:
-	var space_state = get_world_2d().direct_space_state
 	var direction_vector := Vector2.RIGHT.rotated(deg2rad(direction))
-	return true if _is_place_walkable(direction_vector.x * 16.0, direction_vector.y * 16.0) and space_state.intersect_ray(global_position, global_position + Vector2.RIGHT.rotated(deg2rad(direction)) * 48, [self], collision_mask).empty() else false
+	return _get_path(direction_vector)
+
+
+func get_path_back() -> bool:
+	var direction_vector := Vector2.LEFT.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func get_path_left() -> bool:
+	var direction_vector := Vector2.UP.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func get_path_right() -> bool:
+	var direction_vector := Vector2.DOWN.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func _get_path(direction_vector : Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	return true if _is_place_walkable(direction_vector.x * 52.0, direction_vector.y * 52.0) and space_state.intersect_ray(global_position, global_position + direction_vector * 52, [self], collision_mask).empty() else false
 
 
 func set_nodes() -> void:

@@ -40,6 +40,9 @@ const NODES = {
 		["COMPARE_STRING", "Comparar texto", preload("res://assets/images/scripting/scripting_icon_compare.png"), preload("res://src/Scripting/Nodes/CompareStringNode.tscn")],
 		["REPEAT", "Repetir", preload("res://assets/images/scripting/scripting_icon_repeat.png"), preload("res://src/Scripting/Nodes/RepeatNode.tscn")],
 		["PATH_AHEAD", "Camino adelante", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathAheadNode.tscn")],
+		["PATH_BACK", "Camino atras", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathBackNode.tscn")],
+		["PATH_LEFT", "Camino a la izquierda", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathLeftNode.tscn")],
+		["PATH_RIGHT", "Camino a la derecha", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathRightNode.tscn")],
 		["PASSENGERS", "Pasajeros", preload("res://assets/images/scripting/scripting_icon_passengers.png"), preload("res://src/Scripting/Nodes/PassengersNode.tscn")],
 	],
 	"Entradas": [

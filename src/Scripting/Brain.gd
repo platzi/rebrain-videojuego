@@ -151,6 +151,12 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 			_less_equal(current_node, port, to_node, to_port)
 		"PATH_AHEAD":
 			_path_ahead(current_node, port, to_node, to_port)
+		"PATH_BACK":
+			_path_back(current_node, port, to_node, to_port)
+		"PATH_RIGHT":
+			_path_right(current_node, port, to_node, to_port)
+		"PATH_LEFT":
+			_path_left(current_node, port, to_node, to_port)
 		"PASSENGERS":
 			_passengers(current_node, port, to_node, to_port)
 		
@@ -373,6 +379,18 @@ func _less_equal(current_node : Dictionary, port : int, to_node : Dictionary, to
 
 func _path_ahead(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
 	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_ahead() else "false"
+
+
+func _path_back(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_back() else "false"
+
+
+func _path_left(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_left() else "false"
+
+
+func _path_right(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_right() else "false"
 
 
 func _passengers(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:

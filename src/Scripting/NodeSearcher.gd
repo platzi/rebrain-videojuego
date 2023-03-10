@@ -16,12 +16,6 @@ func _ready():
 	_create_buttons()
 
 
-func _input(event : InputEvent) -> void:
-	if Globals.DEBUG and event is InputEventKey and event.pressed and event.scancode == KEY_U:
-		nodes_limit = {}
-		_create_buttons()
-
-
 func _clear_buttons() -> void:
 	for child in node_list_vbc.get_children():
 		child.visible = false

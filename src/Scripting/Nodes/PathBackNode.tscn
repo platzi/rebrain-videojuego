@@ -11,47 +11,31 @@ slot/1/left_color = Color( 0.352941, 1, 0, 1 )
 slot/1/right_enabled = true
 slot/1/right_type = 4
 slot/1/right_color = Color( 0.8, 0.6, 1, 1 )
-type = "PATH_AHEAD"
-tag = "Camino adelante"
+type = "PATH_BACK"
+tag = "Camino atras"
 subtag = "Lógica"
 icon = ExtResource( 3 )
-
-[node name="TitleMC" parent="." index="0"]
-margin_right = 167.0
-
-[node name="Panel" parent="TitleMC" index="0"]
-margin_right = 166.0
-
-[node name="TitleMC" parent="TitleMC" index="1"]
-margin_right = 166.0
-
-[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
-margin_right = 162.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 3 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 126.0
+margin_right = 103.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 102.0
-text = "Camino adelante"
+margin_right = 79.0
+text = "Camino atras"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 102.0
+margin_right = 79.0
 text = "Lógica"
-
-[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
-margin_left = 134.0
-margin_right = 158.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 167.0
+margin_right = 159.0
 margin_bottom = 79.0
 right_enabled = true
 right_type = 4
