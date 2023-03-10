@@ -10,6 +10,8 @@ export(String) var type
 export(String) var tag setget _set_tag
 export(String) var subtag setget _set_subtag
 export(Texture) var icon setget _set_icon
+export(Texture) var image
+export(String, MULTILINE) var description
 
 var _params := []
 
@@ -21,11 +23,13 @@ onready var _is_ready = true
 onready var title_icon := $TitleMC/TitleMC/TitleHBC/TitleIcon
 onready var title_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/TitleLabel
 onready var subtitle_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/SubtitleLabel
+onready var info_btn := $TitleMC/TitleMC/TitleHBC/InfoBtn as Button
 
 var disabled = false setget _set_disabled
 
 func _ready() -> void:
 	theme = _theme
+	info_btn.connect("pressed", self, "_on_info_btn_pressed")
 	update_slots()
 	_set_icon(icon)
 	_set_tag(tag)
@@ -118,3 +122,7 @@ func _set_disabled(new_value : bool) -> void:
 	else:
 		theme = _theme
 		comment = false
+
+
+func _on_info_btn_pressed() -> void:
+	Globals.emit_signal("node_info_pressed", image, tag, description)

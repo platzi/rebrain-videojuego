@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/scripting_node_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/images/scripting/info.png" type="Texture" id=4]
 [ext_resource path="res://assets/themes/font_10_regular.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Theme" id=6]
@@ -90,3 +91,15 @@ margin_right = 43.0
 margin_bottom = 31.0
 theme = SubResource( 8 )
 text = "Subtitulo"
+
+[node name="InfoBtn" type="Button" parent="TitleMC/TitleMC/TitleHBC"]
+margin_left = 126.0
+margin_right = 150.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 10
+size_flags_vertical = 2
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+expand_icon = true

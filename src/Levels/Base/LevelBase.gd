@@ -16,6 +16,7 @@ onready var cage := $Entities/YSort/Cage as Entity
 
 
 func _ready() -> void:
+	Globals.connect("node_info_pressed", self, "_on_node_info_pressed")
 	intro_events.execute()
 	if cage:
 		cage.connect("unlocked", self, "_on_cage_unlocked")
@@ -60,3 +61,14 @@ func _on_saved_events_finished() -> void:
 		Globals.disable_inputs = true
 		Globals.disable_scripting = true
 		cage.teleport()
+
+
+func _on_node_info_pressed(image, title, content) -> void:
+	var hint_resource := HintResource.new()
+	hint_resource.image = image
+	hint_resource.content = ("[b][color=purple]%s[/color][/b]\n" % title) + content
+	Globals.disable_inputs = true
+	Globals.disable_scripting = true
+	yield(create_hint("Nodos", [hint_resource]), "closed")
+	Globals.disable_inputs = false
+	Globals.disable_scripting = false

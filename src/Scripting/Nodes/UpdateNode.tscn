@@ -15,6 +15,8 @@ type = "UPDATE"
 tag = "Actualizar"
 subtag = "Evento"
 icon = ExtResource( 4 )
+description = "Se ejecuta de manera automatica y vuelve a ejecutarse al terminar la secuencia.
+En Bolt se puede encontrar como Update el cual tiene una función similar a diferencia de que este se ejecuta cada frame."
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 4 )
@@ -36,9 +38,5 @@ anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
 margin_right = 159.0
-margin_bottom = 68.0
-left_number_min = 0
-left_number_max = 100
+margin_bottom = 79.0
 right_enabled = true
-right_number_min = 0
-right_number_max = 100

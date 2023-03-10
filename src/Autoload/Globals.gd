@@ -12,6 +12,7 @@ signal scripting_node_added
 signal scripting_node_connection
 signal screenshake
 signal screenshake_finished
+signal node_info_pressed
 
 var scripting_mode := false
 var disable_inputs := false
