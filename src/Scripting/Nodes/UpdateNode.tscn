@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/scripting/scripting_icon_update.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/hints/hint_bolt_on_update.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_update_node.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 3 )
+image = ExtResource( 6 )
+content = "[b][color=purple]Actualizar[/color][/b]
+Se ejecuta de manera automatica y vuelve a ejecutarse al terminar la secuencia."
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 3 )
+image = ExtResource( 5 )
+content = "[b][color=purple]On Update[/color][/b]
+En Bolt se conoce como Update, su función es similar, la unica diferencia es que este se ejecuta cada ciclo de juego."
 
 [node name="UpdateNode" instance=ExtResource( 2 )]
 slot/1/left_enabled = false
@@ -15,8 +32,7 @@ type = "UPDATE"
 tag = "Actualizar"
 subtag = "Evento"
 icon = ExtResource( 4 )
-description = "Se ejecuta de manera automatica y vuelve a ejecutarse al terminar la secuencia.
-En Bolt se puede encontrar como Update el cual tiene una función similar a diferencia de que este se ejecuta cada frame."
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 4 )

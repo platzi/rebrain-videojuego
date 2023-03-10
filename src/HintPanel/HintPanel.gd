@@ -8,8 +8,10 @@ signal closed
 
 
 export(NodePath) var title_label_path : NodePath
+export(NodePath) var page_label_path : NodePath
 export(NodePath) var content_container_path : NodePath
 export(NodePath) var close_btn_path : NodePath
+export(NodePath) var next_btn_path : NodePath
 
 
 export var title : String setget _on_title_set
@@ -17,26 +19,44 @@ export var title : String setget _on_title_set
 
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var title_label := get_node(title_label_path) as Label
+onready var page_label := get_node(page_label_path) as Label
 onready var content_container := get_node(content_container_path) as MarginContainer
 onready var close_btn := get_node(close_btn_path) as Button
+onready var next_btn := get_node(next_btn_path) as Button
 
 
 var hints := []
-var hint_current := 0
+var page_max := 0
 
 
 func _ready():
 	title_label.text = title
 	animation_player.play("Open")
 	close_btn.connect("pressed", self, "_on_CloseBtn_pressed")
-	_add_hint()
+	next_btn.connect("pressed", self, "_on_NextBtn_pressed")
+	page_max = hints.size()
+	if page_max <= 1:
+		page_label.visible = false
+	_next_hint()
 
 
-func _add_hint() -> void:
-	var hint : HintResource = hints.pop_back()
-	print(hint.content)
+func _update_page() -> void:
+	page_label.text = "%s / %s" % [page_max - hints.size(), page_max]
+
+
+func _next_hint() -> void:
+	var hint : HintResource = hints.pop_front()
+	_update_page()
+	if hints.empty():
+		next_btn.visible = false
+		close_btn.visible = true
+	else:
+		next_btn.visible = true
+		close_btn.visible = false
 	if hint == null:
 		return
+	for child in content_container.get_children():
+		child.queue_free()
 	var hbc := HBoxContainer.new()
 	var tr := TextureRect.new()
 	var rtl := RichTextLabel.new()
@@ -49,12 +69,14 @@ func _add_hint() -> void:
 	rtl.fit_content_height = true
 	rtl.size_flags_horizontal = SIZE_EXPAND_FILL
 	rtl.size_flags_vertical = SIZE_SHRINK_CENTER
-	hbc.visible = content_container.get_child_count() == 0
 	hbc.add_child(tr)
 	hbc.add_child(rtl)
 	hbc.add_constant_override("separation", 20)
 	content_container.add_child(hbc)
-	
+
+
+func _on_NextBtn_pressed() -> void:
+	_next_hint()
 
 
 func _on_CloseBtn_pressed() -> void:

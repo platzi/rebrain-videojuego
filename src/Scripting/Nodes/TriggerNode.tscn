@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/scripting/scripting_icon_trigger.png" type="Texture" id=4]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 3 )
+content = "Ejecutara su sequencia cuando el nodo Accionar Disparador se active desde cualquier entidad.
+Lleva como parametro un texto llamado Identificador, cuyo valor es igual a aquel que se asigno en el argumento Identificador del nodo Accionar Disparador."
 
 [node name="UpdateNode" instance=ExtResource( 2 )]
 margin_bottom = 69.0
@@ -23,6 +30,7 @@ type = "TRIGGER"
 tag = "Disparador"
 subtag = "Evento"
 icon = ExtResource( 4 )
+hints = [ SubResource( 1 ) ]
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 4 )

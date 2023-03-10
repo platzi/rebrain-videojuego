@@ -34,7 +34,7 @@ func create_dialogue(speaker : String, dialogues : PoolStringArray) -> Dialogue:
 func create_hint(title : String, hints : Array) -> HintPanel:
 	var hint_inst : HintPanel = hint_scene.instance()
 	hint_inst.title = title
-	hint_inst.hints = hints
+	hint_inst.hints = hints.duplicate(true)
 	ui_canvas_layer.add_child(hint_inst)
 	return hint_inst
 
@@ -63,12 +63,9 @@ func _on_saved_events_finished() -> void:
 		cage.teleport()
 
 
-func _on_node_info_pressed(image, title, content) -> void:
-	var hint_resource := HintResource.new()
-	hint_resource.image = image
-	hint_resource.content = ("[b][color=purple]%s[/color][/b]\n" % title) + content
+func _on_node_info_pressed(hints) -> void:
 	Globals.disable_inputs = true
 	Globals.disable_scripting = true
-	yield(create_hint("Nodos", [hint_resource]), "closed")
+	yield(create_hint("Nodos", hints), "closed")
 	Globals.disable_inputs = false
 	Globals.disable_scripting = false

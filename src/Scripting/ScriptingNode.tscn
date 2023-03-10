@@ -1,10 +1,21 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/scripting_node_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/images/scripting/info.png" type="Texture" id=4]
 [ext_resource path="res://assets/themes/font_10_regular.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=9]
+resource_name = "Hint"
+script = ExtResource( 6 )
+content = ""
+
+[sub_resource type="Resource" id=10]
+resource_name = "Hint"
+script = ExtResource( 6 )
+content = ""
 
 [sub_resource type="Theme" id=6]
 Label/fonts/font = ExtResource( 3 )
@@ -29,6 +40,7 @@ slot/0/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
 tag = "Titulo"
 subtag = "Subtitulo"
+hints = [ SubResource( 9 ), SubResource( 10 ) ]
 
 [node name="TitleMC" type="MarginContainer" parent="."]
 margin_left = 1.0

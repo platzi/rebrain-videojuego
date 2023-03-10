@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/images/scripting/scripting_icon_rotate.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/scripting/scripting_icon_rotate_right.png" type="Texture" id=3]
 
 [node name="RotateRightNode" instance=ExtResource( 1 )]
 slot/1/left_enabled = true
