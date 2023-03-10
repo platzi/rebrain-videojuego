@@ -14,6 +14,10 @@ const NODES = {
 	],
 	"Acciones": [
 		["MOVE_FORWARD", "Avanzar", preload("res://assets/images/scripting/scripting_icon_move_forward.png"), preload("res://src/Scripting/Nodes/MoveForwardNode.tscn")],
+		["MOVE_RIGHT", "Mover hacía la derecha", preload("res://assets/images/scripting/scripting_icon_move_right.png"), preload("res://src/Scripting/Nodes/MoveRightNode.tscn")],
+		["MOVE_DOWN", "Mover hacía abajo", preload("res://assets/images/scripting/scripting_icon_move_down.png"), preload("res://src/Scripting/Nodes/MoveDownNode.tscn")],
+		["MOVE_LEFT", "Mover hacía la izquierda", preload("res://assets/images/scripting/scripting_icon_move_left.png"), preload("res://src/Scripting/Nodes/MoveLeftNode.tscn")],
+		["MOVE_UP", "Mover hacía arriba", preload("res://assets/images/scripting/scripting_icon_move_up.png"), preload("res://src/Scripting/Nodes/MoveUpNode.tscn")],
 		["ROTATE_LEFT", "Girar Izquierda", preload("res://assets/images/scripting/scripting_icon_rotate.png"), preload("res://src/Scripting/Nodes/RotateLeftNode.tscn")],
 		["ROTATE_RIGHT", "Girar Derecha", preload("res://assets/images/scripting/scripting_icon_rotate.png"), preload("res://src/Scripting/Nodes/RotateRightNode.tscn")],
 		["WAIT", "Esperar", preload("res://assets/images/scripting/scripting_icon_timer.png"), preload("res://src/Scripting/Nodes/WaitNode.tscn")],
@@ -36,6 +40,7 @@ const NODES = {
 		["COMPARE_STRING", "Comparar texto", preload("res://assets/images/scripting/scripting_icon_compare.png"), preload("res://src/Scripting/Nodes/CompareStringNode.tscn")],
 		["REPEAT", "Repetir", preload("res://assets/images/scripting/scripting_icon_repeat.png"), preload("res://src/Scripting/Nodes/RepeatNode.tscn")],
 		["PATH_AHEAD", "Camino adelante", preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathAheadNode.tscn")],
+		["PASSENGERS", "Pasajeros", preload("res://assets/images/scripting/scripting_icon_passengers.png"), preload("res://src/Scripting/Nodes/PassengersNode.tscn")],
 	],
 	"Entradas": [
 		["NUMBER", "Numero", preload("res://assets/images/scripting/scripting_icon_number.png"), preload("res://src/Scripting/Nodes/NumberNode.tscn")],

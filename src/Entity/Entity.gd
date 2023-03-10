@@ -130,6 +130,7 @@ func set_nodes() -> void:
 
 func instance_brain() -> void:
 	brain.connect("move_forward", self, "move_forward")
+	brain.connect("move_direction", self, "move_direction")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")
 	brain.connect("shoot", self, "_shoot")
@@ -152,6 +153,22 @@ func turns_towards(towards : String) -> void:
 
 func move_forward() -> void:
 	speed = 48.0
+
+
+func move_direction(d : String) -> void:
+	speed = 48.0
+	if d == "right":
+		direction = 0.0
+	elif d == "down":
+		direction = 90.0
+	elif d == "left":
+		direction = 180.0
+	elif d == "up":
+		direction = 270.0
+
+
+func get_passengers() -> int:
+	return 0
 
 
 func stop_moving() -> void:

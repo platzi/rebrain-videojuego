@@ -15,3 +15,11 @@ func _physics_process(delta : float) -> void:
 		if rider != self and not rider.is_in_group("Projectile") and rider is Entity or rider.is_in_group("Player"):
 			rider.position += position - old_position
 	old_position = position
+
+
+func get_passengers() -> int:
+	var riders_count := 0
+	for rider in riders_area.get_overlapping_bodies():
+		if rider != self and not rider.is_in_group("Projectile") and rider is Entity or rider.is_in_group("Player"):
+			riders_count += 1
+	return riders_count

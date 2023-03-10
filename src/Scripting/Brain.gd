@@ -2,6 +2,7 @@ class_name Brain
 extends Node2D
 
 signal move_forward
+signal move_direction
 signal stop_moving
 signal turns_towards
 signal shoot
@@ -59,6 +60,14 @@ func _execute(start_node, current_node) -> void:
 			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
 			_move_forward(start_node, current_node)
+		"MOVE_RIGHT":
+			_move_direction(start_node, current_node, "right")
+		"MOVE_DOWN":
+			_move_direction(start_node, current_node, "down")
+		"MOVE_LEFT":
+			_move_direction(start_node, current_node, "left")
+		"MOVE_UP":
+			_move_direction(start_node, current_node, "up")
 		"ROTATE_LEFT":
 			_rotate_left(start_node, current_node)
 		"ROTATE_RIGHT":
@@ -142,6 +151,8 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 			_less_equal(current_node, port, to_node, to_port)
 		"PATH_AHEAD":
 			_path_ahead(current_node, port, to_node, to_port)
+		"PASSENGERS":
+			_passengers(current_node, port, to_node, to_port)
 		
 		"POSITION":
 			_position(current_node, port, to_node, to_port)
@@ -171,12 +182,19 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("move_forward")
 	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
-#	yield(get_tree().create_timer(1.0, false), "timeout")
-#	emit_signal("stop_moving")
-#	_run_next(start_node, node)
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
+	emit_signal("stop_moving")
+	_run_next(start_node, node)
+
+
+func _move_direction(start_node : Dictionary, node : Dictionary, direction : String) -> void:
+	emit_signal("move_direction", direction)
+	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_direction_end", [start_node, node])
+
+
+func _on_move_direction_end(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("stop_moving")
 	_run_next(start_node, node)
 
@@ -355,6 +373,10 @@ func _less_equal(current_node : Dictionary, port : int, to_node : Dictionary, to
 
 func _path_ahead(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
 	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_ahead() else "false"
+
+
+func _passengers(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = str(get_parent().get_passengers())
 
 
 func _position(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
