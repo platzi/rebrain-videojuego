@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/images/entities/spike.png" type="Texture" id=5]
 [ext_resource path="res://src/Entity/HitBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Particles/SmokeExplosion.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -180,6 +181,40 @@ radius = 24.0
 [node name="Spike" type="KinematicBody2D"]
 collision_mask = 3
 script = ExtResource( 3 )
+death_particles = ExtResource( 8 )
+death_particles_offset = Vector2( 0, -6 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
