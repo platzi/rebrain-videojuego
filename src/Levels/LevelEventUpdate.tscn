@@ -34,6 +34,9 @@ zoom_level = 1.2
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 408, 264 )
 
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+node_limit_REPEAT = 0
+
 [node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
 position = Vector2( 360, -24 )
 brain_og = "{\"MoveForwardNode\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-60,-40],\"connections_in\":[],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
@@ -68,6 +71,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -102,6 +106,7 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0

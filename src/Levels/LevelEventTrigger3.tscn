@@ -26,7 +26,7 @@ image = ExtResource( 1 )
 content = "[b][color=purple]Recordatorio[/color][/b]
 Siempre es buena idea revisar los nodos que tienes disponibles."
 
-[node name="LevelBase" instance=ExtResource( 7 )]
+[node name="LevelEventTrigger3" instance=ExtResource( 7 )]
 
 [node name="CameraAttractor" parent="." index="1" instance=ExtResource( 2 )]
 position = Vector2( 264, 264 )
@@ -119,7 +119,6 @@ node_limit_TRIGGER = 1
 node_limit_MOVE_FORWARD = -1
 node_limit_ROTATE_LEFT = -1
 node_limit_ROTATE_RIGHT = -1
-node_limit_REPEAT = 0
 
 [node name="Monkey" parent="Entities/YSort" index="5" instance=ExtResource( 8 )]
 position = Vector2( 432, 288 )
@@ -180,7 +179,7 @@ node_limit_REPEAT = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Profesor"
-dialogues = [ "Este nivel se nota que es más complicador, pero yo se muy bien que podrás resolverlo." ]
+dialogues = [ "Este nivel se nota que es más complicado, pero yo se muy bien que podrás resolverlo." ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 10 )]
 title = "Guía"

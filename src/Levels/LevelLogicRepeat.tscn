@@ -1,18 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Entity/Monkey.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/hints/hints_repeat.png" type="Texture" id=7]
+[ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=10]
 
-[node name="LevelBase" instance=ExtResource( 3 )]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 500, 500 )
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 9 )
+image = ExtResource( 7 )
+content = "[b][color=purple]Nodo Repetir[/color][/b]
+Permite repetir la sequencia de salida marcada como Cuerpo la cantidad de veces indicadas en la entrada Veces, al finalizar se ejecutara la sequencia de la salida marcada como Salida."
+
+[node name="LevelLogicRepeat" instance=ExtResource( 3 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 10 )]
+position = Vector2( 456, 168 )
+collision_shape = SubResource( 2 )
+zoom_level = 1.2
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 456, 264 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 node_limit_REPEAT = 0
 
 [node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
-position = Vector2( 240, 288 )
+position = Vector2( 528, 96 )
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
 node_limit_UPDATE = 0
@@ -49,7 +72,7 @@ node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
-position = Vector2( 456, 360 )
+position = Vector2( 456, 408 )
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
 node_limit_TRIGGER = 0
@@ -84,7 +107,7 @@ node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="Monkey" parent="Entities/YSort" index="4" instance=ExtResource( 6 )]
-position = Vector2( 96, 336 )
+position = Vector2( 384, 96 )
 direction = 270.0
 node_limit_UPDATE = 1
 node_limit_MOVE_FORWARD = 1
@@ -92,5 +115,17 @@ node_limit_ROTATE_RIGHT = 1
 node_limit_REPEAT = 1
 node_limit_NUMBER = 1
 
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 1 )]
+speaker = "Profesor"
+dialogues = [ "Repetir las mismas acciones suele cansar, lo bueno que existe el nodo Repetir para ayudar con las tareas repetitivas." ]
+
+[node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
+title = "Lógica"
+hints = [ SubResource( 1 ) ]
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 1 )]
+speaker = "Alumno"
+dialogues = [ "Que mono más kawai, ¡Arigato gozaimasu!" ]
+
 [node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 5 )]
-tile_data = PoolIntArray( 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 0, 196609, 131084, 0, 196611, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 196608, 1, 0, 196609, 0, 8, 196610, 0, 10, 196611, 0, 10, 196612, 0, 10, 196613, 0, 11, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 262144, 1, 0, 262145, 0, 65544, 262146, 0, 131078, 262147, 0, 196617, 262148, 0, 131077, 262149, 0, 131083, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 11, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 327680, 1, 0, 327681, 0, 65544, 327682, 0, 131083, 327683, 1, 0, 327684, 0, 65544, 327685, 0, 131083, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 0, 262145, 327690, 0, 131083, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393216, 1, 0, 393217, 0, 65544, 393218, 0, 131083, 393219, 1, 0, 393220, 0, 196616, 393221, 0, 196619, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 0, 131081, 393226, 0, 131083, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 3, 0, 393231, 3, 0, 458752, 1, 0, 458753, 0, 196616, 458754, 0, 196619, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 196616, 458761, 0, 196617, 458762, 0, 196619, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 3, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 3, 0, 589835, 3, 0, 589836, 3, 0, 655360, 3, 0, 655361, 3, 0, 655362, 3, 0, 655363, 3, 0, 655364, 3, 0, 655365, 3, 0, 655366, 3, 0, 655367, 3, 0, 655368, 3, 0, 655369, 3, 0 )
+tile_data = PoolIntArray( -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 0, 8, -131064, 0, 10, -131063, 0, 10, -131062, 0, 10, -131061, 0, 11, -131060, 1, 0, -131059, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 0, 65544, -65528, 0, 131078, -65527, 0, 196617, -65526, 0, 131077, -65525, 0, 131083, -65524, 1, 0, -65523, 1, 0, 5, 1, 0, 6, 1, 0, 7, 0, 65544, 8, 0, 131083, 9, 1, 0, 10, 0, 65544, 11, 0, 131083, 12, 1, 0, 13, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 0, 65544, 65544, 0, 131083, 65545, 1, 0, 65546, 0, 65544, 65547, 0, 131083, 65548, 1, 0, 65549, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 0, 196616, 131080, 0, 196619, 131081, 1, 0, 131082, 0, 196616, 131083, 0, 196619, 131084, 1, 0, 131085, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 11, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 0, 262145, 327690, 0, 131083, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 0, 131081, 393226, 0, 131083, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 65544, 458761, 0, 262146, 458762, 0, 131083, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 65544, 524297, 0, 262146, 524298, 0, 131083, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 0, 196616, 589833, 0, 196617, 589834, 0, 196619, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 655365, 3, 0, 655366, 3, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 3, 0, 655373, 3, 0, 720903, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 720907, 3, 0 )

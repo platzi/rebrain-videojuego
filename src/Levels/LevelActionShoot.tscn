@@ -9,7 +9,7 @@
 [ext_resource path="res://src/Entity/Palm.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=8]
 
-[node name="LevelBase" instance=ExtResource( 5 )]
+[node name="LevelActionShoot" instance=ExtResource( 5 )]
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 600, 72 )

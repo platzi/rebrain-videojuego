@@ -21,7 +21,7 @@ Este nodo es un evento que se activa cuando se recibe una señal lanzada desde c
 [b][color=purple]Nodo Accionar Disparador[/color][/b]
 Activa los nodos Disparador de todas las entidades y envía un texto como Identificador para ser usado junto con el evento que lo reciba."
 
-[node name="LevelCopy" instance=ExtResource( 3 )]
+[node name="LevelEventTrigger" instance=ExtResource( 3 )]
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 360 )
