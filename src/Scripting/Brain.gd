@@ -106,7 +106,7 @@ func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
 	if execute_list.size() > 0:
 		for exec_node in execute_list:
 			_execute(start_node, exec_node)
-	else:
+	elif start_node.type == "UPDATE" or start_node.type == "REPEAT":
 		_execute(start_node, start_node)
 
 
