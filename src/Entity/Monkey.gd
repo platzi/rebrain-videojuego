@@ -38,11 +38,12 @@ func _process(_delta : float) -> void:
 
 
 func _shoot() -> void:
-	var lx := sin(deg2rad(direction + 90)) * 30
-	var ly := cos(deg2rad(direction - 90)) * 30
+	var lx := sin(deg2rad(direction + 90)) * 36
+	var ly := cos(deg2rad(direction - 90)) * 36
 	var projectile_inst := projectile_scene.instance() as Entity
-	get_parent().add_child(projectile_inst)
 	projectile_inst.blocked = true
 	projectile_inst.position = position + Vector2(lx, ly)
 	projectile_inst.speed = 300
 	projectile_inst.direction = direction
+	get_parent().call_deferred("add_child", projectile_inst)
+#	get_parent().add_child(projectile_inst)
