@@ -1,0 +1,163 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entity/Spike.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=5]
+
+[node name="LevelBase" instance=ExtResource( 5 )]
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 528, 264 )
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+node_limit_REPEAT = 0
+
+[node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 3 )]
+position = Vector2( 528, 480 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 1 )]
+position = Vector2( 528, 48 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Spike" parent="Entities/YSort" index="4" instance=ExtResource( 2 )]
+position = Vector2( 528, 384 )
+brain_og = "{\"@UpdateNode@351\":{\"type\":\"UPDATE\",\"disabled\":false,\"position\":[-380,-240],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@372\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@372\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-200,-240],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@351\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@393\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@393\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-20,-240],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@372\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@RotateLeftNode@414\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@RotateLeftNode@414\":{\"type\":\"ROTATE_LEFT\",\"disabled\":false,\"position\":[160,-240],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@393\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@RotateLeftNode@435\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@RotateLeftNode@435\":{\"type\":\"ROTATE_LEFT\",\"disabled\":false,\"position\":[-200,-140],\"connections_in\":[{\"type\":0,\"from\":\"@RotateLeftNode@414\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@508\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@508\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-160,-20],\"connections_in\":[{\"type\":0,\"from\":\"@RotateLeftNode@435\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MoveForwardNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"MoveForwardNode\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[40,0],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@508\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+direction = 180.0
+node_limit_UPDATE = 1
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = -1
+node_limit_ROTATE_LEFT = -1
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Spike2" parent="Entities/YSort" index="5" instance=ExtResource( 2 )]
+position = Vector2( 528, 144 )
+brain_og = "{\"@UpdateNode@351\":{\"type\":\"UPDATE\",\"disabled\":false,\"position\":[-380,-240],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@372\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@372\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-200,-240],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@351\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@393\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@393\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-20,-240],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@372\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@RotateLeftNode@414\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@RotateLeftNode@414\":{\"type\":\"ROTATE_LEFT\",\"disabled\":false,\"position\":[160,-240],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@393\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@RotateLeftNode@435\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@RotateLeftNode@435\":{\"type\":\"ROTATE_LEFT\",\"disabled\":false,\"position\":[-200,-140],\"connections_in\":[{\"type\":0,\"from\":\"@RotateLeftNode@414\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@508\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@508\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[-160,-20],\"connections_in\":[{\"type\":0,\"from\":\"@RotateLeftNode@435\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MoveForwardNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"MoveForwardNode\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[40,0],\"connections_in\":[{\"type\":0,\"from\":\"@MoveForwardNode@508\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+node_limit_UPDATE = 1
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = -1
+node_limit_ROTATE_LEFT = -1
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 8, 1, 0, 9, 1, 0, 10, 0, 8, 11, 0, 11, 12, 1, 0, 13, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 0, 65544, 65547, 0, 131083, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131079, 1, 0, 131080, 0, 8, 131081, 0, 10, 131082, 0, 65541, 131083, 0, 65542, 131084, 0, 10, 131085, 0, 11, 131086, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 0, 196616, 196617, 0, 196617, 196618, 0, 131077, 196619, 0, 131078, 196620, 0, 196617, 196621, 0, 196619, 196622, 1, 0, 196623, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 0, 65544, 262155, 0, 131083, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 0, 65544, 327691, 0, 131083, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 0, 65544, 393227, 0, 131083, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 8, 458761, 0, 10, 458762, 0, 65541, 458763, 0, 65542, 458764, 0, 10, 458765, 0, 11, 458766, 1, 0, 458767, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 196616, 524297, 0, 196617, 524298, 0, 131077, 524299, 0, 131078, 524300, 0, 196617, 524301, 0, 196619, 524302, 1, 0, 524303, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 0, 65544, 589835, 0, 131083, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 655366, 3, 0, 655367, 3, 0, 655368, 1, 0, 655369, 1, 0, 655370, 0, 196616, 655371, 0, 196619, 655372, 1, 0, 655373, 1, 0, 655374, 3, 0, 655375, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 1, 0, 720907, 1, 0, 720908, 3, 0, 720909, 3, 0, 786442, 3, 0, 786443, 3, 0 )
