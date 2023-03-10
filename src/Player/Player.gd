@@ -3,7 +3,6 @@ extends KinematicBody2D
 
 var direction := 0.0
 var speed := 144.0
-var velocity = Vector2.ZERO
 var life = 3
 var move_towards_vector := Vector2.ZERO
 var is_moving_towards = false
@@ -16,6 +15,7 @@ onready var hair_sprite := $Sprite/HairSprite
 onready var sprite := $Sprite
 onready var hurt_box := $HurtBox
 
+var knockback_velocity = Vector2.ZERO
 
 var player_name := ""
 var hair_style := 0
@@ -61,6 +61,12 @@ func _process(_delta : float) -> void:
 
 
 func _physics_process(delta : float) -> void:
+	if knockback_velocity != Vector2.ZERO:
+		var knockback_direction = knockback_velocity.normalized()
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, delta * 10000.0)
+		if _is_place_walkable(knockback_direction.x * 16.0, knockback_direction.y * 16.0):
+			move_and_slide(knockback_velocity)
+		return
 	var movement_vector = Vector2.ZERO
 	input_vector = Vector2.ZERO
 	if !Globals.disable_inputs:
@@ -96,8 +102,7 @@ func _is_place_walkable(x : float, y : float) -> bool:
 
 func hurt(knockback_direction : Vector2) -> void:
 	life -= 1
-	velocity = knockback_direction * speed * 8
-	play_sound()
+	knockback_velocity = knockback_direction * speed * 8
 	Globals.emit_update_life(life)
 	if life < 1:
 		queue_free()
