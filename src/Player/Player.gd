@@ -104,6 +104,7 @@ func hurt(knockback_direction : Vector2) -> void:
 	life -= 1
 	knockback_velocity = knockback_direction * speed * 8
 	Globals.emit_update_life(life)
+	Globals.screenshake(0.2, 5.0)
 	if life < 1:
 		queue_free()
 		Globals.emit_show_game_over()
