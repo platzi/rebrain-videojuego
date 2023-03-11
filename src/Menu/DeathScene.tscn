@@ -9,15 +9,41 @@
 [sub_resource type="Shader" id=14]
 code = "shader_type canvas_item;
 
+uniform vec4 tint : hint_color;
+uniform float tint_strength : hint_range(0.0, 1.0);
+
+vec4 get_pixel_offset(sampler2D tex, vec2 uv, vec2 pixel_size, float x, float y) {
+	vec4 total = vec4(0.0);
+	total += texture(tex, uv + vec2(pixel_size.x * x, pixel_size.y * y));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 2.0, pixel_size.y * y * 2.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 3.0, pixel_size.y * y * 3.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 4.0, pixel_size.y * y * 4.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 6.0, pixel_size.y * y * 5.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 5.0, pixel_size.y * y * 6.0));
+	return total / 6.0;
+}
+
 void fragment() {
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
-	float avg = (color.r + color.g + color.b) / 3.0;
-	vec4 mixed = vec4(mix(vec3(avg, avg, avg), vec3(0.0, 0.0, 1.0), 0.5), color.a);
-	COLOR = mixed;
+	vec4 total = vec4(0.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, 1.0, 0.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, -1.0, 0.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, 0.0, 1.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, 0.0, -1.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, 1.0, 1.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, -1.0, 1.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, 1.0, -1.0);
+	total += get_pixel_offset(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, -1.0, -1.0);
+	total = total / 8.0;
+	float avg = (total.r + total.g + total.b) / 3.0;
+	vec4 color = vec4(vec3(avg), total.a);
+	color.rgb = mix(color.rgb, vec3(0.0, 0.0, 1.0), 0.5);
+	COLOR = color;
 }"
 
 [sub_resource type="ShaderMaterial" id=15]
 shader = SubResource( 14 )
+shader_param/tint = null
+shader_param/tint_strength = null
 
 [sub_resource type="StyleBoxFlat" id=16]
 content_margin_left = 24.0
