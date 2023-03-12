@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/images/scripting/scripting_icon_and.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/hints/hint_bolt_and.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_and_node.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 6 )
+content = "[b][color=purple]Y[/color][/b]
+Es un nodo de lógica que compara dos booleanos de entrada, si ambos son verdaderos enviara un booleano de salida con valor Verdadero, si ninguno o solo uno es verdadero entonces enviara un booleano de salida con valor Falso."
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 5 )
+content = "[b][color=purple]And[/color][/b]
+En Bolt se encuentra con el nombre de And y su función es exactamente similar."
 
 [node name="AndNode" instance=ExtResource( 3 )]
 slot/1/left_enabled = true
@@ -21,6 +38,7 @@ type = "AND"
 tag = "Y"
 subtag = "Lógica"
 icon = ExtResource( 1 )
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 1 )
@@ -42,29 +60,21 @@ anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
 margin_right = 159.0
-margin_bottom = 69.0
+margin_bottom = 79.0
 left_enabled = true
 left_type = 4
 left_tag = "A"
-left_number_min = 0
-left_number_max = 100
 right_enabled = true
 right_type = 4
 right_tag = "A & B"
-right_number_min = 0
-right_number_max = 100
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 73.0
+margin_top = 83.0
 margin_right = 159.0
-margin_bottom = 98.0
+margin_bottom = 118.0
 left_enabled = true
 left_type = 4
 left_tag = "B"
-left_number_min = 0
-left_number_max = 100
-right_number_min = 0
-right_number_max = 100
