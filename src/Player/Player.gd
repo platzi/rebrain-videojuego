@@ -106,8 +106,11 @@ func hurt(knockback_direction : Vector2) -> void:
 	Globals.emit_update_life(life)
 	Globals.screenshake(0.2, 5.0)
 	if life < 1:
-		queue_free()
 		Globals.emit_show_game_over()
+		Globals.screenshake(0.4, 10.0)
+		queue_free()
+	else:
+		Globals.screenshake(0.2, 5.0)
 
 
 func _update_avatar() -> void:
