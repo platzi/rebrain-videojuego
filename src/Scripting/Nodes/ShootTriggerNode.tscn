@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/scripting/scripting_icon_shoot_trigger.png" type="Texture" id=3]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/hints/hint_bolt_trigger_custom_event.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_shoot_trigger_node.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 6 )
+content = "NODE.SHOOT_TRIGGER.DESCRIPTION.01"
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 5 )
+content = "NODE.SHOOT_TRIGGER.DESCRIPTION.02"
 
 [node name="MessageNode" instance=ExtResource( 1 )]
 slot/1/left_enabled = true
@@ -18,31 +33,48 @@ slot/2/right_enabled = false
 slot/2/right_type = 0
 slot/2/right_color = Color( 0.352941, 1, 0, 1 )
 type = "SHOOT_TRIGGER"
-tag = "Accionar Disparador"
+tag = "NODE.SHOOT_TRIGGER.TITLE"
 subtag = "Acción"
 icon = ExtResource( 3 )
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 239.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 238.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 238.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 234.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 3 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 144.0
+margin_right = 198.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 120.0
-text = "Accionar Disparador"
+margin_right = 174.0
+text = "NODE.SHOOT_TRIGGER.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 120.0
+margin_right = 174.0
 text = "Acción"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 206.0
+margin_right = 230.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
-margin_bottom = 68.0
+margin_right = 239.0
+margin_bottom = 79.0
 left_enabled = true
 right_enabled = true
 
@@ -50,9 +82,9 @@ right_enabled = true
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 72.0
-margin_right = 159.0
-margin_bottom = 97.0
+margin_top = 83.0
+margin_right = 239.0
+margin_bottom = 118.0
 left_enabled = true
 left_type = 2
 left_tag = "Identificador"

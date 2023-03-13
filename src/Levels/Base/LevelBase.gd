@@ -66,6 +66,8 @@ func _on_saved_events_finished() -> void:
 func _on_node_info_pressed(hints) -> void:
 	Globals.disable_inputs = true
 	Globals.disable_scripting = true
+	for hint in hints:
+		hint.content = tr(hint.content)
 	yield(create_hint("Nodos", hints), "closed")
 	Globals.disable_inputs = false
 	Globals.disable_scripting = false

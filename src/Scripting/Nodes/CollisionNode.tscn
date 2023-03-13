@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/hints/hint_collision_node.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/scripting/scripting_icon_collision.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_bolt_collision.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 3 )
+image = ExtResource( 4 )
+content = "NODE.COLLISION.DESCRIPTION.01"
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 3 )
+image = ExtResource( 6 )
+content = "NODE.COLLISION.DESCRIPTION.01"
 
 [node name="CollisionNode" instance=ExtResource( 1 )]
 slot/1/left_enabled = false
@@ -18,40 +33,57 @@ slot/2/right_enabled = true
 slot/2/right_type = 1
 slot/2/right_color = Color( 1, 0, 0, 1 )
 type = "COLLISION"
-tag = "Colisión"
+tag = "NODE.COLLISION.TITLE"
 subtag = "Evento"
 icon = ExtResource( 5 )
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 206.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 205.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 205.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 201.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 5 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 72.0
+margin_right = 165.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 48.0
-text = "Colisión"
+margin_right = 141.0
+text = "NODE.COLLISION.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 48.0
+margin_right = 141.0
 text = "Evento"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 173.0
+margin_right = 197.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
-margin_bottom = 68.0
+margin_right = 206.0
+margin_bottom = 79.0
 right_enabled = true
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 72.0
-margin_right = 159.0
-margin_bottom = 97.0
+margin_top = 83.0
+margin_right = 206.0
+margin_bottom = 118.0
 right_enabled = true
 right_type = 1
 right_tag = "Entidad"

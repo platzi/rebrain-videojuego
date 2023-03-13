@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/hints/hint_compare_entity_node.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/scripting/scripting_icon_compare.png" type="Texture" id=5]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 1 )
+image = ExtResource( 4 )
+content = "NODE.COMPARE_ENTITY.DESCRIPTION.01"
 
 [node name="CompareEntityNode" instance=ExtResource( 2 )]
 slot/1/left_enabled = true
@@ -18,53 +26,62 @@ slot/2/right_enabled = false
 slot/2/right_type = 0
 slot/2/right_color = Color( 0.352941, 1, 0, 1 )
 type = "COMPARE_ENTITY"
-tag = "Comparar"
-subtag = "Entidad"
+tag = "NODE.COMPARE_ENTITY.TITLE"
+subtag = "Lógica"
 icon = ExtResource( 5 )
+hints = [ SubResource( 1 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 246.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 245.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 245.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 241.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 5 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 83.0
+margin_right = 205.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 59.0
-text = "Comparar"
+margin_right = 181.0
+text = "NODE.COMPARE_ENTITY.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 59.0
-text = "Entidad"
+margin_right = 181.0
+text = "Lógica"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 213.0
+margin_right = 237.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
-margin_bottom = 69.0
+margin_right = 246.0
+margin_bottom = 79.0
 left_enabled = true
 left_type = 1
 left_tag = "A"
-left_number_min = 0
-left_number_max = 100
 right_enabled = true
 right_type = 4
 right_tag = "A == B"
-right_number_min = 0
-right_number_max = 100
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 73.0
-margin_right = 159.0
-margin_bottom = 98.0
+margin_top = 83.0
+margin_right = 246.0
+margin_bottom = 118.0
 left_enabled = true
 left_type = 1
 left_tag = "B"
-left_number_min = 0
-left_number_max = 100
-right_number_min = 0
-right_number_max = 100

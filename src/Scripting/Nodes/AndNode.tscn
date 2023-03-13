@@ -11,15 +11,13 @@
 resource_name = "Hint"
 script = ExtResource( 4 )
 image = ExtResource( 6 )
-content = "[b][color=purple]Y[/color][/b]
-Es un nodo de lógica que compara dos booleanos de entrada, si ambos son verdaderos enviara un booleano de salida con valor Verdadero, si ninguno o solo uno es verdadero entonces enviara un booleano de salida con valor Falso."
+content = "NODE.AND.DESCRIPTION.01"
 
 [sub_resource type="Resource" id=2]
 resource_name = "Hint"
 script = ExtResource( 4 )
 image = ExtResource( 5 )
-content = "[b][color=purple]And[/color][/b]
-En Bolt se encuentra con el nombre de And y su función es exactamente similar."
+content = "NODE.AND.DESCRIPTION.02"
 
 [node name="AndNode" instance=ExtResource( 3 )]
 slot/1/left_enabled = true
@@ -35,31 +33,47 @@ slot/2/right_enabled = false
 slot/2/right_type = 0
 slot/2/right_color = Color( 0.352941, 1, 0, 1 )
 type = "AND"
-tag = "Y"
+tag = "NODE.AND.TITLE"
 subtag = "Lógica"
 icon = ExtResource( 1 )
 hints = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 166.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 165.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 165.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 161.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 1 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 54.0
+margin_right = 125.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 30.0
-text = "Y"
+margin_right = 101.0
+text = "NODE.AND.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 30.0
+margin_right = 101.0
 text = "Lógica"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 133.0
+margin_right = 157.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
+margin_right = 166.0
 margin_bottom = 79.0
 left_enabled = true
 left_type = 4
@@ -73,7 +87,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 83.0
-margin_right = 159.0
+margin_right = 166.0
 margin_bottom = 118.0
 left_enabled = true
 left_type = 4
