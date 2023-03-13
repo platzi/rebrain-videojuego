@@ -169,7 +169,7 @@ radius = 15.0
 height = 0.0
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 16.0
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id=14]
 radius = 16.0
@@ -183,6 +183,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -201,7 +205,12 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -237,7 +246,7 @@ position = Vector2( 0, -6 )
 shape = SubResource( 11 )
 
 [node name="ScriptingArea" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -6 )
+position = Vector2( 0, -20 )
 shape_2d = SubResource( 13 )
 
 [node name="HurtBox" parent="." instance=ExtResource( 6 )]
