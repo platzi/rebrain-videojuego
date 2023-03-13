@@ -11,27 +11,20 @@
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 300, 300 )
+extents = Vector2( 500, 500 )
 
 [node name="LevelBase" instance=ExtResource( 1 )]
 
 [node name="CameraAttractor" parent="." index="1" instance=ExtResource( 9 )]
-position = Vector2( 456, 264 )
+position = Vector2( 528, 216 )
 collision_shape = SubResource( 1 )
+zoom_level = 1.2
 
 [node name="Player" parent="Entities/YSort" index="0"]
-position = Vector2( 288, 240 )
-
-[node name="Teleporter" parent="Entities/YSort" index="1"]
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_REPEAT = 0
-node_limit_PASSENGERS = 0
+position = Vector2( 288, 216 )
 
 [node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 2 )]
-position = Vector2( 286, 51 )
+position = Vector2( 288, 0 )
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
 node_limit_UPDATE = 0
@@ -64,6 +57,9 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -104,6 +100,9 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
@@ -113,42 +112,46 @@ node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="Raft" parent="Entities/YSort" index="4" instance=ExtResource( 7 )]
-position = Vector2( 480, 264 )
+position = Vector2( 528, 216 )
 node_limit_UPDATE = 1
 node_limit_MOVE_DOWN = -1
 node_limit_MOVE_UP = -1
 node_limit_IF = -1
 node_limit_EQUAL = -1
+node_limit_NOT_EQUAL = -1
+node_limit_GREATER = -1
+node_limit_GREATER_EQUAL = -1
+node_limit_LESS = -1
+node_limit_LESS_EQUAL = -1
 node_limit_REPEAT = -1
 node_limit_PASSENGERS = -1
 node_limit_NUMBER = -1
 
-[node name="Frog" parent="Entities/YSort" index="5" instance=ExtResource( 8 )]
-position = Vector2( 600, 288 )
-brain_og = "{\"@UpdateNode@212\":{\"type\":\"UPDATE\",\"disabled\":false,\"position\":[-360,-200],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@ScriptingNode@262\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@NumberNode@229\":{\"type\":\"NUMBER\",\"disabled\":false,\"position\":[-360,-100],\"connections_in\":[],\"connections_out\":[{\"type\":3,\"from_port\":0,\"to\":\"@ScriptingNode@262\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"4\"}},\"@ScriptingNode@262\":{\"type\":\"REPEAT\",\"disabled\":false,\"position\":[-160,-180],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@212\",\"from_port\":0,\"to_port\":0},{\"type\":3,\"from\":\"@NumberNode@229\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":1,\"to\":\"@MoveForwardNode@279\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"@RotateLeftNode@296\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"0\"},\"inputs\":{\"1\":\"0\"},\"outputs\":{}},\"@MoveForwardNode@279\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[60,-100],\"connections_in\":[{\"type\":0,\"from\":\"@ScriptingNode@262\",\"from_port\":1,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@RotateLeftNode@296\":{\"type\":\"ROTATE_LEFT\",\"disabled\":false,\"position\":[40,-200],\"connections_in\":[{\"type\":0,\"from\":\"@ScriptingNode@262\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
-direction = 180.0
+[node name="Raft2" parent="Entities/YSort" index="5" instance=ExtResource( 7 )]
+position = Vector2( 624, 216 )
 node_limit_UPDATE = 1
-node_limit_MOVE_FORWARD = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = -1
-node_limit_ROTATE_RIGHT = -1
-node_limit_WAIT = -1
-node_limit_REPEAT = 1
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 1
+node_limit_MOVE_RIGHT = -1
+node_limit_MOVE_LEFT = -1
+node_limit_IF = -1
+node_limit_EQUAL = -1
+node_limit_NOT_EQUAL = -1
+node_limit_GREATER = -1
+node_limit_GREATER_EQUAL = -1
+node_limit_LESS = -1
+node_limit_LESS_EQUAL = -1
+node_limit_REPEAT = -1
+node_limit_PASSENGERS = -1
+node_limit_NUMBER = -1
 
 [node name="ButtonEntity" parent="Entities/YSort" index="6" instance=ExtResource( 6 )]
-position = Vector2( 456, 480 )
-brain_og = "{\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,0],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn1\"}}}"
+position = Vector2( 504, 24 )
+brain_og = "{\"@PressedNode@232\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@265\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MessageNode@265\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"@PressedNode@232\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@299\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@ReleasedNode@282\":{\"type\":\"RELEASED\",\"disabled\":false,\"position\":[-360,100],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@332\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@StringNode@299\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@265\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir1\"}},\"@MessageNode@332\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,100],\"connections_in\":[{\"type\":0,\"from\":\"@ReleasedNode@282\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@349\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@349\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,200],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@332\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar1\"}}}"
 blocked = true
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
 node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
-node_limit_RELEASED = 0
+node_limit_RELEASED = 1
 node_limit_MOVE_FORWARD = 0
 node_limit_MOVE_RIGHT = 0
 node_limit_MOVE_DOWN = 0
@@ -157,7 +160,7 @@ node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 1
+node_limit_SHOOT_TRIGGER = 2
 node_limit_SHOOT = 0
 node_limit_OPEN = 0
 node_limit_CLOSE = 0
@@ -174,23 +177,26 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
-node_limit_STRING = 1
+node_limit_STRING = -1
 node_limit_BOOL = 0
 node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="ButtonEntity2" parent="Entities/YSort" index="7" instance=ExtResource( 6 )]
-position = Vector2( 456, 48 )
-brain_og = "{\"@PressedNode@176\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@209\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MessageNode@209\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"@PressedNode@176\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@209\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn2\"}}}"
+position = Vector2( 504, 408 )
+brain_og = "{\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"ReleasedNode\":{\"type\":\"RELEASED\",\"disabled\":false,\"position\":[-360,100],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@146\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir2\"}},\"@MessageNode@146\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,100],\"connections_in\":[{\"type\":0,\"from\":\"ReleasedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@163\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@163\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,200],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@146\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar2\"}}}"
 blocked = true
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
 node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
-node_limit_RELEASED = 0
+node_limit_RELEASED = 1
 node_limit_MOVE_FORWARD = 0
 node_limit_MOVE_RIGHT = 0
 node_limit_MOVE_DOWN = 0
@@ -199,7 +205,7 @@ node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 1
+node_limit_SHOOT_TRIGGER = 2
 node_limit_SHOOT = 0
 node_limit_OPEN = 0
 node_limit_CLOSE = 0
@@ -216,17 +222,20 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
-node_limit_STRING = 1
+node_limit_STRING = -1
 node_limit_BOOL = 0
 node_limit_ENTITY = 0
 node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="LogDoor" parent="Entities/YSort" index="8" instance=ExtResource( 3 )]
-position = Vector2( 288, 96 )
-brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-160],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-20],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@369\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@StringNode@369\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn2\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[60,-140],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[360,-120],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+position = Vector2( 288, 120 )
+brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-160],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@178\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-20],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir1\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[60,-160],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0},{\"type\":0,\"from_port\":1,\"to\":\"@IfNode@310\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"@CompareStringNode@178\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-300],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":1},{\"type\":2,\"from\":\"@StringNode@195\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@310\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@StringNode@195\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,-300],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@178\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar1\"}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[340,0],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@IfNode@310\":{\"type\":\"IF\",\"disabled\":false,\"position\":[320,-300],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":1,\"to_port\":0},{\"type\":4,\"from\":\"@CompareStringNode@178\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"CloseNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"CloseNode\":{\"type\":\"CLOSE\",\"disabled\":false,\"position\":[580,-300],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@310\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
 blocked = true
 node_limit_TRIGGER = 1
 node_limit_MOVE_RIGHT = 0
@@ -234,14 +243,18 @@ node_limit_MOVE_DOWN = 0
 node_limit_MOVE_LEFT = 0
 node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
-node_limit_IF = 1
-node_limit_COMPARE_STRING = 1
+node_limit_CLOSE = 1
+node_limit_IF = 2
+node_limit_COMPARE_STRING = 2
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
-node_limit_STRING = 1
+node_limit_STRING = -1
 
 [node name="LogDoor2" parent="Entities/YSort" index="9" instance=ExtResource( 3 )]
-position = Vector2( 288, 360 )
-brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-160],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-20],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"btn1\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[60,-140],\"connections_in\":[{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[360,-120],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+position = Vector2( 288, 312 )
+brain_og = "{\"@UpdateNode@388\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-160],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@421\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"@IfNode@471\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@504\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"@CompareStringNode@421\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-20],\"connections_in\":[{\"type\":2,\"from\":\"@UpdateNode@388\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@438\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@471\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@StringNode@438\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@421\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir2\"}},\"@IfNode@471\":{\"type\":\"IF\",\"disabled\":false,\"position\":[60,-160],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@388\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"@CompareStringNode@421\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@OpenNode@538\",\"to_port\":0},{\"type\":0,\"from_port\":1,\"to\":\"@IfNode@571\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"@CompareStringNode@504\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-140,-300],\"connections_in\":[{\"type\":2,\"from\":\"@UpdateNode@388\",\"from_port\":1,\"to_port\":1},{\"type\":2,\"from\":\"@StringNode@521\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@571\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@StringNode@521\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,-300],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@504\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar2\"}},\"@OpenNode@538\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[340,0],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@471\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@IfNode@571\":{\"type\":\"IF\",\"disabled\":false,\"position\":[320,-300],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@471\",\"from_port\":1,\"to_port\":0},{\"type\":4,\"from\":\"@CompareStringNode@504\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@CloseNode@588\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"@CloseNode@588\":{\"type\":\"CLOSE\",\"disabled\":false,\"position\":[580,-300],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@571\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
 blocked = true
 node_limit_TRIGGER = 1
 node_limit_MOVE_RIGHT = 0
@@ -249,26 +262,36 @@ node_limit_MOVE_DOWN = 0
 node_limit_MOVE_LEFT = 0
 node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
-node_limit_IF = 1
-node_limit_COMPARE_STRING = 1
+node_limit_CLOSE = 1
+node_limit_IF = 2
+node_limit_COMPARE_STRING = 2
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
-node_limit_STRING = 1
+node_limit_STRING = -1
 
-[node name="Frog2" parent="Entities/YSort" index="10" instance=ExtResource( 8 )]
-position = Vector2( 600, 240 )
-brain_og = "{\"@UpdateNode@289\":{\"type\":\"UPDATE\",\"disabled\":false,\"position\":[-380,-200],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@ScriptingNode@372\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@WaitNode@322\":{\"type\":\"WAIT\",\"disabled\":false,\"position\":[80,-200],\"connections_in\":[{\"type\":0,\"from\":\"@ScriptingNode@372\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@RotateRightNode@406\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"2\"},\"inputs\":{\"1\":\"2\"},\"outputs\":{}},\"@MoveForwardNode@339\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[80,-40],\"connections_in\":[{\"type\":0,\"from\":\"@ScriptingNode@372\",\"from_port\":1,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@ScriptingNode@372\":{\"type\":\"REPEAT\",\"disabled\":false,\"position\":[-160,-140],\"connections_in\":[{\"type\":0,\"from\":\"@UpdateNode@289\",\"from_port\":0,\"to_port\":0},{\"type\":3,\"from\":\"@NumberNode@389\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":1,\"to\":\"@MoveForwardNode@339\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"@WaitNode@322\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"0\"},\"inputs\":{\"1\":\"0\"},\"outputs\":{}},\"@NumberNode@389\":{\"type\":\"NUMBER\",\"disabled\":false,\"position\":[-380,-60],\"connections_in\":[],\"connections_out\":[{\"type\":3,\"from_port\":0,\"to\":\"@ScriptingNode@372\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"5\"}},\"@RotateRightNode@406\":{\"type\":\"ROTATE_RIGHT\",\"disabled\":false,\"position\":[325.368561,-149.25],\"connections_in\":[{\"type\":0,\"from\":\"@WaitNode@322\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MoveForwardNode@423\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MoveForwardNode@423\":{\"type\":\"MOVE_FORWARD\",\"disabled\":false,\"position\":[673.852966,-96.750015],\"connections_in\":[{\"type\":0,\"from\":\"@RotateRightNode@406\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+[node name="Frog" parent="Entities/YSort" index="10" instance=ExtResource( 8 )]
+position = Vector2( 840, 240 )
 direction = 180.0
 node_limit_UPDATE = 1
-node_limit_MOVE_FORWARD = 2
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_RIGHT = 1
-node_limit_WAIT = 1
-node_limit_REPEAT = 2
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 2
+node_limit_MOVE_FORWARD = -1
+node_limit_ROTATE_LEFT = -1
+node_limit_ROTATE_RIGHT = -1
+node_limit_WAIT = -1
+node_limit_REPEAT = -1
+node_limit_NUMBER = -1
+
+[node name="Frog2" parent="Entities/YSort" index="11" instance=ExtResource( 8 )]
+position = Vector2( 840, 192 )
+direction = 180.0
+node_limit_UPDATE = 1
+node_limit_MOVE_FORWARD = -1
+node_limit_ROTATE_LEFT = -1
+node_limit_ROTATE_RIGHT = -1
+node_limit_WAIT = -1
+node_limit_REPEAT = -1
+node_limit_NUMBER = -1
 
 [node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 4 )]
-tile_data = PoolIntArray( 5, 0, 8, 6, 0, 11, 8, 0, 8, 9, 0, 10, 10, 0, 11, 65541, 0, 65544, 65542, 0, 131083, 65544, 0, 196616, 65545, 0, 196617, 65546, 0, 196619, 131077, 0, 65544, 131078, 0, 131083, 196613, 0, 65544, 196614, 0, 131083, 262149, 0, 65544, 262150, 0, 131083, 262155, 0, 8, 262156, 0, 10, 262157, 0, 11, 327685, 0, 65544, 327686, 0, 131083, 327691, 0, 65544, 327692, 0, 262144, 327693, 0, 131083, 393221, 0, 65544, 393222, 0, 131083, 393227, 0, 196616, 393228, 0, 196617, 393229, 0, 196619, 458757, 0, 65544, 458758, 0, 131083, 524293, 0, 65544, 524294, 0, 131083, 589829, 0, 196616, 589830, 0, 196619, 589832, 0, 8, 589833, 0, 10, 589834, 0, 11, 655368, 0, 196616, 655369, 0, 196617, 655370, 0, 196619 )
+tile_data = PoolIntArray( -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 0, 8, -65531, 0, 10, -65530, 0, 10, -65529, 0, 11, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 196616, 5, 0, 131077, 6, 0, 131078, 7, 0, 196619, 8, 1, 0, 9, 1, 0, 10, 0, 196608, 11, 1, 0, 12, 1, 0, 65538, 3, 0, 65539, 1, 0, 65540, 1, 0, 65541, 0, 65544, 65542, 0, 131083, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 131075, 3, 0, 131076, 1, 0, 131077, 0, 65544, 131078, 0, 131083, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 196612, 1, 0, 196613, 0, 65544, 196614, 0, 131083, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 0, 8, 196625, 0, 10, 196626, 0, 11, 196627, 1, 0, 196628, 1, 0, 262148, 1, 0, 262149, 0, 65544, 262150, 0, 131083, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 0, 65544, 262161, 0, 262144, 262162, 0, 131083, 262163, 1, 0, 262164, 1, 0, 327684, 1, 0, 327685, 0, 65544, 327686, 0, 131083, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 0, 196616, 327697, 0, 196617, 327698, 0, 196619, 327699, 1, 0, 327700, 1, 0, 393220, 1, 0, 393221, 0, 65544, 393222, 0, 131083, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 3, 0, 393230, 3, 0, 393231, 1, 0, 393232, 1, 0, 393233, 1, 0, 393234, 1, 0, 393235, 1, 0, 393236, 3, 0, 458755, 1, 0, 458756, 1, 0, 458757, 0, 65544, 458758, 0, 131083, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458767, 3, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 3, 0, 524290, 1, 0, 524291, 1, 0, 524292, 0, 8, 524293, 0, 65541, 524294, 0, 65542, 524295, 0, 11, 524296, 1, 0, 524297, 1, 0, 524298, 0, 196608, 524299, 1, 0, 524300, 1, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 589826, 1, 0, 589827, 1, 0, 589828, 0, 196616, 589829, 0, 196617, 589830, 0, 196617, 589831, 0, 196619, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 3, 0, 655362, 3, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 3, 0, 720899, 3, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 786436, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0 )
