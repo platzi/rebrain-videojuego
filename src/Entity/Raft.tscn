@@ -20,7 +20,7 @@ extents = Vector2( 48, 48 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52, 52 )
 
-[node name="Raft" type="KinematicBody2D" groups=["Platform"]]
+[node name="Raft" type="KinematicBody2D" groups=["Platform", "Unsorted"]]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource( 2 )
