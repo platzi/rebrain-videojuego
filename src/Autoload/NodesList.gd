@@ -45,13 +45,13 @@ var NODES = {
 		["PATH_RIGHT", tr("NODE.PATH_RIGHT.TITLE"), preload("res://assets/images/scripting/scripting_icon_path_ahead.png"), preload("res://src/Scripting/Nodes/PathRightNode.tscn")],
 		["PASSENGERS", tr("NODE.PASSENGERS.TITLE"), preload("res://assets/images/scripting/scripting_icon_passengers.png"), preload("res://src/Scripting/Nodes/PassengersNode.tscn")],
 	],
-	"Entradas": [
+	"Literales": [
 		["NUMBER", tr("NODE.NUMBER.TITLE"), preload("res://assets/images/scripting/scripting_icon_number.png"), preload("res://src/Scripting/Nodes/NumberNode.tscn")],
 		["STRING", tr("NODE.STRING.TITLE"), preload("res://assets/images/scripting/scripting_icon_string.png"), preload("res://src/Scripting/Nodes/StringNode.tscn")],
 		["BOOL", tr("NODE.BOOL.TITLE"), preload("res://assets/images/scripting/scripting_icon_bool.png"), preload("res://src/Scripting/Nodes/BoolNode.tscn")],
 		["ENTITY", tr("NODE.ENTITY.TITLE"), preload("res://assets/images/scripting/scripting_icon_entity.png"), preload("res://src/Scripting/Nodes/EntityNode.tscn")],
 	],
-	"Variables locales": [
+	"Valores": [
 		["POSITION", tr("NODE.POSITION.TITLE"), preload("res://assets/images/scripting/scripting_icon_position.png"), preload("res://src/Scripting/Nodes/PositionNode.tscn")],
 		["DIRECTION", tr("NODE.DIRECTION.TITLE"), preload("res://assets/images/scripting/scripting_icon_direction.png"), preload("res://src/Scripting/Nodes/DirectionNode.tscn")],
 	]
