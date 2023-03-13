@@ -70,46 +70,12 @@ node_limit_DIRECTION = 0
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 5 )]
 position = Vector2( 288, 432 )
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
+hair_style = 3
+hair_color = Color( 0.313726, 0.705882, 1, 1 )
+skin_color = Color( 0.752941, 0.0901961, 0.619608, 1 )
+shirt_color = Color( 0.360784, 0.803922, 0.0862745, 1 )
+pants_color = Color( 0.745098, 0.454902, 0, 1 )
+shoes_color = Color( 0.45098, 0.0705882, 0.796078, 1 )
 
 [node name="Raft" parent="Entities/YSort" index="4" instance=ExtResource( 7 )]
 position = Vector2( 528, 216 )
@@ -144,7 +110,7 @@ node_limit_PASSENGERS = -1
 node_limit_NUMBER = -1
 
 [node name="ButtonEntity" parent="Entities/YSort" index="6" instance=ExtResource( 6 )]
-position = Vector2( 504, 24 )
+position = Vector2( 504, 72 )
 brain_og = "{\"@PressedNode@232\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@265\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MessageNode@265\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"@PressedNode@232\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@299\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@ReleasedNode@282\":{\"type\":\"RELEASED\",\"disabled\":false,\"position\":[-360,100],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@332\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@StringNode@299\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@265\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir1\"}},\"@MessageNode@332\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,100],\"connections_in\":[{\"type\":0,\"from\":\"@ReleasedNode@282\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@349\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@349\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,200],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@332\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar1\"}}}"
 blocked = true
 node_limit_UPDATE = 0
@@ -189,7 +155,7 @@ node_limit_POSITION = 0
 node_limit_DIRECTION = 0
 
 [node name="ButtonEntity2" parent="Entities/YSort" index="7" instance=ExtResource( 6 )]
-position = Vector2( 504, 408 )
+position = Vector2( 504, 360 )
 brain_og = "{\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-360,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,-140],\"connections_in\":[{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"ReleasedNode\":{\"type\":\"RELEASED\",\"disabled\":false,\"position\":[-360,100],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@146\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,-20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir2\"}},\"@MessageNode@146\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[-40,100],\"connections_in\":[{\"type\":0,\"from\":\"ReleasedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@163\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@163\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-360,200],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@146\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar2\"}}}"
 blocked = true
 node_limit_UPDATE = 0
@@ -294,4 +260,4 @@ node_limit_REPEAT = -1
 node_limit_NUMBER = -1
 
 [node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 4 )]
-tile_data = PoolIntArray( -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 0, 8, -65531, 0, 10, -65530, 0, 10, -65529, 0, 11, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 196616, 5, 0, 131077, 6, 0, 131078, 7, 0, 196619, 8, 1, 0, 9, 1, 0, 10, 0, 196608, 11, 1, 0, 12, 1, 0, 65538, 3, 0, 65539, 1, 0, 65540, 1, 0, 65541, 0, 65544, 65542, 0, 131083, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 131075, 3, 0, 131076, 1, 0, 131077, 0, 65544, 131078, 0, 131083, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 196612, 1, 0, 196613, 0, 65544, 196614, 0, 131083, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 0, 8, 196625, 0, 10, 196626, 0, 11, 196627, 1, 0, 196628, 1, 0, 262148, 1, 0, 262149, 0, 65544, 262150, 0, 131083, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 0, 65544, 262161, 0, 262144, 262162, 0, 131083, 262163, 1, 0, 262164, 1, 0, 327684, 1, 0, 327685, 0, 65544, 327686, 0, 131083, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 0, 196616, 327697, 0, 196617, 327698, 0, 196619, 327699, 1, 0, 327700, 1, 0, 393220, 1, 0, 393221, 0, 65544, 393222, 0, 131083, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 3, 0, 393230, 3, 0, 393231, 1, 0, 393232, 1, 0, 393233, 1, 0, 393234, 1, 0, 393235, 1, 0, 393236, 3, 0, 458755, 1, 0, 458756, 1, 0, 458757, 0, 65544, 458758, 0, 131083, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458767, 3, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 3, 0, 524290, 1, 0, 524291, 1, 0, 524292, 0, 8, 524293, 0, 65541, 524294, 0, 65542, 524295, 0, 11, 524296, 1, 0, 524297, 1, 0, 524298, 0, 196608, 524299, 1, 0, 524300, 1, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 589826, 1, 0, 589827, 1, 0, 589828, 0, 196616, 589829, 0, 196617, 589830, 0, 196617, 589831, 0, 196619, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 3, 0, 655362, 3, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 3, 0, 720899, 3, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 786436, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0 )
+tile_data = PoolIntArray( -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 0, 8, -65531, 0, 10, -65530, 0, 10, -65529, 0, 11, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 196616, 5, 0, 131077, 6, 0, 131078, 7, 0, 196619, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 65538, 3, 0, 65539, 1, 0, 65540, 1, 0, 65541, 0, 65544, 65542, 0, 131083, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 0, 196608, 65547, 1, 0, 65548, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 131075, 3, 0, 131076, 1, 0, 131077, 0, 65544, 131078, 0, 131083, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 196612, 1, 0, 196613, 0, 65544, 196614, 0, 131083, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 0, 8, 196625, 0, 10, 196626, 0, 11, 196627, 1, 0, 196628, 1, 0, 262148, 1, 0, 262149, 0, 65544, 262150, 0, 131083, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 0, 65544, 262161, 0, 262144, 262162, 0, 131083, 262163, 1, 0, 262164, 1, 0, 327684, 1, 0, 327685, 0, 65544, 327686, 0, 131083, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 0, 196616, 327697, 0, 196617, 327698, 0, 196619, 327699, 1, 0, 327700, 1, 0, 393220, 1, 0, 393221, 0, 65544, 393222, 0, 131083, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 3, 0, 393230, 3, 0, 393231, 1, 0, 393232, 1, 0, 393233, 1, 0, 393234, 1, 0, 393235, 1, 0, 393236, 3, 0, 458755, 1, 0, 458756, 1, 0, 458757, 0, 65544, 458758, 0, 131083, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 0, 196608, 458763, 1, 0, 458764, 1, 0, 458767, 3, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 3, 0, 524290, 1, 0, 524291, 1, 0, 524292, 0, 8, 524293, 0, 65541, 524294, 0, 65542, 524295, 0, 11, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 589826, 1, 0, 589827, 1, 0, 589828, 0, 196616, 589829, 0, 196617, 589830, 0, 196617, 589831, 0, 196619, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 3, 0, 655362, 3, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 3, 0, 720899, 3, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 786436, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0 )

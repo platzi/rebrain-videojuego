@@ -22,56 +22,15 @@ Hay muchas maneras de obtener la llave, una de ellas es caminando hacía ella."
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 1 )
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_REPEAT = 0
-node_limit_PASSENGERS = 0
 
 [node name="Cage" parent="Entities/YSort" index="2" instance=ExtResource( 7 )]
 position = Vector2( 480, -384 )
-hair_color = Color( 0.721569, 0.780392, 0, 1 )
-shirt_color = Color( 0, 0.807843, 0.866667, 1 )
-pants_color = Color( 0.415686, 0.313726, 0.0745098, 1 )
-shoes_color = Color( 0.180392, 0.156863, 0.12549, 1 )
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
+hair_style = 1
+hair_color = Color( 1, 0.313726, 0.313726, 1 )
+skin_color = Color( 0.776471, 0.52549, 0.258824, 1 )
+shirt_color = Color( 0.360784, 0.803922, 0.0862745, 1 )
+pants_color = Color( 0.745098, 0.454902, 0, 1 )
+shoes_color = Color( 0.878431, 0.866667, 0.0196078, 1 )
 
 [node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 6 )]
 position = Vector2( 480, -72 )
@@ -107,6 +66,9 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
 node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0

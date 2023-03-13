@@ -6,26 +6,30 @@
 [ext_resource path="res://assets/images/particles/circle.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=5]
 [ext_resource path="res://src/Player/PlayerShader.gdshader" type="Shader" id=6]
-[ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/player/hair_02.png" type="Texture" id=7]
 [ext_resource path="res://src/Player/PlayerHair.gdshader" type="Shader" id=8]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=10]
 
 [sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
 shader = ExtResource( 6 )
 shader_param/blocked = null
 shader_param/blink = false
+shader_param/glow = 0.0
 shader_param/BLACK = null
-shader_param/SKIN_COLOR = Color( 1, 0.807843, 0.533333, 1 )
-shader_param/SHIRT_COLOR = Color( 1, 1, 1, 1 )
-shader_param/PANTS_COLOR = Color( 0.117647, 0.235294, 0.866667, 1 )
-shader_param/SHOES_COLOR = Color( 0.337255, 0.207843, 0.027451, 1 )
+shader_param/SKIN_COLOR = Color( 0, 0, 0, 1 )
+shader_param/SHIRT_COLOR = Color( 0, 0, 0, 1 )
+shader_param/PANTS_COLOR = Color( 0, 0, 0, 1 )
+shader_param/SHOES_COLOR = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
 shader = ExtResource( 8 )
 shader_param/blocked = null
 shader_param/blink = null
-shader_param/HAIR_COLOR = Color( 0.247059, 0.105882, 0.00784314, 1 )
+shader_param/glow = 0.0
+shader_param/HAIR_COLOR = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -280,13 +284,47 @@ radius = 42.0
 
 [node name="Cage" type="KinematicBody2D"]
 script = ExtResource( 1 )
-direction = 3
 blocked = true
-hair_color = Color( 0.247059, 0.105882, 0.00784314, 1 )
-skin_color = Color( 1, 0.807843, 0.533333, 1 )
-shirt_color = Color( 1, 1, 1, 1 )
-pants_color = Color( 0.117647, 0.235294, 0.866667, 1 )
-shoes_color = Color( 0.337255, 0.207843, 0.027451, 1 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
 
 [node name="StudentSprite" type="Sprite" parent="."]
 material = SubResource( 7 )
