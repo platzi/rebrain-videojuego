@@ -178,7 +178,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=12]
 radius = 24.0
 
-[node name="Spike" type="KinematicBody2D"]
+[node name="Spike" type="KinematicBody2D" groups=["Enemy"]]
 collision_mask = 3
 script = ExtResource( 3 )
 death_particles = ExtResource( 8 )
@@ -189,6 +189,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -209,6 +213,10 @@ node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
 node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -227,6 +235,7 @@ frame = 4
 [node name="Shadow" parent="." instance=ExtResource( 1 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.5
 anims/IdleDown = SubResource( 2 )
 anims/IdleLeft = SubResource( 3 )
 anims/IdleRight = SubResource( 4 )
