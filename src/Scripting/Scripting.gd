@@ -39,9 +39,9 @@ func _input(event : InputEvent) -> void:
 			if !Globals.scripting_mode:
 				Globals.scripting_mode = true
 				get_tree().paused = true
-			elif is_open:
-					on_SaveBtn_pressed()
 			else:
+				if is_open:
+					on_SaveBtn_pressed()
 				Globals.scripting_mode = false
 				get_tree().paused = false
 			Globals.emit_signal("scripting_toggled")

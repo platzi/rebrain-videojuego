@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/04.png-57d5dcd05e378e4f22ca2d6aef97b131.stex"
+path="res://.import/LevelEventTrigger3.png-18e0fb20114ec31733ad350e98b6589f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/levels/04.png"
-dest_files=[ "res://.import/04.png-57d5dcd05e378e4f22ca2d6aef97b131.stex" ]
+source_file="res://assets/images/levels/LevelEventTrigger3.png"
+dest_files=[ "res://.import/LevelEventTrigger3.png-18e0fb20114ec31733ad350e98b6589f.stex" ]
 
 [params]
 

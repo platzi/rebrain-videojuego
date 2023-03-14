@@ -3,9 +3,9 @@ tool
 
 extends Button
 
-export (PackedScene) var target_scene
 export(NodePath) var level_image_tr_path
 export(NodePath) var title_label_path
+export (PackedScene) var target_scene
 export(Texture) var level_image setget _set_level_image
 export(String) var title setget _set_title
 

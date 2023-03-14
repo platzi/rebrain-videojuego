@@ -666,5 +666,6 @@ layer = 2
 visible = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource( 7 )]
+visible = false
 
 [node name="Scripting" parent="UI" instance=ExtResource( 2 )]

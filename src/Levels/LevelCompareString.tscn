@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/images/hints/hint_compare_string.png" type="Texture" id=1]
 [ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=12]
 [ext_resource path="res://src/Levels/LevelEventTrigger3.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 500 )
@@ -27,7 +28,7 @@ Compara ambos textos de la entrada y envía un booleano verdadero si ambos coinc
 [node name="LevelCompareString" instance=ExtResource( 8 )]
 
 [node name="CameraAttractor" parent="." index="1" instance=ExtResource( 4 )]
-position = Vector2( 480, 264 )
+position = Vector2( 480, 312 )
 collision_shape = SubResource( 1 )
 zoom_level = 1.2
 
@@ -41,46 +42,6 @@ target_scene = ExtResource( 13 )
 position = Vector2( 624, 480 )
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 10 )]
 position = Vector2( 480, 108 )
@@ -94,90 +55,16 @@ shoes_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 [node name="ButtonEntity" parent="Entities/YSort" index="4" instance=ExtResource( 6 )]
 position = Vector2( 528, 216 )
 brain_og = "{\"@PressedNode@1293\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-200,-120],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"@MessageNode@1355\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@MessageNode@1355\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[20,-80],\"connections_in\":[{\"type\":0,\"from\":\"@PressedNode@1293\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@1314\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"@StringNode@1314\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-200,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@MessageNode@1355\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"girar\"}}}"
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
 node_limit_SHOOT_TRIGGER = 1
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
 node_limit_STRING = 1
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
 
 [node name="ButtonEntity2" parent="Entities/YSort" index="5" instance=ExtResource( 6 )]
 position = Vector2( 432, 216 )
 brain_og = "{\"MessageNode\":{\"type\":\"SHOOT_TRIGGER\",\"disabled\":false,\"position\":[20,-80],\"connections_in\":[{\"type\":0,\"from\":\"PressedNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[],\"computed_inputs\":{\"1\":\"\"},\"inputs\":{\"1\":\"\"},\"outputs\":{}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-200,0],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"avanzar\"}},\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-200,-120],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"MessageNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
 node_limit_PRESSED = 1
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
 node_limit_SHOOT_TRIGGER = 1
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
 node_limit_STRING = 1
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
 
 [node name="Frog" parent="Entities/YSort" index="6" instance=ExtResource( 5 )]
 position = Vector2( 336, 384 )
@@ -191,9 +78,11 @@ node_limit_STRING = 1
 
 [node name="Palm" parent="Entities/YSort" index="7" instance=ExtResource( 3 )]
 position = Vector2( 672, 144 )
+blocked = true
 
 [node name="Palm2" parent="Entities/YSort" index="8" instance=ExtResource( 3 )]
 position = Vector2( 288, 144 )
+blocked = true
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 11 )]
 speaker = "Profesor"
@@ -207,5 +96,8 @@ hints = [ SubResource( 2 ) ]
 speaker = "Alumno"
 dialogues = [ "Si que le has lavado el cerebro a esa entidad, gracias por la ayuda." ]
 
-[node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 7 )]
-tile_data = PoolIntArray( 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 0, 8, 65545, 0, 10, 65546, 0, 10, 65547, 0, 11, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 131076, 1, 0, 131077, 0, 8, 131078, 0, 11, 131079, 1, 0, 131080, 0, 65544, 131081, 0, 131081, 131082, 0, 262146, 131083, 0, 131083, 131084, 1, 0, 131085, 0, 8, 131086, 0, 11, 131087, 1, 0, 196612, 1, 0, 196613, 0, 196616, 196614, 0, 196619, 196615, 1, 0, 196616, 0, 65544, 196617, 0, 262147, 196618, 0, 262146, 196619, 0, 131083, 196620, 1, 0, 196621, 0, 196616, 196622, 0, 196619, 196623, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 65544, 262153, 0, 131081, 262154, 0, 262146, 262155, 0, 131083, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 196616, 327689, 0, 196617, 327690, 0, 196617, 327691, 0, 196619, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 0, 8, 458759, 0, 11, 458760, 1, 0, 458761, 0, 8, 458762, 0, 10, 458763, 0, 10, 458764, 0, 10, 458765, 0, 11, 458766, 1, 0, 458767, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 0, 65544, 524295, 0, 131083, 524296, 1, 0, 524297, 0, 65544, 524298, 0, 131078, 524299, 0, 196617, 524300, 0, 131077, 524301, 0, 131083, 524302, 1, 0, 524303, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 0, 65544, 589831, 0, 65542, 589832, 0, 10, 589833, 0, 65541, 589834, 0, 131083, 589835, 1, 0, 589836, 0, 65544, 589837, 0, 131083, 589838, 1, 0, 589839, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 0, 196616, 655367, 0, 196617, 655368, 0, 196617, 655369, 0, 196617, 655370, 0, 196619, 655371, 1, 0, 655372, 0, 196616, 655373, 0, 196619, 655374, 1, 0, 655375, 1, 0, 720900, 3, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0, 786440, 3, 0, 786441, 3, 0, 786442, 3, 0, 786443, 3, 0, 786444, 3, 0, 786445, 3, 0, 786446, 3, 0 )
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 14 )]
+tile_data = PoolIntArray( 65544, 0, 3, 131077, 0, 3, 131080, 0, 2, 131083, 0, 2, 131085, 0, 3, 196614, 0, 2, 196619, 0, 3, 196622, 0, 0, 327688, 0, 1, 327689, 0, 3, 327691, 0, 1, 458759, 0, 0, 458763, 0, 3, 458765, 0, 2, 524295, 0, 2, 524298, 0, 0, 524300, 0, 3, 589830, 0, 0, 589836, 0, 2, 655367, 0, 0, 655369, 0, 0, 655370, 0, 1, 655373, 0, 0 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 7 )]
+tile_data = PoolIntArray( 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 0, 8, 65545, 0, 10, 65546, 0, 10, 65547, 0, 11, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 131076, 1, 0, 131077, 0, 8, 131078, 0, 11, 131079, 1, 0, 131080, 0, 65544, 131081, 2, 8, 131082, 2, 11, 131083, 0, 131083, 131084, 1, 0, 131085, 0, 8, 131086, 0, 11, 131087, 1, 0, 196612, 1, 0, 196613, 0, 196616, 196614, 0, 196619, 196615, 1, 0, 196616, 0, 65544, 196617, 2, 65544, 196618, 2, 131083, 196619, 0, 131083, 196620, 1, 0, 196621, 0, 196616, 196622, 0, 196619, 196623, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 65544, 262153, 2, 196616, 262154, 2, 196619, 262155, 0, 131083, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 196616, 327689, 0, 196617, 327690, 0, 196617, 327691, 0, 196619, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 0, 8, 458759, 0, 11, 458760, 1, 0, 458761, 0, 8, 458762, 0, 10, 458763, 0, 10, 458764, 0, 10, 458765, 0, 11, 458766, 1, 0, 458767, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 0, 65544, 524295, 0, 131083, 524296, 1, 0, 524297, 0, 65544, 524298, 0, 131078, 524299, 0, 196617, 524300, 0, 131077, 524301, 0, 131083, 524302, 1, 0, 524303, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 0, 65544, 589831, 0, 65542, 589832, 0, 10, 589833, 0, 65541, 589834, 0, 131083, 589835, 1, 0, 589836, 0, 65544, 589837, 0, 131083, 589838, 1, 0, 589839, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 0, 196616, 655367, 0, 196617, 655368, 0, 196617, 655369, 0, 196617, 655370, 0, 196619, 655371, 1, 0, 655372, 0, 196616, 655373, 0, 196619, 655374, 1, 0, 655375, 1, 0, 720900, 3, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0, 786440, 3, 0, 786441, 3, 0, 786442, 3, 0, 786443, 3, 0, 786444, 3, 0, 786445, 3, 0, 786446, 3, 0 )

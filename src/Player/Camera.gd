@@ -11,6 +11,7 @@ onready var camera_2d : Camera2D = $Camera2D
 onready var area_2d : Area2D = $Area2D
 onready var screenshake_timer : Timer = $ScreenshakeTimer
 
+var zoom := 1.0
 var _zoom_smooth := 1.0
 var _zoom_target := 1.0
 var _screenshake_ammount := 0.0
@@ -59,7 +60,7 @@ func _process(delta : float) -> void:
 		camera_2d.global_position = attractor.global_position
 		_zoom_target = attractor.zoom_level
 	else:
-		_zoom_target = 1.0
+		_zoom_target = zoom
 	if _screenshake_is_active:
 		camera_2d.offset = Vector2(rand_range(-1.0, 1.0) * _screenshake_ammount, rand_range(-1.0, 1.0) * _screenshake_ammount)
 

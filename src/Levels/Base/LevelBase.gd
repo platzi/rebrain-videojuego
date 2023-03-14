@@ -23,6 +23,20 @@ func _ready() -> void:
 		cage.connect("teleported", self, "_on_cage_teleported")
 
 
+func _input(event : InputEvent) -> void:
+	if Globals.DEBUG:
+		if event is InputEventKey and event.scancode == KEY_F12 and event.pressed:
+			player.visible = false
+			player.collision_layer = 0
+			player.collision_mask = 0
+			$UI/GUI.visible = false
+		elif event is InputEventMouseButton:
+			if event.button_index == BUTTON_WHEEL_UP:
+				camera.zoom = camera.zoom * 0.9
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				camera.zoom = camera.zoom / 0.9
+
+
 func create_dialogue(speaker : String, dialogues : PoolStringArray) -> Dialogue:
 	var dialogue_inst : Dialogue = dialogue_scene.instance()
 	dialogue_inst.speaker = speaker

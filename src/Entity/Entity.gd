@@ -7,7 +7,7 @@ extends KinematicBody2D
 const TRASLATION_EFFECT_SCN := preload("res://src/TraslateEffect/TraslateEffect.tscn")
 
 
-export (String) var brain_og
+export (String, MULTILINE) var brain_og
 
 export (PackedScene) var death_particles
 export (Vector2) var death_particles_offset

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Levels/LevelLogicRepeatAdvanced.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 500, 500 )
@@ -25,63 +26,23 @@ Permite repetir la sequencia de salida marcada como Cuerpo la cantidad de veces 
 [node name="LevelLogicRepeat" instance=ExtResource( 3 )]
 
 [node name="CameraAttractor" parent="." index="1" instance=ExtResource( 10 )]
-position = Vector2( 456, 168 )
+position = Vector2( 456, 504 )
 collision_shape = SubResource( 2 )
 zoom_level = 1.2
 
 [node name="Player" parent="Entities/YSort" index="0"]
-position = Vector2( 456, 264 )
+position = Vector2( 456, 408 )
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 11 )
 
 [node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
-position = Vector2( 528, 96 )
+position = Vector2( 384, 576 )
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_REPEAT = 0
-node_limit_PATH_AHEAD = 0
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
-position = Vector2( 456, 408 )
+position = Vector2( 456, 264 )
 hair_style = 4
 hair_color = Color( 1, 1, 0.352941, 1 )
 skin_color = Color( 0.0941176, 0.752941, 0.0901961, 1 )
@@ -90,8 +51,8 @@ pants_color = Color( 0.815686, 0, 0, 1 )
 shoes_color = Color( 0.45098, 0.0705882, 0.796078, 1 )
 
 [node name="Monkey" parent="Entities/YSort" index="4" instance=ExtResource( 6 )]
-position = Vector2( 384, 96 )
-direction = 270.0
+position = Vector2( 528, 576 )
+direction = 90.0
 node_limit_UPDATE = 1
 node_limit_MOVE_FORWARD = 1
 node_limit_ROTATE_RIGHT = 1
@@ -110,5 +71,8 @@ hints = [ SubResource( 1 ) ]
 speaker = "Alumno"
 dialogues = [ "Que mono más kawai, ¡Arigato gozaimasu!" ]
 
-[node name="ForestTileMap" parent="Background" index="0" instance=ExtResource( 5 )]
-tile_data = PoolIntArray( -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 0, 8, -131064, 0, 10, -131063, 0, 10, -131062, 0, 10, -131061, 0, 11, -131060, 1, 0, -131059, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 0, 65544, -65528, 0, 131078, -65527, 0, 196617, -65526, 0, 131077, -65525, 0, 131083, -65524, 1, 0, -65523, 1, 0, 5, 1, 0, 6, 1, 0, 7, 0, 65544, 8, 0, 131083, 9, 1, 0, 10, 0, 65544, 11, 0, 131083, 12, 1, 0, 13, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 0, 65544, 65544, 0, 131083, 65545, 1, 0, 65546, 0, 65544, 65547, 0, 131083, 65548, 1, 0, 65549, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 0, 196616, 131080, 0, 196619, 131081, 1, 0, 131082, 0, 196616, 131083, 0, 196619, 131084, 1, 0, 131085, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 11, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 0, 262145, 327690, 0, 131083, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 0, 131081, 393226, 0, 131083, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 65544, 458761, 0, 262146, 458762, 0, 131083, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 65544, 524297, 0, 262146, 524298, 0, 131083, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 0, 196616, 589833, 0, 196617, 589834, 0, 196619, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 655365, 3, 0, 655366, 3, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 3, 0, 655373, 3, 0, 720903, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 720907, 3, 0 )
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
+tile_data = PoolIntArray( 262154, 0, 2, 327688, 0, 3, 327690, 0, 2, 393226, 0, 3, 524296, 0, 2, 589832, 0, 0, 589834, 0, 1, 720903, 0, 2, 720906, 0, 3, 786440, 0, 3, 786443, 0, 3, 851976, 0, 1, 851978, 0, 0, 917511, 0, 3, 983047, 0, 0, 983050, 0, 1, 983051, 0, 2 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 11, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 2, 0, 327690, 0, 131083, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 2, 65536, 393226, 0, 131083, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 65544, 458761, 2, 65536, 458762, 0, 131083, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 65544, 524297, 2, 131072, 524298, 0, 131083, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 0, 196616, 589833, 0, 196617, 589834, 0, 196619, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 720901, 3, 0, 720902, 1, 0, 720903, 0, 8, 720904, 0, 11, 720905, 1, 0, 720906, 0, 8, 720907, 0, 11, 720908, 1, 0, 720909, 3, 0, 786438, 1, 0, 786439, 0, 65544, 786440, 0, 131083, 786441, 1, 0, 786442, 0, 65544, 786443, 0, 131083, 786444, 1, 0, 851974, 1, 0, 851975, 0, 65544, 851976, 0, 131083, 851977, 1, 0, 851978, 0, 65544, 851979, 0, 131083, 851980, 1, 0, 917510, 1, 0, 917511, 0, 65544, 917512, 0, 65542, 917513, 0, 10, 917514, 0, 65541, 917515, 0, 131083, 917516, 1, 0, 983046, 1, 0, 983047, 0, 196616, 983048, 0, 196617, 983049, 0, 196617, 983050, 0, 196617, 983051, 0, 196619, 983052, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 1, 0, 1048586, 1, 0, 1048587, 1, 0, 1048588, 1, 0, 1114118, 3, 0, 1114119, 3, 0, 1114120, 3, 0, 1114121, 3, 0, 1114122, 3, 0, 1114123, 3, 0, 1114124, 3, 0 )
