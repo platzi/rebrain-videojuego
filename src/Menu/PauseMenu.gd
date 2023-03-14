@@ -23,12 +23,10 @@ func _input(event):
 
 
 func _on_StartBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
 	get_tree().paused = false
 	SceneChanger.change_scene_reload()
 
 
 func _on_MenuBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
 	get_tree().paused = false
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
