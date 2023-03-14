@@ -18,5 +18,6 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
+smoothing_speed = 6.0
 
 [node name="ScreenshakeTimer" type="Timer" parent="."]

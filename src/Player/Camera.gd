@@ -42,6 +42,17 @@ func _ready() -> void:
 func _process(delta : float) -> void:
 	_zoom_smooth = lerp(_zoom_smooth, _zoom_target, ZOOM_SPEED * delta)
 	camera_2d.zoom = Vector2(_zoom_smooth, _zoom_smooth)
+	if get_tree().paused:
+		var space = get_world_2d().direct_space_state
+		var cols = space.intersect_point(global_position, 32, [area_2d], 32768, false, true)
+		var remove := true
+		for col in cols:
+			if col.collider.is_in_group("CameraAttractor"):
+				remove = false
+				break
+		if remove:
+			attractor = null
+			camera_2d.position = Vector2.ZERO
 	if is_instance_valid(target):
 		position = target.position
 	if attractor:
