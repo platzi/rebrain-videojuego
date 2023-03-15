@@ -20,16 +20,28 @@ onready var save_btn := get_node(save_btn_path) as Button
 func _ready():
 	music_hs.connect("value_changed", self, "_on_MusicHS_value_changed")
 	sfx_hs.connect("value_changed", self, "_on_SfxHS_value_changed")
+	save_btn.connect("pressed", self, "_on_SaveBtn_pressed")
 	cancel_btn.connect("pressed", self, "_on_CancelBtn_pressed")
+	music_hs.value = SaveManager.save_data.config.bgm_volume
+	sfx_hs.value = SaveManager.save_data.config.sfx_volume
 
 
 func _on_MusicHS_value_changed(value : float) -> void:
+	BackgroundMusic.set_bgm_volume(value)
 	music_value_label.text = str(value) + "%"
 
 
 func _on_SfxHS_value_changed(value : float) -> void:
+	BackgroundMusic.set_sfx_volume(value)
 	sfx_value_label.text = str(value) + "%"
 
 
+func _on_SaveBtn_pressed() -> void:
+	SaveManager.set_config(music_hs.value, sfx_hs.value)
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
+
+
 func _on_CancelBtn_pressed() -> void:
+	BackgroundMusic.set_bgm_volume(SaveManager.save_data.config.bgm_volume)
+	BackgroundMusic.set_sfx_volume(SaveManager.save_data.config.sfx_volume)
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

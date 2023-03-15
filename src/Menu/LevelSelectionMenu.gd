@@ -10,6 +10,7 @@ onready var levels_hbc := get_node(levels_hbc_path) as HBoxContainer
 
 
 func _ready():
+	BackgroundMusic.play_menu_bgm()
 	back_btn.connect("pressed", self, "_on_BackBtn_pressed")
 	_load_levels()
 

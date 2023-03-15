@@ -23,10 +23,20 @@ func complete_level(name : String) -> void:
 	save()
 
 
+func set_config(bgm_volume : int, sfx_volume : int) -> void:
+	save_data.config.bgm_volume = bgm_volume
+	save_data.config.sfx_volume = sfx_volume
+	save()
+
+
 func _load_save() -> void:
 	var err := config_file.load("user://save.dat")
 	save_exists = err == OK
 	save_data["levels"] = {}
+	save_data["config"] = {
+		"bgm_volume" : config_file.get_value("config", "bgm_volume", 50),
+		"sfx_volume" : config_file.get_value("config", "sfx_volume", 50)
+	}
 	if config_file.has_section("levels"):
 		for level in config_file.get_section_keys("levels"):
 			save_data["levels"][level] = true
