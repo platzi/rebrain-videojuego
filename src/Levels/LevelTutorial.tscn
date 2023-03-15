@@ -26,12 +26,12 @@ target_scene = ExtResource( 1 )
 
 [node name="Cage" parent="Entities/YSort" index="2" instance=ExtResource( 7 )]
 position = Vector2( 480, -384 )
-hair_style = 1
-hair_color = Color( 1, 0.313726, 0.313726, 1 )
-skin_color = Color( 0.776471, 0.52549, 0.258824, 1 )
-shirt_color = Color( 0.360784, 0.803922, 0.0862745, 1 )
-pants_color = Color( 0.745098, 0.454902, 0, 1 )
-shoes_color = Color( 0.878431, 0.866667, 0.0196078, 1 )
+hair_style = 0
+hair_color = Color( 0.313726, 0.705882, 1, 1 )
+skin_color = Color( 0.552941, 0.333333, 0.141176, 1 )
+shirt_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+pants_color = Color( 0.0862745, 0.803922, 0.788235, 1 )
+shoes_color = Color( 0.164706, 0.301961, 0.768627, 1 )
 
 [node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 6 )]
 position = Vector2( 480, -72 )

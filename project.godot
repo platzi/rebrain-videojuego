@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://src/Entity/Entity.gd"
 }, {
 "base": "Node",
+"class": "EventCustom",
+"language": "GDScript",
+"path": "res://src/Levels/Base/EventCustom.gd"
+}, {
+"base": "Node",
 "class": "EventDialogue",
 "language": "GDScript",
 "path": "res://src/Levels/Base/EventDialogue.gd"
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "Brain": "",
 "Dialogue": "",
 "Entity": "",
+"EventCustom": "",
 "EventDialogue": "",
 "EventHint": "",
 "HintPanel": "",
@@ -87,6 +93,7 @@ SaveManager="*res://src/Autoload/SaveManager.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 Customization="*res://src/Autoload/Customization.gd"
 NodesList="*res://src/Autoload/NodesList.gd"
+BackgroundMusic="*res://src/Autoload/BackgroundMusic.tscn"
 
 [debug]
 

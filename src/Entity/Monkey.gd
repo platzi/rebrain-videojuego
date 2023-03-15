@@ -8,6 +8,7 @@ const projectile_scene := preload("res://src/Entity/Banana.tscn")
 
 
 onready var animation_player := $AnimationPlayer as AnimationPlayer
+onready var audio_stream_player := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -46,4 +47,5 @@ func _shoot() -> void:
 	projectile_inst.speed = 300
 	projectile_inst.direction = direction
 	get_parent().call_deferred("add_child", projectile_inst)
+	audio_stream_player.play()
 #	get_parent().add_child(projectile_inst)

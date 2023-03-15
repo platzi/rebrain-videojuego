@@ -33,6 +33,8 @@ onready var credits_btn := get_node(credits_btn_path) as Button
 
 
 func _ready() -> void:
+	BackgroundMusic.play_menu_bgm()
+	
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 	select_level_btn.connect("pressed", self, "_on_SelectLevelBtn_pressed")
 	customization_btn.connect("pressed", self, "_on_CustomizationBtn_pressed")

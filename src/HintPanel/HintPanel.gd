@@ -23,6 +23,7 @@ onready var page_label := get_node(page_label_path) as Label
 onready var content_container := get_node(content_container_path) as MarginContainer
 onready var close_btn := get_node(close_btn_path) as Button
 onready var next_btn := get_node(next_btn_path) as Button
+onready var open_sfx := $OpenSfx as AudioStreamPlayer
 
 
 var hints := []
@@ -38,6 +39,7 @@ func _ready():
 	if page_max <= 1:
 		page_label.visible = false
 	_next_hint()
+	open_sfx.play()
 
 
 func _update_page() -> void:
@@ -80,6 +82,8 @@ func _on_NextBtn_pressed() -> void:
 
 
 func _on_CloseBtn_pressed() -> void:
+	open_sfx.pitch_scale = 0.8
+	open_sfx.play()
 	animation_player.play("Close")
 	animation_player.connect("animation_finished", self, "_on_close_animation_finished", [], CONNECT_ONESHOT)
 

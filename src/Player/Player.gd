@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var direction := 0.0
+export(float) var direction := 0.0
 var speed := 144.0
 var life = 3
 var move_towards_vector := Vector2.ZERO
@@ -14,6 +14,8 @@ onready var teleport_animation_player := $TeleportAnimationPlayer
 onready var hair_sprite := $Sprite/HairSprite
 onready var sprite := $Sprite
 onready var hurt_box := $HurtBox
+onready var footstep_sfx := $FootstepSfx as AudioStreamPlayer2D
+onready var footstep_timer := $FootstepTimer as Timer
 
 var knockback_velocity = Vector2.ZERO
 
@@ -88,6 +90,10 @@ func _physics_process(delta : float) -> void:
 				movement_vector.y = 1.0
 		input_vector = input_vector.normalized()
 	if input_vector != Vector2.ZERO:
+		if footstep_timer.is_stopped():
+			footstep_sfx.pitch_scale = rand_range(0.8, 1.0)
+			footstep_sfx.play()
+			footstep_timer.start()
 		direction = fmod(round(rad2deg(input_vector.angle())) + 360.0, 360.0)
 	if movement_vector != Vector2.ZERO:
 		movement_vector = movement_vector.normalized()
@@ -110,6 +116,7 @@ func hurt(knockback_direction : Vector2) -> void:
 		Globals.screenshake(0.4, 10.0)
 		queue_free()
 	else:
+		audio_stream_player.play()
 		Globals.screenshake(0.2, 5.0)
 
 
@@ -125,10 +132,6 @@ func _update_avatar() -> void:
 func move_towards(position : Vector2) -> void:
 	move_towards_vector = position
 	is_moving_towards = true
-
-
-func play_sound() -> void:
-	audio_stream_player.play()
 
 
 func teleport() -> void:

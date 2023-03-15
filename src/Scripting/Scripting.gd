@@ -37,11 +37,13 @@ func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if !Globals.disable_scripting and event.scancode == KEY_TAB:
 			if !Globals.scripting_mode:
+				BackgroundMusic.activate_eq()
 				Globals.scripting_mode = true
 				get_tree().paused = true
 			else:
 				if is_open:
 					on_SaveBtn_pressed()
+				BackgroundMusic.deactivate_eq()
 				Globals.scripting_mode = false
 				get_tree().paused = false
 			Globals.emit_signal("scripting_toggled")

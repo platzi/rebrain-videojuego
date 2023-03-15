@@ -5,12 +5,15 @@ extends KinematicBody2D
 
 
 const TRASLATION_EFFECT_SCN := preload("res://src/TraslateEffect/TraslateEffect.tscn")
+const SFX_SCN := preload("res://src/Entity/Sfx.tscn")
 
 
 export (String, MULTILINE) var brain_og
 
 export (PackedScene) var death_particles
 export (Vector2) var death_particles_offset
+export (AudioStream) var hit_sfx
+export (AudioStream) var death_sfx
 export (int) var life_max := 1
 export (float, 0.0, 360.0) var direction
 export (bool) var blocked
@@ -236,6 +239,11 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 	velocity_vector = knockback_direction * max_speed * 8
 	if life <= 0:
 		destroy()
+	elif hit_sfx:
+		var sfx_inst := SFX_SCN.instance() as AudioStreamPlayer2D
+		sfx_inst.position = position
+		sfx_inst.stream = hit_sfx
+		get_parent().add_child(sfx_inst)
 	_on_hurt()
 
 
@@ -280,6 +288,11 @@ func _on_trigger_received(tag : String) -> void:
 
 
 func destroy() -> void:
+	if death_sfx:
+		var sfx_inst := SFX_SCN.instance() as AudioStreamPlayer2D
+		sfx_inst.position = position
+		sfx_inst.stream = death_sfx
+		get_parent().add_child(sfx_inst)
 	if death_particles:
 		var death_particles_inst = death_particles.instance()
 		death_particles_inst.position = position + death_particles_offset

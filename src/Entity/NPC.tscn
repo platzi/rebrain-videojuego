@@ -14,6 +14,7 @@ resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/blocked = null
 shader_param/blink = false
+shader_param/glow = null
 shader_param/BLACK = Color( 0, 0, 0, 1 )
 shader_param/SKIN_COLOR = Color( 1, 0.745098, 0.47451, 1 )
 shader_param/SHIRT_COLOR = Color( 0, 0.45098, 0.976471, 1 )
@@ -25,6 +26,7 @@ resource_local_to_scene = true
 shader = ExtResource( 7 )
 shader_param/blocked = null
 shader_param/blink = false
+shader_param/glow = null
 shader_param/HAIR_COLOR = Color( 0.537255, 0.415686, 0.25098, 1 )
 
 [sub_resource type="Animation" id=110]
@@ -336,6 +338,46 @@ hair_color = Color( 0.537255, 0.415686, 0.25098, 1 )
 skin_color = Color( 1, 0.745098, 0.47451, 1 )
 shirt_color = Color( 0, 0.45098, 0.976471, 1 )
 pants_color = Color( 0.105882, 0.0705882, 0.282353, 1 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 48 )
@@ -376,14 +418,6 @@ margin_top = -96.0
 margin_bottom = -56.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, -6 )
-shape = SubResource( 121 )
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -6 )
 shape = SubResource( 121 )
 

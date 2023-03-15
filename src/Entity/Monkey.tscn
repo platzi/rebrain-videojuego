@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Entity/Monkey.gd" type="Script" id=1]
 [ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=4]
 [ext_resource path="res://assets/images/entities/monkey.png" type="Texture" id=5]
 [ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sounds/entity_hurt.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/projectile.wav" type="AudioStream" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -177,6 +179,7 @@ radius = 16.0
 [node name="Monkey" type="KinematicBody2D" groups=["Friend"]]
 collision_mask = 3
 script = ExtResource( 1 )
+hit_sfx = ExtResource( 7 )
 node_limit_UPDATE = 0
 node_limit_COLLISION = 0
 node_limit_TRIGGER = 0
@@ -253,3 +256,6 @@ shape_2d = SubResource( 13 )
 position = Vector2( 0, -6 )
 shape = SubResource( 14 )
 blink_sprite_path = NodePath("../Sprite")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )

@@ -28,7 +28,6 @@ hair_style = 2
 hair_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 skin_color = Color( 0.854902, 0.784314, 0.0313726, 1 )
 shirt_color = Color( 0.796078, 0.0705882, 0.631373, 1 )
-pants_color = Color( 1, 1, 1, 1 )
 shoes_color = Color( 1, 1, 1, 1 )
 
 [node name="Frog" parent="Entities/YSort" index="4" instance=ExtResource( 1 )]

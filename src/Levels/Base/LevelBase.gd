@@ -16,6 +16,7 @@ onready var cage := $Entities/YSort/Cage as Entity
 
 
 func _ready() -> void:
+	BackgroundMusic.play_game_bgm()
 	Globals.connect("node_info_pressed", self, "_on_node_info_pressed")
 	intro_events.execute()
 	if cage:
@@ -68,6 +69,7 @@ func _on_cage_teleported() -> void:
 	Globals.disable_scripting = false
 	completed_events.execute()
 	camera.target = player
+	SaveManager.complete_level(name)
 
 
 func _on_saved_events_finished() -> void:

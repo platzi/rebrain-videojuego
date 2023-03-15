@@ -1,0 +1,288 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/entities/freddy.png" type="Texture" id=2]
+[ext_resource path="res://src/Entity/Freddy.gd" type="Script" id=3]
+[ext_resource path="res://src/Entity/Shadow.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+
+uniform float blackness : hint_range(0.0, 1.0);
+
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb - blackness;
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/blackness = 1.0
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 15.0
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 24.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "IdleDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "IdleLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "IdleRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "IdleUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "MoveDown"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "MoveLeft"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 12 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "MoveRight"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 4 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "MoveUp"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 8 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/blackness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Reveal"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/blackness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[node name="Freddy" type="KinematicBody2D"]
+script = ExtResource( 3 )
+node_limit_UPDATE = 0
+node_limit_COLLISION = 0
+node_limit_TRIGGER = 0
+node_limit_PRESSED = 0
+node_limit_RELEASED = 0
+node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_ROTATE_LEFT = 0
+node_limit_ROTATE_RIGHT = 0
+node_limit_WAIT = 0
+node_limit_SHOOT_TRIGGER = 0
+node_limit_SHOOT = 0
+node_limit_OPEN = 0
+node_limit_CLOSE = 0
+node_limit_IF = 0
+node_limit_AND = 0
+node_limit_OR = 0
+node_limit_EQUAL = 0
+node_limit_NOT_EQUAL = 0
+node_limit_GREATER = 0
+node_limit_GREATER_EQUAL = 0
+node_limit_LESS = 0
+node_limit_LESS_EQUAL = 0
+node_limit_COMPARE_ENTITY = 0
+node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
+node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
+node_limit_NUMBER = 0
+node_limit_STRING = 0
+node_limit_BOOL = 0
+node_limit_ENTITY = 0
+node_limit_POSITION = 0
+node_limit_DIRECTION = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 13 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -24 )
+hframes = 4
+vframes = 4
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
+shape = SubResource( 1 )
+
+[node name="ScriptingArea" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -24 )
+shape_2d = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.5
+anims/IdleDown = SubResource( 3 )
+anims/IdleLeft = SubResource( 4 )
+anims/IdleRight = SubResource( 5 )
+anims/IdleUp = SubResource( 6 )
+anims/MoveDown = SubResource( 7 )
+anims/MoveLeft = SubResource( 8 )
+anims/MoveRight = SubResource( 9 )
+anims/MoveUp = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="RevealAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 14 )
+anims/Reveal = SubResource( 15 )
+
+[node name="Shadow" parent="." instance=ExtResource( 4 )]

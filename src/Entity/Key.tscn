@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Entity/Key.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/entities/key.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/images/particles/star.png" type="Texture" id=4]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Entity/Key.gdshader" type="Shader" id=6]
+[ext_resource path="res://assets/sounds/key_travel.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/key_pickup.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/key_punch.wav" type="AudioStream" id=9]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 6 )
@@ -240,3 +243,15 @@ shape = SubResource( 5 )
 [node name="ScriptingArea" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -28 )
 shape_2d = SubResource( 10 )
+
+[node name="PickUpSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+bus = "Sfx"
+
+[node name="TravelSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "Sfx"
+
+[node name="PunchSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+bus = "Sfx"

@@ -258,6 +258,7 @@ func _on_dialogue_7_finished() -> void:
 func _on_dialogue_10_finished() -> void:
 	Globals.disable_inputs = false
 	teleporter.is_active = true
+	SaveManager.complete_level("Introduction")
 
 
 func _on_TriggerZone_body_entered(body : Node) -> void:

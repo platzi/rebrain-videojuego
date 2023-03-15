@@ -1,0 +1,251 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Freddy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/Palm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Epilogue/PortraitEvent.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/Epilogue/ExitEvent.gd" type="Script" id=9]
+[ext_resource path="res://assets/images/entities/freddy-portrait.png" type="Texture" id=10]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/Epilogue/RevealEvent.gd" type="Script" id=12]
+[ext_resource path="res://src/Levels/Epilogue/PortraitEvent2.gd" type="Script" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 300, 300 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Enter"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Portrait/MarginContainer:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.75, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/Portrait/MarginContainer:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.75, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Portrait/MarginContainer:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.25, 0.75 ),
+"update": 0,
+"values": [ 0.5, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/Portrait/MarginContainer:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.25, 0.75 ),
+"update": 0,
+"values": [ 0.5, 1.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Portrait/MarginContainer:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/Portrait/MarginContainer:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[node name="Epilogue" instance=ExtResource( 1 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 3 )]
+position = Vector2( 480, 144 )
+collision_shape = SubResource( 1 )
+zoom_level = 1.2
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 480, 288 )
+direction = 270.0
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+position = Vector2( 480, 384 )
+
+[node name="Freddy" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
+position = Vector2( 480, 0 )
+direction = 90.0
+
+[node name="Palm" parent="Entities/YSort" index="3" instance=ExtResource( 5 )]
+position = Vector2( 240, 144 )
+blocked = true
+
+[node name="Palm2" parent="Entities/YSort" index="4" instance=ExtResource( 5 )]
+position = Vector2( 720, 144 )
+blocked = true
+
+[node name="Cage" parent="Entities/YSort" index="5" instance=ExtResource( 11 )]
+position = Vector2( -144, -72 )
+
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 6 )]
+speaker = "hacker"
+dialogues = [ "Vaya, vaya, pero miren quien ha llegado hasta aquí. La verdad es que sabía que lo lograrías.", "Ha llegado la hora de revelar mi verdadera identidad..." ]
+
+[node name="RevealEvent" type="Node" parent="IntroEvents" index="1"]
+script = ExtResource( 12 )
+freddy_path = NodePath("../../Entities/YSort/Freddy")
+
+[node name="EventDialogue2" parent="IntroEvents" index="2" instance=ExtResource( 6 )]
+speaker = "???"
+dialogues = [ "Así es, ¡soy nada más y nada menos que yo! ¿Sorprendido?", "¿Como que no me reconoces? ¿Como que son muy pocos pixeles?", "Espera un momento..." ]
+
+[node name="PortraitEvent" type="Node" parent="IntroEvents" index="3"]
+script = ExtResource( 8 )
+portrait_animation_player_path = NodePath("../../UI/Portrait/PortraitAnimationPlayer")
+
+[node name="EventDialogue3" parent="IntroEvents" index="4" instance=ExtResource( 6 )]
+speaker = "Freddy Vega"
+dialogues = [ "¿Ahora si no hay duda? Por si acaso mi mal dibujado avatar no me representa, soy Freddy Vega." ]
+
+[node name="PortraitEvent2" type="Node" parent="IntroEvents" index="5"]
+script = ExtResource( 13 )
+portrait_animation_player_path = NodePath("../../UI/Portrait/PortraitAnimationPlayer")
+
+[node name="EventDialogue4" parent="IntroEvents" index="6" instance=ExtResource( 6 )]
+speaker = "Freddy Vega"
+dialogues = [ "Te confieso que todo esto ha sido un plan para poner en practica tus habilidades, jamas pasaste por ningún peligro y Platzi jamas fue hackeado, todo este tiempo fui yo [shake rate=20 level=10]JAJAJAJA[/shake]", "Todo a sido parte del proceso de aprendizaje de Platzi, no te molestes conmigo.", "Espero hayas pasado un buen rato resolviendo los puzzles. Tu aprendizaje aquí puede transferirse al sistema de scripting visual de Unity llamado Bolt, este utiliza un sistema similar al que hás estado utilizando en esta simulación.", "Ahora vamonos de aquí y recuerda ¡Nunca pares de aprender!" ]
+
+[node name="ExitEvent" type="Node" parent="IntroEvents" index="7"]
+script = ExtResource( 9 )
+
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 7 )]
+tile_data = PoolIntArray( -131063, 0, 1, -131062, 0, 1, -65528, 0, 3, -65525, 0, 2, 9, 0, 3, 10, 0, 3, 65544, 0, 0, 65547, 0, 1, 131077, 0, 0, 131086, 0, 1, 196612, 0, 0, 196622, 0, 2, 196623, 0, 3, 262152, 0, 3, 262154, 0, 3, 262155, 0, 1, 327688, 0, 3, 327689, 0, 3, 327691, 0, 3, 393226, 0, 1, 458760, 0, 2, 458763, 0, 2 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 0, 8, -131063, 0, 10, -131062, 0, 10, -131061, 0, 11, -131060, 1, 0, -131059, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 0, 65544, -65527, 0, 131081, -65526, 0, 131081, -65525, 0, 131083, -65524, 1, 0, -65523, 1, 0, 6, 1, 0, 7, 1, 0, 8, 0, 65544, 9, 0, 131081, 10, 0, 131081, 11, 0, 131083, 12, 1, 0, 13, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 0, 196616, 65545, 0, 196617, 65546, 0, 196617, 65547, 0, 196619, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 131075, 1, 0, 131076, 0, 8, 131077, 0, 11, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 0, 8, 131087, 0, 11, 131088, 1, 0, 196611, 1, 0, 196612, 0, 196616, 196613, 0, 196619, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 0, 196616, 196623, 0, 196619, 196624, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 10, 262155, 0, 11, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 0, 131081, 327690, 0, 131081, 327691, 0, 131083, 327692, 1, 0, 327693, 1, 0, 327694, 3, 0, 327695, 3, 0, 327696, 3, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 0, 131081, 393226, 0, 131081, 393227, 0, 131083, 393228, 1, 0, 393229, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 196616, 458761, 0, 196617, 458762, 0, 196617, 458763, 0, 196619, 458764, 1, 0, 458765, 1, 0, 524294, 3, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589834, 3, 0, 589835, 3, 0, 589836, 3, 0 )
+
+[node name="Portrait" type="Control" parent="UI" index="0"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PortraitAnimationPlayer" type="AnimationPlayer" parent="UI/Portrait" index="0"]
+root_node = NodePath("../../..")
+anims/Enter = SubResource( 2 )
+anims/Exit = SubResource( 4 )
+anims/RESET = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/Portrait" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.0784314, 0.2, 0.588235 )
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Portrait" index="2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+
+[node name="Panel" type="Panel" parent="UI/Portrait/MarginContainer" index="0"]
+margin_right = 160.0
+margin_bottom = 160.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Portrait/MarginContainer" index="1"]
+margin_right = 160.0
+margin_bottom = 160.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="UI/Portrait/MarginContainer/MarginContainer" index="0"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 152.0
+margin_bottom = 152.0
+texture = ExtResource( 10 )
+
+[node name="GUI" parent="UI" index="1"]
+visible = false
