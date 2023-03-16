@@ -11,6 +11,7 @@ func _ready() -> void:
 
 
 func save() -> void:
+	save_exists = true
 	for section in save_data:
 		for key in save_data[section]:
 			config_file.set_value(section, key, save_data[section][key])
