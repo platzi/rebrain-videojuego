@@ -18,7 +18,6 @@ func _ready():
 
 
 func _load_levels() -> void:
-	print(SaveManager.save_data)
 	for child in levels_hbc.get_children():
 		if SaveManager.save_data.levels.has(child.name):
 			child.completed = true

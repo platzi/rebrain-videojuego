@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ReBrain</title>
+	<meta charset="UTF-8">
+	<style>
+		body {
+			touch-action: none;
+			margin: 0;
+			border: 0 none;
+			padding: 0;
+			text-align: center;
+			background: url(index.png) no-repeat;
+			background-size: cover;
+			background-color: #6a2ba0;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+	<script src="$GODOT_URL"></script>
+	<script>
+		var engine = new Engine($GODOT_CONFIG);
+		engine.startGame();
+	</script>
+</body>
+
+</html>

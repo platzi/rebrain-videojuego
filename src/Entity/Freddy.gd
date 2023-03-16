@@ -10,6 +10,7 @@ onready var reveal_animation := $RevealAnimation as AnimationPlayer
 
 
 func _ready() -> void:
+	reveal_animation.play("RESET")
 	if Engine.editor_hint:
 		set_process(false)
 		_process(0.0)

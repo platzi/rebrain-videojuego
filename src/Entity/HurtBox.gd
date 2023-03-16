@@ -44,7 +44,6 @@ func _on_immunity_timer_timeout() -> void:
 func _on_area_entered(area : Area2D) -> void:
 	if area.get_parent() != get_parent() and area.is_in_group("HitBox"):
 		var knockback_direction = (global_position - area.global_position).normalized()
-		print(knockback_direction)
 		emit_signal("hurt", knockback_direction)
 		set_deferred("monitoring", false)
 		set_deferred("monitorable", false)

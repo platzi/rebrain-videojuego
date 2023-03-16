@@ -81,7 +81,6 @@ func open(entity : Entity) -> void:
 	position_y_values[0] = target_position.y
 	open_anim.track_set_key_value(position_x_track, 0, position_x_values)
 	open_anim.track_set_key_value(position_y_track, 0, position_y_values)
-	print(scripting_graph.rect_size)
 	scripting_graph.scroll_offset = -(scripting_graph.rect_size / 2.0)
 
 
