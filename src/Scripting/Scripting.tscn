@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Scripting/Scripting.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripting/NodeSearcher.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/images/scripting/scripting_icon_cancel.png" type="Texture" id=5]
 [ext_resource path="res://assets/themes/scripting_menu_theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/images/ui/vaperwave_pattern.png" type="Texture" id=7]
-[ext_resource path="res://assets/images/entities/bomb.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/scripting/scripting_icon_restore.png" type="Texture" id=9]
 [ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=10]
 
@@ -335,13 +334,11 @@ stretch_mode = 2
 
 [node name="Sprite" type="Sprite" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 position = Vector2( 60, 80 )
-texture = ExtResource( 8 )
 hframes = 4
 vframes = 4
 
 [node name="HairSprite" type="Sprite" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 position = Vector2( 60, 80 )
-texture = ExtResource( 8 )
 hframes = 4
 vframes = 4
 
