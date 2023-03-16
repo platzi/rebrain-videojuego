@@ -58,6 +58,7 @@ func delete_all_nodes() -> void:
 	for child in get_children():
 		if child is GraphNode:
 			disconnect_list.append(child.name)
+			child.visible = false
 			child.queue_free()
 	for connection in get_connection_list():
 		if disconnect_list.has(connection.to) or disconnect_list.has(connection.from):

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://src/Entity/Entity.gd"
 }, {
 "base": "Node",
+"class": "EventCustom",
+"language": "GDScript",
+"path": "res://src/Levels/Base/EventCustom.gd"
+}, {
+"base": "Node",
 "class": "EventDialogue",
 "language": "GDScript",
 "path": "res://src/Levels/Base/EventDialogue.gd"
@@ -44,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/HintPanel/HintResource.gd"
 }, {
+"base": "Area2D",
+"class": "ScriptingArea",
+"language": "GDScript",
+"path": "res://src/Entity/ScriptingArea.gd"
+}, {
 "base": "GraphNode",
 "class": "ScriptingNode",
 "language": "GDScript",
@@ -58,10 +68,12 @@ _global_script_class_icons={
 "Brain": "",
 "Dialogue": "",
 "Entity": "",
+"EventCustom": "",
 "EventDialogue": "",
 "EventHint": "",
 "HintPanel": "",
 "HintResource": "",
+"ScriptingArea": "",
 "ScriptingNode": "",
 "ScriptingNodeSlot": ""
 }
@@ -71,6 +83,7 @@ _global_script_class_icons={
 config/name="ReBrain"
 run/main_scene="res://src/Menu/Menu.tscn"
 boot_splash/show_image=false
+boot_splash/image="res://assets/images/backgrounds/splashscreen.png"
 boot_splash/bg_color=Color( 0.141176, 0.0784314, 0.2, 1 )
 config/icon="res://icon.png"
 
@@ -81,6 +94,7 @@ SaveManager="*res://src/Autoload/SaveManager.gd"
 SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 Customization="*res://src/Autoload/Customization.gd"
 NodesList="*res://src/Autoload/NodesList.gd"
+BackgroundMusic="*res://src/Autoload/BackgroundMusic.tscn"
 
 [debug]
 
@@ -126,21 +140,25 @@ texture={
 move_up={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -153,6 +171,11 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="ENTITY"
 2d_physics/layer_2="UNWALKABLE"
 2d_physics/layer_5="WALKABLE"
+
+[locale]
+
+translations=PoolStringArray( "res://assets/locale/nodes.es.translation" )
+locale_filter=[ 0, [ "es" ] ]
 
 [physics]
 

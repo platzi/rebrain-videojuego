@@ -1,0 +1,165 @@
+key,es
+NODE.AND.TITLE,Y
+NODE.AND.DESCRIPTION.01,"[b][color=purple]Y[/color][/b]
+Nodo lógico que tiene dos entradas de tipo Booleano y una salida de tipo Booleano, si ambas entradas tienen valor Verdadero enviara como salida un valor Verdadero, y si alguna o todas las entradas tienen valor Falso enviara como salida un valor Falso ."
+NODE.AND.DESCRIPTION.02,"[b][color=purple]And[/color][/b]
+En Unity Bolt se encuentra como And y su función es exactamente igual."
+NODE.BOOL.TITLE,Booleano
+NODE.BOOL.DESCRIPTION.01,"[b][color=purple]Booleano[/color][/b]
+Nodo literal cuya función es enviar un Booleano con el valor deseado."
+NODE.BOOL.DESCRIPTION.02,"[b][color=purple]Bool Literal[/color][/b]
+En Unity Bolt se conoce como Bool Literal y su función es exactamente igual."
+NODE.CLOSE.TITLE,Cerrar
+NODE.CLOSE.DESCRIPTION.01,"[b][color=purple]Cerrar[/color][/b]
+Nodo especial de la entidad Puerta de Troncos cuya unica función es cambiar su estado a Cerrada lo cual activa sus colisiones."
+NODE.COLLISION.TITLE,Colisión
+NODE.COLLISION.DESCRIPTION.01,"[b][color=purple]Colisión[/color][/b]
+Nodo de evento el cual se activa al colisionar con alguna entidad, envía como salida la Entidad con la que colisiono."
+NODE.COLLISION.DESCRIPTION.02,"[b][color=purple]On Collision[/color][/b]
+En Unity Bolt hay varios tipos de eventos de colisión, como lo son los siguientes:
+On Collision Enter se activa cuando se entra en colisión.
+On Collision Exit se activa cuando se sale de una colisión.
+On Collision Stay se activa mientras se este colisionando."
+NODE.COMPARE_STRING.TITLE,Comparar Texto
+NODE.COMPARE_STRING.DESCRIPTION.01,"[b][color=purple]Comparar Texto[/color][/b]
+Nodo de lógica el cual compara las dos entradas de Texto, si ambas coinciden envía un Booleano con valor Verdadero, en caso contrario enviara un valor Falso."
+NODE.COMPARE_STRING.DESCRIPTION.02,"[b][color=purple]String Compare[/color][/b]
+En Unity Bolt se conoce como String Compare y su función es exactamente igual."
+NODE.DIRECTION.TITLE,Dirección
+NODE.DIRECTION.DESCRIPTION.01,"[b][color=purple]Dirección[/color][/b]
+Nodo de Variable Local el cual envía un Numero con el valor de la dirección actual de la entidad en grados."
+NODE.DIRECTION.DESCRIPTION.02,"[b][color=purple]Get Rotation[/color][/b]
+En Unity Bolt hay un nodo similar llamado Get Rotation, la diferencia es que este envía como salida un Quaternion."
+NODE.ENTITY.TITLE,Entidad
+NODE.ENTITIY.DESCRIPTION.01,"[b][color=purple]Entidad[/color][/b]
+Nodo literal el cual contiene una lista de todas las entidades del nivel, se selecciona y lo envía como salida."
+NODE.ENTITIY.DESCRIPTION.02,"[b][color=purple]Game Object Literal[/color][/b]
+En Unity Bolt se conoce como Game Object Literal, su función es simular pero este mismo da una lista de los Game Object que existen en la escena, de igual manera envía como salida el Game Object seleccionado."
+NODE.EQUAL.TITLE,Igual
+NODE.EQUAL.DESCRIPTION.01,"[b][color=purple]Igual[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si ambas tienen el mismo valor enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.EQUAL.DESCRIPTION.02,"[b][color=purple]Equal[/color][/b]
+En Unity Bolt se conoce como Equal y su función es exactamente igual."
+NODE.GREATER_EQUAL.TITLE,Mayor o Igual
+NODE.GREATER_EQUAL.DESCRIPTION.01,"[b][color=purple]Mayor o Igual[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si la primer entrada es mayor o igual que la segunda entradra enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.GREATER_EQUAL.DESCRIPTION.02,"[b][color=purple]Greater Or Equal[/color][/b]
+En Unity Bolt se conoce como Greater Or Equal y su función es exactamente igual."
+NODE.GREATER.TITLE,Mayor
+NODE.GREATER.DESCRIPTION.01,"[b][color=purple]Mayor[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si la primer entrada es mayor que la segunda entradra enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.GREATER.DESCRIPTION.02,"[b][color=purple]Greater[/color][/b]
+En Unity Bolt se conoce como Greater y su función es exactamente igual."
+NODE.IF.TITLE,Si
+NODE.IF.DESCRIPTION.01,"[b][color=purple]Si[/color][/b]
+Nodo de lógica el cual recibe como entrada un Booleano, si este es Verdadero se ejecutara la secuencía de la salida marcada como Verdadero, en caso contrario si la entrada es Falso se ejecutara la secuencía de la salida marcada como Falso."
+NODE.IF.DESCRIPTION.02,"[b][color=purple]If[/color][/b]
+En Unity Bolt se conoce como If y su función es exactamente igual."
+NODE.LESS_EQUAL.TITLE,Menor o Igual
+NODE.LESS_EQUAL.DESCRIPTION.01,"[b][color=purple]Menor o Igual que[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si la primer entrada es menor o igual que la segunda entradra enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.LESS_EQUAL.DESCRIPTION.02,"[b][color=purple]Less Or Equal[/color][/b]
+En Unity Bolt se conoce como Less Or Equal y su función es exactamente igual."
+NODE.LESS.TITLE,Menor
+NODE.LESS.DESCRIPTION.01,"[b][color=purple]Menor[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si la primer entrada es menor que la segunda entradra enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.LESS.DESCRIPTION.02,"[b][color=purple]Less[/color][/b]
+En Unity Bolt se conoce como Less y su función es exactamente igual."
+NODE.MOVE_DOWN.TITLE,Mover Hacía Abajo
+NODE.MOVE_DOWN.DESCRIPTION.01,"[b][color=purple]Mover Hacía Abajo[/color][/b]
+Nodo de acción que hace que la entidad se mueva un bloque hacía abajo en un segundo, sin importar su dirección."
+NODE.MOVE_FORWARD.TITLE,Avanzar
+NODE.MOVE_FORWARD.DESCRIPTION.01,"[b][color=purple]Avanzar[/color][/b]
+Nodo de acción que hace que la entidad se mueva un bloque hacía adelante, tomando en cuenta su dirección."
+NODE.MOVE_LEFT.TITLE,Mover Hacía La Izquierda
+NODE.MOVE_LEFT.DESCRIPTION.01,"[b][color=purple]Mover Hacía La Izquierda[/color][/b]
+Nodo de acción que hace que la entidad se mueva un bloque hacía la izquierda en un segundo, sin importar su dirección."
+NODE.MOVE_RIGHT.TITLE,Mover Hacía La Derecha
+NODE.MOVE_RIGHT.DESCRIPTION.01,"[b][color=purple]Mover Hacía La Derecha[/color][/b]
+Nodo de acción que hace que la entidad se mueva un bloque hacía la derecha en un segundo, sin importar su dirección."
+NODE.MOVE_UP.TITLE,Mover Hacía Arriba
+NODE.MOVE_UP.DESCRIPTION.01,"[b][color=purple]Mover Hacía Arriba[/color][/b]
+Nodo de acción que hace que la entidad se mueva un bloque hacía arriba en un segundo, sin importar su dirección."
+NODE.NOT_EQUAL.TITLE,No Igual
+NODE.NOT_EQUAL.DESCRIPTION.01,"[b][color=purple]No Igual[/color][/b]
+Nodo de lógica que compara dos entradas de tipo Numero, si ambas tienen diferente valor enviara como salida un Booleano con valor Verdadero, en caso contrario enviara un Booleano con valor Falso."
+NODE.NOT_EQUAL.DESCRIPTION.02,"[b][color=purple]Not Equal[/color][/b]
+En Unity Bolt se conoce como Not Equal y su función es exactamente igual."
+NODE.NUMBER.TITLE,Número
+NODE.NUMBER.DESCRIPTION.01,"[b][color=purple]Número[/color][/b]
+Nodo literal cuya función es enviar un Número con el valor deseado."
+NODE.NUMBER.DESCRIPTION.02,"[b][color=purple]Integer Literal[/color][/b]
+En Unity Bolt se conoce como Integer Literal y su función es exactamente igual."
+NODE.OPEN.TITLE,Abrir
+NODE.OPEN.DESCRIPTION.01,"[b][color=purple]Abrir[/color][/b]
+Nodo especial de la entidad Puerta de Troncos cuya unica función es cambiar su estado a Abierta lo cual desactiva sus colisiones."
+NODE.OR.TITLE,O
+NODE.OR.DESCRIPTION.01,"[b][color=purple]O[/color][/b]
+Nodo lógico que tiene dos entradas de tipo Booleano y una salida de tipo Booleano, si alguna o todas las entradas tienen valor Verdadero enviara como salida un valor Verdadero, y si ambas entradas tienen valor Falso enviara como salida un valor Falso."
+NODE.OR.DESCRIPTION.02,"[b][color=purple]Or[/color][/b]
+En Unity Bolt se encuentra como Or y su función es exactamente igual."
+NODE.PASSENGERS.TITLE,Pasajeros
+NODE.PASSENGERS.DESCRIPTION.01,"[b][color=purple]Pasajeros[/color][/b]
+Nodo especial de la entidad Balsa cuya función es enviar como salida de tipo Número la cantidad de pasajeros que se mueven junto a ella."
+NODE.PATH_AHEAD.TITLE,Camino Adelante
+NODE.PATH_AHEAD.DESCRIPTION.01,"[b][color=purple]Camino Adelante[/color][/b]
+Nodo especial cuya función es enviar como salida de tipo Booleano si es la entidad tiene camino libre adelante de ella, tomando en cuenta su dirección."
+NODE.PATH_BACK.TITLE,Camino Atrás
+NODE.PATH_BACK.DESCRIPTION.01,"[b][color=purple]Camino Atrás[/color][/b]
+Nodo especial cuya función es enviar como salida de tipo Booleano si la entidad tiene camino libre detrás de ella, tomando en cuenta su dirección."
+NODE.PATH_LEFT.TITLE,Camino A La Izquierda
+NODE.PATH_LEFT.DESCRIPTION.01,"[b][color=purple]Camino A La Izquierda[/color][/b]
+Nodo especial cuya función es enviar como salida de tipo Booleano si la entidad tiene camino libre a su izquierda, tomando en cuenta su dirección."
+NODE.PATH_RIGHT.TITLE,Camino A La Derecha
+NODE.PATH_RIGHT.DESCRIPTION.01,"[b][color=purple]Camino A La Derecha[/color][/b]
+Nodo especial cuya función es enviar como salida de tipo Booleano si la entidad tiene camino libre a su derecha, tomando en cuenta su dirección."
+NODE.POSITION.TITLE,Posición
+NODE.POSITION.DESCRIPTION.01,"[b][color=purple]Posición[/color][/b]
+Nodo de valor que tiene dos salidas de tipo Número, la primera envía el valor de la posición del eje x de la entidad y la segunda envía el valor de la posición del eje y de la entidad."
+NODE.POSITION.DESCRIPTION.02,"[b][color=purple]Get Position[/color][/b]
+En Unity Bolt se encuentra como Get Position y envía como salida un Vector 3 con los valores de la posición del Game Object."
+NODE.PRESSED.TITLE,Presionado
+NODE.PRESSED.DESCRIPTION.01,"[b][color=purple]Presionado[/color][/b]
+Nodo de evento especial de la entidad Botón el cual se ejecuta cuando una entidad pasa por encima de esta."
+NODE.RELEASED.TITLE,Soltado
+NODE.RELEASED.DESCRIPTION.01,"[b][color=purple]Soltado[/color][/b]
+Nodo de evento especial de la entidad Botón el cual se ejecuta cuando una entidad deja de estar encima de esta."
+NODE.REPEAT.TITLE,Repetir
+NODE.REPEAT.DESCRIPTION.01,"[b][color=purple]Repetir[/color][/b]
+Nodo de lógica el cual tiene una entrada de tipo Número el cual indica la cantidad de veces que se repetira la secuencia de la salida marcada como Cuerpo, una vez finalizada la repetición se ejecutara la secuencia de la salida marcada como Salida."
+NODE.REPEAT.DESCRIPTION.02,"[b][color=purple]For[/color][/b]
+En Unity Bolt se encuentra un nodo similar llamado For, su función es similar, la diferencía es que este requiere de 3 entradas para poder definir el inicio, final y avance de un indice, el cual tambien es enviado como salida. Suponiendo que marcamos un inicio con valor de 4, un final con valor de 10 y un avance con valor 2, esto quiere decir que el valor del indice iniciara en 4, se le sumara 2 cada vez que se termine la secuencia de la salida Body y una vez que el indice alcance o supere el valor final de 10 se ejecutara la secuencia de la salida marcada como Exit."
+NODE.ROTATE_LEFT.TITLE,Girar Izquierda
+NODE.ROTATE_LEFT.DESCRIPTION.01,"[b][color=purple]Girar Izquierda[/color][/b]
+Nodo de acción que hace que la entidad cambie su dirección en 90 grados en sentido contrarío a las manecillas del reloj."
+NODE.ROTATE_RIGHT.TITLE,Girar Derecha
+NODE.ROTATE_RIGHT.DESCRIPTION.01,"[b][color=purple]Girar Derecha[/color][/b]
+Nodo de acción que hace que la entidad cambie su dirección en 90 grados en sentido a las manecillas del reloj."
+NODE.SHOOT.TITLE,Disparar
+NODE.SHOOT.DESCRIPTION.01,"[b][color=purple]Disparar[/color][/b]
+Nodo de acción especial de la entidad Mono que hace que la entidad cree otra entidad projectil llamada Plátano en frente de esta, tomando en cuenta su dirección."
+NODE.SHOOT_TRIGGER.TITLE,Accionar Disparador
+NODE.SHOOT_TRIGGER.DESCRIPTION.01,"[b][color=purple]Accionar Disparador[/color][/b]
+Nodo de acción el cual hace que los nodos Disparador se activen en todas las entidades, tiene una entrada de tipo Texto llamada identificador la cual se envía a los nodos de Disparador y es útil para saber que se debe hacer con dicho evento al ejecutarse."
+NODE.SHOOT_TRIGGER.DESCRIPTION.02,"[b][color=purple]Trigger Custom Event[/color][/b]
+En Unity Bolt se encuentra un nodo similar llamadoTrigger Custom Event, su función es la misma a diferencia que hay que seleccionar el Game Object al cual se ejecutara su Custom Event y tambien la cantidad de argumentos que puede enviar."
+NODE.STRING.TITLE,Texto
+NODE.STRING.DESCRIPTION.01,"[b][color=purple]Texto[/color][/b]
+Nodo literal cuya función es enviar un Texto con el valor deseado."
+NODE.STRING.DESCRIPTION.02,"[b][color=purple]String[/color][/b]
+En Unity Bolt se conoce como String Literal y su función es exactamente igual."
+NODE.TRIGGER.TITLE,Disparador
+NODE.TRIGGER.DESCRIPTION.01,"[b][color=purple]Disparador[/color][/b]
+Nodo de evento el cual se ejecuta cuando se activa un nodo Accionar Disparador en cualquier entidad, envía como salida un Texto con el valor que se haya pasado como entrada al nodo Accionar Disparador."
+NODE.TRIGGER.DESCRIPTION.02,"[b][color=purple]Custom Event[/color][/b]
+En Unity Bolt se conoce como Custom Event y su función es igual, a diferencia de que este hay que indicar el Game Object el cual recibe el disparador y tambien la cantidad de argumentos que puede recibir."
+NODE.UPDATE.TITLE,Actualizar
+NODE.UPDATE.DESCRIPTION.01,"[b][color=purple]Actualizar[/color][/b]
+Nodo de evento el cual se ejecuta automaticamente y se vuelve a ejecutar una vez que su secuencia haya terminado."
+NODE.UPDATE.DESCRIPTION.02,"[b][color=purple]On Update[/color][/b]
+En Unity Bolt se conoce como On Update y su función es igual, a diferencia de que este se ejecuta cada ciclo de juego."
+NODE.WAIT.TITLE,Esperar
+NODE.WAIT.DESCRIPTION.01,"[b][color=purple]Esperar[/color][/b]
+Nodo de acción el cual ejecuta su secuencia hasta que pase el tiempo establecido en la entrada de tipo Número que tiene como nombre tiempo."
+NODE.WAIT.DESCRIPTION.02,"[b][color=purple]Wait For Seconds[/color][/b]
+En Unity Bolt se conoce como Wait For Seconds y su función es igual, a diferencia de que este además tiene otra entrada de tipo Booleano llamada unscaled la cual ignora el valor de timeScaled de la clase Time."

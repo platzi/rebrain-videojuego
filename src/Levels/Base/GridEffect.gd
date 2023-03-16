@@ -10,7 +10,6 @@ func _ready():
 
 
 func _on_scripting_toggled() -> void:
-	print(Globals.scripting_mode)
 	if Globals.scripting_mode:
 		animation_player.play("Shockwave")
 	else:

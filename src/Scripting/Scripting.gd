@@ -14,6 +14,8 @@ onready var hair_sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer
 onready var save_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/SaveBtn
 onready var restore_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/RestoreBtn
 onready var cancel_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/CancelBtn
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 var brain := {}
 
@@ -37,11 +39,13 @@ func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if !Globals.disable_scripting and event.scancode == KEY_TAB:
 			if !Globals.scripting_mode:
+				BackgroundMusic.activate_eq()
 				Globals.scripting_mode = true
 				get_tree().paused = true
-			elif is_open:
-					on_SaveBtn_pressed()
 			else:
+				if is_open:
+					on_SaveBtn_pressed()
+				BackgroundMusic.deactivate_eq()
 				Globals.scripting_mode = false
 				get_tree().paused = false
 			Globals.emit_signal("scripting_toggled")
@@ -77,7 +81,6 @@ func open(entity : Entity) -> void:
 	position_y_values[0] = target_position.y
 	open_anim.track_set_key_value(position_x_track, 0, position_x_values)
 	open_anim.track_set_key_value(position_y_track, 0, position_y_values)
-	print(scripting_graph.rect_size)
 	scripting_graph.scroll_offset = -(scripting_graph.rect_size / 2.0)
 
 
@@ -103,7 +106,7 @@ func update_nodes_limit() -> void:
 			_nodes_limit[node_type] = node_qty
 	node_searcher.nodes_limit = _nodes_limit
 	for child in scripting_graph.get_children():
-		if child is ScriptingNode:
+		if child is ScriptingNode and child.visible:
 			var node := child as ScriptingNode
 			var node_type = node.type
 			if node_searcher.nodes_limit.has(node_type) and node_searcher.nodes_limit[node_type] > 0:
@@ -180,12 +183,14 @@ func _create_new_node(node_type : String) -> void:
 
 
 func on_SaveBtn_pressed() -> void:
+	button_sfx.play()
 	_target_entity.brain_dict = scripting_graph.save()
 	_target_entity.restart()
 	close()
 
 
 func on_RestoreBtn_pressed() -> void:
+	button_sfx.play()
 	if _target_entity.brain_og != "":
 		var result = JSON.parse(_target_entity.brain_og)
 		if result.error == OK:
@@ -195,6 +200,7 @@ func on_RestoreBtn_pressed() -> void:
 
 
 func on_CancelBtn_pressed() -> void:
+	button_sfx.play()
 	close()
 
 

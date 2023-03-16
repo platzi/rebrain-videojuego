@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/images/entities/barrel.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/HurtBox.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=4]
 [ext_resource path="res://src/Entity/Barrel.gd" type="Script" id=5]
 [ext_resource path="res://src/Particles/SmokeExplosion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sounds/explosion.wav" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -26,37 +27,47 @@ radius = 20.0
 script = ExtResource( 5 )
 death_particles = ExtResource( 6 )
 death_particles_offset = Vector2( 0, -26 )
-node_limit_UPDATE = 0
-node_limit_COLLISION = 0
-node_limit_TRIGGER = 0
-node_limit_PRESSED = 0
-node_limit_RELEASED = 0
-node_limit_MOVE_FORWARD = 0
-node_limit_ROTATE_LEFT = 0
-node_limit_ROTATE_RIGHT = 0
-node_limit_WAIT = 0
-node_limit_SHOOT_TRIGGER = 0
-node_limit_SHOOT = 0
-node_limit_OPEN = 0
-node_limit_CLOSE = 0
-node_limit_IF = 0
-node_limit_AND = 0
-node_limit_OR = 0
-node_limit_EQUAL = 0
-node_limit_NOT_EQUAL = 0
-node_limit_GREATER = 0
-node_limit_GREATER_EQUAL = 0
-node_limit_LESS = 0
-node_limit_LESS_EQUAL = 0
-node_limit_COMPARE_ENTITY = 0
-node_limit_COMPARE_STRING = 0
-node_limit_PATH_AHEAD = 0
-node_limit_NUMBER = 0
-node_limit_STRING = 0
-node_limit_BOOL = 0
-node_limit_ENTITY = 0
-node_limit_POSITION = 0
-node_limit_DIRECTION = 0
+death_sfx = ExtResource( 7 )
+node_limit_UPDATE = null
+node_limit_COLLISION = null
+node_limit_TRIGGER = null
+node_limit_PRESSED = null
+node_limit_RELEASED = null
+node_limit_MOVE_FORWARD = null
+node_limit_MOVE_RIGHT = null
+node_limit_MOVE_DOWN = null
+node_limit_MOVE_LEFT = null
+node_limit_MOVE_UP = null
+node_limit_ROTATE_LEFT = null
+node_limit_ROTATE_RIGHT = null
+node_limit_WAIT = null
+node_limit_SHOOT_TRIGGER = null
+node_limit_SHOOT = null
+node_limit_OPEN = null
+node_limit_CLOSE = null
+node_limit_IF = null
+node_limit_AND = null
+node_limit_OR = null
+node_limit_EQUAL = null
+node_limit_NOT_EQUAL = null
+node_limit_GREATER = null
+node_limit_GREATER_EQUAL = null
+node_limit_LESS = null
+node_limit_LESS_EQUAL = null
+node_limit_COMPARE_ENTITY = null
+node_limit_COMPARE_STRING = null
+node_limit_REPEAT = null
+node_limit_PATH_AHEAD = null
+node_limit_PATH_BACK = null
+node_limit_PATH_LEFT = null
+node_limit_PATH_RIGHT = null
+node_limit_PASSENGERS = null
+node_limit_NUMBER = null
+node_limit_STRING = null
+node_limit_BOOL = null
+node_limit_ENTITY = null
+node_limit_POSITION = null
+node_limit_DIRECTION = null
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 3 )

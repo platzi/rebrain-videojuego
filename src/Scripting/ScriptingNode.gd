@@ -10,6 +10,7 @@ export(String) var type
 export(String) var tag setget _set_tag
 export(String) var subtag setget _set_subtag
 export(Texture) var icon setget _set_icon
+export(Array, Resource) var hints setget _set_hints
 
 var _params := []
 
@@ -21,20 +22,17 @@ onready var _is_ready = true
 onready var title_icon := $TitleMC/TitleMC/TitleHBC/TitleIcon
 onready var title_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/TitleLabel
 onready var subtitle_label := $TitleMC/TitleMC/TitleHBC/VBoxContainer/SubtitleLabel
+onready var info_btn := $TitleMC/TitleMC/TitleHBC/InfoBtn as Button
 
 var disabled = false setget _set_disabled
 
 func _ready() -> void:
 	theme = _theme
+	info_btn.connect("pressed", self, "_on_info_btn_pressed")
 	update_slots()
 	_set_icon(icon)
 	_set_tag(tag)
 	_set_subtag(subtag)
-
-
-func _process(_delta : float) -> void:
-	if !Engine.editor_hint and !Globals.DEBUG and disabled:
-		selected = false
 
 
 func update_slots() -> void:
@@ -118,3 +116,16 @@ func _set_disabled(new_value : bool) -> void:
 	else:
 		theme = _theme
 		comment = false
+
+
+func _on_info_btn_pressed() -> void:
+	Globals.emit_signal("node_info_pressed", hints)
+
+
+func _set_hints(new_value : Array):
+	hints.resize(new_value.size())
+	hints = new_value
+	for i in hints.size():
+		if not hints[i]:
+			hints[i] = HintResource.new()
+			hints[i].resource_name = "Hint"

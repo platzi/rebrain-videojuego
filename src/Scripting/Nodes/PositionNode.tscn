@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/scripting/scripting_icon_position.png" type="Texture" id=3]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/hints/hint_position_node.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_bolt_get_position.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 5 )
+content = "NODE.POSITION.DESCRIPTION.01"
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 6 )
+content = "NODE.POSITION.DESCRIPTION.02"
 
 [node name="PositionNode" instance=ExtResource( 2 )]
 slot/1/left_enabled = false
@@ -18,50 +33,59 @@ slot/2/right_enabled = true
 slot/2/right_type = 3
 slot/2/right_color = Color( 0, 0.666667, 0.8, 1 )
 type = "POSITION"
-tag = "Posición"
-subtag = "Variable local"
+tag = "NODE.POSITION.TITLE"
+subtag = "Valor"
 icon = ExtResource( 3 )
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 199.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 198.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 198.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 194.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 3 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 90.0
+margin_right = 158.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 66.0
-text = "Posición"
+margin_right = 134.0
+text = "NODE.POSITION.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 66.0
-text = "Variable local"
+margin_right = 134.0
+text = "Valor"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 166.0
+margin_right = 190.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
-margin_bottom = 69.0
-left_number_min = 0
-left_number_max = 100
+margin_right = 199.0
+margin_bottom = 79.0
 right_enabled = true
 right_type = 3
 right_tag = "X"
-right_number_min = 0
-right_number_max = 100
 
 [node name="ScriptingNodeSlot2" parent="." index="2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
-margin_top = 73.0
-margin_right = 159.0
-margin_bottom = 98.0
-left_number_min = 0
-left_number_max = 100
+margin_top = 83.0
+margin_right = 199.0
+margin_bottom = 118.0
 right_enabled = true
 right_type = 3
 right_tag = "Y"
-right_number_min = 0
-right_number_max = 100

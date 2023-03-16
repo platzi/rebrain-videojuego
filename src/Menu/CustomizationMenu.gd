@@ -36,6 +36,9 @@ onready var shoes_color_gc := get_node(shoes_color_gc_path) as GridContainer
 onready var save_btn : Button = get_node(save_btn_path)
 onready var back_btn : Button = get_node(back_btn_path)
 
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+onready var selection_sfx := $SelectionSfx as AudioStreamPlayer
+
 
 var dialogue_scene := load("res://src/Dialogue/Dialogue.tscn")
 var loaded := false
@@ -54,6 +57,7 @@ func _ready():
 	
 	if !SaveManager.save_exists:
 		var dialogue_inst = dialogue_scene.instance()
+		dialogue_inst.speaker = "Anunciante"
 		dialogue_inst.dialogues = [
 			"Bienvendio al Platziverso, antes de comenzar porfavor crea tu avatar a tu gusto",
 			"Cuando finalices, puedes presionar el botón Guardar para continuar hacía el metaverso"
@@ -153,6 +157,7 @@ func _create_property_button_color(color : Color) -> Button:
 
 
 func _on_property_button_pressed(button : Button, buttons : Array, index : int, type : int) -> void:
+	selection_sfx.play()
 	for other_button in buttons:
 		other_button.pressed = false
 		other_button.disabled = false
@@ -174,6 +179,7 @@ func _on_property_button_pressed(button : Button, buttons : Array, index : int, 
 
 
 func _on_SaveBtn_pressed() -> void:
+	button_sfx.play()
 	if name_le.text.dedent() == "":
 		var dialogue_inst = dialogue_scene.instance()
 		dialogue_inst.dialogues = [
@@ -190,10 +196,11 @@ func _on_SaveBtn_pressed() -> void:
 	SaveManager.save_data["customization"]["shoes_color"] = selected_shoes_color
 	SaveManager.save()
 	if !loaded:
-		SceneChanger.change_scene("res://src/Levels/Intro01.tscn")
+		SceneChanger.change_scene("res://src/Levels/Intro/Intro01.tscn")
 	else:
 		SceneChanger.change_scene("res://src/Menu/Menu.tscn")
 
 
 func _on_BackBtn_pressed() -> void:
-	 SceneChanger.change_scene("res://src/Menu/Menu.tscn")
+	button_sfx.play()
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

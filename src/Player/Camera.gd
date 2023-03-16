@@ -11,6 +11,7 @@ onready var camera_2d : Camera2D = $Camera2D
 onready var area_2d : Area2D = $Area2D
 onready var screenshake_timer : Timer = $ScreenshakeTimer
 
+var zoom := 1.0
 var _zoom_smooth := 1.0
 var _zoom_target := 1.0
 var _screenshake_ammount := 0.0
@@ -42,13 +43,24 @@ func _ready() -> void:
 func _process(delta : float) -> void:
 	_zoom_smooth = lerp(_zoom_smooth, _zoom_target, ZOOM_SPEED * delta)
 	camera_2d.zoom = Vector2(_zoom_smooth, _zoom_smooth)
+	if get_tree().paused:
+		var space = get_world_2d().direct_space_state
+		var cols = space.intersect_point(global_position, 32, [area_2d], 32768, false, true)
+		var remove := true
+		for col in cols:
+			if col.collider.is_in_group("CameraAttractor"):
+				remove = false
+				break
+		if remove:
+			attractor = null
+			camera_2d.position = Vector2.ZERO
 	if is_instance_valid(target):
 		position = target.position
 	if attractor:
 		camera_2d.global_position = attractor.global_position
 		_zoom_target = attractor.zoom_level
 	else:
-		_zoom_target = 1.0
+		_zoom_target = zoom
 	if _screenshake_is_active:
 		camera_2d.offset = Vector2(rand_range(-1.0, 1.0) * _screenshake_ammount, rand_range(-1.0, 1.0) * _screenshake_ammount)
 

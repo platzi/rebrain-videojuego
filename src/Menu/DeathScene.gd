@@ -6,13 +6,20 @@ export(NodePath) var menu_btn_path
 
 onready var menu_btn : Button = get_node(menu_btn_path)
 onready var start_btn : Button = get_node(start_btn_path)
+onready var death_sfx := $DeathSfx as AudioStreamPlayer
 
 
 func _ready() -> void:
 #	OS.window_maximized = true
 	menu_btn.connect("pressed", self, "_on_MenuBtn_pressed")
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
-	Globals.connect("show_game_over", self, "show")
+	Globals.connect("show_game_over", self, "_on_show_game_over")
+
+
+func _on_show_game_over() -> void:
+	BackgroundMusic.stream_paused = true
+	death_sfx.play()
+	show()
 
 
 func _on_StartBtn_pressed() -> void:

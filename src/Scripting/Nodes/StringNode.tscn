@@ -1,12 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripting/ScriptingNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripting/ScriptingNodeSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/scripting/scripting_icon_string.png" type="Texture" id=3]
-[ext_resource path="res://assets/themes/scripting_node_disabled_theme.tres" type="Theme" id=4]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/hints/hint_bolt_string.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/hints/hint_string_node.png" type="Texture" id=6]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 6 )
+content = "NODE.STRING.DESCRIPTION.01"
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 4 )
+image = ExtResource( 5 )
+content = "NODE.STRING.DESCRIPTION.02"
 
 [node name="StringNode" instance=ExtResource( 1 )]
-theme = ExtResource( 4 )
 slot/1/left_enabled = false
 slot/1/left_type = 1
 slot/1/left_color = Color( 1, 0, 0, 1 )
@@ -14,31 +27,48 @@ slot/1/right_enabled = true
 slot/1/right_type = 2
 slot/1/right_color = Color( 1, 0.666667, 0, 1 )
 type = "STRING"
-tag = "Texto"
-subtag = "Entrada"
+tag = "NODE.STRING.TITLE"
+subtag = "Literal"
 icon = ExtResource( 3 )
+hints = [ SubResource( 1 ), SubResource( 2 ) ]
+
+[node name="TitleMC" parent="." index="0"]
+margin_right = 184.0
+
+[node name="Panel" parent="TitleMC" index="0"]
+margin_right = 183.0
+
+[node name="TitleMC" parent="TitleMC" index="1"]
+margin_right = 183.0
+
+[node name="TitleHBC" parent="TitleMC/TitleMC" index="0"]
+margin_right = 179.0
 
 [node name="TitleIcon" parent="TitleMC/TitleMC/TitleHBC" index="0"]
 texture = ExtResource( 3 )
 
 [node name="VBoxContainer" parent="TitleMC/TitleMC/TitleHBC" index="1"]
-margin_right = 62.0
+margin_right = 143.0
 
 [node name="TitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="0"]
-margin_right = 38.0
-text = "Texto"
+margin_right = 119.0
+text = "NODE.STRING.TITLE"
 
 [node name="SubtitleLabel" parent="TitleMC/TitleMC/TitleHBC/VBoxContainer" index="1"]
-margin_right = 38.0
-text = "Entrada"
+margin_right = 119.0
+text = "Literal"
+
+[node name="InfoBtn" parent="TitleMC/TitleMC/TitleHBC" index="2"]
+margin_left = 151.0
+margin_right = 175.0
 
 [node name="ScriptingNodeSlot" parent="." index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 44.0
-margin_right = 159.0
-margin_bottom = 75.0
+margin_right = 184.0
+margin_bottom = 79.0
 left_type = 1
 right_enabled = true
 right_type = 2

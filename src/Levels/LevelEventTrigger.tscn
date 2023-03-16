@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entity/ButtonEntity.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Entity/LogDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/hints/hint_triggers.png" type="Texture" id=7]
+[ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=10]
+[ext_resource path="res://src/Levels/LevelEventTrigger2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Entity/Palm.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Entity/Rock.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Resource" id=2]
+resource_name = "Hint"
+script = ExtResource( 10 )
+image = ExtResource( 7 )
+content = "[b][color=purple]Nodo Disparador[/color][/b]
+Este nodo es un evento que se activa cuando se recibe una señal lanzada desde cualquier entidad por el nodo Accionar Disparador, recibiendo como parametro un texto como Identificador.
+
+[b][color=purple]Nodo Accionar Disparador[/color][/b]
+Activa los nodos Disparador de todas las entidades y envía un texto como Identificador para ser usado junto con el evento que lo reciba."
+
+[node name="LevelEventTrigger" instance=ExtResource( 3 )]
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 480, 360 )
+direction = 270.0
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+death_particles = ExtResource( 11 )
+target_scene = ExtResource( 11 )
+
+[node name="Cage" parent="Entities/YSort" index="2" instance=ExtResource( 1 )]
+position = Vector2( 480, 0 )
+hair_color = Color( 1, 1, 0.352941, 1 )
+skin_color = Color( 0.0901961, 0.627451, 0.752941, 1 )
+shirt_color = Color( 0.878431, 0.866667, 0.0196078, 1 )
+pants_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+
+[node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
+position = Vector2( 480, 72 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+
+[node name="ButtonEntity" parent="Entities/YSort" index="4" instance=ExtResource( 2 )]
+position = Vector2( 480, 264 )
+brain_og = "{\"PressedNode\":{\"type\":\"PRESSED\",\"disabled\":false,\"position\":[-280,-60],\"connections_in\":[],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+node_limit_PRESSED = 1
+node_limit_SHOOT_TRIGGER = 1
+
+[node name="LogDoor" parent="Entities/YSort" index="5" instance=ExtResource( 6 )]
+position = Vector2( 480, 168 )
+brain_og = "{\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[-80,-40],\"connections_in\":[],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
+node_limit_TRIGGER = 1
+node_limit_OPEN = 1
+
+[node name="Palm" parent="Entities/YSort" index="6" instance=ExtResource( 13 )]
+position = Vector2( 288, 0 )
+blocked = true
+
+[node name="Palm2" parent="Entities/YSort" index="7" instance=ExtResource( 13 )]
+position = Vector2( 720, 384 )
+blocked = true
+
+[node name="Rock" parent="Entities/YSort" index="8" instance=ExtResource( 14 )]
+position = Vector2( 240, 48 )
+blocked = true
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
+node_limit_REPEAT = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
+
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 9 )]
+speaker = "Profesor"
+dialogues = [ "Para resolver este nivel necesitas comunicar varias entidades entre sí, para esto vamos a necesitar del nodo Disparador y Accionar Disparador." ]
+
+[node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
+title = "Guía"
+hints = [ SubResource( 2 ) ]
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 9 )]
+speaker = "Alumno"
+dialogues = [ "¿Realmente seguimos en el Platziverso? ¡Gracias por la ayuda amigo!" ]
+
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
+tile_data = PoolIntArray( -65532, 0, 1, -65525, 0, 3, 6, 0, 3, 11, 0, 0, 65544, 0, 3, 131080, 0, 3, 131083, 0, 2, 262152, 0, 2, 262154, 0, 3, 327688, 0, 1, 327691, 0, 1, 393231, 0, 1, 458763, 0, 0, 458765, 0, 3, 458766, 0, 2, 524296, 0, 0, 524299, 0, 3, 524303, 0, 1 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -131061, 1, 0, -131060, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 0, 8, -65531, 0, 10, -65530, 0, 11, -65529, 1, 0, -65528, 0, 8, -65527, 0, 10, -65526, 0, 10, -65525, 0, 11, -65524, 1, 0, -65523, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 65544, 5, 0, 131078, 6, 0, 196619, 7, 1, 0, 8, 0, 65544, 9, 2, 8, 10, 2, 11, 11, 0, 131083, 12, 1, 0, 13, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 0, 196616, 65541, 0, 196619, 65542, 1, 0, 65543, 1, 0, 65544, 0, 65544, 65545, 2, 196616, 65546, 2, 196619, 65547, 0, 131083, 65548, 1, 0, 65549, 1, 0, 131074, 3, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 0, 196616, 131081, 0, 131077, 131082, 0, 131078, 131083, 0, 196619, 131084, 1, 0, 131085, 1, 0, 196611, 3, 0, 196612, 3, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 0, 65544, 196618, 0, 131083, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 262149, 3, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 65541, 262154, 0, 65542, 262155, 0, 11, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 2, 8, 327690, 2, 11, 327691, 0, 131083, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 2, 65544, 393226, 2, 131083, 393227, 0, 131083, 393228, 1, 0, 393229, 1, 0, 393230, 0, 8, 393231, 0, 11, 393232, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 65544, 458761, 2, 196616, 458762, 2, 196619, 458763, 0, 131083, 458764, 1, 0, 458765, 0, 8, 458766, 0, 65541, 458767, 0, 131083, 458768, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 196616, 524297, 0, 196617, 524298, 0, 196617, 524299, 0, 196619, 524300, 1, 0, 524301, 0, 196616, 524302, 0, 196617, 524303, 0, 196619, 524304, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 655366, 3, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 3, 0, 655374, 3, 0, 655375, 3, 0, 655376, 3, 0, 720903, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 720907, 3, 0, 720908, 3, 0 )

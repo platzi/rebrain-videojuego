@@ -20,7 +20,7 @@ extents = Vector2( 48, 48 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52, 52 )
 
-[node name="Raft" type="KinematicBody2D" groups=["Platform"]]
+[node name="Raft" type="KinematicBody2D" groups=["Platform", "Unsorted"]]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource( 2 )
@@ -30,6 +30,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -48,7 +52,12 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0

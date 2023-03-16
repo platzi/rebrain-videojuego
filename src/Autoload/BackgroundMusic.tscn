@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/music/Slow Stride Loop.ogg" type="AudioStream" id=1]
+[ext_resource path="res://src/Autoload/BackgroundMusic.gd" type="Script" id=2]
+[ext_resource path="res://assets/music/Ove Melaa -Supa Powa C.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/jump and run - tropics.ogg" type="AudioStream" id=4]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+pause_mode = 2
+autoplay = true
+bus = "Bgm"
+script = ExtResource( 2 )
+game_bgm_01 = ExtResource( 1 )
+game_bgm_02 = ExtResource( 4 )
+menu_bgm = ExtResource( 3 )

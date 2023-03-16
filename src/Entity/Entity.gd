@@ -5,12 +5,15 @@ extends KinematicBody2D
 
 
 const TRASLATION_EFFECT_SCN := preload("res://src/TraslateEffect/TraslateEffect.tscn")
+const SFX_SCN := preload("res://src/Entity/Sfx.tscn")
 
 
-export (String) var brain_og
+export (String, MULTILINE) var brain_og
 
 export (PackedScene) var death_particles
 export (Vector2) var death_particles_offset
+export (AudioStream) var hit_sfx
+export (AudioStream) var death_sfx
 export (int) var life_max := 1
 export (float, 0.0, 360.0) var direction
 export (bool) var blocked
@@ -113,9 +116,28 @@ func _set(property : String, value) -> bool:
 
 
 func get_path_ahead() -> bool:
-	var space_state = get_world_2d().direct_space_state
 	var direction_vector := Vector2.RIGHT.rotated(deg2rad(direction))
-	return true if _is_place_walkable(direction_vector.x * 16.0, direction_vector.y * 16.0) and space_state.intersect_ray(global_position, global_position + Vector2.RIGHT.rotated(deg2rad(direction)) * 48, [self], collision_mask).empty() else false
+	return _get_path(direction_vector)
+
+
+func get_path_back() -> bool:
+	var direction_vector := Vector2.LEFT.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func get_path_left() -> bool:
+	var direction_vector := Vector2.UP.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func get_path_right() -> bool:
+	var direction_vector := Vector2.DOWN.rotated(deg2rad(direction))
+	return _get_path(direction_vector)
+
+
+func _get_path(direction_vector : Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	return true if _is_place_walkable(direction_vector.x * 52.0, direction_vector.y * 52.0) and space_state.intersect_ray(global_position, global_position + direction_vector * 52, [self], collision_mask).empty() else false
 
 
 func set_nodes() -> void:
@@ -130,6 +152,7 @@ func set_nodes() -> void:
 
 func instance_brain() -> void:
 	brain.connect("move_forward", self, "move_forward")
+	brain.connect("move_direction", self, "move_direction")
 	brain.connect("stop_moving", self, "stop_moving")
 	brain.connect("turns_towards", self, "turns_towards")
 	brain.connect("shoot", self, "_shoot")
@@ -152,6 +175,22 @@ func turns_towards(towards : String) -> void:
 
 func move_forward() -> void:
 	speed = 48.0
+
+
+func move_direction(d : String) -> void:
+	speed = 48.0
+	if d == "right":
+		direction = 0.0
+	elif d == "down":
+		direction = 90.0
+	elif d == "left":
+		direction = 180.0
+	elif d == "up":
+		direction = 270.0
+
+
+func get_passengers() -> int:
+	return 0
 
 
 func stop_moving() -> void:
@@ -200,6 +239,11 @@ func hurt(knockback_direction : Vector2 = Vector2.ZERO) -> void:
 	velocity_vector = knockback_direction * max_speed * 8
 	if life <= 0:
 		destroy()
+	elif hit_sfx:
+		var sfx_inst := SFX_SCN.instance() as AudioStreamPlayer2D
+		sfx_inst.position = position
+		sfx_inst.stream = hit_sfx
+		get_parent().add_child(sfx_inst)
 	_on_hurt()
 
 
@@ -244,6 +288,11 @@ func _on_trigger_received(tag : String) -> void:
 
 
 func destroy() -> void:
+	if death_sfx:
+		var sfx_inst := SFX_SCN.instance() as AudioStreamPlayer2D
+		sfx_inst.position = position
+		sfx_inst.stream = death_sfx
+		get_parent().add_child(sfx_inst)
 	if death_particles:
 		var death_particles_inst = death_particles.instance()
 		death_particles_inst.position = position + death_particles_offset

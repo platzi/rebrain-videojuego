@@ -1,44 +1,55 @@
 [gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://assets/themes/font_16_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/themes/font_32_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/themes/level_card_completed.tres" type="Theme" id=3]
 [ext_resource path="res://src/Menu/LevelCard.gd" type="Script" id=4]
+[ext_resource path="res://assets/themes/level_card.tres" type="Theme" id=5]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=6]
 
-[sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.4, 0.12, 0.6, 1 )
-corner_radius_top_left = 32
-corner_radius_top_right = 8
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 8
-shadow_size = 8
-shadow_offset = Vector2( 4, 4 )
+[sub_resource type="Shader" id=13]
+code = "shader_type canvas_item;
 
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.333333, 0.1, 0.5, 1 )
-corner_radius_top_left = 32
-corner_radius_top_right = 8
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 8
-shadow_size = 8
-shadow_offset = Vector2( 4, 4 )
+uniform bool blur = true;
+uniform vec4 tint : hint_color;
+uniform float tint_strength : hint_range(0.0, 1.0);
 
-[sub_resource type="StyleBoxFlat" id=11]
-bg_color = Color( 0.266667, 0.08, 0.4, 1 )
-corner_radius_top_left = 32
-corner_radius_top_right = 8
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 8
-shadow_size = 8
-shadow_offset = Vector2( 4, 4 )
+vec4 get_pixel_offset(sampler2D tex, vec2 uv, vec2 pixel_size, float x, float y) {
+	vec4 total = vec4(0.0);
+	total += texture(tex, uv + vec2(pixel_size.x * x, pixel_size.y * y));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 2.0, pixel_size.y * y * 2.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 3.0, pixel_size.y * y * 3.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 4.0, pixel_size.y * y * 4.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 6.0, pixel_size.y * y * 5.0));
+	total += texture(tex, uv + vec2(pixel_size.x * x * 5.0, pixel_size.y * y * 6.0));
+	return total / 6.0;
+}
 
-[sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0.2, 0.06, 0.3, 1 )
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	if (blur) {
+		vec4 total = vec4(0.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, 1.0, 0.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, -1.0, 0.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, 0.0, 1.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, 0.0, -1.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, 1.0, 1.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, -1.0, 1.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, 1.0, -1.0);
+		total += get_pixel_offset(TEXTURE, UV, TEXTURE_PIXEL_SIZE, -1.0, -1.0);
+		color = total / 8.0;
+		color.rgb = vec3((color.r + color.g + color.b) / 3.0);
+		color.rgb = mix(color.rgb, tint.rgb, tint_strength);
+	}
+	COLOR = color;
+}"
 
-[sub_resource type="Theme" id=1]
-Button/styles/hover = SubResource( 10 )
-Button/styles/normal = SubResource( 9 )
-Button/styles/pressed = SubResource( 11 )
-Panel/styles/panel = SubResource( 12 )
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = SubResource( 13 )
+shader_param/blur = true
+shader_param/tint = Color( 0.333333, 0.0980392, 0.498039, 1 )
+shader_param/tint_strength = 0.8
 
 [node name="LevelCard" type="Button"]
 anchor_right = 1.0
@@ -48,10 +59,12 @@ margin_bottom = -540.0
 rect_min_size = Vector2( 200, 300 )
 focus_mode = 0
 mouse_filter = 1
-theme = SubResource( 1 )
+theme = ExtResource( 5 )
 script = ExtResource( 4 )
 level_image_tr_path = NodePath("MarginContainer/VBoxContainer/MarginContainer2/LevelImageTR")
 title_label_path = NodePath("MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/TitleLabel")
+normal_theme = ExtResource( 5 )
+completed_theme = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -69,7 +82,7 @@ custom_constants/separation = 16
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 200.0
-margin_bottom = 176.0
+margin_bottom = 198.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -78,17 +91,18 @@ custom_constants/margin_top = 15
 custom_constants/margin_left = 15
 
 [node name="LevelImageTR" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+material = SubResource( 14 )
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 185.0
-margin_bottom = 176.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
 stretch_mode = 7
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 192.0
+margin_top = 214.0
 margin_right = 200.0
 margin_bottom = 300.0
 mouse_filter = 1
@@ -96,11 +110,11 @@ custom_constants/margin_bottom = 30
 
 [node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 200.0
-margin_bottom = 78.0
+margin_bottom = 56.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 200.0
-margin_bottom = 78.0
+margin_bottom = 56.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -108,7 +122,7 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
 margin_top = 10.0
 margin_right = 200.0
-margin_bottom = 68.0
+margin_bottom = 46.0
 custom_constants/separation = -4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
@@ -121,6 +135,10 @@ align = 1
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 margin_top = 13.0
 margin_right = 200.0
-margin_bottom = 58.0
-custom_fonts/font = ExtResource( 3 )
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 1 )
 align = 1
+
+[node name="ButtonSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sfx"

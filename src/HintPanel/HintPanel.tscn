@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://assets/sounds/open.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/themes/hint_panel_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/themes/main_menu_button_small.tres" type="Theme" id=4]
 [ext_resource path="res://src/HintPanel/HintPanel.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
@@ -130,8 +132,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 title_label_path = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TitleLabel")
+page_label_path = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PageLabel")
 content_container_path = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer")
 close_btn_path = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CloseBtn")
+next_btn_path = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/NextBtn")
 title = "Test"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -147,9 +151,9 @@ theme = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 margin_left = 64.0
-margin_top = 169.0
+margin_top = 185.0
 margin_right = 896.0
-margin_bottom = 370.0
+margin_bottom = 355.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
@@ -157,7 +161,7 @@ size_flags_vertical = 6
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 816.0
-margin_bottom = 185.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 800, 0 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
@@ -168,7 +172,7 @@ custom_constants/margin_bottom = 8
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 792.0
-margin_bottom = 161.0
+margin_bottom = 130.0
 custom_constants/separation = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -181,8 +185,7 @@ margin_bottom = 34.0
 text = "Título"
 align = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
-visible = false
+[node name="PageLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 margin_top = 8.0
 margin_right = 784.0
 margin_bottom = 25.0
@@ -206,14 +209,22 @@ margin_right = 784.0
 margin_bottom = 102.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_left = 702.0
+margin_left = 784.0
 margin_top = 122.0
 margin_right = 784.0
-margin_bottom = 153.0
+margin_bottom = 122.0
 size_flags_horizontal = 8
 custom_constants/separation = 20
 
+[node name="NextBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_right = 107.0
+margin_bottom = 31.0
+theme = ExtResource( 4 )
+text = "Siguiente"
+
 [node name="CloseBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
 margin_right = 82.0
 margin_bottom = 31.0
 theme = ExtResource( 4 )
@@ -223,3 +234,11 @@ text = "Cerrar"
 anims/Close = SubResource( 3 )
 anims/Open = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+
+[node name="OpenSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Sfx"
+
+[node name="ButtonSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sfx"

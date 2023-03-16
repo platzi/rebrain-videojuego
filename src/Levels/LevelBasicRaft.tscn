@@ -1,0 +1,107 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/Raft.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/images/hints/hint_raft.png" type="Texture" id=8]
+[ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=10]
+[ext_resource path="res://src/Levels/LevelDoorsButtons.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 240, 100 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 100, 240 )
+
+[sub_resource type="Resource" id=3]
+resource_name = "Hint"
+script = ExtResource( 10 )
+image = ExtResource( 8 )
+content = "[b][color=purple]Balsa[/color][/b]
+Puede navegar por las aguas sin problemas y tiene nodos especiales para moverse en la dirección deseada y para contar el numero de pasajeros."
+
+[node name="LevelBasicRaft" instance=ExtResource( 2 )]
+
+[node name="Camera" parent="." index="0"]
+position = Vector2( 672, 240 )
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 6 )]
+position = Vector2( 384, 240 )
+collision_shape = SubResource( 1 )
+
+[node name="CameraAttractor2" parent="." index="2" instance=ExtResource( 6 )]
+position = Vector2( 96, -48 )
+collision_shape = SubResource( 2 )
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 672, 240 )
+direction = 180.0
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 11 )
+
+[node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 1 )]
+position = Vector2( 96, 240 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+
+[node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
+position = Vector2( 96, -336 )
+hair_style = 1
+hair_color = Color( 0.352941, 0.196078, 0.0784314, 1 )
+skin_color = Color( 0.0941176, 0.752941, 0.0901961, 1 )
+shirt_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+pants_color = Color( 0.164706, 0.301961, 0.768627, 1 )
+shoes_color = Color( 0.0862745, 0.803922, 0.788235, 1 )
+
+[node name="Raft" parent="Entities/YSort" index="4" instance=ExtResource( 3 )]
+position = Vector2( 240, 240 )
+node_limit_UPDATE = 1
+node_limit_MOVE_RIGHT = 1
+node_limit_MOVE_LEFT = 1
+node_limit_IF = -1
+node_limit_EQUAL = -1
+node_limit_NOT_EQUAL = -1
+node_limit_GREATER = -1
+node_limit_GREATER_EQUAL = -1
+node_limit_LESS = -1
+node_limit_LESS_EQUAL = -1
+node_limit_PASSENGERS = 1
+node_limit_NUMBER = -1
+
+[node name="Raft2" parent="Entities/YSort" index="5" instance=ExtResource( 3 )]
+position = Vector2( 96, -192 )
+node_limit_UPDATE = 1
+node_limit_MOVE_DOWN = 1
+node_limit_MOVE_UP = 1
+node_limit_IF = 1
+node_limit_GREATER = -1
+node_limit_GREATER_EQUAL = -1
+node_limit_LESS = -1
+node_limit_LESS_EQUAL = -1
+node_limit_PASSENGERS = 1
+node_limit_NUMBER = -1
+
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 7 )]
+speaker = "Profesor"
+dialogues = [ "Todo indica que habrá que navegar un poco por este nivel, tendrás que utilizar tus habilidades lógicas para mover esa balsa." ]
+
+[node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 9 )]
+title = "Entidades"
+hints = [ SubResource( 3 ) ]
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 7 )]
+speaker = "Alumno"
+dialogues = [ "¡Ahoy capitan! Gracias por la ayuda." ]
+
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
+tile_data = PoolIntArray( -589822, 0, 3, -524288, 0, 1, -458750, 0, 2, -458749, 0, 1, -393215, 0, 0, 196609, 0, 1, 196621, 0, 2, 262146, 0, 2, 262156, 0, 3, 327680, 0, 2, 327682, 0, 0, 327694, 0, 3, 327695, 0, 0, 393217, 0, 1, 393229, 0, 0 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( -655360, 1, 0, -655359, 1, 0, -655358, 1, 0, -655357, 1, 0, -524289, 1, 0, -589824, 1, 0, -589823, 0, 8, -589822, 0, 11, -589821, 1, 0, -589820, 1, 0, -458753, 1, 0, -524288, 0, 8, -524287, 0, 65541, -524286, 0, 65542, -524285, 0, 11, -524284, 1, 0, -393217, 1, 0, -458752, 0, 196616, -458751, 0, 131077, -458750, 0, 131078, -458749, 0, 196619, -458748, 1, 0, -327681, 1, 0, -393216, 1, 0, -393215, 0, 196616, -393214, 0, 196619, -393213, 1, 0, -393212, 1, 0, -262145, 3, 0, -327680, 1, 0, -327679, 1, 0, -327678, 1, 0, -327677, 1, 0, -327676, 3, 0, -262144, 1, 0, -262143, 1, 0, -262142, 1, 0, -262141, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 0, 8, 196610, 0, 11, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 0, 8, 196622, 0, 11, 196623, 1, 0, 196624, 1, 0, 327679, 1, 0, 262144, 0, 8, 262145, 0, 65541, 262146, 0, 65542, 262147, 0, 11, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 0, 8, 262157, 0, 65541, 262158, 0, 65542, 262159, 0, 11, 262160, 1, 0, 393215, 1, 0, 327680, 0, 196616, 327681, 0, 131077, 327682, 0, 131078, 327683, 0, 196619, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 0, 196616, 327693, 0, 131077, 327694, 0, 131078, 327695, 0, 196619, 327696, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 0, 196616, 393218, 0, 196619, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 0, 196616, 393230, 0, 196619, 393231, 1, 0, 393232, 1, 0, 524287, 3, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458762, 3, 0, 458763, 3, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 3, 0, 524288, 3, 0, 524289, 3, 0, 524290, 3, 0, 524291, 3, 0, 524300, 3, 0, 524301, 3, 0, 524302, 3, 0, 524303, 3, 0 )

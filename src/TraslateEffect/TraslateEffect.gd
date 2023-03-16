@@ -11,6 +11,8 @@ export(Vector2) var target
 
 
 onready var tween := $Tween as Tween
+onready var jump_sfx := $JumpSfx as AudioStreamPlayer
+onready var land_sfx := $LandSfx as AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -18,6 +20,8 @@ func _ready() -> void:
 	if !Engine.editor_hint:
 		tween.connect("tween_all_completed", self, "queue_free")
 	_create_sprites()
+	jump_sfx.play()
+	get_tree().create_timer(0.3).connect("timeout", land_sfx, "play")
 
 
 func _clear_sprites() -> void:

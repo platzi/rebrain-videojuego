@@ -7,6 +7,8 @@ export(NodePath) var menu_btn_path
 onready var menu_btn : Button = get_node(menu_btn_path)
 onready var start_btn : Button = get_node(start_btn_path)
 
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 func _ready() -> void:
 	pause_mode = Node.PAUSE_MODE_PROCESS
@@ -23,12 +25,12 @@ func _input(event):
 
 
 func _on_StartBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
+	button_sfx.play()
 	get_tree().paused = false
 	SceneChanger.change_scene_reload()
 
 
 func _on_MenuBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
+	button_sfx.play()
 	get_tree().paused = false
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

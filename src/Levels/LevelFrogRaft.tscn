@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Entity/Frog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Raft.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Entity/ButtonEntity.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/LevelRaftControl.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 500, 500 )
+
+[node name="LevelFrogRaft" instance=ExtResource( 2 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 8 )]
+position = Vector2( 552, 0 )
+collision_shape = SubResource( 1 )
+zoom_level = 1.52
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 480, 168 )
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 10 )
+
+[node name="Frog" parent="Entities/YSort" index="2" instance=ExtResource( 3 )]
+position = Vector2( 552, -336 )
+direction = 90.0
+node_limit_UPDATE = 1
+node_limit_MOVE_FORWARD = -1
+node_limit_ROTATE_LEFT = -1
+node_limit_ROTATE_RIGHT = -1
+node_limit_WAIT = -1
+node_limit_SHOOT_TRIGGER = -1
+node_limit_STRING = -1
+
+[node name="ButtonEntity" parent="Entities/YSort" index="3" instance=ExtResource( 5 )]
+position = Vector2( 552, -240 )
+
+[node name="Raft" parent="Entities/YSort" index="4" instance=ExtResource( 4 )]
+position = Vector2( 336, 144 )
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 1
+node_limit_MOVE_LEFT = 1
+node_limit_IF = -1
+node_limit_COMPARE_STRING = -1
+node_limit_STRING = -1
+
+[node name="Raft2" parent="Entities/YSort" index="5" instance=ExtResource( 4 )]
+position = Vector2( 384, -48 )
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 1
+node_limit_MOVE_LEFT = 1
+node_limit_IF = -1
+node_limit_COMPARE_STRING = -1
+node_limit_STRING = -1
+
+[node name="Raft3" parent="Entities/YSort" index="6" instance=ExtResource( 4 )]
+position = Vector2( 720, -48 )
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 1
+node_limit_MOVE_LEFT = 1
+node_limit_IF = -1
+node_limit_COMPARE_STRING = -1
+node_limit_STRING = -1
+
+[node name="Raft4" parent="Entities/YSort" index="7" instance=ExtResource( 4 )]
+position = Vector2( 768, 144 )
+node_limit_TRIGGER = 1
+node_limit_MOVE_RIGHT = 1
+node_limit_MOVE_LEFT = 1
+node_limit_IF = -1
+node_limit_COMPARE_STRING = -1
+node_limit_STRING = -1
+
+[node name="Cage" parent="Entities/YSort" index="8" instance=ExtResource( 7 )]
+position = Vector2( 456, 312 )
+
+[node name="Key" parent="Entities/YSort" index="9" instance=ExtResource( 6 )]
+position = Vector2( 648, 312 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 9 )]
+tile_data = PoolIntArray( -524278, 0, 3, -524277, 0, 0, -524276, 0, 0, -458742, 0, 2, -458740, 0, 3, -327670, 0, 0, -327668, 0, 2, -131068, 0, 1, -131067, 0, 0, -131061, 0, 2, -131060, 0, 1, -131059, 0, 1, -131055, 0, 3, -131054, 0, 3, -65527, 0, 1, -65526, 0, 3, 4, 0, 1, 17, 0, 3, 65540, 0, 3, 65554, 0, 2, 131077, 0, 0, 131082, 0, 2, 131084, 0, 3, 131085, 0, 1, 131090, 0, 1, 196612, 0, 0, 196613, 0, 2, 196617, 0, 3, 196626, 0, 3, 262154, 0, 0, 262157, 0, 3, 393230, 0, 2, 458760, 0, 1, 458761, 0, 3, 458762, 0, 0, 458764, 0, 1, 458766, 0, 1 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -655350, 1, 0, -655349, 1, 0, -655348, 1, 0, -589815, 1, 0, -589814, 1, 0, -589813, 1, 0, -589812, 1, 0, -589811, 1, 0, -524279, 1, 0, -524278, 0, 8, -524277, 0, 10, -524276, 0, 11, -524275, 1, 0, -458743, 1, 0, -458742, 0, 65544, -458741, 0, 131081, -458740, 0, 131083, -458739, 1, 0, -393207, 1, 0, -393206, 0, 65544, -393205, 0, 131081, -393204, 0, 131083, -393203, 1, 0, -327672, 1, 0, -327671, 1, 0, -327670, 0, 196616, -327669, 0, 196617, -327668, 0, 196619, -327667, 1, 0, -327666, 1, 0, -262140, 1, 0, -262139, 1, 0, -262138, 1, 0, -262137, 1, 0, -262136, 1, 0, -262135, 1, 0, -262134, 1, 0, -262133, 1, 0, -262132, 1, 0, -262131, 1, 0, -262130, 1, 0, -262129, 1, 0, -262128, 1, 0, -262127, 1, 0, -262126, 1, 0, -196605, 1, 0, -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -196595, 1, 0, -196594, 1, 0, -196593, 1, 0, -196592, 1, 0, -196591, 1, 0, -196590, 1, 0, -196589, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 0, 8, -131067, 0, 11, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 0, 8, -131062, 0, 10, -131061, 0, 10, -131060, 0, 10, -131059, 0, 11, -131058, 1, 0, -131057, 1, 0, -131056, 1, 0, -131055, 0, 8, -131054, 0, 11, -131053, 1, 0, -131052, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 0, 65544, -65531, 0, 131083, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 0, 196616, -65526, 0, 196617, -65525, 0, 196617, -65524, 0, 196617, -65523, 0, 196619, -65522, 1, 0, -65521, 1, 0, -65520, 1, 0, -65519, 0, 65544, -65518, 0, 131083, -65517, 1, 0, -65516, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 65544, 5, 0, 131083, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 0, 65544, 18, 0, 131083, 19, 1, 0, 20, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 0, 65544, 65541, 0, 131083, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 0, 65544, 65554, 0, 131083, 65555, 1, 0, 65556, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 0, 65544, 131077, 0, 131083, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 0, 8, 131082, 0, 11, 131083, 1, 0, 131084, 0, 8, 131085, 0, 11, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 0, 65544, 131090, 0, 131083, 131091, 1, 0, 131092, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 0, 196616, 196613, 0, 196619, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 0, 65544, 196618, 0, 131083, 196619, 1, 0, 196620, 0, 65544, 196621, 0, 131083, 196622, 1, 0, 196623, 1, 0, 196624, 1, 0, 196625, 0, 196616, 196626, 0, 196619, 196627, 1, 0, 196628, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 0, 65544, 262154, 0, 131083, 262155, 1, 0, 262156, 0, 65544, 262157, 0, 131083, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262161, 1, 0, 262162, 1, 0, 262163, 1, 0, 262164, 1, 0, 327682, 3, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 8, 327689, 0, 65541, 327690, 0, 131083, 327691, 1, 0, 327692, 0, 65544, 327693, 0, 65542, 327694, 0, 11, 327695, 1, 0, 327696, 1, 0, 327697, 1, 0, 327698, 1, 0, 327699, 1, 0, 327700, 3, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 0, 131081, 393226, 0, 131083, 393227, 1, 0, 393228, 0, 65544, 393229, 0, 131081, 393230, 0, 131083, 393231, 1, 0, 393232, 1, 0, 393233, 1, 0, 393234, 1, 0, 393235, 1, 0, 458755, 3, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 196616, 458761, 0, 196617, 458762, 0, 196619, 458763, 1, 0, 458764, 0, 196616, 458765, 0, 196617, 458766, 0, 196619, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 3, 0, 524292, 3, 0, 524293, 3, 0, 524294, 3, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 1, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589834, 3, 0, 589835, 3, 0, 589836, 3, 0, 589837, 3, 0, 589838, 3, 0, 589839, 3, 0 )

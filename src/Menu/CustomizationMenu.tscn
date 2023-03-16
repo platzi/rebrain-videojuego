@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/themes/customization_menu_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/themes/font_32_bold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/selection.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/images/player/hair_01.png" type="Texture" id=5]
 [ext_resource path="res://assets/themes/main_menu_button.tres" type="Theme" id=7]
 [ext_resource path="res://assets/images/player/player_sprite.png" type="Texture" id=8]
@@ -34,6 +36,7 @@ corner_radius_bottom_left = 10
 shader = ExtResource( 10 )
 shader_param/blocked = null
 shader_param/blink = false
+shader_param/glow = null
 shader_param/BLACK = null
 shader_param/SKIN_COLOR = Color( 0.858824, 0.741176, 0.662745, 1 )
 shader_param/SHIRT_COLOR = Color( 1, 1, 1, 1 )
@@ -49,6 +52,7 @@ margin = Rect2( 0, -16, 0, -32 )
 shader = ExtResource( 11 )
 shader_param/blocked = null
 shader_param/blink = null
+shader_param/glow = null
 shader_param/HAIR_COLOR = Color( 0.796078, 0.560784, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=16]
@@ -415,3 +419,11 @@ margin_bottom = 310.0
 playback_speed = 0.2
 anims/RESET = SubResource( 17 )
 anims/Rotate = SubResource( 14 )
+
+[node name="ButtonSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sfx"
+
+[node name="SelectionSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sfx"

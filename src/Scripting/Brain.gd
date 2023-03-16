@@ -2,6 +2,7 @@ class_name Brain
 extends Node2D
 
 signal move_forward
+signal move_direction
 signal stop_moving
 signal turns_towards
 signal shoot
@@ -28,9 +29,7 @@ func run(type = "UPDATE", param1 = null) -> void:
 			if type == "UPDATE" or type == "PRESSED" or type == "RELEASED":
 				_execute(node, node)
 			elif type == "COLLISION" or type == "TRIGGER":
-				for connection in node.connections_out:
-					if connection.from_port == 1:
-						connection.output = param1
+				node.outputs["1"] = param1
 				_execute(node, node)
 
 
@@ -61,6 +60,14 @@ func _execute(start_node, current_node) -> void:
 			_run_next(start_node, current_node)
 		"MOVE_FORWARD":
 			_move_forward(start_node, current_node)
+		"MOVE_RIGHT":
+			_move_direction(start_node, current_node, "right")
+		"MOVE_DOWN":
+			_move_direction(start_node, current_node, "down")
+		"MOVE_LEFT":
+			_move_direction(start_node, current_node, "left")
+		"MOVE_UP":
+			_move_direction(start_node, current_node, "up")
 		"ROTATE_LEFT":
 			_rotate_left(start_node, current_node)
 		"ROTATE_RIGHT":
@@ -106,7 +113,7 @@ func _run_next(start_node : Dictionary, current_node : Dictionary) -> void:
 	if execute_list.size() > 0:
 		for exec_node in execute_list:
 			_execute(start_node, exec_node)
-	else:
+	elif start_node.type == "UPDATE" or start_node.type == "REPEAT":
 		_execute(start_node, start_node)
 
 
@@ -118,6 +125,8 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 				_run_backwards(brain[connection.from], connection.from_port, current_node, connection.to_port)
 	
 	match current_node.type:
+		"TRIGGER":
+			_trigger(current_node, port, to_node, to_port)
 		"STRING":
 			_string(current_node, port, to_node, to_port)
 		"NUMBER":
@@ -142,6 +151,14 @@ func _run_backwards(current_node : Dictionary, port : int, to_node : Dictionary,
 			_less_equal(current_node, port, to_node, to_port)
 		"PATH_AHEAD":
 			_path_ahead(current_node, port, to_node, to_port)
+		"PATH_BACK":
+			_path_back(current_node, port, to_node, to_port)
+		"PATH_RIGHT":
+			_path_right(current_node, port, to_node, to_port)
+		"PATH_LEFT":
+			_path_left(current_node, port, to_node, to_port)
+		"PASSENGERS":
+			_passengers(current_node, port, to_node, to_port)
 		
 		"POSITION":
 			_position(current_node, port, to_node, to_port)
@@ -171,12 +188,19 @@ func _compare_entity(start_node : Dictionary, node : Dictionary) -> void:
 func _move_forward(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("move_forward")
 	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_forward_end", [start_node, node])
-#	yield(get_tree().create_timer(1.0, false), "timeout")
-#	emit_signal("stop_moving")
-#	_run_next(start_node, node)
 
 
 func _on_move_forward_end(start_node : Dictionary, node : Dictionary) -> void:
+	emit_signal("stop_moving")
+	_run_next(start_node, node)
+
+
+func _move_direction(start_node : Dictionary, node : Dictionary, direction : String) -> void:
+	emit_signal("move_direction", direction)
+	get_tree().create_timer(1.0, false).connect("timeout", self, "_on_move_direction_end", [start_node, node])
+
+
+func _on_move_direction_end(start_node : Dictionary, node : Dictionary) -> void:
 	emit_signal("stop_moving")
 	_run_next(start_node, node)
 
@@ -253,9 +277,9 @@ func _if(start_node : Dictionary, node : Dictionary):
 func _repeat(start_node : Dictionary, node : Dictionary) -> void:
 	if node.has("count"):
 		node.count -= 1
-		node.first_node = start_node
 	else:
 		node.count = max(0, int(node.computed_inputs["1"]))
+		node.first_node = start_node
 	var connections = [{}, {}]
 	for connection in node.connections_out:
 		if connection.from_port == 0:
@@ -270,12 +294,16 @@ func _repeat(start_node : Dictionary, node : Dictionary) -> void:
 		node.erase("first_node")
 		connections[0].type = 0
 		connections[1].type = -1
-		_run_next(start_node, node)
+		_run_next(first_node, node)
 	else:
 		_run_next(node, node)
 
 
 # CALCULATIONS
+
+
+func _trigger(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = current_node.outputs["1"]
 
 
 func _string(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
@@ -351,6 +379,22 @@ func _less_equal(current_node : Dictionary, port : int, to_node : Dictionary, to
 
 func _path_ahead(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
 	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_ahead() else "false"
+
+
+func _path_back(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_back() else "false"
+
+
+func _path_left(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_left() else "false"
+
+
+func _path_right(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = "true" if get_parent().get_path_right() else "false"
+
+
+func _passengers(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:
+	to_node.computed_inputs[str(to_port)] = str(get_parent().get_passengers())
 
 
 func _position(current_node : Dictionary, port : int, to_node : Dictionary, to_port : int) -> void:

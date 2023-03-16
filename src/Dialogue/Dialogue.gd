@@ -13,6 +13,7 @@ onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var characters_timer : Timer = $CharactersTimer
 onready var rich_text_label : RichTextLabel = $MarginContainer/PanelContainer/VBoxContainer/RichTextLabel
 onready var speaker_label := $MarginContainer/PanelContainer/VBoxContainer/SpeakerLabel as Label
+onready var open_sfx := $OpenSfx as AudioStreamPlayer
 
 var current_dialogue_index = 0
 var hacker_mode := false
@@ -30,6 +31,7 @@ func _ready():
 		speaker_label.text = speaker
 	rich_text_label.bbcode_text = dialogues[current_dialogue_index]
 	characters_timer.start(0.02)
+	open_sfx.play()
 
 
 func _process(_delta : float) -> void:

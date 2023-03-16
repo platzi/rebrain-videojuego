@@ -1,6 +1,6 @@
 extends Node
 
-const DEBUG := true
+const DEBUG := false
 
 signal open_scripting
 signal trigger_global
@@ -12,6 +12,7 @@ signal scripting_node_added
 signal scripting_node_connection
 signal screenshake
 signal screenshake_finished
+signal node_info_pressed
 
 var scripting_mode := false
 var disable_inputs := false
@@ -19,6 +20,7 @@ var disable_scripting := false
 var player_name := ""
 var is_game_paused := false
 var is_game_over := false
+var scripting_area_hover : ScriptingArea
 
 
 func _ready() -> void:

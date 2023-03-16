@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/images/entities/log_door.png" type="Texture" id=1]
 [ext_resource path="res://src/Entity/ScriptingArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entity/Blink.gdshader" type="Shader" id=3]
 [ext_resource path="res://src/Entity/LogDoor.gd" type="Script" id=4]
+[ext_resource path="res://assets/sounds/door_open.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/door_close.wav" type="AudioStream" id=6]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -12,7 +14,7 @@ shader_param/blocked = null
 shader_param/blink = null
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28, 18 )
+extents = Vector2( 36, 36 )
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 42.0
@@ -178,6 +180,10 @@ node_limit_TRIGGER = 0
 node_limit_PRESSED = 0
 node_limit_RELEASED = 0
 node_limit_MOVE_FORWARD = 0
+node_limit_MOVE_RIGHT = 0
+node_limit_MOVE_DOWN = 0
+node_limit_MOVE_LEFT = 0
+node_limit_MOVE_UP = 0
 node_limit_ROTATE_LEFT = 0
 node_limit_ROTATE_RIGHT = 0
 node_limit_WAIT = 0
@@ -196,7 +202,12 @@ node_limit_LESS = 0
 node_limit_LESS_EQUAL = 0
 node_limit_COMPARE_ENTITY = 0
 node_limit_COMPARE_STRING = 0
+node_limit_REPEAT = 0
 node_limit_PATH_AHEAD = 0
+node_limit_PATH_BACK = 0
+node_limit_PATH_LEFT = 0
+node_limit_PATH_RIGHT = 0
+node_limit_PASSENGERS = 0
 node_limit_NUMBER = 0
 node_limit_STRING = 0
 node_limit_BOOL = 0
@@ -211,6 +222,7 @@ offset = Vector2( 0, -24 )
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
 shape = SubResource( 1 )
 
 [node name="ScriptingArea" parent="." instance=ExtResource( 2 )]
@@ -221,3 +233,9 @@ shape_2d = SubResource( 7 )
 anims/Close = SubResource( 4 )
 anims/Open = SubResource( 6 )
 anims/RESET = SubResource( 5 )
+
+[node name="OpenSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="CloseSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )

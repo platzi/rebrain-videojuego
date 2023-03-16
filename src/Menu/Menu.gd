@@ -31,12 +31,17 @@ onready var customization_btn := get_node(customization_btn_path) as Button
 onready var settings_btn := get_node(settings_btn_path) as Button
 onready var credits_btn := get_node(credits_btn_path) as Button
 
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 func _ready() -> void:
+	BackgroundMusic.play_menu_bgm()
+	
 	start_btn.connect("pressed", self, "_on_StartBtn_pressed")
 	select_level_btn.connect("pressed", self, "_on_SelectLevelBtn_pressed")
 	customization_btn.connect("pressed", self, "_on_CustomizationBtn_pressed")
 	settings_btn.connect("pressed", self, "_on_SettingsBtn_pressed")
+	credits_btn.connect("pressed", self, "_on_CreditsBtn_pressed")
 	
 	$PlayerAP.play("Start")
 	$LogoAP.play("Start")
@@ -78,17 +83,19 @@ func _create_tween(obj : Control, delay : float) -> Tween:
 
 
 func _on_StartBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
+	button_sfx.play()
 	var config = ConfigFile.new()
 	var err = config.load("user://re_brain_data.cfg")
 	SceneChanger.change_scene("res://src/Menu/CustomizationMenu.tscn")
 
 
 func _on_SelectLevelBtn_pressed() -> void:
+	button_sfx.play()
 	SceneChanger.change_scene("res://src/Menu/LevelSelectionMenu.tscn")
 
 
 func _on_CustomizationBtn_pressed() -> void:
+	button_sfx.play()
 	SceneChanger.change_scene("res://src/Menu/CustomizationMenu.tscn")
 
 
@@ -99,14 +106,10 @@ func _on_SubMenu_closed() -> void:
 
 
 func _on_SettingsBtn_pressed() -> void:
-	#$AudioStreamPlayer2D.play()
+	button_sfx.play()
 	SceneChanger.change_scene("res://src/Menu/SettingsMenu.tscn")
 
 
 func _on_CreditsBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	var credits_inst = load("res://src/Menu/Credits.tscn").instance()
-	get_tree().current_scene.add_child(credits_inst)
-	credits_inst.connect("close_credits", self, "_on_SubMenu_closed")
-	#$MarginContainer/VBoxContainer/MarginContainer.modulate.a = 0.0
-	$AnimationPlayer2.play("Hide")
+	button_sfx.play()
+	SceneChanger.change_scene("res://src/Menu/Credits.tscn")

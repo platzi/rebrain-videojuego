@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Entity/Cage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Entity/Key.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Entity/Monkey.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/hints/hints_repeat.png" type="Texture" id=7]
+[ext_resource path="res://src/Levels/Base/EventHint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/HintPanel/HintResource.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Levels/LevelLogicRepeatAdvanced.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 500, 500 )
+
+[sub_resource type="Resource" id=1]
+resource_name = "Hint"
+script = ExtResource( 9 )
+image = ExtResource( 7 )
+content = "[b][color=purple]Nodo Repetir[/color][/b]
+Permite repetir la sequencia de salida marcada como Cuerpo la cantidad de veces indicadas en la entrada Veces, al finalizar se ejecutara la sequencia de la salida marcada como Salida."
+
+[node name="LevelLogicRepeat" instance=ExtResource( 3 )]
+
+[node name="CameraAttractor" parent="." index="1" instance=ExtResource( 10 )]
+position = Vector2( 456, 504 )
+collision_shape = SubResource( 2 )
+zoom_level = 1.2
+
+[node name="Player" parent="Entities/YSort" index="0"]
+position = Vector2( 456, 408 )
+direction = 90.0
+
+[node name="Teleporter" parent="Entities/YSort" index="1"]
+target_scene = ExtResource( 11 )
+
+[node name="Key" parent="Entities/YSort" index="2" instance=ExtResource( 4 )]
+position = Vector2( 384, 576 )
+cage_path = NodePath("../Cage")
+camera_path = NodePath("../../../Camera")
+
+[node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
+position = Vector2( 456, 264 )
+hair_color = Color( 1, 1, 0.352941, 1 )
+skin_color = Color( 0.0941176, 0.752941, 0.0901961, 1 )
+shirt_color = Color( 0.360784, 0.803922, 0.0862745, 1 )
+pants_color = Color( 0.815686, 0, 0, 1 )
+shoes_color = Color( 0.45098, 0.0705882, 0.796078, 1 )
+
+[node name="Monkey" parent="Entities/YSort" index="4" instance=ExtResource( 6 )]
+position = Vector2( 528, 576 )
+direction = 90.0
+node_limit_UPDATE = 1
+node_limit_MOVE_FORWARD = 1
+node_limit_ROTATE_RIGHT = 1
+node_limit_REPEAT = 1
+node_limit_NUMBER = 1
+
+[node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 1 )]
+speaker = "Profesor"
+dialogues = [ "Repetir las mismas acciones suele cansar, lo bueno que existe el nodo Repetir para ayudar con las tareas repetitivas." ]
+
+[node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
+title = "Lógica"
+hints = [ SubResource( 1 ) ]
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 1 )]
+speaker = "Alumno"
+dialogues = [ "Que mono más kawai, ¡Arigato gozaimasu!" ]
+
+[node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
+tile_data = PoolIntArray( 262154, 0, 2, 327688, 0, 3, 327690, 0, 2, 393226, 0, 3, 524296, 0, 2, 589832, 0, 0, 589834, 0, 1, 720903, 0, 2, 720906, 0, 3, 786440, 0, 3, 786443, 0, 3, 851976, 0, 1, 851978, 0, 0, 917511, 0, 3, 983047, 0, 0, 983050, 0, 1, 983051, 0, 2 )
+
+[node name="ForestTileMap" parent="Background" index="1" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 0, 8, 262153, 0, 10, 262154, 0, 11, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 0, 65544, 327689, 2, 0, 327690, 0, 131083, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 0, 65544, 393225, 2, 65536, 393226, 0, 131083, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 0, 65544, 458761, 2, 65536, 458762, 0, 131083, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 0, 65544, 524297, 2, 131072, 524298, 0, 131083, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 0, 196616, 589833, 0, 196617, 589834, 0, 196619, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 720901, 3, 0, 720902, 1, 0, 720903, 0, 8, 720904, 0, 11, 720905, 1, 0, 720906, 0, 8, 720907, 0, 11, 720908, 1, 0, 720909, 3, 0, 786438, 1, 0, 786439, 0, 65544, 786440, 0, 131083, 786441, 1, 0, 786442, 0, 65544, 786443, 0, 131083, 786444, 1, 0, 851974, 1, 0, 851975, 0, 65544, 851976, 0, 131083, 851977, 1, 0, 851978, 0, 65544, 851979, 0, 131083, 851980, 1, 0, 917510, 1, 0, 917511, 0, 65544, 917512, 0, 65542, 917513, 0, 10, 917514, 0, 65541, 917515, 0, 131083, 917516, 1, 0, 983046, 1, 0, 983047, 0, 196616, 983048, 0, 196617, 983049, 0, 196617, 983050, 0, 196617, 983051, 0, 196619, 983052, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 1, 0, 1048586, 1, 0, 1048587, 1, 0, 1048588, 1, 0, 1114118, 3, 0, 1114119, 3, 0, 1114120, 3, 0, 1114121, 3, 0, 1114122, 3, 0, 1114123, 3, 0, 1114124, 3, 0 )
