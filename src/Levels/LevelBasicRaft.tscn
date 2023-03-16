@@ -41,6 +41,7 @@ collision_shape = SubResource( 2 )
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 672, 240 )
+direction = 180.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 11 )

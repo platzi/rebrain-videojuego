@@ -16,6 +16,8 @@ onready var sfx_hs := get_node(sfx_hs_path) as HSlider
 onready var cancel_btn := get_node(cancel_btn_path) as Button
 onready var save_btn := get_node(save_btn_path) as Button
 
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 func _ready():
 	music_hs.connect("value_changed", self, "_on_MusicHS_value_changed")
@@ -37,11 +39,13 @@ func _on_SfxHS_value_changed(value : float) -> void:
 
 
 func _on_SaveBtn_pressed() -> void:
+	button_sfx.play()
 	SaveManager.set_config(music_hs.value, sfx_hs.value)
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")
 
 
 func _on_CancelBtn_pressed() -> void:
+	button_sfx.play()
 	BackgroundMusic.set_bgm_volume(SaveManager.save_data.config.bgm_volume)
 	BackgroundMusic.set_sfx_volume(SaveManager.save_data.config.sfx_volume)
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

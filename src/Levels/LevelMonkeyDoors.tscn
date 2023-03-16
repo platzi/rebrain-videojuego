@@ -24,6 +24,7 @@ zoom_level = 1.2
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 432, 240 )
+direction = 270.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 11 )
@@ -63,51 +64,27 @@ node_limit_STRING = -1
 position = Vector2( 336, 96 )
 brain_og = "{\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-120,80],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@966\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-60],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[80,-60],\"connections_in\":[{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[340,-60],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@StringNode@966\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,120],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir1\"}}}"
 node_limit_TRIGGER = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
 node_limit_IF = 1
 node_limit_COMPARE_STRING = 1
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 node_limit_STRING = -1
 
 [node name="LogDoor2" parent="Entities/YSort" index="7" instance=ExtResource( 5 )]
 position = Vector2( 528, 96 )
 brain_og = "{\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-120,80],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@966\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-60],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[80,-60],\"connections_in\":[{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[340,-60],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@StringNode@966\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,120],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir2\"}}}"
 node_limit_TRIGGER = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
 node_limit_IF = 1
 node_limit_COMPARE_STRING = 1
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 node_limit_STRING = -1
 
 [node name="LogDoor3" parent="Entities/YSort" index="8" instance=ExtResource( 5 )]
 position = Vector2( 720, 96 )
 brain_og = "{\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-120,80],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@966\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-340,-60],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[80,-60],\"connections_in\":[{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[340,-60],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@StringNode@966\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-340,120],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir3\"}}}"
 node_limit_TRIGGER = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
 node_limit_IF = 1
 node_limit_COMPARE_STRING = 1
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 node_limit_STRING = -1
 
 [node name="Barrel" parent="Entities/YSort" index="9" instance=ExtResource( 1 )]

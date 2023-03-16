@@ -26,6 +26,7 @@ zoom_level = 1.2
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 312 )
+direction = 270.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 13 )

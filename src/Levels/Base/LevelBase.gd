@@ -16,7 +16,7 @@ onready var cage := $Entities/YSort/Cage as Entity
 
 
 func _ready() -> void:
-	BackgroundMusic.play_game_bgm()
+	BackgroundMusic.play_game_bgm_02()
 	Globals.connect("node_info_pressed", self, "_on_node_info_pressed")
 	intro_events.execute()
 	if cage:

@@ -25,6 +25,7 @@ Este nodo revisara si la condición de entrada (la cual es un booleano que puede
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 408, 264 )
+direction = 90.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 4 )
@@ -48,7 +49,6 @@ hair_style = 1
 hair_color = Color( 0.313726, 0.705882, 1, 1 )
 skin_color = Color( 0.658824, 0.145098, 0.145098, 1 )
 shirt_color = Color( 0.172549, 0.172549, 0.172549, 1 )
-pants_color = Color( 1, 1, 1, 1 )
 shoes_color = Color( 0.815686, 0, 0, 1 )
 
 [node name="Palm" parent="Entities/YSort" index="5" instance=ExtResource( 11 )]

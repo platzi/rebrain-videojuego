@@ -15,6 +15,7 @@
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 600, 72 )
+direction = 90.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 9 )

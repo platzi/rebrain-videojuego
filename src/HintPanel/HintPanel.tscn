@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sounds/open.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/themes/hint_panel_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/themes/font_12_bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/themes/main_menu_button_small.tres" type="Theme" id=4]
 [ext_resource path="res://src/HintPanel/HintPanel.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
@@ -236,4 +237,8 @@ anims/RESET = SubResource( 2 )
 
 [node name="OpenSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+bus = "Sfx"
+
+[node name="ButtonSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 bus = "Sfx"

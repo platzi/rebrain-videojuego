@@ -16,6 +16,7 @@
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 624, 216 )
+direction = 180.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 9 )
@@ -51,7 +52,6 @@ camera_path = NodePath("../../../Camera")
 position = Vector2( 744, 216 )
 hair_style = 2
 hair_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-skin_color = Color( 0.482353, 0.0901961, 0.752941, 1 )
 shirt_color = Color( 0.815686, 0, 0, 1 )
 pants_color = Color( 0.745098, 0.454902, 0, 1 )
 shoes_color = Color( 0.172549, 0.172549, 0.172549, 1 )

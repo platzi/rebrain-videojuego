@@ -21,6 +21,9 @@ Hay muchas maneras de obtener la llave, una de ellas es caminando hacía ella."
 
 [node name="LevelTutorial" instance=ExtResource( 3 )]
 
+[node name="Player" parent="Entities/YSort" index="0"]
+direction = 270.0
+
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 1 )
 

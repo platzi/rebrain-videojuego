@@ -8,6 +8,8 @@ export(NodePath) var levels_hbc_path
 onready var back_btn := get_node(back_btn_path) as Button
 onready var levels_hbc := get_node(levels_hbc_path) as HBoxContainer
 
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 func _ready():
 	BackgroundMusic.play_menu_bgm()
@@ -23,4 +25,5 @@ func _load_levels() -> void:
 
 
 func _on_BackBtn_pressed() -> void:
+	button_sfx.play()
 	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

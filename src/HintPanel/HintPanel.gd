@@ -24,6 +24,7 @@ onready var content_container := get_node(content_container_path) as MarginConta
 onready var close_btn := get_node(close_btn_path) as Button
 onready var next_btn := get_node(next_btn_path) as Button
 onready var open_sfx := $OpenSfx as AudioStreamPlayer
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
 
 
 var hints := []
@@ -78,10 +79,12 @@ func _next_hint() -> void:
 
 
 func _on_NextBtn_pressed() -> void:
+	button_sfx.play()
 	_next_hint()
 
 
 func _on_CloseBtn_pressed() -> void:
+	button_sfx.play()
 	open_sfx.pitch_scale = 0.8
 	open_sfx.play()
 	animation_player.play("Close")

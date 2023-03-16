@@ -10,6 +10,7 @@ onready var trigger_zone := $Game/TriggerZone as Area2D
 
 
 func _ready() -> void:
+	BackgroundMusic.play_game_bgm_01()
 	Globals.disable_scripting = true
 	Globals.disable_inputs = true
 	player.direction = 270

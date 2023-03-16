@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/images/particles/circle.png" type="Texture" id=1]
 [ext_resource path="res://src/TraslateEffect/TraslateEffect.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/entity_restart2.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/entity_restart.wav" type="AudioStream" id=4]
 
 [node name="TraslateEffect" type="Node2D"]
 pause_mode = 2
@@ -13,3 +15,11 @@ particle_scale = 1.5
 sprites_count = 6
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sfx"
+
+[node name="LandSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sfx"

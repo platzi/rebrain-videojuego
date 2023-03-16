@@ -1,22 +1,17 @@
 extends Control
 
-export(NodePath) var return_btn_path 
+
+export(NodePath) var back_btn_path
 
 
-signal close_credits
+onready var back_btn := get_node(back_btn_path) as Button
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
 
 
-onready var return_btn : Button = get_node(return_btn_path)
+func _ready():
+	back_btn.connect("pressed", self, "_on_BackBtn_pressed")
 
 
-func _ready() -> void:
-	return_btn.connect("pressed", self, "_on_ReturnBtn_pressed")
-	$AnimationPlayer.play("Show")
-
-
-func _on_ReturnBtn_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AnimationPlayer.play("Hide")
-	yield($AnimationPlayer, "animation_finished")
-	queue_free()
-	emit_signal("close_credits")
+func _on_BackBtn_pressed() -> void:
+	button_sfx.play()
+	SceneChanger.change_scene("res://src/Menu/Menu.tscn")

@@ -13,6 +13,7 @@ onready var ui_canvas_layer := $UI as CanvasLayer
 onready var trigger_zone := $TriggerZone as Area2D
 onready var flash_animation_player := $FlashAnimationPlayer as AnimationPlayer
 onready var teleporter := $Entities/YSort/Teleporter as Entity
+onready var shake_sfx := $ShakeSfx as AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -250,7 +251,9 @@ func _on_dialogue_1_finished() -> void:
 
 
 func _on_dialogue_7_finished() -> void:
-	Globals.screenshake(1.0, 5.0)
+	BackgroundMusic.stream_paused = true
+	shake_sfx.play()
+	Globals.screenshake(0.6, 5.0)
 	flash_animation_player.connect("animation_finished", self, "_dialogue_8", [], CONNECT_ONESHOT)
 	Globals.connect("screenshake_finished", flash_animation_player, "play", ["Flash"], CONNECT_ONESHOT)
 

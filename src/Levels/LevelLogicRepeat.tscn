@@ -32,6 +32,7 @@ zoom_level = 1.2
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 456, 408 )
+direction = 90.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 11 )
@@ -43,7 +44,6 @@ camera_path = NodePath("../../../Camera")
 
 [node name="Cage" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
 position = Vector2( 456, 264 )
-hair_style = 4
 hair_color = Color( 1, 1, 0.352941, 1 )
 skin_color = Color( 0.0941176, 0.752941, 0.0901961, 1 )
 shirt_color = Color( 0.360784, 0.803922, 0.0862745, 1 )

@@ -33,6 +33,7 @@ collision_shape = SubResource( 1 )
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 276 )
+direction = 270.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 death_particles = ExtResource( 12 )

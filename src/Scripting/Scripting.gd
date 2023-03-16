@@ -14,6 +14,8 @@ onready var hair_sprite : Sprite = $MarginContainer/HBoxContainer/PanelContainer
 onready var save_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/SaveBtn
 onready var restore_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/RestoreBtn
 onready var cancel_btn : Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/CancelBtn
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
+
 
 var brain := {}
 
@@ -182,12 +184,14 @@ func _create_new_node(node_type : String) -> void:
 
 
 func on_SaveBtn_pressed() -> void:
+	button_sfx.play()
 	_target_entity.brain_dict = scripting_graph.save()
 	_target_entity.restart()
 	close()
 
 
 func on_RestoreBtn_pressed() -> void:
+	button_sfx.play()
 	if _target_entity.brain_og != "":
 		var result = JSON.parse(_target_entity.brain_og)
 		if result.error == OK:
@@ -197,6 +201,7 @@ func on_RestoreBtn_pressed() -> void:
 
 
 func on_CancelBtn_pressed() -> void:
+	button_sfx.play()
 	close()
 
 

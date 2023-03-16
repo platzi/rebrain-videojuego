@@ -29,9 +29,11 @@ Activa los nodos Disparador de todas las entidades y envía un texto como Identi
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 360 )
+direction = 270.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 death_particles = ExtResource( 11 )
+target_scene = ExtResource( 11 )
 
 [node name="Cage" parent="Entities/YSort" index="2" instance=ExtResource( 1 )]
 position = Vector2( 480, 0 )
@@ -39,7 +41,6 @@ hair_color = Color( 1, 1, 0.352941, 1 )
 skin_color = Color( 0.0901961, 0.627451, 0.752941, 1 )
 shirt_color = Color( 0.878431, 0.866667, 0.0196078, 1 )
 pants_color = Color( 0.172549, 0.172549, 0.172549, 1 )
-shoes_color = Color( 0.745098, 0.454902, 0, 1 )
 
 [node name="Key" parent="Entities/YSort" index="3" instance=ExtResource( 4 )]
 position = Vector2( 480, 72 )
@@ -56,15 +57,7 @@ node_limit_SHOOT_TRIGGER = 1
 position = Vector2( 480, 168 )
 brain_og = "{\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[-80,-40],\"connections_in\":[],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
 node_limit_TRIGGER = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 
 [node name="Palm" parent="Entities/YSort" index="6" instance=ExtResource( 13 )]
 position = Vector2( 288, 0 )

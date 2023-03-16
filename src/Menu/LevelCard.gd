@@ -14,6 +14,7 @@ export(String) var title setget _set_title
 
 onready var level_image_tr := get_node(level_image_tr_path) as TextureRect
 onready var title_label := get_node(title_label_path) as Label
+onready var button_sfx := $ButtonSfx as AudioStreamPlayer
 
 
 var completed := false setget _set_completed
@@ -51,5 +52,6 @@ func _set_completed(new_value : bool) -> void:
 
 
 func _on_pressed() -> void:
+	button_sfx.play()
 	if target_scene:
 		SceneChanger.change_scene_to(target_scene)

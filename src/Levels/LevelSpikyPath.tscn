@@ -23,6 +23,7 @@ collision_shape = SubResource( 1 )
 
 [node name="Player" parent="Entities/YSort" index="0"]
 position = Vector2( 480, 192 )
+direction = 270.0
 
 [node name="Teleporter" parent="Entities/YSort" index="1"]
 target_scene = ExtResource( 11 )
@@ -32,18 +33,10 @@ position = Vector2( 480, 96 )
 brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-260,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@374\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"StringNode\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-260,-260],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@374\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar1\"}},\"@StringNode@127\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-260,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir1\"}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-20,20],\"connections_in\":[{\"type\":2,\"from\":\"@StringNode@127\",\"from_port\":0,\"to_port\":1},{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@CompareStringNode@374\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-20,-300],\"connections_in\":[{\"type\":2,\"from\":\"StringNode\",\"from_port\":0,\"to_port\":0},{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@544\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[180,-140],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0},{\"type\":0,\"from_port\":1,\"to\":\"@IfNode@544\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[420,20],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@IfNode@544\":{\"type\":\"IF\",\"disabled\":false,\"position\":[400,-300],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":1,\"to_port\":0},{\"type\":4,\"from\":\"@CompareStringNode@374\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"CloseNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"CloseNode\":{\"type\":\"CLOSE\",\"disabled\":false,\"position\":[640,-280],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@544\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
 blocked = true
 node_limit_TRIGGER = 1
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
 node_limit_CLOSE = 1
 node_limit_IF = 2
 node_limit_COMPARE_STRING = 2
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 node_limit_STRING = -1
 
 [node name="LogDoor2" parent="Entities/YSort" index="3" instance=ExtResource( 2 )]
@@ -51,17 +44,9 @@ position = Vector2( 480, -72 )
 brain_og = "{\"UpdateNode\":{\"type\":\"TRIGGER\",\"disabled\":false,\"position\":[-260,-140],\"connections_in\":[],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"CompareStringNode\",\"to_port\":0},{\"type\":2,\"from_port\":1,\"to\":\"@CompareStringNode@343\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"1\":\"\"}},\"@StringNode@261\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-260,-260],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"@CompareStringNode@343\",\"to_port\":0}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"cerrar2\"}},\"@StringNode@278\":{\"type\":\"STRING\",\"disabled\":false,\"position\":[-260,20],\"connections_in\":[],\"connections_out\":[{\"type\":2,\"from_port\":0,\"to\":\"CompareStringNode\",\"to_port\":1}],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{\"0\":\"abrir2\"}},\"CompareStringNode\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-20,20],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":0},{\"type\":2,\"from\":\"@StringNode@278\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"IfNode\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"@CompareStringNode@343\":{\"type\":\"COMPARE_STRING\",\"disabled\":false,\"position\":[-20,-300],\"connections_in\":[{\"type\":2,\"from\":\"UpdateNode\",\"from_port\":1,\"to_port\":1},{\"type\":2,\"from\":\"@StringNode@261\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[{\"type\":4,\"from_port\":0,\"to\":\"@IfNode@424\",\"to_port\":1}],\"computed_inputs\":{\"0\":\"\",\"1\":\"\"},\"inputs\":{\"0\":\"\",\"1\":\"\"},\"outputs\":{\"0\":\"false\"}},\"IfNode\":{\"type\":\"IF\",\"disabled\":false,\"position\":[180,-140],\"connections_in\":[{\"type\":0,\"from\":\"UpdateNode\",\"from_port\":0,\"to_port\":0},{\"type\":4,\"from\":\"CompareStringNode\",\"from_port\":0,\"to_port\":1}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"OpenNode\",\"to_port\":0},{\"type\":0,\"from_port\":1,\"to\":\"@IfNode@424\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"OpenNode\":{\"type\":\"OPEN\",\"disabled\":false,\"position\":[420,20],\"connections_in\":[{\"type\":0,\"from\":\"IfNode\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}},\"@IfNode@424\":{\"type\":\"IF\",\"disabled\":false,\"position\":[400,-300],\"connections_in\":[{\"type\":4,\"from\":\"@CompareStringNode@343\",\"from_port\":0,\"to_port\":1},{\"type\":0,\"from\":\"IfNode\",\"from_port\":1,\"to_port\":0}],\"connections_out\":[{\"type\":0,\"from_port\":0,\"to\":\"CloseNode\",\"to_port\":0}],\"computed_inputs\":{\"1\":\"false\"},\"inputs\":{\"1\":\"false\"},\"outputs\":{}},\"CloseNode\":{\"type\":\"CLOSE\",\"disabled\":false,\"position\":[640,-280],\"connections_in\":[{\"type\":0,\"from\":\"@IfNode@424\",\"from_port\":0,\"to_port\":0}],\"connections_out\":[],\"computed_inputs\":{},\"inputs\":{},\"outputs\":{}}}"
 blocked = true
 node_limit_TRIGGER = 2
-node_limit_MOVE_RIGHT = 0
-node_limit_MOVE_DOWN = 0
-node_limit_MOVE_LEFT = 0
-node_limit_MOVE_UP = 0
 node_limit_OPEN = 1
 node_limit_CLOSE = 1
 node_limit_IF = 2
-node_limit_PATH_BACK = 0
-node_limit_PATH_LEFT = 0
-node_limit_PATH_RIGHT = 0
-node_limit_PASSENGERS = 0
 node_limit_STRING = -1
 
 [node name="ButtonEntity" parent="Entities/YSort" index="4" instance=ExtResource( 6 )]
