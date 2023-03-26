@@ -156,7 +156,7 @@ node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Alumno"
-dialogues = [ "Eres un maestro con el control mental, gracias por la ayuda." ]
+dialogues = [ "LevelRaftControl.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 9 )]
 tile_data = PoolIntArray( -458752, 0, 3, -458747, 0, 2, -458742, 0, 2, -458737, 0, 3, -393216, 0, 0, -393207, 0, 2, -393202, 0, 0, -393197, 0, 1, -393196, 0, 2, -327675, 0, 3, -262140, 0, 3, -262139, 0, 3, -262135, 0, 1, -262132, 0, 3, -262131, 0, 3, -262129, 0, 2, -196604, 0, 1, -196602, 0, 0, -196599, 0, 3, -196594, 0, 2, -196593, 0, 1, 65544, 0, 1, 65547, 0, 2, 131080, 0, 3, 262143, 0, 0, 196611, 0, 0, 196614, 0, 3, 196621, 0, 2, 196624, 0, 2, 196625, 0, 2, 196627, 0, 3, 262144, 0, 3, 262145, 0, 0, 262146, 0, 2, 262148, 0, 3, 262149, 0, 1, 262152, 0, 0, 262159, 0, 3, 262164, 0, 1, 393226, 0, 1, 458760, 0, 3, 458763, 0, 0, 524296, 0, 0, 524299, 0, 0, 589833, 0, 3, 589835, 0, 3 )

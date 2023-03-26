@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://assets/locale/levels_dialogues.es.translation" ]
+
+source_file="res://assets/locale/levels_dialogues.csv"
+dest_files=[ "res://assets/locale/levels_dialogues.es.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

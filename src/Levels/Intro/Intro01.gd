@@ -23,8 +23,8 @@ func _dialogue_1() -> void:
 	dialogue_inst.connect("finished", self, "_enable_inputs")
 	dialogue_inst.speaker = "Anunciante"
 	dialogue_inst.dialogues = [
-		"Atención, les informamos a nuestros alumnos que la primer clase del Platziverso esta por comenzar, porfavor dirijanse al edificio principal lo más rápido posible",
-		"Para los despistados, les recuerdo que pueden moverse presionando las teclas [img=18]assets/images/keyboard/w.png[/img][img=18]assets/images/keyboard/a.png[/img][img=18]assets/images/keyboard/s.png[/img][img=18]assets/images/keyboard/d.png[/img]"
+		"Intro01.Dialogue1.01",
+		"Intro01.Dialogue1.02"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -35,8 +35,8 @@ func _dialogue_2() -> void:
 	dialogue_inst.connect("finished", self, "_enable_inputs")
 	dialogue_inst.speaker = "Anunciante"
 	dialogue_inst.dialogues = [
-		"Tambien les recordamos que para moverse entre los niveles pueden utilizar los paneles de teletransporte",
-		"Solo basta caminar encima de estos para avanzar al siguiente nivel"
+		"Intro01.Dialogue2.01",
+		"Intro01.Dialogue2.02"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 

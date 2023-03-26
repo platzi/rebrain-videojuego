@@ -123,15 +123,15 @@ blocked = true
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 9 )]
 speaker = "Profesor"
-dialogues = [ "Oh vaya, esto se esta volviendo cada vez más complicado, veo que tendrás que hacer que la rana encuentra un camino válido haciendola girar, talvez si..." ]
+dialogues = [ "LevelDoorsButtons.IntroEvents.EventDialogue.01" ]
 
 [node name="EventDialogue2" parent="IntroEvents" index="1" instance=ExtResource( 9 )]
 speaker = "hacker"
-dialogues = [ "¡Basta de charla!, se termino la ayuda, a partir de este nivel estas solo, te deseo suerte, se que la necesitaras [shake rate=20 level=10]JAJAJAJA[/shake]" ]
+dialogues = [ "LevelDoorsButtons.IntroEvents.EventDialogue2.01" ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 9 )]
 speaker = "Alumno"
-dialogues = [ "Que miedo que me da ese hacker, gracias por la ayuda pero ahora estas atrapado, ¿como saldrás de ahí?" ]
+dialogues = [ "LevelDoorsButtons.SavedEvents.EventDialogue2.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 11 )]
 tile_data = PoolIntArray( -65522, 0, 2, -65521, 0, 3, 65541, 0, 3, 65543, 0, 1, 65545, 0, 0, 65546, 0, 0, 131077, 0, 3, 131083, 0, 1, 196619, 0, 2, 196622, 0, 2, 196623, 0, 1, 262151, 0, 3, 262154, 0, 1, 327688, 0, 3, 393230, 0, 0, 458759, 0, 3, 458760, 0, 0, 458763, 0, 3, 524293, 0, 2, 524298, 0, 1, 524299, 0, 3, 589838, 0, 3, 589840, 0, 1, 655365, 0, 1, 655366, 0, 0, 655375, 0, 1, 655377, 0, 2, 655378, 0, 1 )

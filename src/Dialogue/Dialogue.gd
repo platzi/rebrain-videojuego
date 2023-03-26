@@ -29,7 +29,9 @@ func _ready():
 	else:
 		set_process(false)
 		speaker_label.text = speaker
-	rich_text_label.bbcode_text = dialogues[current_dialogue_index]
+	rich_text_label.bbcode_text = tr(dialogues[current_dialogue_index]).format({
+		"player_name" : Globals.player_name
+	})
 	characters_timer.start(0.02)
 	open_sfx.play()
 
@@ -39,6 +41,7 @@ func _process(_delta : float) -> void:
 	for i in range(6):
 		text = text + char(65 + randi() % 26)
 	speaker_label.text = text
+
 
 func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
@@ -53,7 +56,9 @@ func skip() -> void:
 		current_dialogue_index += 1
 		if current_dialogue_index < dialogues.size():
 			rich_text_label.visible_characters = 0
-			rich_text_label.bbcode_text = dialogues[current_dialogue_index]
+			rich_text_label.bbcode_text = tr(dialogues[current_dialogue_index]).format({
+				"player_name" : Globals.player_name
+			})
 		else:
 			animation_player.play("Close")
 			animation_player.connect("animation_finished", self, "_destroy")

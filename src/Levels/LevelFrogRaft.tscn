@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Levels/TileMaps/ForestTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/Player/CameraAttractor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Levels/TileMaps/ForestDetailsTileMap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Levels/LevelRaftControl.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Levels/Base/EventDialogue.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 500 )
@@ -84,6 +85,10 @@ position = Vector2( 456, 312 )
 position = Vector2( 648, 312 )
 cage_path = NodePath("../Cage")
 camera_path = NodePath("../../../Camera")
+
+[node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 11 )]
+speaker = "Alumno"
+dialogues = [ "LevelFrogRaft.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 9 )]
 tile_data = PoolIntArray( -524278, 0, 3, -524277, 0, 0, -524276, 0, 0, -458742, 0, 2, -458740, 0, 3, -327670, 0, 0, -327668, 0, 2, -131068, 0, 1, -131067, 0, 0, -131061, 0, 2, -131060, 0, 1, -131059, 0, 1, -131055, 0, 3, -131054, 0, 3, -65527, 0, 1, -65526, 0, 3, 4, 0, 1, 17, 0, 3, 65540, 0, 3, 65554, 0, 2, 131077, 0, 0, 131082, 0, 2, 131084, 0, 3, 131085, 0, 1, 131090, 0, 1, 196612, 0, 0, 196613, 0, 2, 196617, 0, 3, 196626, 0, 3, 262154, 0, 0, 262157, 0, 3, 393230, 0, 2, 458760, 0, 1, 458761, 0, 3, 458762, 0, 0, 458764, 0, 1, 458766, 0, 1 )

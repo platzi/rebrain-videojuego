@@ -1,0 +1,6 @@
+key,es
+Intro02.Hint1.01,[b][color=#3700a7]Modo scripting[/color][/b]\nPresiona [img=36]assets/images/keyboard/tab.png[/img] para activar el [color=#3700a7]Modo scripting[/color]. En este modo se resaltan las entidades con las cuales puedes interactuar.
+Intro02.Hint2.01,"[b][color=#3700a7]ReBrain[/color][/b]\nAl estar en el [color=#3700a7]Modo Scripting[/color] y hacer click sobre una entidad se abrirá el cerebro de esta, desde aquí podrás modificar su comportamiento utilizando distintos nodos."
+Intro02.Hint3.01,"[b][color=#3700a7]Agregar nodo[/color][/b]\nCon click derecho en la gráfica se abrirá el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
+Intro02.Hint4.01,[b][color=#3700a7]Conectar nodos[/color][/b]\nArrastra con click izquierdo los círculos de las entradas o salidas para crear una conexión entre nodos.
+Intro02.Hint5.01,[b][color=#3700a7]Guardar[/color][/b]\nGuarda los cambios que se hayan realizado al cerebro de la entidad y hace que esta se reinicie a su posición inicial.

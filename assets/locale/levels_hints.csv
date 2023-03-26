@@ -1,0 +1,27 @@
+key,es
+LevelBasicRaft.IntroEvents.EventHint.01,"[b][color=purple]Balsa[/color][/b]
+Puede navegar por las aguas sin problemas y tiene nodos especiales para moverse en la dirección deseada y para contar el número de pasajeros."
+LevelCompareString.IntroEvents.EventHint.01,"[b][color=purple]Comparar Texto[/color][/b]
+Compara ambos textos de la entrada y envía un booleano verdadero si ambos coinciden, en caso contrario enviará un booleano falso."
+LevelEventTrigger3.IntroEvents.EventHint.01,"[b][color=purple]Recordatorio[/color][/b]
+Siempre es buena idea revisar los nodos que tienes disponibles."
+LevelEventTrigger.IntroEvents.EventHint.01,"[b][color=purple]Nodo Disparador[/color][/b]
+Este nodo es un evento que se activa cuando se recibe una señal lanzada desde cualquier entidad por el nodo Accionar Disparador, recibiendo como parámetro un texto como Identificador.
+
+[b][color=purple]Nodo Accionar Disparador[/color][/b]
+Activa los nodos Disparador de todas las entidades y envía un texto como Identificador para ser usado junto con el evento que lo reciba."
+LevelEventUpdate.IntroEvents.EventHint.01,"[b][color=purple]Eventos[/color][/b]
+Los nodos no se ejecutan por sí solos, es necesario que cada secuencia comience por un evento, un ejemplo de un [color=purple]Evento[/color] muy importante es el nodo [color=purple]Actualizar[/color]
+
+[b][color=purple]Nodo Actualizar[/color][/b]
+Se ejecuta automáticamente cada vez que se termina la secuencia establecida."
+LevelLogicPathAhead.IntroEvents.EventHint.01,"[b][color=purple]Nodo Si[/color][/b]
+Este nodo revisará si la condición de entrada (la cual es un booleano que puede ser Verdadero o Falso) se cumple, si así es se ejecutará la secuencia de la salida marcada como Verdadero, en caso contrario se ejecutará la secuencia de la salida marcada como Falso."
+LevelLogicRepeat.IntroEvents.EventHint.01,"[b][color=purple]Nodo Repetir[/color][/b]
+Permite repetir la secuencia de salida marcada como Cuerpo la cantidad de veces indicadas en la entrada Veces, al finalizar se ejecutará la secuencia de la salida marcada como Salida."
+LevelRotateAction.IntroEvents.EventHint.01,"[b][color=purple]Nodos de acción[/color][/b]
+Son nodos que permiten a las entidades realizar diferentes tipos de acciones, como moverse y girar.
+Existen nodos de acción especiales que solo están disponibles para ciertas entidades."
+LevelTutorial.IntroEvents.EventHint.01,"[b][color=purple]Completar el nivel[/color][/b]
+El objetivo principal es rescatar al alumno, para esto es necesario obtener la llave del nivel.
+Hay muchas maneras de obtener la llave, una de ellas es caminando hacía ella."

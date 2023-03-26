@@ -1,0 +1,46 @@
+key,es
+LevelActionShoot.IntroEvents.EventDialogue.01,"Hay entidades que tienen acciones especiales y el mono es una de ellas, deberás utilizarla para poder abrir el camino"
+LevelActionShoot.SavedEvents.EventDialogue.01,"Ese mono me estaba dando mala vibra, ¡gracias por el rescate compañero!"
+LevelAdvancedRaft.SavedEvents.EventDialogue.01,¿Por qué la rana cruzó el lago?
+LevelAdvancedRaft.SavedEvents.EventDialogue.02,"¡Para rescatarme! Aunque en realidad quien me rescato hás sido tú, ¡Gracias!"
+LevelBasicRaft.IntroEvents.EventDialogue.01,"Todo indica que habrá que navegar un poco por este nivel, tendrás que utilizar tus habilidades lógicas para mover esa balsa."
+LevelBasicRaft.SavedEvents.EventDialogue.01,¡Ahoy capitan! Gracias por la ayuda.
+LevelBasicSequence.IntroEvents.EventDialogue.01,"Mueve esa rana y consigue la llave, ¡tu puedes!"
+LevelBasicSequence.SavedEvents.EventDialogue.01,¡Que asco que me dan las ranas! Gracias por sacarme de aquí.
+LevelCompareString.IntroEvents.EventDialogue.01,"Interesante, parece que tendrás que controlar el camino de la rana haciendo uso de los botones que tienes delante."
+LevelCompareString.SavedEvents.EventDialogue.01,"Si que le has lavado el cerebro a esa entidad, gracias por la ayuda."
+LevelDamageBasic.IntroEvents.EventDialogue.01,"Ten cuidado en este nivel, estas entidades pueden dañarte al acercarte a ellas, aunque tu salud en la vida real no se vera afectada..."
+LevelDamageBasic.SavedEvents.EventDialogue.01,"Esas criaturas puntiagudas si que dan miedo, gracias por el rescate."
+LevelDoorsButtons.IntroEvents.EventDialogue.01,"Oh vaya, esto se está volviendo cada vez más complicado, veo que tendrás que hacer que la rana encuentra un camino válido haciéndola girar, talvez si..."
+LevelDoorsButtons.IntroEvents.EventDialogue2.01,"¡Basta de charla!, se termino la ayuda, a partir de este nivel estas solo, te deseo suerte, se que la necesitaras [shake rate=20 level=10]JAJAJAJA[/shake]"
+LevelDoorsButtons.SavedEvents.EventDialogue2.01,"Que miedo que me da ese hacker, gracias por la ayuda pero ahora estas atrapado, ¿como saldrás de ahí?"
+LevelEventTrigger2.IntroEvents.EventDialogue.01,"Habrá niveles que se vuelvan imposibles de resolver por una mala acción, siempre puedes reiniciar el nivel desde el menú de pausa."
+LevelEventTrigger2.SavedEvents.EventDialogue.01,"Yo lo habría podido hacer mejor, igual gracias."
+LevelEventTrigger3.IntroEvents.EventDialogue.01,"Este nivel se nota que es más complicado, pero yo se muy bien que podrás resolverlo."
+LevelEventTrigger3.SavedEvents.EventDialogue.01,"¡Wow! Ni siquiera a mi se me habría ocurrido como superar este puzzle, gracias por la ayuda."
+LevelEventTrigger.IntroEvents.EventDialogue.01,"Para resolver este nivel necesitas comunicar varias entidades entre sí, para esto vamos a necesitar del nodo Disparador y Accionar Disparador."
+LevelEventTrigger.SavedEvents.EventDialogue.01,¿Realmente seguimos en el Platziverso? ¡Gracias por la ayuda amigo!
+LevelEventUpdate.IntroEvents.EventDialogue.01,"Puedo ver que no tienes la llave a tu alcance, pero no te preocupes que otras entidades pueden obtenerla por tí."
+LevelEventUpdate.IntroEvents.EventDialogue.02,Intenta programar la entidad para que se mueva hacía la llave.
+LevelEventUpdate.SavedEvents.EventDialogue.01,¡Gracias por rescatarme! La verdad no la pase tan mal.
+LevelEventUpdate.CompletedEvents.EventDialogue.01,"Ese alumno si que se vea muy cómodo, avancemos  al siguiente nivel."
+LevelFrogRaft.SavedEvents.EventDialogue.01,Si tan solo se pudiera saltar en el Platziverso... Gracias amigo.
+LevelLogicPathAhead.IntroEvents.EventDialogue.01,Tal parece que este nivel pondrá a prueba tu lógica.
+LevelLogicPathAhead.SavedEvents.EventDialogue.01,"Que gran dominio de la lógica, muchas gracias."
+LevelLogicRepeat.IntroEvents.EventDialogue.01,"Repetir las mismas acciones suele cansar, lo bueno que existe el nodo Repetir para ayudar con las tareas repetitivas."
+LevelLogicRepeat.SavedEvents.EventDialogue.01,"Que mono mas kawaii, ¡Arigato gozaimasu!"
+LevelLogicRepeatAdvanced.IntroEvents.EventDialogue.01,"Este nivel para un trabajo duro, por suerte el nodo Repetir te ahorra mucho trabajo."
+LevelLogicRepeatAdvanced.SavedEvents.EventDialogue.01,"Gracias por rescatarme. Gracias por rescatarme. Gracias por rescatarme... Uy, creo que yo tambien tengo ese nodo de repetir en mi cerebro."
+LevelMonkeyDoors.SavedEvents.EventDialogue.01,"Que inteligente ese mono, ¡gracias!"
+LevelRaftControl.SavedEvents.EventDialogue.01,"Eres un maestro con el control mental, gracias por la ayuda."
+LevelRotateAction.IntroEvents.EventDialogue.01,"Aquí parece que necesitarás más que solo una acción para resolver el nivel, recuerda que puedes conectar tantos nodos como haga falta."
+LevelRotateAction.SavedEvents.EventDialogue.01,¡Gracias por el rescate amigo! Te debo unos cuantos bitcoins.
+LevelSpikyPath.SavedEvents.EventDialogue.01,"Vaya eso estuvo peligroso, gracias estimado."
+LevelTutorial.IntroEvents.EventDialogue.01,"¿Has creído que te dejaría ir tan fácilmente? Jugare contigo un rato, tendrás que resolver mis puzzles para rescatar a tus compañeros."
+LevelTutorial.IntroEvents.EventDialogue2.01,"Parece que nos han separado, pero aún tengo comunicación contigo."
+LevelTutorial.IntroEvents.EventDialogue2.02,"Vaya ese hacker si que se está saliendo con la suya, ahora te ha metido a tí en su juego."
+LevelTutorial.IntroEvents.EventDialogue2.03,"Tendrás que ayudarnos a rescatar a los alumnos, seré tu guía en este mundo e iré brindándote información útil para poder completar los niveles."
+LevelTutorial.IntroEvents.EventDialogue2.04,"Recuerda que sigues dentro del multiverso y nada puede dañarte realmente, o eso creemos..."
+LevelTutorial.IntroEvents.EventDialogue2.05,"Vamos completa este nivel, ¡busca la llave y salva al alumno!"
+LevelTutorial.SavedEvents.EventDialogue.01,"¿Como que estoy en un nivel tutorial? Yo me esperaba estar en los últimos niveles... Igual, ¡muchas gracias por salvarme!"
+LevelTutorial.CompetedEvents.EventDialogue.01,"Excelente trabajo, gracias a tí ese alumno ya está sano y salvo, ¡continuemos adelante!"

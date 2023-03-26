@@ -62,9 +62,11 @@ node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 1 )]
 speaker = "Profesor"
-dialogues = [ "Este nivel para un trabajo duro, por suerte el nodo Repetir te ahorra mucho trabajo." ]
+dialogues = [ "LevelLogicRepeatAdvanced.IntroEvents.EventDialogue.01" ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 1 )]
+speaker = "Alumno"
+dialogues = [ "LevelLogicRepeatAdvanced.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 8 )]
 tile_data = PoolIntArray( -196600, 0, 3, -196599, 0, 3, -131062, 0, 1, -65528, 0, 3, -65527, 0, 3, -65526, 0, 1, 65542, 0, 1, 65547, 0, 2, 131080, 0, 2, 131081, 0, 3, 131084, 0, 3, 196614, 0, 0, 262146, 0, 0, 262148, 0, 2, 262149, 0, 2, 262153, 0, 0, 262154, 0, 0, 262157, 0, 3, 327688, 0, 2, 327693, 0, 0, 327695, 0, 3, 393218, 0, 0, 393219, 0, 2, 393224, 0, 3, 393226, 0, 2, 393232, 0, 0, 458755, 0, 0, 458762, 0, 1, 458767, 0, 3, 524303, 0, 0, 589833, 0, 2, 589834, 0, 1 )

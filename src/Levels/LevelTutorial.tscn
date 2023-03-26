@@ -15,9 +15,7 @@
 resource_name = "Hint"
 script = ExtResource( 5 )
 image = ExtResource( 8 )
-content = "[b][color=purple]Completar el nivel[/color][/b]
-El objetivo principal es rescatar al alumno, para esto es necesario obtener la llave del nivel.
-Hay muchas maneras de obtener la llave, una de ellas es caminando hacía ella."
+content = "LevelTutorial.IntroEvents.EventHint.01"
 
 [node name="LevelTutorial" instance=ExtResource( 3 )]
 
@@ -43,11 +41,11 @@ camera_path = NodePath("../../../Camera")
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 2 )]
 speaker = "hacker"
-dialogues = [ "¿Has creído que te dejaría ir tan facilmente? Jugare contigo un rato, tendrás que resolver mis puzzles para rescatar a tus compañeros." ]
+dialogues = [ "LevelTutorial.IntroEvents.EventDialogue.01" ]
 
 [node name="EventDialogue2" parent="IntroEvents" index="1" instance=ExtResource( 2 )]
 speaker = "Profesor"
-dialogues = [ "Parece que nos han separado, pero aún tengo comunicación contigo.", "Vaya ese hacker si que se esta saliendo con la suya, ahora te ha metido a tí en su juego.", "Tendrás que ayudarnos a rescatar a los alumnos, seré tu guía en este mundo e ire brindandote información utíl para poder completar los níveles.", "Recuerda que sigues dentro del multiverso y nada puede dañarte realmente, o eso creemos...", "Vamos complea este nivel, ¡busca la llave y salva al alumno!" ]
+dialogues = [ "LevelTutorial.IntroEvents.EventDialogue2.01", "LevelTutorial.IntroEvents.EventDialogue2.02", "LevelTutorial.IntroEvents.EventDialogue2.03", "LevelTutorial.IntroEvents.EventDialogue2.04", "LevelTutorial.IntroEvents.EventDialogue2.05" ]
 
 [node name="EventHint" parent="IntroEvents" index="2" instance=ExtResource( 4 )]
 title = "Guía básica"
@@ -55,11 +53,11 @@ hints = [ SubResource( 1 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 2 )]
 speaker = "Alumno"
-dialogues = [ "¿Como que estoy en un nivel tutorial? Yo me esperaba estar en los ultimos niveles... Igual, ¡muchas gracias por salvarme!" ]
+dialogues = [ "LevelTutorial.SavedEvents.EventDialogue.01" ]
 
 [node name="EventDialogue" parent="CompletedEvents" index="0" instance=ExtResource( 2 )]
 speaker = "Profesor"
-dialogues = [ "Excelente trabajo, gracias a tí ese alumno ya esta sano y salvo, ¡continuemos adelante!" ]
+dialogues = [ "LevelTutorial.CompetedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 9 )]
 tile_data = PoolIntArray( -851948, 0, 2, -786413, 0, 2, -655349, 0, 3, -589816, 0, 1, -589811, 0, 1, -524281, 0, 2, -524276, 0, 2, -458745, 0, 0, -393209, 0, 0, -393208, 0, 3, -393204, 0, 3, -262146, 0, 2, -327674, 0, 3, -327669, 0, 1, -327668, 0, 2, -196609, 0, 3, -262137, 0, 0, -262132, 0, 3, -196608, 0, 2, -196601, 0, 3, -196600, 0, 3, -196595, 0, 0, -65529, 0, 1, -65524, 0, 3, -65523, 0, 2, 8, 0, 1, 11, 0, 1, 65542, 0, 3, 65547, 0, 3, 131078, 0, 2, 131079, 0, 3, 131085, 0, 1, 196615, 0, 0, 196619, 0, 0, 327686, 0, 0, 327688, 0, 0, 327692, 0, 3, 458759, 0, 2, 458763, 0, 2, 458765, 0, 1, 524297, 0, 0 )

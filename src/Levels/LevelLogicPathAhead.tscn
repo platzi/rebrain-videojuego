@@ -18,8 +18,7 @@
 resource_name = "Hint"
 script = ExtResource( 2 )
 image = ExtResource( 3 )
-content = "[b][color=purple]Nodo Si[/color][/b]
-Este nodo revisara si la condición de entrada (la cual es un booleano que puede ser Verdadero o Falso) se cumple, si así es se ejecutara la sequencia de la salida marcada como Verdadero, en caso contrario se ejecutara la sequencia de la salida marcada como Falso."
+content = "LevelLogicPathAhead.IntroEvents.EventHint.01"
 
 [node name="LevelLogicPathAhead" instance=ExtResource( 9 )]
 
@@ -70,7 +69,7 @@ node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 1 )]
 speaker = "Profesor"
-dialogues = [ "Tal parece que este nivel pondrá a prueba tu lógica." ]
+dialogues = [ "LevelLogicPathAhead.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
 __meta__ = {
@@ -81,7 +80,7 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 1 )]
 speaker = "Alumno"
-dialogues = [ "Que gran dominio de la lógica, muchas gracias." ]
+dialogues = [ "LevelLogicPathAhead.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 13 )]
 tile_data = PoolIntArray( 131078, 0, 2, 131079, 0, 1, 131084, 0, 3, 196622, 0, 3, 262149, 0, 2, 262151, 0, 1, 262154, 0, 1, 262158, 0, 3, 327682, 0, 1, 393219, 0, 2, 393221, 0, 0, 393224, 0, 2, 393227, 0, 3, 393228, 0, 1, 393230, 0, 0, 393232, 0, 0, 458766, 0, 0, 524293, 0, 3, 524294, 0, 3, 524298, 0, 3, 524300, 0, 2, 524301, 0, 2 )

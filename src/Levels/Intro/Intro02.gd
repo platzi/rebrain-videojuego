@@ -35,12 +35,12 @@ func _dialogue_1() -> void:
 	dialogue_inst.connect("finished", self, "_on_dialogue_1_finished")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"Excelente, ya que porfin estamos todos aquí, vamos a comenzar nuestra primer clase en el Platziverso",
-		"Antes de comenzar les doy la bienvenida a todos a clase Programando utilizando Visual Scripting",
-		"Utilizaremos el sistema ReBrain, el cual fue creado espeficamente para el Platziverso",
-		"Este sistema les permitira editar el cerebro de las entidades dentro del mundo",
-		"Vamos a comenzar haciendo una pequeña demostración donde veremos lo más básico",
-		"%s porfavor pasa hacía adelante, me ayudaras a demostrar como funciona ReBrain" % Globals.player_name
+		"Intro02.Dialogue1.01",
+		"Intro02.Dialogue1.02",
+		"Intro02.Dialogue1.03",
+		"Intro02.Dialogue1.04",
+		"Intro02.Dialogue1.05",
+		"Intro02.Dialogue1.06"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -52,7 +52,7 @@ func _dialogue_2() -> void:
 	dialogue_inst.connect("finished", self, "_hint_1")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"Vamos a comenzar activando el modo scripting, para ello presiona [img=36]assets/images/keyboard/tab.png[/img]",
+		"Intro02.Dialogue2.01",
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -63,10 +63,10 @@ func _dialogue_3() -> void:
 	dialogue_inst.connect("finished", self, "_hint_2")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"¡Muy bien!, ahora mismo estas en el modo scripting, te habrás dado cuenta porque el fondo ha cambiado",
-		"Lo primero que debés saber es que las entidades con las que puedes interactuar estan resaltadas",
-		"Tambien como notaras hay entidades resaltadas en rojo, esas no se pueden modificar",
-		"Adelante prueba hacer click al muñeco de pruebas que se encuentra a mi lado"
+		"Intro02.Dialogue3.01",
+		"Intro02.Dialogue3.02",
+		"Intro02.Dialogue3.03",
+		"Intro02.Dialogue3.04"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -76,9 +76,9 @@ func _dialogue_4(entity : Entity) -> void:
 	dialogue_inst.connect("finished", self, "_hint_3")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"¡Perfecto!, ahora mismo te encuentras en el cerebro de la entidad, en este caso del muñeco de pruebas",
-		"En la parte izquierda podrás ver la entidad que se esta programando y en la parte derecha encontraras la gráfica donde podrás jugar con los nodos para programar a la entidad",
-		"Probemos agregar un nodo de Girar, haz click derecho sobre la gráfica de la parte derecha"
+		"Intro02.Dialogue4.01",
+		"Intro02.Dialogue4.02",
+		"Intro02.Dialogue4.03"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -88,15 +88,15 @@ func _dialogue_5(node : ScriptingNode) -> void:
 	dialogue_inst.connect("finished", self, "_hint_4")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"¡Estas haciendolo excelente!, lo siguiente que tenemos que hacer es conectar los nodos para que estos funcionen",
-		"Veras que el nodo que se añadio tiene un [img]assets/images/scripting/node_port_green.png[/img] del lado izquierdo y derecho",
-		"Se conoce como entrada y salida, cada nodo tiene diferentes tipos de entradas y salidas",
-		"Y estas van conectadas con respecto a su tipo, gráficamente mostrado por un color",
-		"Solo puedes hacer conexiones entre salida y entrada, respetando su tipo",
-		"El nodo de Girar tiene dos conexiones de Ejecución, tanto en la entrada como la salida, mostrado con el color verde",
-		"Esta conexión ejecutara el nodo una vez activada la entrada, y la salida se activara una vez terminada la ejecución del nodo",
-		"Bueno, mucha charla poca acción, vamos a conectar el nodo de Girar con el nodo de Esperar",
-		"Para hacerlo presiona y arrastra el [img]assets/images/scripting/node_port_green.png[/img] para hacer una conexión"
+		"Intro02.Dialogue5.01",
+		"Intro02.Dialogue5.02",
+		"Intro02.Dialogue5.03",
+		"Intro02.Dialogue5.04",
+		"Intro02.Dialogue5.05",
+		"Intro02.Dialogue5.06",
+		"Intro02.Dialogue5.07",
+		"Intro02.Dialogue5.08",
+		"Intro02.Dialogue5.09"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -106,8 +106,8 @@ func _dialogue_6(from : ScriptingNode, from_slot : int, to : ScriptingNode, to_s
 	dialogue_inst.connect("finished", self, "_hint_5")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"¡Excelente trabajo! ya has aprendido a conectar nodos entre si, aún queda más por aprender pero por ahora vamos a Guardar y salir del modo scripting",
-		"Para salir del modo scripting hay que presionar nuevamente [img=36]assets/images/keyboard/tab.png[/img] en la pantalla de scripting"
+		"Intro02.Dialogue6.01",
+		"Intro02.Dialogue6.02"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -118,8 +118,8 @@ func _dialogue_7() -> void:
 	dialogue_inst.connect("finished", self, "_on_dialogue_7_finished")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"Que bien lo has hecho %s, muchas gracias por tu ayuda" % Globals.player_name,
-		"Ahora que conocen un poco sobre el sistema ReBrain vamos a continuar con..."
+		"Intro02.Dialogue7.01",
+		"Intro02.Dialogue7.02"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -129,7 +129,7 @@ func _dialogue_8(anim : String) -> void:
 	dialogue_inst.connect("finished", self, "_dialogue_9")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"¿Donde ha ido todo el mundo?"
+		"Intro02.Dialogue8.01"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -139,9 +139,9 @@ func _dialogue_9() -> void:
 	dialogue_inst.connect("finished", self, "_dialogue_10")
 	dialogue_inst.speaker = "hacker"
 	dialogue_inst.dialogues = [
-		"Hola Platziverso, parece que tienen una pequeña falla en la seguridad, ha sido muy fácil entrar en su sistema",
-		"Si se preguntan donde estan sus preciados alumnos, bueno, los he mandado por diferentes niveles del metaverso",
-		"Vamos a divertirnos un poco, ¡nos veremos pronto!"
+		"Intro02.Dialogue9.01",
+		"Intro02.Dialogue9.02",
+		"Intro02.Dialogue9.03"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -151,8 +151,8 @@ func _dialogue_10() -> void:
 	dialogue_inst.connect("finished", self, "_on_dialogue_10_finished")
 	dialogue_inst.speaker = "Profesor"
 	dialogue_inst.dialogues = [
-		"No puedo creerlo, hemos sido hackeados",
-		"%s vamos salgamos de aquí, los profesores nos encargaremos de esto" % Globals.player_name
+		"Intro02.Dialogue10.01",
+		"Intro02.Dialogue10.02"
 	]
 	ui_canvas_layer.add_child(dialogue_inst)
 
@@ -164,7 +164,7 @@ func _hint_1() -> void:
 	hint_panel.title = "Guía Básica"
 	var hint_resource := HintResource.new()
 	hint_resource.image = preload("res://assets/images/hints/hint_open_scripting_mode.png")
-	hint_resource.content = "[b][color=#3700a7]Modo scripting[/color][/b]\nPresiona [img=36]assets/images/keyboard/tab.png[/img] para activar el [color=#3700a7]Modo scripting[/color]. En este modo se resaltarán las entidades con las cuales puedes interactuar."
+	hint_resource.content = "Intro02.Hint1.01"
 	hint_panel.hints = [
 		hint_resource
 	]
@@ -177,7 +177,7 @@ func _hint_2() -> void:
 	hint_panel.title = "Guía Básica"
 	var hint_resource := HintResource.new()
 	hint_resource.image = preload("res://assets/images/hints/hint_open_brain.png")
-	hint_resource.content = "[b][color=#3700a7]ReBrain[/color][/b]\nAl estar en el [color=#3700a7]Modo Scripting[/color] y hacer click sobre una entidad se abrira el cerebro de esta, desde aquí podrás modificar su comportamiento utilizando distintos nodos."
+	hint_resource.content = "Intro02.Hint2.01."
 	hint_panel.hints = [
 		hint_resource
 	]
@@ -190,7 +190,7 @@ func _hint_3() -> void:
 	hint_panel.title = "Guía Básica"
 	var hint_resource := HintResource.new()
 	hint_resource.image = preload("res://assets/images/hints/hint_add_node.png")
-	hint_resource.content = "[b][color=#3700a7]Agregar nodo[/color][/b]\nCon click derecho en la gráfica se abrira el buscador de nodos, desde ahí puedes seleccionar cual nodo agregar."
+	hint_resource.content = "Intro02.Hint3.01."
 	hint_panel.hints = [
 		hint_resource
 	]
@@ -203,7 +203,7 @@ func _hint_4() -> void:
 	hint_panel.title = "Guía Básica"
 	var hint_resource := HintResource.new()
 	hint_resource.image = preload("res://assets/images/hints/hint_connect_nodes.png")
-	hint_resource.content = "[b][color=#3700a7]Conectar nodos[/color][/b]\nArrastra con click izquierdo los círculos de las entradas o salidas para crear una conexión entre nodos."
+	hint_resource.content = "Intro02.Hint4.01."
 	hint_panel.hints = [
 		hint_resource
 	]
@@ -216,7 +216,7 @@ func _hint_5() -> void:
 	hint_panel.title = "Guía Básica"
 	var hint_resource := HintResource.new()
 	hint_resource.image = preload("res://assets/images/hints/hint_save_brain.png")
-	hint_resource.content = "[b][color=#3700a7]Guardar[/color][/b]\nGuarda los cambios que se hayan realizado al cerebro de la entidad y hace que esta se reinicie a su posición inicial."
+	hint_resource.content = "Intro02.Hint5.01."
 	hint_panel.hints = [
 		hint_resource
 	]

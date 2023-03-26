@@ -19,11 +19,7 @@
 resource_name = "Hint"
 script = ExtResource( 10 )
 image = ExtResource( 7 )
-content = "[b][color=purple]Nodo Disparador[/color][/b]
-Este nodo es un evento que se activa cuando se recibe una señal lanzada desde cualquier entidad por el nodo Accionar Disparador, recibiendo como parametro un texto como Identificador.
-
-[b][color=purple]Nodo Accionar Disparador[/color][/b]
-Activa los nodos Disparador de todas las entidades y envía un texto como Identificador para ser usado junto con el evento que lo reciba."
+content = "LevelEventTrigger.IntroEvents.EventHint.01"
 
 [node name="LevelEventTrigger" instance=ExtResource( 3 )]
 
@@ -82,7 +78,7 @@ node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 9 )]
 speaker = "Profesor"
-dialogues = [ "Para resolver este nivel necesitas comunicar varias entidades entre sí, para esto vamos a necesitar del nodo Disparador y Accionar Disparador." ]
+dialogues = [ "LevelEventTrigger.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
 title = "Guía"
@@ -90,7 +86,7 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 9 )]
 speaker = "Alumno"
-dialogues = [ "¿Realmente seguimos en el Platziverso? ¡Gracias por la ayuda amigo!" ]
+dialogues = [ "LevelEventTrigger.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
 tile_data = PoolIntArray( -65532, 0, 1, -65525, 0, 3, 6, 0, 3, 11, 0, 0, 65544, 0, 3, 131080, 0, 3, 131083, 0, 2, 262152, 0, 2, 262154, 0, 3, 327688, 0, 1, 327691, 0, 1, 393231, 0, 1, 458763, 0, 0, 458765, 0, 3, 458766, 0, 2, 524296, 0, 0, 524299, 0, 3, 524303, 0, 1 )

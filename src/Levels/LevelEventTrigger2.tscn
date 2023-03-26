@@ -62,11 +62,11 @@ blocked = true
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Profesor"
-dialogues = [ "Habra niveles que se vuelvan imposibles de resolver por una mala acción, siempre puedes reiniciar el nivel desde el menú de pausa." ]
+dialogues = [ "LevelEventTrigger2.IntroEvents.EventDialogue.01" ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Alumno"
-dialogues = [ "Yo lo habría podido hacer mejor, igual gracias." ]
+dialogues = [ "LevelEventTrigger2.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 10 )]
 tile_data = PoolIntArray( 131075, 0, 0, 131076, 0, 3, 196614, 0, 0, 196615, 0, 2, 196619, 0, 0, 196620, 0, 2, 196621, 0, 1, 196624, 0, 0, 262147, 0, 3, 327684, 0, 1, 327686, 0, 0, 327688, 0, 1, 327690, 0, 3, 327693, 0, 0, 327695, 0, 0, 327696, 0, 3, 458755, 0, 0 )

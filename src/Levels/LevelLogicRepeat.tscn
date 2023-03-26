@@ -20,8 +20,7 @@ extents = Vector2( 500, 500 )
 resource_name = "Hint"
 script = ExtResource( 9 )
 image = ExtResource( 7 )
-content = "[b][color=purple]Nodo Repetir[/color][/b]
-Permite repetir la sequencia de salida marcada como Cuerpo la cantidad de veces indicadas en la entrada Veces, al finalizar se ejecutara la sequencia de la salida marcada como Salida."
+content = "LevelLogicRepeat.IntroEvents.EventHint.01"
 
 [node name="LevelLogicRepeat" instance=ExtResource( 3 )]
 
@@ -61,7 +60,7 @@ node_limit_NUMBER = 1
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 1 )]
 speaker = "Profesor"
-dialogues = [ "Repetir las mismas acciones suele cansar, lo bueno que existe el nodo Repetir para ayudar con las tareas repetitivas." ]
+dialogues = [ "LevelLogicRepeat.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
 title = "Lógica"
@@ -69,7 +68,7 @@ hints = [ SubResource( 1 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 1 )]
 speaker = "Alumno"
-dialogues = [ "Que mono más kawai, ¡Arigato gozaimasu!" ]
+dialogues = [ "LevelLogicRepeat.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
 tile_data = PoolIntArray( 262154, 0, 2, 327688, 0, 3, 327690, 0, 2, 393226, 0, 3, 524296, 0, 2, 589832, 0, 0, 589834, 0, 1, 720903, 0, 2, 720906, 0, 3, 786440, 0, 3, 786443, 0, 3, 851976, 0, 1, 851978, 0, 0, 917511, 0, 3, 983047, 0, 0, 983050, 0, 1, 983051, 0, 2 )

@@ -23,8 +23,7 @@ extents = Vector2( 100, 240 )
 resource_name = "Hint"
 script = ExtResource( 10 )
 image = ExtResource( 8 )
-content = "[b][color=purple]Balsa[/color][/b]
-Puede navegar por las aguas sin problemas y tiene nodos especiales para moverse en la dirección deseada y para contar el numero de pasajeros."
+content = "LevelBasicRaft.IntroEvents.EventHint.01"
 
 [node name="LevelBasicRaft" instance=ExtResource( 2 )]
 
@@ -90,7 +89,7 @@ node_limit_NUMBER = -1
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Profesor"
-dialogues = [ "Todo indica que habrá que navegar un poco por este nivel, tendrás que utilizar tus habilidades lógicas para mover esa balsa." ]
+dialogues = [ "LevelBasicRaft.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 9 )]
 title = "Entidades"
@@ -98,7 +97,7 @@ hints = [ SubResource( 3 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Alumno"
-dialogues = [ "¡Ahoy capitan! Gracias por la ayuda." ]
+dialogues = [ "LevelBasicRaft.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
 tile_data = PoolIntArray( -589822, 0, 3, -524288, 0, 1, -458750, 0, 2, -458749, 0, 1, -393215, 0, 0, 196609, 0, 1, 196621, 0, 2, 262146, 0, 2, 262156, 0, 3, 327680, 0, 2, 327682, 0, 0, 327694, 0, 3, 327695, 0, 0, 393217, 0, 1, 393229, 0, 0 )

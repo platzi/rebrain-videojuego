@@ -60,11 +60,11 @@ node_limit_ROTATE_LEFT = -1
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Profesor"
-dialogues = [ "Ten cuidado en este nivel, estas entidades pueden dañarte al acercarte a ellas, aunque tu salud en la vida real no se vera afectada..." ]
+dialogues = [ "LevelDamageBasic.IntroEvents.EventDialogue.01" ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Alumno"
-dialogues = [ "Esas criaturas puntiagudas si que dan miedo, gracias por el rescate." ]
+dialogues = [ "LevelDamageBasic.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 9 )]
 tile_data = PoolIntArray( 131081, 0, 3, 131085, 0, 2, 196616, 0, 1, 196619, 0, 2, 196621, 0, 0, 327690, 0, 2, 393227, 0, 1, 458760, 0, 1, 458764, 0, 1, 524297, 0, 3, 524301, 0, 0, 589835, 0, 2 )

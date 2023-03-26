@@ -21,9 +21,7 @@ extents = Vector2( 150, 150 )
 resource_name = "Hint"
 script = ExtResource( 9 )
 image = ExtResource( 10 )
-content = "[b][color=purple]Nodos de acción[/color][/b]
-Son nodos que permiten a las entidades realizar diferentes tipos de acciones, como moverse y girar.
-Existen nodos de acción especiales que solo estan disponibles para ciertas entidades."
+content = "LevelRotateAction.IntroEvents.EventHint.01"
 
 [node name="LevelRotateAction" instance=ExtResource( 3 )]
 
@@ -70,7 +68,7 @@ blocked = true
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 8 )]
 speaker = "Profesor"
-dialogues = [ "Aquí parece que necesitaras más que solo una acción para resolver el nivel, recuerda que puedes conectar tantos nodos como haga falta." ]
+dialogues = [ "LevelRotateAction.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 7 )]
 title = "Guía"
@@ -78,7 +76,7 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 8 )]
 speaker = "Alumno"
-dialogues = [ "¡Gracias por el rescate amigo! Te debo unos cuantos bitcoints." ]
+dialogues = [ "LevelRotateAction.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 13 )]
 tile_data = PoolIntArray( 8, 0, 0, 10, 0, 3, 65547, 0, 0, 131080, 0, 1, 131086, 0, 0, 196621, 0, 1, 262149, 0, 0, 262152, 0, 2, 262154, 0, 0, 327686, 0, 2, 327691, 0, 2, 393224, 0, 3, 458760, 0, 3, 458763, 0, 0, 524299, 0, 2 )

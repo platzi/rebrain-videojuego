@@ -20,11 +20,7 @@ extents = Vector2( 300, 300 )
 resource_name = "Hint"
 script = ExtResource( 9 )
 image = ExtResource( 10 )
-content = "[b][color=purple]Eventos[/color][/b]
-Los nodos no se ejecutan por si solos, es necesario que cada secuencia comience por un evento, un ejemplo de un [color=purple]Evento[/color] muy importante es el nodo [color=purple]Actualizar[/color]
-
-[b][color=purple]Nodo Actualizar[/color][/b]
-Se ejecuta automaticamente cada vez que se termina la secuencia establecida."
+content = "LevelEventUpdate.IntroEvents.EventHint.01"
 
 [node name="LevelEventUpdate" instance=ExtResource( 1 )]
 
@@ -61,7 +57,7 @@ shoes_color = Color( 1, 1, 1, 1 )
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Profesor"
-dialogues = [ "Puedo ver que no tienes la llave a tu alcance, pero no te preocupes que otras entidades pueden obtenerla por tí.", "Intenta programar la entidad para que se mueva hacía la llave." ]
+dialogues = [ "LevelEventUpdate.IntroEvents.EventDialogue.01", "LevelEventUpdate.IntroEvents.EventDialogue.02" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 8 )]
 __meta__ = {
@@ -72,11 +68,11 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Alumno"
-dialogues = [ "¡Gracias por rescatarme! La verdad no la pase tan mal." ]
+dialogues = [ "LevelEventUpdate.SavedEvents.EventDialogue.01" ]
 
 [node name="EventDialogue" parent="CompletedEvents" index="0" instance=ExtResource( 7 )]
 speaker = "Profesor"
-dialogues = [ "Ese alumno si que se vea muy comodo, avanzemos  al siguiente nivel." ]
+dialogues = [ "LevelEventUpdate.CompletedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 12 )]
 tile_data = PoolIntArray( -131065, 0, 2, -131063, 0, 1, -131062, 0, 3, -131060, 0, 2, -65530, 0, 0, -65523, 0, 0, 7, 0, 2, 9, 0, 2, 196615, 0, 1, 196619, 0, 0, 262153, 0, 3, 393224, 0, 1, 393226, 0, 2, 393227, 0, 0 )

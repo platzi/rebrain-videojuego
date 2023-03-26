@@ -94,7 +94,7 @@ shoes_color = Color( 0.164706, 0.301961, 0.768627, 1 )
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 9 )]
 speaker = "Alumno"
-dialogues = [ "Vaya eso estuvo peligroso, gracias estimado." ]
+dialogues = [ "LevelSpikyPath.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 10 )]
 tile_data = PoolIntArray( -589816, 0, 1, -589815, 0, 0, -524277, 0, 2, -458741, 0, 2, -393208, 0, 2, -393207, 0, 3, -393205, 0, 0, -327670, 0, 2, -262134, 0, 0, -196602, 0, 1, -131067, 0, 0, -65531, 0, 3, -65528, 0, 2, -65525, 0, 1, -65523, 0, 3, 6, 0, 2, 8, 0, 0, 10, 0, 1, 12, 0, 2, 14, 0, 3, 65549, 0, 1, 131085, 0, 3, 131086, 0, 3, 262152, 0, 3, 262155, 0, 3, 327688, 0, 2, 327691, 0, 3, 393227, 0, 0, 458760, 0, 2, 458763, 0, 1 )

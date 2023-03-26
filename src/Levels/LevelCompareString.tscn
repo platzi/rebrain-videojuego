@@ -22,8 +22,7 @@ extents = Vector2( 500, 500 )
 resource_name = "Hint"
 script = ExtResource( 12 )
 image = ExtResource( 1 )
-content = "[b][color=purple]Comparar Texto[/color][/b]
-Compara ambos textos de la entrada y envía un booleano verdadero si ambos coinciden, en caso contrario enviara un booleano falso."
+content = "LevelCompareString.IntroEvents.EventHint.01"
 
 [node name="LevelCompareString" instance=ExtResource( 8 )]
 
@@ -86,7 +85,7 @@ blocked = true
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 11 )]
 speaker = "Profesor"
-dialogues = [ "Interesante, parece que tendrás que controlar el camino de la rana haciendo uso de los botones que tienes delante." ]
+dialogues = [ "LevelCompareString.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 2 )]
 title = "Guía"
@@ -94,7 +93,7 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 11 )]
 speaker = "Alumno"
-dialogues = [ "Si que le has lavado el cerebro a esa entidad, gracias por la ayuda." ]
+dialogues = [ "LevelCompareString.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 14 )]
 tile_data = PoolIntArray( 65544, 0, 3, 131077, 0, 3, 131080, 0, 2, 131083, 0, 2, 131085, 0, 3, 196614, 0, 2, 196619, 0, 3, 196622, 0, 0, 327688, 0, 1, 327689, 0, 3, 327691, 0, 1, 458759, 0, 0, 458763, 0, 3, 458765, 0, 2, 524295, 0, 2, 524298, 0, 0, 524300, 0, 3, 589830, 0, 0, 589836, 0, 2, 655367, 0, 0, 655369, 0, 0, 655370, 0, 1, 655373, 0, 0 )

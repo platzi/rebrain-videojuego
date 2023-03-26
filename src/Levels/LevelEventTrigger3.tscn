@@ -25,8 +25,7 @@ extents = Vector2( 500, 500 )
 resource_name = "Hint"
 script = ExtResource( 15 )
 image = ExtResource( 1 )
-content = "[b][color=purple]Recordatorio[/color][/b]
-Siempre es buena idea revisar los nodos que tienes disponibles."
+content = "LevelEventTrigger3.IntroEvents.EventHint.01"
 
 [node name="LevelEventTrigger3" instance=ExtResource( 7 )]
 
@@ -107,7 +106,7 @@ node_limit_PASSENGERS = 0
 
 [node name="EventDialogue" parent="IntroEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Profesor"
-dialogues = [ "Este nivel se nota que es más complicado, pero yo se muy bien que podrás resolverlo." ]
+dialogues = [ "LevelEventTrigger3.IntroEvents.EventDialogue.01" ]
 
 [node name="EventHint" parent="IntroEvents" index="1" instance=ExtResource( 10 )]
 title = "Guía"
@@ -115,7 +114,7 @@ hints = [ SubResource( 2 ) ]
 
 [node name="EventDialogue" parent="SavedEvents" index="0" instance=ExtResource( 12 )]
 speaker = "Alumno"
-dialogues = [ "¡Wow! Ni siquiera a mi se me habría ocurrido como superar este puzzle, gracias por la ayuda." ]
+dialogues = [ "LevelEventTrigger3.SavedEvents.EventDialogue.01" ]
 
 [node name="ForestDetailsTileMap" parent="Background" index="0" instance=ExtResource( 17 )]
 tile_data = PoolIntArray( 1, 0, 3, 3, 0, 0, 5, 0, 0, 6, 0, 3, 9, 0, 2, 65545, 0, 1, 131073, 0, 3, 262142, 0, 2, 196610, 0, 1, 196612, 0, 3, 196614, 0, 2, 196616, 0, 1, 196620, 0, 1, 196621, 0, 3, 327677, 0, 2, 262146, 0, 2, 262149, 0, 2, 327681, 0, 2, 327688, 0, 1, 393217, 0, 2, 393225, 0, 1, 458756, 0, 2, 524294, 0, 1, 589828, 0, 1, 589830, 0, 1, 655364, 0, 1 )

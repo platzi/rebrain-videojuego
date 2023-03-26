@@ -1,0 +1,38 @@
+key,es
+Intro01.Dialogue1.01,"Atención, les informamos a nuestros alumnos que la primer clase del Platziverso está por comenzar, por favor diríjanse al edificio principal lo más rápido posible"
+Intro01.Dialogue1.02,"Para los despistados, les recuerdo que pueden moverse presionando las teclas [img=18]assets/images/keyboard/w.png[/img][img=18]assets/images/keyboard/a.png[/img][img=18]assets/images/keyboard/s.png[/img][img=18]assets/images/keyboard/d.png[/img]"
+Intro01.Dialogue2.01,También les recordamos que para moverse entre los niveles pueden utilizar los paneles de teletransporte
+Intro01.Dialogue2.02,Solo basta caminar encima de estos para avanzar al siguiente nivel
+Intro02.Dialogue1.01,"Excelente, ya que por fin estamos todos aquí, vamos a comenzar nuestra primer clase en el Platziverso"
+Intro02.Dialogue1.02,Antes de comenzar les doy la bienvenida a todos a clase Programando utilizando Visual Scripting
+Intro02.Dialogue1.03,"Utilizaremos el sistema ReBrain, el cual fue creado específicamente para el Platziverso"
+Intro02.Dialogue1.04,Este sistema les permitirá editar el cerebro de las entidades dentro del mundo
+Intro02.Dialogue1.05,Vamos a comenzar haciendo una pequeña demostración donde veremos lo más básico
+Intro02.Dialogue1.06,"{player_name} porfavor pasa hacia adelante, me ayudaras a demostrar como funciona ReBrain"
+Intro02.Dialogue2.01,"Vamos a comenzar activando el modo scripting, para ello presiona [img=36]assets/images/keyboard/tab.png[/img]"
+Intro02.Dialogue3.01,"¡Muy bien!, ahora mismo estás en el modo scripting, te habrás dado cuenta porque el fondo ha cambiado"
+Intro02.Dialogue3.02,Lo primero que debés saber es que las entidades con las que puedes interactuar están resaltadas
+Intro02.Dialogue3.03,"También como notaras hay entidades resaltadas en rojo, esas no se pueden modificar"
+Intro02.Dialogue3.04,Adelante prueba hacer click al muñeco de pruebas que se encuentra a mi lado
+Intro02.Dialogue4.01,"¡Perfecto!, ahora mismo te encuentras en el cerebro de la entidad, en este caso del muñeco de pruebas"
+Intro02.Dialogue4.02,En la parte izquierda podrás ver la entidad que se está programando y en la parte derecha encontrarás la gráfica donde podrás jugar con los nodos para programar a la entidad
+Intro02.Dialogue4.03,"Probemos agregar un nodo de Girar, haz click derecho sobre la gráfica de la parte derecha"
+Intro02.Dialogue5.01,"¡Estas haciendolo excelente!, lo siguiente que tenemos que hacer es conectar los nodos para que estos funcionen"
+Intro02.Dialogue5.02,Veras que el nodo que se añadió tiene un [img]assets/images/scripting/node_port_green.png[/img] del lado izquierdo y derecho
+Intro02.Dialogue5.03,"Se conoce como entrada y salida, cada nodo tiene diferentes tipos de entradas y salidas"
+Intro02.Dialogue5.04,"Y estas van conectadas con respecto a su tipo, gráficamente mostrado por un color"
+Intro02.Dialogue5.05,"Solo puedes hacer conexiones entre salida y entrada, respetando su tipo"
+Intro02.Dialogue5.06,"El nodo de Girar tiene dos conexiones de Ejecución, tanto en la entrada como la salida, mostrado con el color verde"
+Intro02.Dialogue5.07,"Esta conexión ejecutara el nodo una vez activada la entrada, y la salida se activará una vez terminada la ejecución del nodo"
+Intro02.Dialogue5.08,"Bueno, mucha charla poca acción, vamos a conectar el nodo de Girar con el nodo de Esperar"
+Intro02.Dialogue5.09,Para hacerlo presiona y arrastra el [img]assets/images/scripting/node_port_green.png[/img] para hacer una conexión
+Intro02.Dialogue6.01,"¡Excelente trabajo! ya has aprendido a conectar nodos entre sí, aún queda más por aprender pero por ahora vamos a Guardar y salir del modo scripting"
+Intro02.Dialogue6.02,Para salir del modo scripting hay que presionar nuevamente [img=36]assets/images/keyboard/tab.png[/img] en la pantalla de scripting
+Intro02.Dialogue7.01,"Que bien lo has hecho %s, muchas gracias por tu ayuda"
+Intro02.Dialogue7.02,Ahora que conocen un poco sobre el sistema ReBrain vamos a continuar con...
+Intro02.Dialogue8.01,¿Donde ha ido todo el mundo?
+Intro02.Dialogue9.01,"Hola Platziverso, parece que tienen una pequeña falla en la seguridad, ha sido muy fácil entrar en su sistema"
+Intro02.Dialogue9.02,"Si se preguntan dónde están sus preciados alumnos, bueno, los he mandado por diferentes niveles del metaverso"
+Intro02.Dialogue9.03,"Vamos a divertirnos un poco, ¡nos veremos pronto!"
+Intro02.Dialogue10.01,"No puedo creerlo, hemos sido hackeados"
+Intro02.Dialogue10.02,"{player_name} vamos salgamos de aquí, los profesores nos encargaremos de esto"

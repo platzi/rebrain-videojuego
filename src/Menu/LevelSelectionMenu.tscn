@@ -214,7 +214,7 @@ margin_bottom = 300.0
 focus_mode = 2
 target_scene = ExtResource( 19 )
 level_image = ExtResource( 26 )
-title = "Sequencia"
+title = "Secuencia"
 
 [node name="LevelRotateAction" parent="VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/LevelsHBC" instance=ExtResource( 2 )]
 anchor_right = 0.0

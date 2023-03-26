@@ -174,7 +174,7 @@ pointing/emulate_touch_from_mouse=true
 
 [locale]
 
-translations=PoolStringArray( "res://assets/locale/nodes.es.translation" )
+translations=PoolStringArray( "res://assets/locale/nodes.es.translation", "res://assets/locale/levels_dialogues.es.translation", "res://assets/locale/levels_hints.es.translation", "res://assets/locale/epilogue_dialogues.es.translation", "res://assets/locale/intro_dialogues.es.translation", "res://assets/locale/intro_hints.es.translation" )
 locale_filter=[ 0, [ "es" ] ]
 
 [physics]
